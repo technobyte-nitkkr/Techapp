@@ -47,7 +47,7 @@ class _GoogleLoginScreenState extends State<GoogleLoginScreen> {
                     width: 10,
                   ),
                   const Text(
-                    "Login with Gmail",
+                    "Google",
                     style: TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.bold,
