@@ -119,8 +119,8 @@ class Home extends StatelessWidget {
                             ),
                           ),
                           Positioned(
-                            right: 30,
-                            bottom: 90,
+                            right: 20,
+                            bottom: 40,
                             child: Text(
                               (index + 1).toString(),
                               style: TextStyle(
