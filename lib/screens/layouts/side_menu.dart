@@ -48,7 +48,7 @@ class _SideMenuState extends State<SideMenu> {
             ),
             onTap: () {
               Navigator.pop(context);
-              Navigator.pushNamed(context, '/home');
+              Navigator.pushNamed(context, '/navigation');
             },
           ),
           Divider(

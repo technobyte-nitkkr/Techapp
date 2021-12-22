@@ -10,8 +10,6 @@ class Home extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
-  final _trackingScrollController = TrackingScrollController();
-
   @override
   Widget build(BuildContext context) {
     return PageLayout(
@@ -20,14 +18,14 @@ class Home extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Padding(
-          padding: const EdgeInsets.all(32.0),
+          padding: const EdgeInsets.only(top:16.0, right: 32.0, left: 32.0),
           child: Column(
             children: <Widget>[
               Text(
                 'Event Categories',
                 style: TextStyle(
                   fontFamily: 'Avenir',
-                  fontSize: 30,
+                  fontSize: 26,
                   color: black,
                   fontWeight: FontWeight.w900,
                 ),
@@ -80,7 +78,7 @@ class Home extends StatelessWidget {
                                         ),
                                         textAlign: TextAlign.left,
                                       ),
-                                      SizedBox(height: 32),
+                                      SizedBox(height: 16),
                                       Row(
                                         children: <Widget>[
                                           Text(
@@ -121,14 +119,14 @@ class Home extends StatelessWidget {
                             ),
                           ),
                           Positioned(
-                            right: 24,
-                            bottom: 60,
+                            right: 30,
+                            bottom: 90,
                             child: Text(
                               (index + 1).toString(),
                               style: TextStyle(
                                 fontFamily: 'Avenir',
-                                fontSize: 200,
-                                color: black.withOpacity(0.08),
+                                fontSize: 150,
+                                color: black.withOpacity(0.09),
                                 fontWeight: FontWeight.w900,
                               ),
                               textAlign: TextAlign.left,

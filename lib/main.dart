@@ -4,7 +4,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:techapp/routes.dart';
-import 'package:techapp/screens/auth/firebase_services.dart';
 import '../controllers/MenuController.dart';
 
 Future<void> main() async {
@@ -20,9 +19,9 @@ class MyApp extends StatelessWidget {
     controlRoute() {
       if (FirebaseAuth.instance.currentUser == null) {
         //return '/google_auth';
-        return '/home';
+        return '/navigation';
       } else {
-        return '/home';
+        return '/navigation';
       }
     }
 
