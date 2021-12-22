@@ -13,7 +13,7 @@ class Header extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: primaryColor,
+      color: white,
       child: Padding(
         padding: const EdgeInsets.all(5.0),
         child: Row(
@@ -22,18 +22,18 @@ class Header extends StatelessWidget {
               icon: Icon(
                 Icons.menu,
                 size: 30,
-                color: Colors.white,
+                color: Colors.black,
               ),
               onPressed: context.read<MenuController>().controlMenu,
             ),
             Text(
-                "  Altius",
-                style: TextStyle(
-                  color: white,
-                  fontSize: 22,
-                  fontWeight: FontWeight.bold,
-                ),
+              "  Altius",
+              style: TextStyle(
+                color: black,
+                fontSize: 22,
+                fontWeight: FontWeight.bold,
               ),
+            ),
           ],
         ),
       ),

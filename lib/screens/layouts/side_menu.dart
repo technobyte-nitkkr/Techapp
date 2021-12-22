@@ -1,3 +1,4 @@
+// ignore: unused_import
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:techapp/screens/auth/firebase_services.dart';
@@ -21,7 +22,7 @@ class _SideMenuState extends State<SideMenu> {
       child: ListView(
         children: [
           DrawerHeader(
-            child:Column(
+            child: Column(
               children: [
                 //Image.network(FirebaseAuth.instance.currentUser!.photoURL!),
                 const SizedBox(
@@ -120,13 +121,13 @@ class _SideMenuState extends State<SideMenu> {
               Icons.logout_outlined,
               color: Colors.black,
             ),
-            onTap: () async{
+            onTap: () async {
               await FirebaseServices().googleSignOut();
               Navigator.pop(context);
               Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const GoogleLoginScreen()));
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const GoogleLoginScreen()));
             },
           ),
           Divider(
