@@ -18,7 +18,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     controlRoute() {
       if (FirebaseAuth.instance.currentUser == null) {
-        return '/google_auth';
+        //return '/google_auth';
+        return '/home';
       } else {
         return '/home';
       }

@@ -23,15 +23,15 @@ class _SideMenuState extends State<SideMenu> {
           DrawerHeader(
             child:Column(
               children: [
-                Image.network(FirebaseAuth.instance.currentUser!.photoURL!),
+                //Image.network(FirebaseAuth.instance.currentUser!.photoURL!),
                 const SizedBox(
                   height: 6,
                 ),
-                Text("${FirebaseAuth.instance.currentUser!.displayName}"),
+                //Text("${FirebaseAuth.instance.currentUser!.displayName}"),
                 const SizedBox(
                   height: 2,
                 ),
-                Text("${FirebaseAuth.instance.currentUser!.email}"),
+                //Text("${FirebaseAuth.instance.currentUser!.email}"),
               ],
             ),
           ),
