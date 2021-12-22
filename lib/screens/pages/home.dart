@@ -18,7 +18,7 @@ class Home extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Padding(
-          padding: const EdgeInsets.only(top:16.0, right: 32.0, left: 32.0),
+          padding: const EdgeInsets.only(top: 16.0, right: 32.0, left: 32.0),
           child: Column(
             children: <Widget>[
               Text(
@@ -35,7 +35,7 @@ class Home extends StatelessWidget {
                 height: 20,
               ),
               Container(
-                height: 500,
+                height: 450,
                 child: Swiper(
                   itemCount: categories.length,
                   itemWidth: MediaQuery.of(context).size.width - 2 * 10,
