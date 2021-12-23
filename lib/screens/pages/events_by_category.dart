@@ -57,7 +57,9 @@ class EventsByCategory extends StatelessWidget {
             ),
             // events text
 
-            EventsByCategoryWidget(categoryName: eventCategory.categoryName),
+            EventsByCategoryWidget(
+                categoryName: eventCategory.categoryName,
+                categoryImage: eventCategory.iconImage),
           ],
         ),
       ),

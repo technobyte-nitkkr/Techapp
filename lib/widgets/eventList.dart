@@ -9,8 +9,10 @@ import 'package:techapp/widgets/eventListItem.dart';
 
 class EventsByCategoryWidget extends StatefulWidget {
   final String categoryName;
+  final String categoryImage;
 
-  const EventsByCategoryWidget({Key? key, required this.categoryName})
+  const EventsByCategoryWidget(
+      {Key? key, required this.categoryName, required this.categoryImage})
       : super(key: key);
 
   @override
@@ -55,7 +57,9 @@ class _EventsByCategoryWidgetState extends State<EventsByCategoryWidget> {
             scrollDirection: Axis.vertical,
             padding: EdgeInsets.all(10),
             itemBuilder: (context, index) {
-              return ListItem(item: EventList.events[index]);
+              return ListItem(
+                  item: EventList.events[index],
+                  categoryImage: widget.categoryImage);
             }),
       );
   }
