@@ -9,8 +9,7 @@ class ListItem extends StatelessWidget {
   final String categoryImage;
 
   const ListItem({Key? key, required this.item, required this.categoryImage})
-      : assert(item != null),
-        super(key: key);
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {

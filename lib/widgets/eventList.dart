@@ -45,8 +45,6 @@ class _EventsByCategoryWidgetState extends State<EventsByCategoryWidget> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
-
     EventList.events = [];
     super.dispose();
   }

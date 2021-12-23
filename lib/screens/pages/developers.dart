@@ -19,22 +19,20 @@ class Developers extends StatelessWidget {
           child: Column(
             children: [
               Scrollbar(
-                controller: _trackingScrollController,
-                isAlwaysShown: true,
-                child: SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
                   controller: _trackingScrollController,
-                  dragStartBehavior: DragStartBehavior.start,
-                  child: Text(
-                    "Developers",
-                    style: TextStyle(
-                      color: black,
-                      fontSize: 60,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  )
-                )
-              ),
+                  isAlwaysShown: true,
+                  child: SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      controller: _trackingScrollController,
+                      dragStartBehavior: DragStartBehavior.start,
+                      child: Text(
+                        "Developers",
+                        style: TextStyle(
+                          color: black,
+                          fontSize: 60,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ))),
             ],
           ),
         ),

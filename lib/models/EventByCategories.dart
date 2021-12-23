@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names
+
 class Event {
   final String eventName;
   final String eventCategory;
@@ -6,8 +8,8 @@ class Event {
   final List<String> rules;
   final String flagship;
   final String venue;
-  final String endTime;
-  final String startTime;
+  final int endTime;
+  final int startTime;
   final List<Cordinators> cordinators;
 
   Event(
@@ -31,8 +33,8 @@ class Event {
             json['rules'] != null ? new List<String>.from(json['rules']) : [],
         flagship = json['flagship'],
         venue = json['venue'],
-        endTime = json['endTime'].toString(),
-        startTime = json['startTime'].toString(),
+        endTime = json['endTime'],
+        startTime = json['startTime'],
         cordinators = json['coordinators']
             .map<Cordinators>((json) => Cordinators.fromJson(json))
             .toList();

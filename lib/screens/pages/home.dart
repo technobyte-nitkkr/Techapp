@@ -27,7 +27,7 @@ class Home extends StatelessWidget {
                 style: TextStyle(
                   fontFamily: 'Avenir',
                   fontSize: 35,
-                  color: black,
+                  color: white,
                   fontWeight: FontWeight.w900,
                 ),
                 textAlign: TextAlign.left,
@@ -48,19 +48,16 @@ class Home extends StatelessWidget {
                         activeSize: 20,
                         space: 8,
                         color: Colors.grey,
-                        activeColor: Colors.black),
+                        activeColor: white),
                   ),
                   itemBuilder: (context, index) {
                     return InkWell(
                       onTap: () {
                         Navigator.push(
-                          context,
-                          PageRouteBuilder(
-                            pageBuilder: (context, a, b) => EventsByCategory(
-                              eventCategory: categories[index],
-                            ),
-                          ),
-                        );
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => EventsByCategory(
+                                    eventCategory: categories[index])));
                       },
                       child: Stack(
                         children: <Widget>[

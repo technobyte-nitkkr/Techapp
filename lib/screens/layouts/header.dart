@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+
 import 'package:provider/provider.dart';
 import '../components/style.dart';
 import '../../controllers/MenuController.dart';
@@ -22,14 +22,14 @@ class Header extends StatelessWidget {
               icon: Icon(
                 Icons.menu,
                 size: 30,
-                color: Colors.black,
+                color: white,
               ),
               onPressed: context.read<MenuController>().controlMenu,
             ),
             Text(
               "  Altius",
               style: TextStyle(
-                color: black,
+                color: white,
                 fontSize: 22,
                 fontWeight: FontWeight.bold,
               ),

@@ -7,7 +7,10 @@ const grey = Color(0xFF888888);
 const black = Color(0xFF000000);
 const white = Color(0xFFFFFFFF);
 Color gradientStartColor = Color(0x00736AB7);
-Color gradientEndColor = Color(0xFF736AB7);
+Color gradientEndColor = Color(0xFF9354B9);
+Color navigationColor = Color(0xFF6751B5);
+Color gradientStartColor2 = Color(0xFF0050AC);
+Color gradientEndColor2 = Color(0xFF9354B9);
 
 const defaultPadding = 20.0;
 
@@ -18,3 +21,12 @@ final TextStyle mainTitle = TextStyle(
   color: Colors.black,
   fontFamily: 'OpenSans SemiBold',
 );
+
+Container getGradient() {
+  return new Container(
+      decoration: BoxDecoration(
+          gradient: LinearGradient(
+              begin: Alignment.bottomLeft,
+              end: Alignment.topRight,
+              colors: [gradientStartColor2, gradientEndColor2])));
+}

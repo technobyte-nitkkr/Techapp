@@ -22,10 +22,13 @@ class RouteGenerator {
       case '/navigation':
         return MaterialPageRoute(builder: (_) => Navigation());
       default:
-        return _errorRoute();
+        return MaterialPageRoute(builder: (_) => Navigation());
+
+      // return _errorRoute();
     }
   }
 
+  // ignore: unused_element
   static Route<dynamic> _errorRoute() {
     return MaterialPageRoute(builder: (_) {
       return Scaffold(

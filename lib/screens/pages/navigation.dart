@@ -30,14 +30,14 @@ class _NavigationState extends State<Navigation> {
     ];
 
     return Scaffold(
-      // extendBody: true,
-      backgroundColor: Colors.white,
+      extendBody: true,
+      backgroundColor: Colors.transparent,
       bottomNavigationBar: Theme(
         data: Theme.of(context)
             .copyWith(iconTheme: const IconThemeData(color: white)),
         child: CurvedNavigationBar(
-          backgroundColor: Colors.white,
-          color: grey,
+          backgroundColor: Colors.transparent,
+          color: navigationColor,
           height: 45,
           index: index,
           animationDuration: const Duration(milliseconds: 450),

@@ -7,15 +7,32 @@ import 'package:techapp/widgets/eventList.dart';
 class EventsByCategory extends StatelessWidget {
   final EventCategory eventCategory;
 
+  Container _getGradient2() {
+    return new Container(
+      // margin: new EdgeInsets.only(top: 30.0),
+      height: 150.0,
+      decoration: new BoxDecoration(
+        // border: new Border.all(
+        //   color: Colors.white,
+        //   width: 10.0,
+        // ),
+        gradient: new LinearGradient(
+            colors: <Color>[gradientStartColor, gradientEndColor],
+            // stops: [0.0, 0.9],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter),
+      ),
+    );
+  }
+
   const EventsByCategory({Key? key, required this.eventCategory})
-      : assert(eventCategory != null),
-        super(key: key);
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Colors.grey[200],
+        backgroundColor: Colors.transparent,
         extendBodyBehindAppBar: true,
         appBar: AppBar(
           backgroundColor: Colors.transparent,
@@ -30,23 +47,26 @@ class EventsByCategory extends StatelessWidget {
         ),
         body: Stack(
           children: [
+            getGradient(),
+            Hero(
+              tag: eventCategory.categoryName,
+              child: Container(
+                width: MediaQuery.of(context).size.width,
+                height: 150,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                      image: AssetImage(eventCategory.iconImage),
+                      fit: BoxFit.none),
+                ),
+              ),
+            ),
+            _getGradient2(),
             Column(
               children: [
                 // image container
-                Hero(
-                  tag: eventCategory.categoryName,
-                  child: Container(
-                    width: MediaQuery.of(context).size.width,
-                    height: 150,
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                          image: AssetImage(eventCategory.iconImage),
-                          fit: BoxFit.none),
-                    ),
-                  ),
-                ),
+
                 SizedBox(
-                  height: 20,
+                  height: 160,
                 ),
                 // text astronomy
                 Text(
@@ -54,12 +74,15 @@ class EventsByCategory extends StatelessWidget {
                   style: TextStyle(
                     fontFamily: 'Avenir',
                     fontSize: 30,
-                    color: black,
+                    color: white,
                     fontWeight: FontWeight.w900,
                   ),
                   textAlign: TextAlign.left,
                 ),
                 // events text
+                SizedBox(
+                  height: 10,
+                ),
 
                 EventsByCategoryWidget(
                     categoryName: eventCategory.categoryName,
