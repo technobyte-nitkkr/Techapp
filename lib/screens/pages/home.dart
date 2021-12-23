@@ -33,7 +33,7 @@ class Home extends StatelessWidget {
                 textAlign: TextAlign.left,
               ),
               SizedBox(
-                height: MediaQuery.of(context).size.height * 0.05,
+                height: MediaQuery.of(context).size.height * 0.03,
               ),
               Container(
                 height: MediaQuery.of(context).size.height * 0.65,
@@ -66,7 +66,9 @@ class Home extends StatelessWidget {
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: <Widget>[
-                              SizedBox(height: 100),
+                              SizedBox(
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.1),
                               Card(
                                 elevation: 8,
                                 shape: RoundedRectangleBorder(
@@ -79,12 +81,19 @@ class Home extends StatelessWidget {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: <Widget>[
-                                      SizedBox(height: 140),
+                                      SizedBox(
+                                          height: MediaQuery.of(context)
+                                                  .size
+                                                  .height *
+                                              0.2),
                                       Text(
                                         categories[index].name,
                                         style: TextStyle(
                                           fontFamily: 'Avenir',
-                                          fontSize: 36,
+                                          fontSize: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              0.08,
                                           color: const Color(0xff47455f),
                                           fontWeight: FontWeight.w900,
                                         ),
@@ -139,7 +148,7 @@ class Home extends StatelessWidget {
                           ),
                           Positioned(
                             right: 20,
-                            bottom: 40,
+                            bottom: MediaQuery.of(context).size.height * 0.15,
                             child: Text(
                               (index + 1).toString(),
                               style: TextStyle(
