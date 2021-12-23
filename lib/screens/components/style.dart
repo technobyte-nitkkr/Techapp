@@ -6,8 +6,8 @@ const bgColor = Color(0xFFecf0f5);
 const grey = Color(0xFF888888);
 const black = Color(0xFF000000);
 const white = Color(0xFFFFFFFF);
-Color gradientStartColor = Color(0xFF0050AC);
-Color gradientEndColor = Color(0xFF9354B9);
+Color gradientStartColor = Color(0x00736AB7);
+Color gradientEndColor = Color(0xFF736AB7);
 
 const defaultPadding = 20.0;
 

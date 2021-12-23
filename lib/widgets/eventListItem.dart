@@ -30,15 +30,18 @@ class ListItem extends StatelessWidget {
               padding: const EdgeInsets.all(10),
               child: Row(
                 children: <Widget>[
-                  Container(
-                      width: 100,
-                      height: 100,
-                      child: FadeInImage.assetNetwork(
-                          placeholder: 'assets/images/technologo.png',
-                          image: item.file,
-                          fit: BoxFit.cover,
-                          imageErrorBuilder: (context, error, stackTrace) =>
-                              Image.asset('assets/images/technologo.png'))),
+                  Hero(
+                    tag: item.eventName,
+                    child: Container(
+                        width: 100,
+                        height: 100,
+                        child: FadeInImage.assetNetwork(
+                            placeholder: 'assets/images/technologo.png',
+                            image: item.file,
+                            fit: BoxFit.cover,
+                            imageErrorBuilder: (context, error, stackTrace) =>
+                                Image.asset('assets/images/technologo.png'))),
+                  ),
                   Expanded(
                     child: Container(
                       padding: const EdgeInsets.only(left: 10),

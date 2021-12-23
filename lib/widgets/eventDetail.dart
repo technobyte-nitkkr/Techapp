@@ -32,7 +32,7 @@ class EventDetailWidget extends StatelessWidget {
     return new Scaffold(
       body: new Container(
         constraints: new BoxConstraints.expand(),
-        color: new Color(0xFF736AB7),
+        color: gradientEndColor,
         child: new Stack(
           children: <Widget>[
             _getBackground(),
@@ -62,7 +62,7 @@ class EventDetailWidget extends StatelessWidget {
       height: 110.0,
       decoration: new BoxDecoration(
         gradient: new LinearGradient(
-          colors: <Color>[new Color(0x00736AB7), new Color(0xFF736AB7)],
+          colors: <Color>[gradientStartColor, gradientEndColor],
           stops: [0.0, 0.9],
           begin: const FractionalOffset(0.0, 0.0),
           end: const FractionalOffset(0.0, 1.0),
@@ -90,6 +90,9 @@ class EventDetailWidget extends StatelessWidget {
                       child: new Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: <Widget>[
+                          SizedBox(
+                            height: 40.0,
+                          ),
                           new Container(height: 4.0),
                           new Text(item.eventName, style: Style.titleTextStyle),
                           new Container(height: 10.0),
@@ -97,7 +100,6 @@ class EventDetailWidget extends StatelessWidget {
                               style: Style.commonTextStyle),
                           Container(
                               margin: new EdgeInsets.symmetric(vertical: 8.0),
-                              height: 2.0,
                               width: 18.0,
                               color: new Color(0xff00c6ff)),
                           new Row(
@@ -109,12 +111,16 @@ class EventDetailWidget extends StatelessWidget {
                                     child: new Row(
                                         mainAxisSize: MainAxisSize.min,
                                         children: <Widget>[
-                                          new Image.asset(
-                                              'assets/images/technologo.png',
-                                              height: 2.0),
+                                          new Text("Start Time: ",
+                                              style: Style.commonTextStyle),
                                           new Container(width: 8.0),
-                                          new Text(item.startTime,
-                                              style: Style.smallTextStyle),
+                                          // new Text(
+                                          //     DateTime.fromMicrosecondsSinceEpoch(
+                                          //             int.parse(
+                                          //                     item.startTime) *
+                                          //                 1000)
+                                          //         .toString(),
+                                          //     style: Style.commonTextStyle),
                                         ]),
                                   )),
                               new Container(
@@ -126,12 +132,11 @@ class EventDetailWidget extends StatelessWidget {
                                     child: new Row(
                                         mainAxisSize: MainAxisSize.min,
                                         children: <Widget>[
-                                          new Image.asset(
-                                              'assets/images/technologo.png',
-                                              height: 2.0),
+                                          new Text("End Time: ",
+                                              style: Style.commonTextStyle),
                                           new Container(width: 8.0),
-                                          new Text(item.endTime,
-                                              style: Style.smallTextStyle),
+                                          // new Text(item.endTime,
+                                          //     style: Style.commonTextStyle),
                                         ]),
                                   ))
                             ],
@@ -139,7 +144,7 @@ class EventDetailWidget extends StatelessWidget {
                         ],
                       ),
                     ),
-                    height: 154.0,
+                    height: 200.0,
                     margin: new EdgeInsets.only(top: 72.0),
                     decoration: new BoxDecoration(
                       color: new Color(0xFF333366),
@@ -155,16 +160,20 @@ class EventDetailWidget extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    margin: new EdgeInsets.symmetric(vertical: 16.0),
+                    // margin: new EdgeInsets.symmetric(vertical: 16.0),
                     alignment: FractionalOffset.center,
                     child: new Hero(
-                      tag: item.eventName,
-                      child: new Image(
-                        image: new AssetImage('assets/images/technologo.png'),
-                        height: 92.0,
-                        width: 92.0,
-                      ),
-                    ),
+                        tag: item.eventName,
+                        child: Container(
+                            width: 250.0,
+                            height: 150.0,
+                            child: FadeInImage.assetNetwork(
+                                placeholder: 'assets/images/technologo.png',
+                                image: item.file,
+                                fit: BoxFit.cover,
+                                imageErrorBuilder:
+                                    (context, error, stackTrace) => Image.asset(
+                                        'assets/images/technologo.png')))),
                   ),
                 ],
               )),
@@ -186,22 +195,24 @@ class EventDetailWidget extends StatelessWidget {
           Container(
             height: 20,
           ),
-          new Container(
-            padding: new EdgeInsets.symmetric(horizontal: 32.0),
-            child: new Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                new Text("Rules", style: Style.headerTextStyle),
-                Container(
-                    margin: new EdgeInsets.symmetric(vertical: 8.0),
-                    height: 2.0,
-                    width: 18.0,
-                    color: new Color(0xff00c6ff)),
-                Column(
-                    children: item.rules.map((rule) => ruleItem(rule)).toList())
-              ],
+          if (item.rules.length > 0)
+            new Container(
+              padding: new EdgeInsets.symmetric(horizontal: 32.0),
+              child: new Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  new Text("Rules", style: Style.headerTextStyle),
+                  Container(
+                      margin: new EdgeInsets.symmetric(vertical: 8.0),
+                      height: 2.0,
+                      width: 18.0,
+                      color: new Color(0xff00c6ff)),
+                  Column(
+                      children:
+                          item.rules.map((rule) => ruleItem(rule)).toList())
+                ],
+              ),
             ),
-          ),
           new Container(
             padding: new EdgeInsets.symmetric(horizontal: 32.0),
             child: new Column(
@@ -231,7 +242,15 @@ class EventDetailWidget extends StatelessWidget {
                     color: new Color(0xff00c6ff)),
               ],
             ),
-          )
+          ),
+          if (item.cordinators.length > 0)
+            Container(
+              margin: new EdgeInsets.symmetric(horizontal: 32.0),
+              child: Column(
+                  children: item.cordinators
+                      .map((cordinator) => cordinatorItem(cordinator))
+                      .toList()),
+            ),
         ],
       ),
     );
@@ -254,6 +273,20 @@ Container ruleItem(String rule) {
           Text("• ", style: Style.commonTextStyle),
           Expanded(
             child: Text(rule, style: Style.commonTextStyle),
+          ),
+        ],
+      ));
+}
+
+Container cordinatorItem(Cordinators cordinator) {
+  return Container(
+      margin: EdgeInsets.all(5),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Expanded(
+            child:
+                Text(cordinator.coordinator_name, style: Style.titleTextStyle),
           ),
         ],
       ));

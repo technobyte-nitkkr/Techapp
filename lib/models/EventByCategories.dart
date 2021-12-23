@@ -27,7 +27,8 @@ class Event {
         eventCategory = json['eventCategory'],
         description = json['description'],
         file = json['file'],
-        rules = json['rules']?.cast<String>(),
+        rules =
+            json['rules'] != null ? new List<String>.from(json['rules']) : [],
         flagship = json['flagship'],
         venue = json['venue'],
         endTime = json['endTime'].toString(),

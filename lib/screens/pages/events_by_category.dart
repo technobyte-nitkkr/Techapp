@@ -15,6 +15,7 @@ class EventsByCategory extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        backgroundColor: Colors.grey[200],
         extendBodyBehindAppBar: true,
         appBar: AppBar(
           backgroundColor: Colors.transparent,
@@ -27,40 +28,44 @@ class EventsByCategory extends StatelessWidget {
             onPressed: () => Navigator.pop(context),
           ),
         ),
-        body: Column(
+        body: Stack(
           children: [
-            // image container
-            Hero(
-              tag: eventCategory.categoryName,
-              child: Container(
-                width: MediaQuery.of(context).size.width,
-                height: 150,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                      image: AssetImage(eventCategory.iconImage),
-                      fit: BoxFit.none),
+            Column(
+              children: [
+                // image container
+                Hero(
+                  tag: eventCategory.categoryName,
+                  child: Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: 150,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                          image: AssetImage(eventCategory.iconImage),
+                          fit: BoxFit.none),
+                    ),
+                  ),
                 ),
-              ),
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            // text astronomy
-            Text(
-              eventCategory.categoryName + ' Events',
-              style: TextStyle(
-                fontFamily: 'Avenir',
-                fontSize: 30,
-                color: black,
-                fontWeight: FontWeight.w900,
-              ),
-              textAlign: TextAlign.left,
-            ),
-            // events text
+                SizedBox(
+                  height: 20,
+                ),
+                // text astronomy
+                Text(
+                  eventCategory.categoryName + ' Events',
+                  style: TextStyle(
+                    fontFamily: 'Avenir',
+                    fontSize: 30,
+                    color: black,
+                    fontWeight: FontWeight.w900,
+                  ),
+                  textAlign: TextAlign.left,
+                ),
+                // events text
 
-            EventsByCategoryWidget(
-                categoryName: eventCategory.categoryName,
-                categoryImage: eventCategory.iconImage),
+                EventsByCategoryWidget(
+                    categoryName: eventCategory.categoryName,
+                    categoryImage: eventCategory.iconImage),
+              ],
+            ),
           ],
         ),
       ),
