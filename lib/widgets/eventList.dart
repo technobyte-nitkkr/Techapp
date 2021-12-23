@@ -36,10 +36,19 @@ class _EventsByCategoryWidgetState extends State<EventsByCategoryWidget> {
     final data = json.decode(response.body);
     final events = data['data']['events'];
     // print(events);
+
     EventList.events =
         events.map<Event>((json) => Event.fromJson(json)).toList();
 
     setState(() {});
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+
+    EventList.events = [];
+    super.dispose();
   }
 
   @override

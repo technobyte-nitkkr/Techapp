@@ -27,7 +27,7 @@ class Event {
         eventCategory = json['eventCategory'],
         description = json['description'],
         file = json['file'],
-        rules = json['rules'].cast<String>(),
+        rules = json['rules']?.cast<String>(),
         flagship = json['flagship'],
         venue = json['venue'],
         endTime = json['endTime'].toString(),

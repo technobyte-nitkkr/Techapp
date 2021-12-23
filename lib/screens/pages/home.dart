@@ -39,6 +39,7 @@ class Home extends StatelessWidget {
                 height: MediaQuery.of(context).size.height * 0.65,
                 // decoration: BoxDecoration(border: Border.all(color: grey)),
                 child: Swiper(
+                  autoplay: true,
                   itemCount: categories.length,
                   itemWidth: MediaQuery.of(context).size.width - 2 * 50,
                   layout: SwiperLayout.STACK,

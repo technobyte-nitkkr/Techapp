@@ -18,16 +18,15 @@ class ListItem extends StatelessWidget {
         margin: const EdgeInsets.only(top: 10),
         elevation: 10,
         // card with event image and name
-
         child: GestureDetector(
-            onTap: () => {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => EventDetailWidget(
-                              item: item, cimage: categoryImage)))
-                },
-            child: Container(
+          onTap: () => {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) =>
+                        EventDetailWidget(item: item, cimage: categoryImage)))
+          },
+          child: Container(
               padding: const EdgeInsets.all(10),
               child: Row(
                 children: <Widget>[
@@ -37,6 +36,7 @@ class ListItem extends StatelessWidget {
                       child: FadeInImage.assetNetwork(
                           placeholder: 'assets/images/technologo.png',
                           image: item.file,
+                          fit: BoxFit.cover,
                           imageErrorBuilder: (context, error, stackTrace) =>
                               Image.asset('assets/images/technologo.png'))),
                   Expanded(
@@ -56,12 +56,32 @@ class ListItem extends StatelessWidget {
                                 : item.description,
                             style: TextStyle(fontSize: 15),
                           ),
+                          //  read more button
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: <Widget>[
+                              Text(
+                                'Know more',
+                                style: TextStyle(
+                                  fontFamily: 'Avenir',
+                                  fontSize: 18,
+                                  color: grey,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                                textAlign: TextAlign.left,
+                              ),
+                              Icon(
+                                Icons.arrow_forward,
+                                color: grey,
+                              ),
+                            ],
+                          ),
                         ],
                       ),
                     ),
                   ),
                 ],
-              ),
-            )));
+              )),
+        ));
   }
 }

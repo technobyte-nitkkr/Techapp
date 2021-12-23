@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:techapp/models/data.dart';
 import 'package:techapp/screens/components/style.dart';
@@ -32,7 +31,7 @@ class EventsByCategory extends StatelessWidget {
           children: [
             // image container
             Hero(
-              tag: Key(eventCategory.getCategoryName),
+              tag: eventCategory.categoryName,
               child: Container(
                 width: MediaQuery.of(context).size.width,
                 height: 150,
@@ -43,7 +42,9 @@ class EventsByCategory extends StatelessWidget {
                 ),
               ),
             ),
-
+            SizedBox(
+              height: 20,
+            ),
             // text astronomy
             Text(
               eventCategory.categoryName + ' Events',

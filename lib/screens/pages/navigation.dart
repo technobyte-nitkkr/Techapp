@@ -24,27 +24,26 @@ class _NavigationState extends State<Navigation> {
     ];
 
     final items = <Widget>[
-      const Icon(Icons.money_rounded, size: 40),
-      const Icon(Icons.home, size: 40),
-      const Icon(Icons.speaker_group, size: 40),
+      const Icon(Icons.money_rounded, size: 30),
+      const Icon(Icons.home, size: 30),
+      const Icon(Icons.speaker_group, size: 30),
     ];
 
     return Scaffold(
-      //extendBody: true,
-      backgroundColor: grey,
+      // extendBody: true,
+      backgroundColor: Colors.white,
       bottomNavigationBar: Theme(
-        data: Theme.of(context).copyWith(
-            iconTheme: const IconThemeData(
-          color: black,
-        )),
+        data: Theme.of(context)
+            .copyWith(iconTheme: const IconThemeData(color: white)),
         child: CurvedNavigationBar(
           backgroundColor: Colors.white,
           color: grey,
-          height: 60,
+          height: 45,
           index: index,
-          animationDuration: const Duration(milliseconds: 300),
+          animationDuration: const Duration(milliseconds: 450),
           items: items,
           onTap: (index) => setState(() => this.index = index),
+          animationCurve: Curves.easeInOut,
         ),
       ),
       body: screens[index],
