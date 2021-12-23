@@ -8,6 +8,8 @@ class EventCategory {
     required this.name,
     required this.iconImage,
   });
+  // getter for event category
+  String get getCategoryName => categoryName;
 }
 
 List<EventCategory> categories = [

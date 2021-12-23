@@ -35,14 +35,14 @@ class _NavigationState extends State<Navigation> {
       bottomNavigationBar: Theme(
         data: Theme.of(context).copyWith(
             iconTheme: const IconThemeData(
-          color: white,
+          color: black,
         )),
         child: CurvedNavigationBar(
-          backgroundColor: white,
-          color: black,
+          backgroundColor: Colors.white,
+          color: grey,
           height: 60,
           index: index,
-          animationDuration: const Duration(milliseconds: 400),
+          animationDuration: const Duration(milliseconds: 300),
           items: items,
           onTap: (index) => setState(() => this.index = index),
         ),

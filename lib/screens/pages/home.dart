@@ -4,6 +4,7 @@ import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:techapp/models/data.dart';
 import 'package:techapp/screens/components/style.dart';
 import 'package:techapp/screens/layouts/page_layout.dart';
+import 'package:techapp/screens/pages/events_by_category.dart';
 
 class Home extends StatelessWidget {
   Home({
@@ -18,27 +19,28 @@ class Home extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Padding(
-          padding: const EdgeInsets.only(top: 16.0, right: 32.0, left: 32.0),
+          padding: const EdgeInsets.only(top: 16.0, right: 20.0, left: 20.0),
           child: Column(
             children: <Widget>[
               Text(
                 'Event Categories',
                 style: TextStyle(
                   fontFamily: 'Avenir',
-                  fontSize: 26,
+                  fontSize: 35,
                   color: black,
                   fontWeight: FontWeight.w900,
                 ),
                 textAlign: TextAlign.left,
               ),
               SizedBox(
-                height: 20,
+                height: MediaQuery.of(context).size.height * 0.05,
               ),
               Container(
-                height: 450,
+                height: MediaQuery.of(context).size.height * 0.65,
+                // decoration: BoxDecoration(border: Border.all(color: grey)),
                 child: Swiper(
                   itemCount: categories.length,
-                  itemWidth: MediaQuery.of(context).size.width - 2 * 10,
+                  itemWidth: MediaQuery.of(context).size.width - 2 * 50,
                   layout: SwiperLayout.STACK,
                   pagination: SwiperPagination(
                     builder: DotSwiperPaginationBuilder(
@@ -49,10 +51,20 @@ class Home extends StatelessWidget {
                   ),
                   itemBuilder: (context, index) {
                     return InkWell(
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          PageRouteBuilder(
+                            pageBuilder: (context, a, b) => EventsByCategory(
+                              eventCategory: categories[index],
+                            ),
+                          ),
+                        );
+                      },
                       child: Stack(
                         children: <Widget>[
                           Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
                             children: <Widget>[
                               SizedBox(height: 100),
                               Card(
@@ -72,7 +84,7 @@ class Home extends StatelessWidget {
                                         categories[index].name,
                                         style: TextStyle(
                                           fontFamily: 'Avenir',
-                                          fontSize: 30,
+                                          fontSize: 36,
                                           color: const Color(0xff47455f),
                                           fontWeight: FontWeight.w900,
                                         ),
@@ -106,9 +118,16 @@ class Home extends StatelessWidget {
                           Hero(
                             tag: categories[index].categoryName,
                             child: Container(
-                              width: 250,
-                              height: 250,
-                              margin: EdgeInsets.only(left: 50),
+                              width: MediaQuery.of(context).size.width * 0.5,
+                              height: MediaQuery.of(context).size.width * 0.5,
+
+                              margin: EdgeInsets.only(
+                                left: MediaQuery.of(context).size.width * 0.125,
+                                right:
+                                    MediaQuery.of(context).size.width * 0.125,
+                              ),
+
+                              // margin: EdgeInsets.only(left: 30),
                               decoration: BoxDecoration(
                                 image: DecorationImage(
                                     image:
