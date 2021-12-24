@@ -30,6 +30,7 @@ class FetchDataProvider with ChangeNotifier {
   }
 
   getDataFromInternet() async {
+    loading = true;
     print('we have been called from ctr -------2');
 
     for (int i = 0; i < _categories.length; i++) {
@@ -50,6 +51,7 @@ class FetchDataProvider with ChangeNotifier {
         eventsMap[_categories[i]] = {element.eventName: element};
       });
     }
+    loading = false;
 
     notifyListeners();
   }

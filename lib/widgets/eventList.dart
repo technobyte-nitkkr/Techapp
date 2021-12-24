@@ -14,13 +14,15 @@ class EventsByCategoryWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final eventsMap = Provider.of<FetchDataProvider>(context).eventsMap;
-    final eventsKeys = eventsMap[categoryName]!.keys.toList();
-    if (eventsMap[categoryName] == null)
+    final fetchData = Provider.of<FetchDataProvider>(context);
+    final eventsMap = fetchData.eventsMap;
+
+    if (fetchData.loading)
       return Center(
         child: CircularProgressIndicator(),
       );
-    else
+    else {
+      final eventsKeys = eventsMap[categoryName]!.keys.toList();
       return Flexible(
         // height: MediaQuery.of(context).size.height * 0.4,
         child: ListView.builder(
@@ -37,5 +39,6 @@ class EventsByCategoryWidget extends StatelessWidget {
           },
         ),
       );
+    }
   }
 }
