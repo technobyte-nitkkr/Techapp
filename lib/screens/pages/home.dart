@@ -26,20 +26,19 @@ class Home extends StatelessWidget {
                 'Event Categories',
                 style: TextStyle(
                   fontFamily: 'Avenir',
-                  fontSize: 35,
+                  fontSize: 30,
                   color: white,
                   fontWeight: FontWeight.w900,
                 ),
                 textAlign: TextAlign.left,
               ),
               SizedBox(
-                height: MediaQuery.of(context).size.height * 0.03,
+                height: MediaQuery.of(context).size.height * 0.06,
               ),
               Container(
                 height: MediaQuery.of(context).size.height * 0.65,
                 // decoration: BoxDecoration(border: Border.all(color: grey)),
                 child: Swiper(
-                  autoplay: true,
                   itemCount: categories.length,
                   itemWidth: MediaQuery.of(context).size.width - 2 * 50,
                   layout: SwiperLayout.STACK,
