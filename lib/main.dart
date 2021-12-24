@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:techapp/providers/event_provider.dart';
 import 'package:techapp/routes.dart';
 import '../controllers/MenuController.dart';
 
@@ -30,6 +31,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (context) => MenuController(),
         ),
+        ChangeNotifierProvider(create: (_) => FetchDataProvider()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

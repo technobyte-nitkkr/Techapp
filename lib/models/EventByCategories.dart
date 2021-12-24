@@ -51,7 +51,3 @@ class Cordinators {
       : coordinator_name = json['coordinator_name'],
         coordinator_number = json['coordinator_number'];
 }
-
-class EventList {
-  static List<Event> events = [];
-}
