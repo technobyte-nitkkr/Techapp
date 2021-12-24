@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-// ignore: import_of_legacy_library_into_null_safe
+
 import 'package:techapp/providers/event_provider.dart';
 import 'package:techapp/widgets/eventListItem.dart';
 
 class EventsByCategoryWidget extends StatelessWidget {
   final String categoryName;
-  final String categoryImage;
+  // final String categoryImage;
 
-  const EventsByCategoryWidget(
-      {Key? key, required this.categoryName, required this.categoryImage})
+  const EventsByCategoryWidget({Key? key, required this.categoryName})
       : super(key: key);
 
   @override
@@ -32,10 +31,9 @@ class EventsByCategoryWidget extends StatelessWidget {
           padding: EdgeInsets.all(10),
           itemBuilder: (context, index) {
             return ListItem(
-                eventName:
-                    eventsMap[categoryName]![eventsKeys[index]]!.eventName,
-                eventCategory: categoryName,
-                categoryImage: categoryImage);
+              eventName: eventsMap[categoryName]![eventsKeys[index]]!.eventName,
+              eventCategory: categoryName,
+            );
           },
         ),
       );

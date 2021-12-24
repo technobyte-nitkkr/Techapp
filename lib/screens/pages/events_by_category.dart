@@ -1,23 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:techapp/models/data.dart';
 import 'package:techapp/screens/components/style.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:techapp/widgets/eventList.dart';
 
 class EventsByCategory extends StatelessWidget {
-  final EventCategory eventCategory;
+  final String categoryName;
 
   Container _getGradient2() {
     return new Container(
-      // margin: new EdgeInsets.only(top: 30.0),
       height: 150.0,
       decoration: new BoxDecoration(
-        // border: new Border.all(
-        //   color: Colors.white,
-        //   width: 10.0,
-        // ),
         gradient: new LinearGradient(
             colors: <Color>[gradientStartColor, gradientEndColor],
+
             // stops: [0.0, 0.9],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter),
@@ -25,7 +20,7 @@ class EventsByCategory extends StatelessWidget {
     );
   }
 
-  const EventsByCategory({Key? key, required this.eventCategory})
+  const EventsByCategory({Key? key, required this.categoryName})
       : super(key: key);
 
   @override
@@ -49,13 +44,15 @@ class EventsByCategory extends StatelessWidget {
           children: [
             getGradient(),
             Hero(
-              tag: eventCategory.categoryName,
+              tag: categoryName,
               child: Container(
                 width: MediaQuery.of(context).size.width,
                 height: 150,
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                      image: AssetImage(eventCategory.iconImage),
+                      image: AssetImage('assets/images/categories/' +
+                          categoryName.toLowerCase() +
+                          '.png'),
                       fit: BoxFit.none),
                 ),
               ),
@@ -70,7 +67,7 @@ class EventsByCategory extends StatelessWidget {
                 ),
                 // text astronomy
                 Text(
-                  eventCategory.categoryName + ' Events',
+                  categoryName + ' Events',
                   style: TextStyle(
                     fontFamily: 'Avenir',
                     fontSize: 30,
@@ -85,8 +82,8 @@ class EventsByCategory extends StatelessWidget {
                 ),
 
                 EventsByCategoryWidget(
-                    categoryName: eventCategory.categoryName,
-                    categoryImage: eventCategory.iconImage),
+                  categoryName: categoryName,
+                ),
               ],
             ),
           ],

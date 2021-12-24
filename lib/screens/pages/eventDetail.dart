@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:techapp/models/EventByCategories.dart';
+import 'package:techapp/providers/event_provider.dart';
 import 'package:techapp/screens/components/style.dart';
 import 'package:intl/intl.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -22,14 +24,17 @@ class Style {
 }
 
 class EventDetailWidget extends StatelessWidget {
-  EventDetailWidget({Key? key, required this.item, required this.cimage})
-      : super(key: key);
+  final String eventName;
+  final String eventCategory;
 
-  final Event item;
-  final String cimage;
+  const EventDetailWidget(
+      {Key? key, required this.eventName, required this.eventCategory})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final fetchData = Provider.of<FetchDataProvider>(context);
+    final Event item = fetchData.eventsMap[eventCategory]![eventName]!;
     return new Scaffold(
       body: new Container(
         constraints: new BoxConstraints.expand(),
@@ -38,7 +43,7 @@ class EventDetailWidget extends StatelessWidget {
           children: <Widget>[
             _getBackground(),
             _getGradient(),
-            _getContent(),
+            _getContent(item),
             _getToolbar(context),
           ],
         ),
@@ -49,7 +54,7 @@ class EventDetailWidget extends StatelessWidget {
   Container _getBackground() {
     return new Container(
       child: new Image.asset(
-        cimage,
+        'assets/images/categories/' + eventCategory.toLowerCase() + '.png',
         fit: BoxFit.cover,
         height: 300.0,
       ),
@@ -72,7 +77,7 @@ class EventDetailWidget extends StatelessWidget {
     );
   }
 
-  Container _getContent() {
+  Container _getContent(Event item) {
     return new Container(
       child: new ListView(
         padding: new EdgeInsets.fromLTRB(0.0, 72.0, 0.0, 32.0),
@@ -276,11 +281,11 @@ Widget cordinatorItem(Cordinators cordinator) {
         },
         child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
           Icon(Icons.call),
-          Text(
-              cordinator.coordinator_name.length > 10
-                  ? cordinator.coordinator_name.substring(0, 10) + "..."
-                  : cordinator.coordinator_name,
-              style: Style.headerTextStyle),
+          FittedBox(
+            fit: BoxFit.cover,
+            child: Text(cordinator.coordinator_name,
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+          ),
         ]),
       ),
     ),

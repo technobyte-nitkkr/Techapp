@@ -1,27 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:techapp/models/EventByCategories.dart';
 import 'package:techapp/providers/event_provider.dart';
 import 'package:techapp/screens/components/style.dart';
-import 'package:techapp/widgets/eventDetail.dart';
+import 'package:techapp/screens/pages/eventDetail.dart';
 // ignore: import_of_legacy_library_into_null_safe
 
 class ListItem extends StatelessWidget {
   final String eventName;
   final String eventCategory;
-  final String categoryImage;
 
   const ListItem(
-      {Key? key,
-      required this.eventName,
-      required this.eventCategory,
-      required this.categoryImage})
+      {Key? key, required this.eventName, required this.eventCategory})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final data = Provider.of<FetchDataProvider>(context);
     final item = data.eventsMap[eventCategory]![eventName]!;
+
     return Card(
         margin: const EdgeInsets.only(top: 10),
         elevation: 10,
@@ -31,8 +27,10 @@ class ListItem extends StatelessWidget {
             Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) =>
-                        EventDetailWidget(item: item, cimage: categoryImage)))
+                    builder: (context) => EventDetailWidget(
+                          eventCategory: item.eventCategory,
+                          eventName: item.eventName,
+                        )))
           },
           child: Container(
               padding: const EdgeInsets.all(10),

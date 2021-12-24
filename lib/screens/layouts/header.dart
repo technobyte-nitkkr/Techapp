@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'package:provider/provider.dart';
-import 'package:techapp/models/data.dart';
-import 'package:techapp/screens/pages/events_by_category.dart';
+import 'package:techapp/providers/event_provider.dart';
+import 'package:techapp/screens/pages/eventDetail.dart';
 import '../components/style.dart';
 import '../../controllers/MenuController.dart';
 import '../../screens/components/style.dart';
@@ -54,21 +54,8 @@ class Header extends StatelessWidget {
 }
 
 class DataSearch extends SearchDelegate<String> {
-  final categoriesListFinal = [
-    "astronomy",
-    "design",
-    "informals",
-    "managerial",
-    "online-Events",
-    "papyrus-Vitae",
-    "programming",
-    "quizzes",
-    "robotics"
-  ];
-
   final recentSearches = [
-    "online-Events",
-    "papyrus-Vitae",
+    "Search for events Names",
   ];
 
   @override
@@ -102,38 +89,57 @@ class DataSearch extends SearchDelegate<String> {
 
   @override
   Widget buildResults(BuildContext context) {
-    // show some result based on the selection
     return Scaffold();
-    // Navigator.push(
-    //     context,
-    //     MaterialPageRoute(
-    //         builder: (context) =>
-    //             EventsByCategory(eventCategory: categories[])));
   }
 
   @override
   Widget buildSuggestions(BuildContext context) {
     // show when someone searches for something
+
+    final allEvents = Provider.of<FetchDataProvider>(context).allEvents;
+    // event names list
+    final allEventNames = allEvents.map((event) => event.eventName).toList();
+    // event categories list
+    final allEventCategories =
+        allEvents.map((event) => event.eventCategory).toList();
+
     final suggestionList = query.isEmpty
         ? recentSearches
-        : categoriesListFinal
-            .where((element) => element.startsWith(query))
+        : allEventNames
+            .where((element) =>
+                element!.toLowerCase().startsWith(query.toLowerCase()))
             .toList();
+
     return ListView.builder(
       itemBuilder: (context, index) => ListTile(
         onTap: () {
-          showResults(context);
+          final String eventName = suggestionList[index]!;
+
+          final String eventCategory =
+              allEventCategories[allEventNames.indexOf(suggestionList[index])]!;
+
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => EventDetailWidget(
+                eventName: eventName,
+                eventCategory: eventCategory,
+              ),
+            ),
+          );
         },
         leading: Icon(Icons.category),
         title: RichText(
-            text: TextSpan(
-                text: suggestionList[index].substring(0, query.length),
-                style: TextStyle(color: black, fontWeight: FontWeight.bold),
-                children: [
+          text: TextSpan(
+            text: suggestionList[index]!.substring(0, query.length),
+            style: TextStyle(color: black, fontWeight: FontWeight.bold),
+            children: [
               TextSpan(
-                  text: suggestionList[index].substring(query.length),
+                  text: suggestionList[index]!.substring(query.length),
                   style: TextStyle(color: grey))
-            ])),
+            ],
+          ),
+        ),
       ),
       itemCount: suggestionList.length,
     );

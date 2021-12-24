@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:techapp/screens/auth/firebase_services.dart';
 import 'package:techapp/screens/auth/google_login.dart';
+import 'package:techapp/screens/components/style.dart';
 
 class SideMenu extends StatefulWidget {
   const SideMenu({
@@ -19,120 +20,130 @@ class _SideMenuState extends State<SideMenu> {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      child: ListView(
+      child: Stack(
         children: [
-          DrawerHeader(
-            child: Column(
-              children: [
-                //Image.network(FirebaseAuth.instance.currentUser!.photoURL!),
-                const SizedBox(
-                  height: 6,
+          getGradient(),
+          ListView(
+            children: [
+              DrawerHeader(
+                child: Column(
+                  children: [
+                    //Image.network(FirebaseAuth.instance.currentUser!.photoURL!),
+                    const SizedBox(
+                      height: 6,
+                    ),
+                    //Text("${FirebaseAuth.instance.currentUser!.displayName}"),
+                    const SizedBox(
+                      height: 2,
+                    ),
+                    //Text("${FirebaseAuth.instance.currentUser!.email}"),
+                  ],
                 ),
-                //Text("${FirebaseAuth.instance.currentUser!.displayName}"),
-                const SizedBox(
-                  height: 2,
+              ),
+              Divider(
+                height: 1,
+                thickness: 1,
+              ),
+              ListTile(
+                title: Text(
+                  'Home',
+                  style: TextStyle(color: Colors.white),
                 ),
-                //Text("${FirebaseAuth.instance.currentUser!.email}"),
-              ],
-            ),
-          ),
-          Divider(
-            height: 1,
-            thickness: 1,
-          ),
-          ListTile(
-            title: Text('Home'),
-            leading: Icon(
-              Icons.home,
-              color: Colors.black,
-            ),
-            onTap: () {
-              Navigator.pop(context);
-              Navigator.pushNamed(context, '/navigation');
-            },
-          ),
-          Divider(
-            height: 1,
-            thickness: 1,
-          ),
-          ListTile(
-            title: Text('My Events'),
-            leading: Icon(
-              Icons.calendar_today_rounded,
-              color: Colors.black,
-            ),
-            onTap: () {
-              Navigator.pop(context);
-              Navigator.pushNamed(context, '/my_events');
-            },
-          ),
-          Divider(
-            height: 1,
-            thickness: 1,
-          ),
-          ListTile(
-            title: Text('Team Altius'),
-            leading: Icon(
-              Icons.group,
-              color: Colors.black,
-            ),
-            onTap: () {
-              Navigator.pop(context);
-              Navigator.pushNamed(context, '/team_altius');
-            },
-          ),
-          Divider(
-            height: 1,
-            thickness: 1,
-          ),
-          ListTile(
-            title: Text('About us'),
-            leading: Icon(
-              Icons.info_outline,
-              color: Colors.black,
-            ),
-            onTap: () {
-              Navigator.pop(context);
-              Navigator.pushNamed(context, '/about_us');
-            },
-          ),
-          Divider(
-            height: 1,
-            thickness: 1,
-          ),
-          ListTile(
-            title: Text('Developers'),
-            leading: Icon(
-              Icons.developer_mode,
-              color: Colors.black,
-            ),
-            onTap: () {
-              Navigator.pop(context);
-              Navigator.pushNamed(context, '/developers');
-            },
-          ),
-          Divider(
-            height: 1,
-            thickness: 1,
-          ),
-          ListTile(
-            title: Text('Logout'),
-            leading: Icon(
-              Icons.logout_outlined,
-              color: Colors.black,
-            ),
-            onTap: () async {
-              await FirebaseServices().googleSignOut();
-              Navigator.pop(context);
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const GoogleLoginScreen()));
-            },
-          ),
-          Divider(
-            height: 1,
-            thickness: 1,
+                leading: Icon(
+                  Icons.home,
+                  color: white,
+                ),
+                onTap: () {
+                  Navigator.pop(context);
+                  Navigator.pushNamed(context, '/navigation');
+                },
+              ),
+              Divider(
+                height: 1,
+                thickness: 1,
+              ),
+              ListTile(
+                title: Text('My Events', style: TextStyle(color: Colors.white)),
+                leading: Icon(
+                  Icons.calendar_today_rounded,
+                  color: white,
+                ),
+                onTap: () {
+                  Navigator.pop(context);
+                  Navigator.pushNamed(context, '/my_events');
+                },
+              ),
+              Divider(
+                height: 1,
+                thickness: 1,
+              ),
+              ListTile(
+                title:
+                    Text('Team Altius', style: TextStyle(color: Colors.white)),
+                leading: Icon(
+                  Icons.group,
+                  color: white,
+                ),
+                onTap: () {
+                  Navigator.pop(context);
+                  Navigator.pushNamed(context, '/team_altius');
+                },
+              ),
+              Divider(
+                height: 1,
+                thickness: 1,
+              ),
+              ListTile(
+                title: Text('About us', style: TextStyle(color: Colors.white)),
+                leading: Icon(
+                  Icons.info_outline,
+                  color: white,
+                ),
+                onTap: () {
+                  Navigator.pop(context);
+                  Navigator.pushNamed(context, '/about_us');
+                },
+              ),
+              Divider(
+                height: 1,
+                thickness: 1,
+              ),
+              ListTile(
+                title:
+                    Text('Developers', style: TextStyle(color: Colors.white)),
+                leading: Icon(
+                  Icons.developer_mode,
+                  color: white,
+                ),
+                onTap: () {
+                  Navigator.pop(context);
+                  Navigator.pushNamed(context, '/developers');
+                },
+              ),
+              Divider(
+                height: 1,
+                thickness: 1,
+              ),
+              ListTile(
+                title: Text('Logout', style: TextStyle(color: Colors.white)),
+                leading: Icon(
+                  Icons.logout_outlined,
+                  color: white,
+                ),
+                onTap: () async {
+                  await FirebaseServices().googleSignOut();
+                  Navigator.pop(context);
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const GoogleLoginScreen()));
+                },
+              ),
+              Divider(
+                height: 1,
+                thickness: 1,
+              ),
+            ],
           ),
         ],
       ),
@@ -155,7 +166,7 @@ class _SideMenuState extends State<SideMenu> {
           //             title: Text('Team Altius'),
           //             leading: Icon(
           //               Icons.group_add_rounded,
-          //               color: Colors.black,
+          //               color: white,
           //             ),
           //           );
           //         },
