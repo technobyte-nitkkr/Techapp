@@ -97,7 +97,7 @@ class DataSearch extends SearchDelegate<String> {
   Widget buildSuggestions(BuildContext context) {
     // show when someone searches for something
 
-    final allEvents = Provider.of<FetchDataProvider>(context).allEvents;
+    final allEvents = FetchDataProvider.allEvents;
     // event names list
     final allEventNames = allEvents.map((event) => event.eventName).toList();
     // event categories list

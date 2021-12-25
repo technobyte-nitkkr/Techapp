@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:flutter_swiper/flutter_swiper.dart';
-import 'package:provider/provider.dart';
 import 'package:techapp/providers/event_provider.dart';
 import 'package:techapp/screens/components/style.dart';
 import 'package:techapp/screens/layouts/page_layout.dart';
@@ -14,8 +13,7 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final fetchData = Provider.of<FetchDataProvider>(context);
-    final categories = fetchData.categories;
+    final categories = FetchDataProvider.categories;
     return PageLayout(
       child: SafeArea(
         child: Column(

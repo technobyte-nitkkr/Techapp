@@ -18,23 +18,30 @@ class SideMenu extends StatelessWidget {
                 child: Column(
                   children: [
                     FirebaseAuth.instance.currentUser != null
-                        ? Image.network(
-                            FirebaseAuth.instance.currentUser!.photoURL!)
-                        : Image.asset(
-                            'assets/images/technologo.png',
-                            height: 50,
-                            width: 50,
+                        ? CircleAvatar(
+                            backgroundImage: NetworkImage(
+                                FirebaseAuth.instance.currentUser!.photoURL!),
+                            radius: 40,
+                          )
+                        : CircleAvatar(
+                            backgroundImage: AssetImage(
+                              'assets/images/technologo.png',
+                            ),
+                            radius: 40,
                           ),
                     const SizedBox(
                       height: 6,
                     ),
                     Text(
-                        "${FirebaseAuth.instance.currentUser != null ? FirebaseAuth.instance.currentUser!.displayName : "Dummy Name"}"),
+                      "${FirebaseAuth.instance.currentUser != null ? FirebaseAuth.instance.currentUser!.displayName : "Dummy Name"}",
+                      style: TextStyle(color: white),
+                    ),
                     const SizedBox(
                       height: 2,
                     ),
                     Text(
-                        "${FirebaseAuth.instance.currentUser != null ? FirebaseAuth.instance.currentUser!.email : "Dummy Email"}"),
+                        "${FirebaseAuth.instance.currentUser != null ? FirebaseAuth.instance.currentUser!.email : "Dummy Email"}",
+                        style: TextStyle(color: white)),
                   ],
                 ),
               ),
@@ -53,7 +60,8 @@ class SideMenu extends StatelessWidget {
                 ),
                 onTap: () {
                   Navigator.pop(context);
-                  Navigator.pushNamed(context, '/navigation');
+                  Navigator.pushNamedAndRemoveUntil(context, '/navigation',
+                      ModalRoute.withName('/navigation'));
                 },
               ),
               Divider(

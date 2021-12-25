@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:techapp/models/EventByCategories.dart';
 import 'package:techapp/providers/event_provider.dart';
 import 'package:techapp/screens/components/style.dart';
@@ -33,8 +32,7 @@ class EventDetailWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final fetchData = Provider.of<FetchDataProvider>(context);
-    final Event item = fetchData.eventsMap[eventCategory]![eventName]!;
+    final Event item = FetchDataProvider.eventsMap[eventCategory]![eventName]!;
     return new Scaffold(
       body: new Container(
         constraints: new BoxConstraints.expand(),

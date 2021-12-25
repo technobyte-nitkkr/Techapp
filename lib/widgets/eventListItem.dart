@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:techapp/providers/event_provider.dart';
 import 'package:techapp/screens/components/style.dart';
 import 'package:techapp/screens/pages/eventDetail.dart';
@@ -15,8 +14,8 @@ class ListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final data = Provider.of<FetchDataProvider>(context);
-    final item = data.eventsMap[eventCategory]![eventName]!;
+    //final data = Provider.of<FetchDataProvider>(context);
+    final item = FetchDataProvider.eventsMap[eventCategory]![eventName]!;
 
     return Card(
         margin: const EdgeInsets.only(top: 10),

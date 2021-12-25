@@ -13,10 +13,10 @@ class EventsByCategoryWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final fetchData = Provider.of<FetchDataProvider>(context);
-    final eventsMap = fetchData.eventsMap;
+    //final fetchData = Provider.of<FetchDataProvider>(context);
+    final eventsMap = FetchDataProvider.eventsMap;
 
-    if (fetchData.loading)
+    if (FetchDataProvider.loading)
       return Center(
         child: CircularProgressIndicator(),
       );

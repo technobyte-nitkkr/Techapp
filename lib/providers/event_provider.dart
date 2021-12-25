@@ -1,66 +1,63 @@
-import 'dart:convert';
-
-import 'package:flutter/cupertino.dart';
 import 'package:techapp/models/EventByCategories.dart';
-import 'package:http/http.dart' as http;
+import 'package:techapp/models/Sponsor.dart';
 import 'package:techapp/models/eventAll.dart';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 
-class FetchDataProvider with ChangeNotifier {
+class FetchDataProvider {
   // event map first key refer for category and second key refer to event name
-  Map<String, Map<String, Event>> eventsMap = new Map();
+  static Map<String, Map<String, Event>> eventsMap = new Map();
 
-  bool loading = false;
+  static bool loading = false;
 
   // list of all categories
-  List<String> categories = [];
+  static List<String> categories = [];
   // list of all events
-  List<AllEvents> allEvents = [];
+  static List<AllEvents> allEvents = [];
 
-  FetchDataProvider() {
-    initialize();
-    print('we have been initialized ');
+  static List<Sponsor> sponsors = [];
+
+  static loadSponsor() async {
+    // await Future.delayed(Duration(seconds: 2));
+    final url =
+        'https://us-central1-techspardha-87928.cloudfunctions.net/api/foodsponsors';
+    final response = await http.get(Uri.parse(url));
+    // print(url);
+    // print(response.body);
+    final data = json.decode(response.body);
+    final sponsorsJSON = data['data']['foodSponsors'].cast<Map<String, dynamic>>();
+    sponsors = sponsorsJSON.map<Sponsor>((json) => Sponsor.fromJson(json)).toList();
+    // print(sponsorsJSON);
+
+    // EventList.events = 
+    //     events.map<Event>((json) => Event.fromJson(json)).toList();
   }
 
-  Future<void> initialize() async {
-    await getDataFromInternet();
-  }
-
-  getDataFromInternet() async {
-    loading = true;
-    print('we have been called from ctr -------2');
-    await loadCategories();
-    await loadEvents();
-    await loadEventDescription();
-
-    loading = false;
-
-    notifyListeners();
-  }
-
-  Future<void> loadCategories() async {
+  static Future<void> loadCategories() async {
     final url =
         'https://us-central1-techspardha-87928.cloudfunctions.net/api/events/categories';
     print(url);
     final response = await http.get(Uri.parse(url));
     final data = json.decode(response.body);
     final categoriesjson = data['data']['categories'];
-    categories = categoriesjson.map<String>((e) => e.toString()).toList();
+    FetchDataProvider.categories =
+        categoriesjson.map<String>((e) => e.toString()).toList();
     // print(categoriesjson);
   }
 
-  Future<void> loadEvents() async {
+  static Future<void> loadEvents() async {
     final url =
         'https://us-central1-techspardha-87928.cloudfunctions.net/api/events';
     print(url);
     final response = await http.get(Uri.parse(url));
     final data = json.decode(response.body);
     final events = data['data']['events'];
-    allEvents =
+    FetchDataProvider.allEvents =
         events.map<AllEvents>((json) => AllEvents.fromJson(json)).toList();
   }
 
-  Future<void> loadEventDescription() async {
-    for (int i = 0; i < categories.length; i++) {
+  static Future<void> loadEventDescription() async {
+    for (int i = 0; i < FetchDataProvider.categories.length; i++) {
       final url =
           'https://us-central1-techspardha-87928.cloudfunctions.net/api/events/description?eventCategory=${categories[i]}';
       print(url);
@@ -70,10 +67,11 @@ class FetchDataProvider with ChangeNotifier {
       // debugPrint(events.toString());
       List<Event> eventList =
           events.map<Event>((json) => Event.fromJson(json)).toList();
-      eventsMap[categories[i]] = new Map();
+      FetchDataProvider.eventsMap[FetchDataProvider.categories[i]] = new Map();
 
       eventList.forEach((element) {
-        eventsMap[categories[i]]![element.eventName] = element;
+        FetchDataProvider.eventsMap[FetchDataProvider.categories[i]]![
+            element.eventName] = element;
       });
     }
   }
