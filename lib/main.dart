@@ -18,10 +18,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     controlRoute() {
-      if (FirebaseAuth.instance.currentUser == null) {
-        return '/google_auth';
-        // return '/navigation';
-      }
+      // if (FirebaseAuth.instance.currentUser == null) {
+      //   return '/google_auth';
+      //   // return '/navigation';
+      // }
     }
 
     return MultiProvider(
