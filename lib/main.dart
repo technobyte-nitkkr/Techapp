@@ -21,6 +21,7 @@ class MyApp extends StatelessWidget {
       // if (FirebaseAuth.instance.currentUser == null) {
       //   return '/google_auth';
       //   // return '/navigation';
+
       // }
     }
 

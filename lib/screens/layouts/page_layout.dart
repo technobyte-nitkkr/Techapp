@@ -21,10 +21,14 @@ class PageLayout extends StatelessWidget {
           getGradient(),
           SafeArea(
             child: fetchData.loading
-                ? Flexible(
-                    child: Center(
-                      child: CircularProgressIndicator(),
-                    ),
+                ? Column(
+                    children: [
+                      Flexible(
+                        child: Center(
+                          child: CircularProgressIndicator(),
+                        ),
+                      ),
+                    ],
                   )
                 : Row(
                     crossAxisAlignment: CrossAxisAlignment.start,

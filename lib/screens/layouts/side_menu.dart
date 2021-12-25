@@ -28,15 +28,24 @@ class _SideMenuState extends State<SideMenu> {
               DrawerHeader(
                 child: Column(
                   children: [
-                    //Image.network(FirebaseAuth.instance.currentUser!.photoURL!),
+                    FirebaseAuth.instance.currentUser != null
+                        ? Image.network(
+                            FirebaseAuth.instance.currentUser!.photoURL!)
+                        : Image.asset(
+                            'assets/images/technologo.png',
+                            height: 50,
+                            width: 50,
+                          ),
                     const SizedBox(
                       height: 6,
                     ),
-                    //Text("${FirebaseAuth.instance.currentUser!.displayName}"),
+                    Text(
+                        "${FirebaseAuth.instance.currentUser != null ? FirebaseAuth.instance.currentUser!.displayName : "Dummy Name"}"),
                     const SizedBox(
                       height: 2,
                     ),
-                    //Text("${FirebaseAuth.instance.currentUser!.email}"),
+                    Text(
+                        "${FirebaseAuth.instance.currentUser != null ? FirebaseAuth.instance.currentUser!.email : "Dummy Email"}"),
                   ],
                 ),
               ),
