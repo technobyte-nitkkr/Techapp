@@ -2,6 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:techapp/screens/components/style.dart';
 import 'package:techapp/screens/layouts/page_layout.dart';
+import 'package:techapp/widgets/myEventList.dart';
 
 class MyEvents extends StatelessWidget {
   MyEvents({
@@ -15,24 +16,29 @@ class MyEvents extends StatelessWidget {
     return PageLayout(
       child: SafeArea(
         child: SingleChildScrollView(
-          padding: EdgeInsets.all(30),
           child: Column(
             children: [
               Scrollbar(
+                controller: _trackingScrollController,
+                isAlwaysShown: true,
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
                   controller: _trackingScrollController,
-                  isAlwaysShown: true,
-                  child: SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      controller: _trackingScrollController,
-                      dragStartBehavior: DragStartBehavior.start,
-                      child: Text(
-                        "My Events",
-                        style: TextStyle(
-                          color: black,
-                          fontSize: 60,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ))),
+                  dragStartBehavior: DragStartBehavior.start,
+                  child: Text(
+                    "My Events",
+                    style: TextStyle(
+                      color: white,
+                      fontSize: 50,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ),
+              Container(
+                height: MediaQuery.of(context).size.height * 0.8,
+                child: MyEventList(),
+              ),
             ],
           ),
         ),

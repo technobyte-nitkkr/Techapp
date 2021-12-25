@@ -55,7 +55,7 @@ class _SideMenuState extends State<SideMenu> {
                 ),
                 onTap: () {
                   Navigator.pop(context);
-                  Navigator.pushNamed(context, '/navigation');
+                  Navigator.pushReplacementNamed(context, '/navigation');
                 },
               ),
               Divider(
@@ -70,7 +70,7 @@ class _SideMenuState extends State<SideMenu> {
                 ),
                 onTap: () {
                   Navigator.pop(context);
-                  Navigator.pushNamed(context, '/my_events');
+                  Navigator.pushReplacementNamed(context, '/my_events');
                 },
               ),
               Divider(
@@ -86,7 +86,7 @@ class _SideMenuState extends State<SideMenu> {
                 ),
                 onTap: () {
                   Navigator.pop(context);
-                  Navigator.pushNamed(context, '/team_altius');
+                  Navigator.pushReplacementNamed(context, '/team_altius');
                 },
               ),
               Divider(
@@ -101,7 +101,7 @@ class _SideMenuState extends State<SideMenu> {
                 ),
                 onTap: () {
                   Navigator.pop(context);
-                  Navigator.pushNamed(context, '/about_us');
+                  Navigator.pushReplacementNamed(context, '/about_us');
                 },
               ),
               Divider(
@@ -117,7 +117,7 @@ class _SideMenuState extends State<SideMenu> {
                 ),
                 onTap: () {
                   Navigator.pop(context);
-                  Navigator.pushNamed(context, '/developers');
+                  Navigator.pushReplacementNamed(context, '/developers');
                 },
               ),
               Divider(
@@ -132,7 +132,8 @@ class _SideMenuState extends State<SideMenu> {
                 ),
                 onTap: () async {
                   await FirebaseServices().googleSignOut();
-                  Navigator.pop(context);
+                  Navigator.popUntil(context, (route) => false);
+
                   Navigator.push(
                       context,
                       MaterialPageRoute(

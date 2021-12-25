@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:techapp/screens/auth/firebase_services.dart';
 import 'package:techapp/screens/components/style.dart';
 // import 'package:techapp/screens/pages/home.dart';
-import 'package:techapp/screens/pages/navigation.dart';
 
 class GoogleLoginScreen extends StatefulWidget {
   const GoogleLoginScreen({Key? key}) : super(key: key);
@@ -27,8 +26,9 @@ class _GoogleLoginScreenState extends State<GoogleLoginScreen> {
                 ElevatedButton(
                   onPressed: () async {
                     await FirebaseServices().signInWithGoogle();
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => Navigation()));
+
+                    Navigator.pop(context);
+                    Navigator.pushNamed(context, '/navigation');
                   },
                   style: ButtonStyle(backgroundColor:
                       MaterialStateProperty.resolveWith((states) {

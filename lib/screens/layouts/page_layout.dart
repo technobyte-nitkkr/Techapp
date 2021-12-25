@@ -20,27 +20,29 @@ class PageLayout extends StatelessWidget {
         children: [
           getGradient(),
           SafeArea(
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Expanded(
-                  // It takes 5/6 part of the screen
-                  flex: 5,
-                  child: SingleChildScrollView(
-                    child: fetchData.loading
-                        ? Center(
-                            child: CircularProgressIndicator(),
-                          )
-                        : Column(
+            child: fetchData.loading
+                ? Flexible(
+                    child: Center(
+                      child: CircularProgressIndicator(),
+                    ),
+                  )
+                : Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Expanded(
+                        // It takes 5/6 part of the screen
+                        flex: 5,
+                        child: SingleChildScrollView(
+                          child: Column(
                             children: [
                               Header(),
                               child,
                             ],
                           ),
+                        ),
+                      ),
+                    ],
                   ),
-                ),
-              ],
-            ),
           ),
         ],
       ),

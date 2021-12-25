@@ -28,6 +28,7 @@ dependencies:
   flutter_swiper: ^1.1.6
   http: ^0.13.4
   url_launcher: ^6.0.17
+  double_back_to_close_app: ^2.1.0
   
 
 dev_dependencies:

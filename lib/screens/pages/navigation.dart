@@ -23,30 +23,49 @@ class _NavigationState extends State<Navigation> {
       Speakers(),
     ];
 
+    DateTime pre_backpress = DateTime.now();
     final items = <Widget>[
       const Icon(Icons.money_rounded, size: 30),
       const Icon(Icons.home, size: 30),
       const Icon(Icons.speaker_group, size: 30),
     ];
-
-    return Scaffold(
-      extendBody: true,
-      backgroundColor: Colors.transparent,
-      bottomNavigationBar: Theme(
-        data: Theme.of(context)
-            .copyWith(iconTheme: const IconThemeData(color: white)),
-        child: CurvedNavigationBar(
-          backgroundColor: Colors.transparent,
-          color: navigationColor,
-          height: 45,
-          index: index,
-          animationDuration: const Duration(milliseconds: 450),
-          items: items,
-          onTap: (index) => setState(() => this.index = index),
-          animationCurve: Curves.easeInOut,
+    return WillPopScope(
+      onWillPop: () async {
+        final timegap = DateTime.now().difference(pre_backpress);
+        final cantExit = timegap >= Duration(seconds: 2);
+        pre_backpress = DateTime.now();
+        if (cantExit) {
+          //show snackbar
+          final snack = SnackBar(
+            backgroundColor: gradientEndColor2,
+            content: Text('Press Back button again to Exit'),
+            duration: Duration(seconds: 2),
+          );
+          ScaffoldMessenger.of(context).showSnackBar(snack);
+          return false;
+        } else {
+          return true;
+        }
+      },
+      child: Scaffold(
+        extendBody: true,
+        backgroundColor: Colors.transparent,
+        bottomNavigationBar: Theme(
+          data: Theme.of(context)
+              .copyWith(iconTheme: const IconThemeData(color: white)),
+          child: CurvedNavigationBar(
+            backgroundColor: Colors.transparent,
+            color: navigationColor,
+            height: 45,
+            index: index,
+            animationDuration: const Duration(milliseconds: 450),
+            items: items,
+            onTap: (index) => setState(() => this.index = index),
+            animationCurve: Curves.easeInOut,
+          ),
         ),
+        body: screens[index],
       ),
-      body: screens[index],
     );
   }
 }
