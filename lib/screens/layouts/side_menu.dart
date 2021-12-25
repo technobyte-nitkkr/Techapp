@@ -5,18 +5,7 @@ import 'package:techapp/screens/auth/firebase_services.dart';
 import 'package:techapp/screens/auth/google_login.dart';
 import 'package:techapp/screens/components/style.dart';
 
-class SideMenu extends StatefulWidget {
-  const SideMenu({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  State<SideMenu> createState() => _SideMenuState();
-}
-
-class _SideMenuState extends State<SideMenu> {
-  //List<bool> _isOpen = [false];
-
+class SideMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -64,7 +53,7 @@ class _SideMenuState extends State<SideMenu> {
                 ),
                 onTap: () {
                   Navigator.pop(context);
-                  Navigator.pushReplacementNamed(context, '/navigation');
+                  Navigator.pushNamed(context, '/navigation');
                 },
               ),
               Divider(
@@ -79,7 +68,7 @@ class _SideMenuState extends State<SideMenu> {
                 ),
                 onTap: () {
                   Navigator.pop(context);
-                  Navigator.pushReplacementNamed(context, '/my_events');
+                  Navigator.pushNamed(context, '/my_events');
                 },
               ),
               Divider(
@@ -95,7 +84,7 @@ class _SideMenuState extends State<SideMenu> {
                 ),
                 onTap: () {
                   Navigator.pop(context);
-                  Navigator.pushReplacementNamed(context, '/team_altius');
+                  Navigator.pushNamed(context, '/team_altius');
                 },
               ),
               Divider(
@@ -110,7 +99,7 @@ class _SideMenuState extends State<SideMenu> {
                 ),
                 onTap: () {
                   Navigator.pop(context);
-                  Navigator.pushReplacementNamed(context, '/about_us');
+                  Navigator.pushNamed(context, '/about_us');
                 },
               ),
               Divider(
@@ -126,7 +115,7 @@ class _SideMenuState extends State<SideMenu> {
                 ),
                 onTap: () {
                   Navigator.pop(context);
-                  Navigator.pushReplacementNamed(context, '/developers');
+                  Navigator.pushNamed(context, '/developers');
                 },
               ),
               Divider(

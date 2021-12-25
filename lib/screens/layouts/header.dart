@@ -4,7 +4,6 @@ import 'package:provider/provider.dart';
 import 'package:techapp/providers/event_provider.dart';
 import 'package:techapp/screens/pages/eventDetail.dart';
 import '../components/style.dart';
-import '../../controllers/MenuController.dart';
 import '../../screens/components/style.dart';
 
 class Header extends StatelessWidget {
@@ -27,7 +26,9 @@ class Header extends StatelessWidget {
                 size: 30,
                 color: white,
               ),
-              onPressed: context.read<MenuController>().controlMenu,
+              onPressed: () {
+                Scaffold.of(context).openDrawer();
+              },
             ),
             Text(
               "  Altius",

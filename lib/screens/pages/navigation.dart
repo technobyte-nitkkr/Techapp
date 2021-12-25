@@ -14,6 +14,7 @@ class Navigation extends StatefulWidget {
 }
 
 class _NavigationState extends State<Navigation> {
+  DateTime pre_backpress = DateTime.now();
   int index = 1;
   @override
   Widget build(BuildContext context) {
@@ -23,7 +24,6 @@ class _NavigationState extends State<Navigation> {
       Speakers(),
     ];
 
-    DateTime pre_backpress = DateTime.now();
     final items = <Widget>[
       const Icon(Icons.money_rounded, size: 30),
       const Icon(Icons.home, size: 30),

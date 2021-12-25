@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:techapp/providers/event_provider.dart';
 import 'package:techapp/screens/components/style.dart';
-import '../../controllers/MenuController.dart';
 import '../../screens/layouts/header.dart';
 import 'side_menu.dart';
 
@@ -14,7 +13,6 @@ class PageLayout extends StatelessWidget {
   Widget build(BuildContext context) {
     final fetchData = Provider.of<FetchDataProvider>(context);
     return Scaffold(
-      key: context.read<MenuController>().scaffoldKey,
       drawer: SideMenu(),
       body: Stack(
         children: [

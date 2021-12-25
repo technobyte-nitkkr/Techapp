@@ -9,7 +9,7 @@ class MenuController extends ChangeNotifier {
     if (!_scaffoldKey.currentState!.isDrawerOpen) {
       _scaffoldKey.currentState!.openDrawer();
     } else {
-      return '/navigation';
+      return false;
     }
   }
 }
