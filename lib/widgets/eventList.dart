@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-
 import 'package:techapp/providers/event_provider.dart';
 import 'package:techapp/widgets/eventListItem.dart';
 
 class EventsByCategoryWidget extends StatelessWidget {
   final String categoryName;
-  // final String categoryImage;
 
   const EventsByCategoryWidget({Key? key, required this.categoryName})
       : super(key: key);

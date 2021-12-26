@@ -4,11 +4,14 @@ import 'package:techapp/screens/pages/about_us.dart';
 import 'package:techapp/screens/pages/developers.dart';
 import 'package:techapp/screens/pages/my_events.dart';
 import 'package:techapp/screens/pages/navigation.dart';
+import 'package:techapp/screens/pages/splash.dart';
 import 'package:techapp/screens/pages/team_altius.dart';
 
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
+      case '/splash':
+        return MaterialPageRoute(builder: (_) => SplashScreen());
       case '/google_auth':
         return MaterialPageRoute(builder: (_) => GoogleLoginScreen());
       case '/my_events':

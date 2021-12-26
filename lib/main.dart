@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:techapp/providers/event_provider.dart';
 import 'package:techapp/routes.dart';
+import 'package:techapp/screens/pages/splash.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -11,42 +12,19 @@ Future<void> main() async {
     DeviceOrientation.portraitDown,
     DeviceOrientation.portraitUp,
   ]);
-  SystemChrome.setSystemUIOverlayStyle(
-    SystemUiOverlayStyle(statusBarBrightness: Brightness.light) // Or Brightness.dark
-  );
+  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+          statusBarBrightness: Brightness.light) // Or Brightness.dark
+      );
   await Firebase.initializeApp();
-  await FetchDataProvider.loadCategories();
-  await FetchDataProvider.loadEvents();
-  await FetchDataProvider.loadEventDescription();
-  await FetchDataProvider.loadSponsor();
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    controlRoute() {
-      // if (FirebaseAuth.instance.currentUser == null) {
-      //   return '/google_auth';
-      //   // return '/navigation';
-
-      // }
-    }
-
-    return //MultiProvider(
-        MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      // title: 'techapp',
-      initialRoute: controlRoute(),
-      onGenerateRoute: RouteGenerator.generateRoute,
+      home: SplashScreen(),
     );
   }
 }
-
-        // providers: [
-        //   ChangeNotifierProvider(
-        //     create: (context) => MenuController(),
-        //   ),
-        //   //ChangeNotifierProvider(create: (_) => FetchDataProvider()),
-        // ],

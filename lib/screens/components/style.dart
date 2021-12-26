@@ -11,6 +11,7 @@ Color gradientEndColor = Color(0xFF9354B9);
 Color navigationColor = Color(0xFF6751B5);
 Color gradientStartColor2 = Color(0xFF0050AC);
 Color gradientEndColor2 = Color(0xFF9354B9);
+Color technoBackColor = Color(0xFF143642);
 
 const defaultPadding = 20.0;
 
