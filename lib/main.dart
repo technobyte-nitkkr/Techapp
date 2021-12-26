@@ -1,4 +1,5 @@
 // @dart=2.9
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -20,11 +21,21 @@ Future<void> main() async {
 }
 
 class MyApp extends StatelessWidget {
+  controlRoute() {
+    // if (FirebaseAuth.instance.currentUser == null) {
+    //   return '/google_auth';
+    //   // return '/navigation';
+
+    // }
+    return '/splash';
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: SplashScreen(),
+      initialRoute: controlRoute(),
+      onGenerateRoute: RouteGenerator.generateRoute,
     );
   }
 }

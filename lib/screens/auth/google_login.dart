@@ -28,7 +28,7 @@ class _GoogleLoginScreenState extends State<GoogleLoginScreen> {
                     await FirebaseServices().signInWithGoogle();
 
                     Navigator.popUntil(context, (route) => false);
-                    Navigator.pushNamed(context, '');
+                    Navigator.pushNamed(context, '/splash');
                   },
                   style: ButtonStyle(backgroundColor:
                       MaterialStateProperty.resolveWith((states) {
