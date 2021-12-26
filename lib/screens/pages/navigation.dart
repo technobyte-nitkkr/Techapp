@@ -4,6 +4,7 @@ import 'package:techapp/screens/components/style.dart';
 import 'package:techapp/screens/pages/speakers.dart';
 import 'package:techapp/screens/pages/sponsors.dart';
 
+// ignore: import_of_legacy_library_into_null_safe
 import 'home.dart';
 // import 'package:firebase_auth/firebase_auth.dart';
 
@@ -14,6 +15,7 @@ class Navigation extends StatefulWidget {
 }
 
 class _NavigationState extends State<Navigation> {
+  // ignore: non_constant_identifier_names
   DateTime pre_backpress = DateTime.now();
   int index = 1;
   @override
