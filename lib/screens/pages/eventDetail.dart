@@ -1,9 +1,16 @@
+import 'dart:convert';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:techapp/models/EventByCategories.dart';
+import 'package:techapp/models/eventAll.dart';
 import 'package:techapp/providers/event_provider.dart';
+import 'package:techapp/screens/auth/firebase_services.dart';
 import 'package:techapp/screens/components/style.dart';
 import 'package:intl/intl.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:http/http.dart' as http;
+import 'package:techapp/models/EventByCategories.dart';
 
 DateFormat dateFormat = DateFormat("MMMM dd,yyyy HH:mm");
 
@@ -26,9 +33,39 @@ class EventDetailWidget extends StatelessWidget {
   final String eventName;
   final String eventCategory;
 
-  const EventDetailWidget(
+  final user = FirebaseAuth.instance.currentUser;
+
+  static addMyEvent(
+      String email, String name, String category, BuildContext context) async {
+    final url =
+        'https://us-central1-techspardha-87928.cloudfunctions.net/api/user/eventApp';
+
+    final response = await http.put(Uri.parse(url),
+        body: {'email': email, 'eventName': name, 'eventCategory': category});
+    print(response.statusCode);
+    final data = json.decode(response.body);
+
+    if (data['success'] == true) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text("Registered Successfully"),
+        backgroundColor: Colors.green,
+        behavior: SnackBarBehavior.floating,
+      ));
+      await FetchDataProvider.loadMyevents(email);
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text(data['message']),
+        backgroundColor: Colors.red,
+        behavior: SnackBarBehavior.floating,
+      ));
+    }
+  }
+
+  EventDetailWidget(
       {Key? key, required this.eventName, required this.eventCategory})
-      : super(key: key);
+      : super(key: key) {
+    FetchDataProvider.loadMyevents('chetan335001@gmail.com' /*user.email*/);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +78,7 @@ class EventDetailWidget extends StatelessWidget {
           children: <Widget>[
             _getBackground(),
             _getGradient(),
-            _getContent(item),
+            _getContent(item, context),
             _getToolbar(context),
           ],
         ),
@@ -75,7 +112,7 @@ class EventDetailWidget extends StatelessWidget {
     );
   }
 
-  Container _getContent(Event item) {
+  Container _getContent(Event item, BuildContext context) {
     return new Container(
       child: new ListView(
         padding: new EdgeInsets.fromLTRB(0.0, 72.0, 0.0, 32.0),
@@ -236,6 +273,43 @@ class EventDetailWidget extends StatelessWidget {
                       .map((cordinator) => cordinatorItem(cordinator))
                       .toList()),
             ),
+          new Container(
+            padding: new EdgeInsets.symmetric(horizontal: 32.0),
+            child: new Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                new Text("Register", style: Style.headerTextStyle),
+                Container(
+                    margin: new EdgeInsets.symmetric(vertical: 8.0),
+                    height: 2.0,
+                    width: 18.0,
+                    color: new Color(0xff00c6ff)),
+              ],
+            ),
+          ),
+          Container(
+            margin: EdgeInsets.fromLTRB(40, 5, 40, 5),
+            child: ElevatedButton(
+              child: Text("Register Now"),
+              onPressed: () async => {
+                //
+
+                if (user != null)
+                  {
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      content: Text('Login to register for events !'),
+                      backgroundColor: Colors.green,
+                      behavior: SnackBarBehavior.floating,
+                    ))
+                  }
+                else
+                  {
+                    addMyEvent('chetan335001@gmail.com' /*user.email*/,
+                        item.eventName, item.eventCategory, context)
+                  }
+              },
+            ),
+          )
         ],
       ),
     );
