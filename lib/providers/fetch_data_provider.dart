@@ -4,7 +4,7 @@ import 'package:techapp/models/eventAll.dart';
 import 'package:techapp/services/apiBaseHelper.dart';
 
 // ignore: import_of_legacy_library_into_null_safe
-import '../widgets/section.dart';
+import '../models/section.dart';
 
 class FetchDataProvider {
   // data

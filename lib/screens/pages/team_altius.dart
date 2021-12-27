@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:techapp/providers/fetch_data_provider.dart';
-import 'package:techapp/screens/layouts/header.dart';
 import 'package:techapp/screens/layouts/page_layout.dart';
 
 class TeamAltius extends StatelessWidget {
@@ -88,10 +87,19 @@ Widget buildwid(String imageUrl, String name, String post) {
         SizedBox(
           height: 10.0,
         ),
-        CircleAvatar(
-          radius: 80.0,
-          backgroundImage: NetworkImage(imageUrl),
-          backgroundColor: Colors.green[100],
+        ClipOval(
+          child: FadeInImage.assetNetwork(
+            height: 130,
+            width: 130,
+            placeholder: 'assets/images/technologo.png',
+            image: imageUrl,
+            fit: BoxFit.cover,
+            imageErrorBuilder: (context, error, stackTrace) => Image.asset(
+              'assets/images/technologo.png',
+              height: 130.0,
+              width: 130.0,
+            ),
+          ),
         ),
         SizedBox(
           height: 10.0,
