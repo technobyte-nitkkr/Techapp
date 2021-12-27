@@ -45,6 +45,9 @@ class TeamAltius extends StatelessWidget {
                               ),
                               elevation: 16,
                               content: Container(
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.7,
+                                  width: 400.0,
                                   alignment: Alignment.center,
                                   child: ListView.builder(
                                       shrinkWrap: true,
