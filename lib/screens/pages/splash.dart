@@ -104,6 +104,7 @@ class _SplashScreenState extends State<SplashScreen> {
           await FetchDataProvider.loadEventDescription();
           await FetchDataProvider.loadSponsor();
 
+          await FetchDataProvider.getContacts();
           if (FirebaseAuth.instance.currentUser != null) {
             await FetchDataProvider.loadMyevents(
                 FirebaseAuth.instance.currentUser.email);
