@@ -79,9 +79,9 @@ Future<void> main() async {
 class MyApp extends StatelessWidget {
   controlRoute() {
     // if user not login then redirect to auth
-    if (FirebaseAuth.instance.currentUser == null) {
-      return '/google_auth';
-    }
+    // if (FirebaseAuth.instance.currentUser == null) {
+    //   return '/google_auth';
+    // }
     return '/splash';
   }
 
