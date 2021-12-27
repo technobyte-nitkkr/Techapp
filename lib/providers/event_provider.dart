@@ -12,6 +12,8 @@ class FetchDataProvider {
 
   static bool loading = false;
 
+  static bool notification = false;
+
   // list of all categories
   static List<String> categories = [];
   // list of all events

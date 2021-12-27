@@ -20,7 +20,9 @@ class Header extends StatelessWidget {
           children: [
             IconButton(
               icon: Icon(
-                Icons.menu,
+                FetchDataProvider.notification
+                    ? Icons.notifications
+                    : Icons.menu,
                 size: 30,
                 color: white,
               ),
