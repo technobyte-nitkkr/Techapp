@@ -1,106 +1,77 @@
 import 'package:techapp/models/EventByCategories.dart';
 import 'package:techapp/models/Sponsor.dart';
 import 'package:techapp/models/eventAll.dart';
-import 'dart:convert';
-import 'package:http/http.dart' as http;
+import 'package:techapp/services/apiBaseHelper.dart';
 
+// ignore: import_of_legacy_library_into_null_safe
 import '../widgets/section.dart';
 
 class FetchDataProvider {
-  // event map first key refer for category and second key refer to event name
+  // data
   static Map<String, Map<String, Event>> eventsMap = new Map();
-
+  static ApiBaseHelper _helper = ApiBaseHelper();
   static bool loading = false;
-
   static bool notification = false;
-
-  // list of all categories
   static List<String> categories = [];
-  // list of all events
   static List<AllEvents> allEvents = [];
-
-  // sponsers
   static List<Sponsor> sponsors = [];
-
   static List<Event> myEvents = [];
-
   static List<Contacts> contacts = [];
 
+  // functions
+
+  // my events
   static loadMyevents(String? email) async {
-    final url =
-        'https://us-central1-techspardha-87928.cloudfunctions.net/api/user/eventApp?email=$email';
-    print(url);
-    final response = await http.get(Uri.parse(url));
-    final data = json.decode(response.body);
+    final data = await _helper.get('user/eventApp?email=$email');
     final events = data['data']['events'];
     final eventList =
         events.map<Event>((json) => Event.fromJson(json)).toList();
     myEvents = eventList;
   }
 
-
-  static getContacts() async{
-    var response = await http.get(Uri.parse(
-        'https://us-central1-techspardha-87928.cloudfunctions.net/api/contacts'));
-
-    var jsondata = jsonDecode(response.body)["data"]["contacts"];
+  // team altius
+  static getContacts() async {
+    final data = await _helper.get('contacts');
+    var jsondata = data["data"]["contacts"];
 
     contacts =
         jsondata.map<Contacts>((json) => Contacts.fromJson(json)).toList();
   }
 
+  // load sponsers
   static loadSponsor() async {
-    // await Future.delayed(Duration(seconds: 2));
-    final url =
-        'https://us-central1-techspardha-87928.cloudfunctions.net/api/foodsponsors';
-    final response = await http.get(Uri.parse(url));
-    print(url);
-    // print(response.body);
-    final data = json.decode(response.body);
+    final data = await _helper.get('foodsponsors');
     final sponsorsJSON =
         data['data']['foodSponsors'].cast<Map<String, dynamic>>();
     sponsors =
         sponsorsJSON.map<Sponsor>((json) => Sponsor.fromJson(json)).toList();
-    // print(sponsorsJSON);
-
-    // EventList.events =
-    //     events.map<Event>((json) => Event.fromJson(json)).toList();
   }
 
+  // load categories
   static Future<void> loadCategories() async {
-    final url =
-        'https://us-central1-techspardha-87928.cloudfunctions.net/api/events/categories';
-    print(url);
-    final response = await http.get(Uri.parse(url));
-    final data = json.decode(response.body);
+    final data = await _helper.get('events/categories');
     final categoriesjson = data['data']['categories'];
     FetchDataProvider.categories =
         categoriesjson.map<String>((e) => e.toString()).toList();
-    // print(categoriesjson);
   }
 
+  // load events
   static Future<void> loadEvents() async {
-    final url =
-        'https://us-central1-techspardha-87928.cloudfunctions.net/api/events';
-    print(url);
-    final response = await http.get(Uri.parse(url));
-    final data = json.decode(response.body);
+    final data = await _helper.get('events');
     final events = data['data']['events'];
     FetchDataProvider.allEvents =
         events.map<AllEvents>((json) => AllEvents.fromJson(json)).toList();
   }
 
+  // load events descripton an stroe to map
   static Future<void> loadEventDescription() async {
     for (int i = 0; i < FetchDataProvider.categories.length; i++) {
-      final url =
-          'https://us-central1-techspardha-87928.cloudfunctions.net/api/events/description?eventCategory=${categories[i]}';
-      print(url);
-      final response = await http.get(Uri.parse(url));
-      final data = json.decode(response.body);
+      final data = await _helper
+          .get('events/description?eventCategory=${categories[i]}');
       final events = data['data']['events'];
-      // debugPrint(events.toString());
       List<Event> eventList =
           events.map<Event>((json) => Event.fromJson(json)).toList();
+
       FetchDataProvider.eventsMap[FetchDataProvider.categories[i]] = new Map();
 
       eventList.forEach((element) {

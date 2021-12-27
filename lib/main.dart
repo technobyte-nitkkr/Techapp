@@ -11,6 +11,7 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:techapp/providers/notification_data_local.dart';
 import 'package:techapp/routes.dart';
 
+// creating the android channel
 const AndroidNotificationChannel channel = AndroidNotificationChannel(
   'technobyte', // id
   'High Importance Notifications', // title
@@ -19,11 +20,15 @@ const AndroidNotificationChannel channel = AndroidNotificationChannel(
   playSound: true,
 );
 
+// flutter local notication intialisation
 final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
     FlutterLocalNotificationsPlugin();
 
+// background handler for firebase messaging
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   await Firebase.initializeApp();
+
+  // save notication to local storage
   if (message.notification != null) {
     await NotificationsProvider.addItem(
         message.notification.title, message.notification.body,
@@ -36,41 +41,47 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  // lock the orientation to portrait
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitDown,
     DeviceOrientation.portraitUp,
   ]);
-  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-          statusBarBrightness: Brightness.light) // Or Brightness.dark
-      );
+
+  // force dark theme
+  SystemChrome.setSystemUIOverlayStyle(
+      SystemUiOverlayStyle(statusBarBrightness: Brightness.light));
+
+  // initialise the firebase
   await Firebase.initializeApp();
 
+  // firebase background handler
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
 
+  // initial notificaton channel
   await flutterLocalNotificationsPlugin
       .resolvePlatformSpecificImplementation<
           AndroidFlutterLocalNotificationsPlugin>()
       ?.createNotificationChannel(channel);
 
+  // background message option
   await FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(
     alert: true,
     badge: true,
     sound: true,
   );
 
+  // subscribe to notificatinon chanel
   await FirebaseMessaging.instance.subscribeToTopic("allNoti");
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  // get the message when user taps
-
   controlRoute() {
-    // if (FirebaseAuth.instance.currentUser == null) {
-    //   return '/google_auth';
-    //   // return '/navigation';
-
-    // }
+    // if user not login then redirect to auth
+    if (FirebaseAuth.instance.currentUser == null) {
+      return '/google_auth';
+    }
     return '/splash';
   }
 

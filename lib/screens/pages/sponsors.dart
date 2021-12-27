@@ -27,7 +27,6 @@ class Sponsors extends StatelessWidget {
                   color: white,
                   fontWeight: FontWeight.w900,
                 ),
-                textAlign: TextAlign.center, // TODO: Not working
               ),
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.02,

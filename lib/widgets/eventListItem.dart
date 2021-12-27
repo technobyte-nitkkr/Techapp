@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:techapp/providers/event_provider.dart';
+import 'package:techapp/providers/fetch_data_provider.dart';
 import 'package:techapp/screens/components/style.dart';
 import 'package:techapp/screens/pages/eventDetail.dart';
 // ignore: import_of_legacy_library_into_null_safe
@@ -14,7 +14,6 @@ class ListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //final data = Provider.of<FetchDataProvider>(context);
     final item = FetchDataProvider.eventsMap[eventCategory]![eventName]!;
 
     return Card(

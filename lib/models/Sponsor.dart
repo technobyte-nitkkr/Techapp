@@ -4,8 +4,8 @@ class Sponsor {
   final String imageurl;
   final String link;
   final String name;
-  
-  Sponsor ({
+
+  Sponsor({
     required this.imageurl,
     required this.link,
     required this.name,

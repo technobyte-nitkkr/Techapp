@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:techapp/models/Sponsor.dart';
-import 'package:techapp/providers/event_provider.dart';
+import 'package:techapp/providers/fetch_data_provider.dart';
 import 'package:techapp/screens/components/style.dart';
 
 // ignore: must_be_immutable

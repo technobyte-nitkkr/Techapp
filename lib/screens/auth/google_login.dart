@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:techapp/screens/auth/firebase_services.dart';
 import 'package:techapp/screens/components/style.dart';
-// import 'package:techapp/screens/pages/home.dart';
 
 class GoogleLoginScreen extends StatefulWidget {
   const GoogleLoginScreen({Key? key}) : super(key: key);

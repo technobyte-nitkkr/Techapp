@@ -2,7 +2,7 @@ import 'package:localstorage/localstorage.dart';
 import 'package:techapp/models/notificationModel.dart';
 
 class NotificationsProvider {
-  //
+  // data
   static List<Noti> list = [];
   static LocalStorage storage = new LocalStorage('techapp.json');
 
@@ -29,7 +29,6 @@ class NotificationsProvider {
     // load previous data
     await storage.ready;
     var items = await storage.getItem('notifications');
-
     if (items != null) {
       list = items.map<Noti>((i) => Noti.fromJson(i)).toList();
     }

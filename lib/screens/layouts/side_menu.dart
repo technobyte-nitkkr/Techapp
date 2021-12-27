@@ -1,7 +1,7 @@
-// ignore: unused_import
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:techapp/providers/event_provider.dart';
+
+import 'package:techapp/providers/fetch_data_provider.dart';
 import 'package:techapp/screens/auth/firebase_services.dart';
 import 'package:techapp/screens/auth/google_login.dart';
 import 'package:techapp/screens/components/style.dart';
@@ -69,85 +69,28 @@ class SideMenu extends StatelessWidget {
                 height: 1,
                 thickness: 1,
               ),
-              ListTile(
-                title: Text('My Events', style: TextStyle(color: Colors.white)),
-                leading: Icon(
-                  Icons.calendar_today_rounded,
-                  color: white,
-                ),
-                onTap: () {
-                  Navigator.pop(context);
-                  Navigator.pushNamed(context, '/my_events');
-                },
-              ),
-              Divider(
-                height: 1,
-                thickness: 1,
-              ),
-              ListTile(
-                title:
-                    Text('Team Altius', style: TextStyle(color: Colors.white)),
-                leading: Icon(
-                  Icons.group,
-                  color: white,
-                ),
-                onTap: () {
-                  Navigator.pop(context);
-                  Navigator.pushNamed(context, '/team_altius');
-                },
-              ),
-              Divider(
-                height: 1,
-                thickness: 1,
-              ),
-              ListTile(
-                title: Text('About us', style: TextStyle(color: Colors.white)),
-                leading: Icon(
-                  Icons.info_outline,
-                  color: white,
-                ),
-                onTap: () {
-                  Navigator.pop(context);
-                  Navigator.pushNamed(context, '/about_us');
-                },
-              ),
-              Divider(
-                height: 1,
-                thickness: 1,
-              ),
-              ListTile(
-                title:
-                    Text('Developers', style: TextStyle(color: Colors.white)),
-                leading: Icon(
-                  Icons.developer_mode,
-                  color: white,
-                ),
-                onTap: () {
-                  Navigator.pop(context);
-                  Navigator.pushNamed(context, '/developers');
-                },
-              ),
-              Divider(
-                height: 1,
-                thickness: 1,
-              ),
-              ListTile(
-                title: Text('Notifications',
-                    style: TextStyle(color: Colors.white)),
-                leading: Icon(
-                  FetchDataProvider.notification
-                      ? Icons.notifications_active_sharp
-                      : Icons.notifications_none_sharp,
-                  color: white,
-                ),
-                onTap: () {
-                  Navigator.pop(context);
-                  Navigator.pushNamed(context, '/notification');
-                },
-              ),
-              Divider(
-                height: 1,
-                thickness: 1,
+              DrawerItem(
+                  title: "My Events",
+                  route: '/my_events',
+                  icon: Icons.calendar_today_rounded),
+              DrawerItem(
+                  title: "Team Altius",
+                  route: '/team_altius',
+                  icon: Icons.group),
+              DrawerItem(
+                  title: "About Us",
+                  route: '/about_us',
+                  icon: Icons.info_outline),
+              DrawerItem(
+                  title: "Developers ",
+                  route: '/developers',
+                  icon: Icons.developer_mode),
+              DrawerItem(
+                title: "Notifications",
+                route: '/notification',
+                icon: FetchDataProvider.notification
+                    ? Icons.notifications_active_sharp
+                    : Icons.notifications_none_sharp,
               ),
               ListTile(
                 title: Text('Logout', style: TextStyle(color: Colors.white)),
@@ -158,7 +101,6 @@ class SideMenu extends StatelessWidget {
                 onTap: () async {
                   await FirebaseServices().googleSignOut();
                   Navigator.popUntil(context, (route) => false);
-
                   Navigator.push(
                       context,
                       MaterialPageRoute(
@@ -177,132 +119,38 @@ class SideMenu extends StatelessWidget {
   }
 }
 
-          // ExpansionPanelList(
-          //   expandedHeaderPadding: EdgeInsets.all(0),
-          //   expansionCallback: (int index, bool isExpanded) {
-          //     setState(() {
-          //       _isOpen[index] = !isExpanded;
-          //     });
-          //   },
-          //   children: [
-          //     ExpansionPanel(
-          //         canTapOnHeader: true,
-          //         headerBuilder: (context, isExpanded) {
-          //           return ListTile(
-          //             title: Text('Team Altius'),
-          //             leading: Icon(
-          //               Icons.group_add_rounded,
-          //               color: white,
-          //             ),
-          //           );
-          //         },
-          //         body: Column(
-          //           children: [
-          //             Divider(
-          //               height: 1,
-          //               thickness: 1,
-          //             ),
-          //             ListTile(
-          //               title: Text('Technobyte'),
-          //               leading: Icon(Icons.account_tree),
-          //               onTap: () {},
-          //             ),
-          //             Divider(
-          //               height: 1,
-          //               thickness: 1,
-          //             ),
-          //             ListTile(
-          //               title: Text('Microbus'),
-          //               leading: Icon(Icons.account_tree),
-          //               onTap: () {},
-          //             ),
-          //             Divider(
-          //               height: 1,
-          //               thickness: 1,
-          //             ),
-          //             ListTile(
-          //               title: Text('Mexperts'),
-          //               leading: Icon(Icons.account_tree),
-          //               onTap: () {},
-          //             ),
-          //             Divider(
-          //               height: 1,
-          //               thickness: 1,
-          //             ),
-          //             ListTile(
-          //               title: Text('Mechsoc'),
-          //               leading: Icon(Icons.account_tree),
-          //               onTap: () {},
-          //             ),
-          //             Divider(
-          //               height: 1,
-          //               thickness: 1,
-          //             ),
-          //             ListTile(
-          //               title: Text('Infrastructure'),
-          //               leading: Icon(Icons.account_tree),
-          //               onTap: () {},
-          //             ),
-          //             Divider(
-          //               height: 1,
-          //               thickness: 1,
-          //             ),
-          //             ListTile(
-          //               title: Text('Industry Cell'),
-          //               leading: Icon(Icons.account_tree),
-          //               onTap: () {},
-          //             ),
-          //             Divider(
-          //               height: 1,
-          //               thickness: 1,
-          //             ),
-          //             ListTile(
-          //               title: Text('IIC'),
-          //               leading: Icon(Icons.account_tree),
-          //               onTap: () {},
-          //             ),
-          //             Divider(
-          //               height: 1,
-          //               thickness: 1,
-          //             ),
-          //             ListTile(
-          //               title: Text('Electroreck'),
-          //               leading: Icon(Icons.account_tree),
-          //               onTap: () {},
-          //             ),
-          //             Divider(
-          //               height: 1,
-          //               thickness: 1,
-          //             ),
-          //             ListTile(
-          //               title: Text('EMR'),
-          //               leading: Icon(Icons.account_tree),
-          //               onTap: () {},
-          //             ),
-          //             Divider(
-          //               height: 1,
-          //               thickness: 1,
-          //             ),
-          //             ListTile(
-          //               title: Text('Antariksh'),
-          //               leading: Icon(Icons.account_tree),
-          //               onTap: () {},
-          //             ),
-          //             Divider(
-          //               height: 1,
-          //               thickness: 1,
-          //             ),
-          //             ListTile(
-          //               title: Text('Aeromodelling'),
-          //               leading: Icon(Icons.account_tree),
-          //               onTap: () {},
-          //             ),
-          //             Divider(
-          //               height: 1,
-          //               thickness: 1,
-          //             ),
-          //           ],
-          //         ),
-          //         isExpanded: _isOpen[0]),
-          //   ],
-          // ),
+class DrawerItem extends StatelessWidget {
+  String title;
+  String route;
+  IconData icon;
+
+  DrawerItem({
+    Key? key,
+    required this.title,
+    required this.route,
+    required this.icon,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        ListTile(
+          title: Text(title, style: TextStyle(color: Colors.white)),
+          leading: Icon(
+            icon,
+            color: white,
+          ),
+          onTap: () {
+            Navigator.pop(context);
+            Navigator.pushNamed(context, route);
+          },
+        ),
+        Divider(
+          height: 1,
+          thickness: 1,
+        ),
+      ],
+    );
+  }
+}

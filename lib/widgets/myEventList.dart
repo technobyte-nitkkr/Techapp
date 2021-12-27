@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:techapp/providers/event_provider.dart';
+import 'package:techapp/providers/fetch_data_provider.dart';
 import 'package:techapp/screens/components/style.dart';
 import 'package:techapp/widgets/eventListItem.dart';
 

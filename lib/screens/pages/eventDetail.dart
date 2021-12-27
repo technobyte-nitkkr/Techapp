@@ -1,16 +1,16 @@
 import 'dart:convert';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
+
 import 'package:flutter/material.dart';
 import 'package:techapp/models/EventByCategories.dart';
-import 'package:techapp/models/eventAll.dart';
-import 'package:techapp/providers/event_provider.dart';
-import 'package:techapp/screens/auth/firebase_services.dart';
+
+import 'package:techapp/providers/fetch_data_provider.dart';
+
 import 'package:techapp/screens/components/style.dart';
 import 'package:intl/intl.dart';
+import 'package:techapp/services/apiBaseHelper.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:http/http.dart' as http;
-import 'package:techapp/models/EventByCategories.dart';
 
 DateFormat dateFormat = DateFormat("MMMM dd,yyyy HH:mm");
 
@@ -36,15 +36,10 @@ class EventDetailWidget extends StatelessWidget {
   final user = FirebaseAuth.instance.currentUser;
 
   static addMyEvent(
-      String email, String name, String category, BuildContext context) async {
-    final url =
-        'https://us-central1-techspardha-87928.cloudfunctions.net/api/user/eventApp';
-
-    final response = await http.put(Uri.parse(url),
-        body: {'email': email, 'eventName': name, 'eventCategory': category});
-    print(response.statusCode);
-    final data = json.decode(response.body);
-
+      String? email, String name, String category, BuildContext context) async {
+    final ApiBaseHelper _helper = ApiBaseHelper();
+    final data = await _helper.put('user/eventApp',
+        {'email': email, 'eventName': name, 'eventCategory': category});
     if (data['success'] == true) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text("Registered Successfully"),
@@ -64,7 +59,8 @@ class EventDetailWidget extends StatelessWidget {
   EventDetailWidget(
       {Key? key, required this.eventName, required this.eventCategory})
       : super(key: key) {
-    FetchDataProvider.loadMyevents('chetan335001@gmail.com' /*user.email*/);
+    FetchDataProvider.loadMyevents(
+        (user != null) ? (user!.email) : "dummy@gmail.com");
   }
 
   @override
@@ -294,7 +290,7 @@ class EventDetailWidget extends StatelessWidget {
               onPressed: () async => {
                 //
 
-                if (user != null)
+                if (user == null)
                   {
                     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                       content: Text('Login to register for events !'),
@@ -304,7 +300,7 @@ class EventDetailWidget extends StatelessWidget {
                   }
                 else
                   {
-                    addMyEvent('chetan335001@gmail.com' /*user.email*/,
+                    addMyEvent(user != null ? user!.email : "dummy@gmail.com",
                         item.eventName, item.eventCategory, context)
                   }
               },
@@ -325,16 +321,17 @@ class EventDetailWidget extends StatelessWidget {
 
 Container ruleItem(String rule) {
   return Container(
-      margin: EdgeInsets.all(5),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Text("• ", style: Style.commonTextStyle),
-          Expanded(
-            child: Text(rule, style: Style.commonTextStyle),
-          ),
-        ],
-      ));
+    margin: EdgeInsets.all(5),
+    child: Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Text("• ", style: Style.commonTextStyle),
+        Expanded(
+          child: Text(rule, style: Style.commonTextStyle),
+        ),
+      ],
+    ),
+  );
 }
 
 Widget cordinatorItem(Cordinators cordinator) {

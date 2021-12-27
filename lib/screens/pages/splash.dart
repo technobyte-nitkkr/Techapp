@@ -7,7 +7,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:techapp/main.dart';
-import 'package:techapp/providers/event_provider.dart';
+import 'package:techapp/providers/fetch_data_provider.dart';
 import 'package:techapp/providers/notification_data_local.dart';
 import 'package:techapp/routes.dart';
 import 'package:techapp/screens/components/style.dart';
@@ -52,6 +52,8 @@ class _SplashScreenState extends State<SplashScreen> {
             _bigPicture = ByteArrayAndroidBitmap(
                 await _getByteArrayFromUrl(android.imageUrl));
           }
+
+          // if image url present then donwload image
           var _styleinformation = android.imageUrl != null
               ? BigPictureStyleInformation(
                   _bigPicture,
@@ -91,6 +93,19 @@ class _SplashScreenState extends State<SplashScreen> {
     });
   }
 
+  Future<void> loadDataDuringSplash() async {
+    await FetchDataProvider.loadCategories();
+    await FetchDataProvider.loadEvents();
+    await FetchDataProvider.loadEventDescription();
+    await FetchDataProvider.loadSponsor();
+    await FetchDataProvider.getContacts();
+    if (FirebaseAuth.instance.currentUser != null) {
+      await FetchDataProvider.loadMyevents(
+          FirebaseAuth.instance.currentUser.email);
+    }
+    FetchDataProvider.notification = await NotificationsProvider.checkNoti();
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -99,18 +114,7 @@ class _SplashScreenState extends State<SplashScreen> {
       home: AnimatedSplashScreen.withScreenFunction(
         splashIconSize: MediaQuery.of(context).size.height,
         screenFunction: () async {
-          await FetchDataProvider.loadCategories();
-          await FetchDataProvider.loadEvents();
-          await FetchDataProvider.loadEventDescription();
-          await FetchDataProvider.loadSponsor();
-
-          await FetchDataProvider.getContacts();
-          if (FirebaseAuth.instance.currentUser != null) {
-            await FetchDataProvider.loadMyevents(
-                FirebaseAuth.instance.currentUser.email);
-          }
-          FetchDataProvider.notification =
-              await NotificationsProvider.checkNoti();
+          await loadDataDuringSplash();
           return Navigation();
         },
         curve: Curves.easeInOut,

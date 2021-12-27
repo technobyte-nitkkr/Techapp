@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:techapp/providers/event_provider.dart';
+import 'package:techapp/providers/fetch_data_provider.dart';
 import 'package:techapp/screens/pages/eventDetail.dart';
 import '../components/style.dart';
 import '../../screens/components/style.dart';
@@ -39,14 +39,15 @@ class Header extends StatelessWidget {
               ),
             ),
             IconButton(
-                onPressed: () {
-                  showSearch(context: context, delegate: DataSearch());
-                },
-                icon: Icon(
-                  Icons.search,
-                  size: 30,
-                  color: white,
-                ))
+              onPressed: () {
+                showSearch(context: context, delegate: DataSearch());
+              },
+              icon: Icon(
+                Icons.search,
+                size: 30,
+                color: white,
+              ),
+            )
           ],
         ),
       ),
