@@ -66,11 +66,11 @@ class MyApp extends StatelessWidget {
   // get the message when user taps
 
   controlRoute() {
-    if (FirebaseAuth.instance.currentUser == null) {
-      return '/google_auth';
-      // return '/navigation';
+    // if (FirebaseAuth.instance.currentUser == null) {
+    //   return '/google_auth';
+    //   // return '/navigation';
 
-    }
+    // }
     return '/splash';
   }
 
