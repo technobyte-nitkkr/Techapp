@@ -1,5 +1,5 @@
 import 'package:localstorage/localstorage.dart';
-import 'package:techapp/models/notificationModel.dart';
+import 'package:techapp/models/notification_model.dart';
 
 class NotificationsProvider {
   // data

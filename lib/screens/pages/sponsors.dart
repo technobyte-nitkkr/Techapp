@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:techapp/screens/components/style.dart';
 import 'package:techapp/screens/layouts/page_layout.dart';
-import 'package:techapp/widgets/sponsorList.dart';
+import 'package:techapp/widgets/sponsor_list.dart';
 
 class Sponsors extends StatelessWidget {
   Sponsors({

@@ -1,6 +1,6 @@
-import 'package:techapp/models/EventByCategories.dart';
-import 'package:techapp/models/Sponsor.dart';
-import 'package:techapp/models/eventAll.dart';
+import 'package:techapp/models/event_by_categories.dart';
+import 'package:techapp/models/sponsor.dart';
+import 'package:techapp/models/event_all.dart';
 import 'package:techapp/services/apiBaseHelper.dart';
 
 // ignore: import_of_legacy_library_into_null_safe

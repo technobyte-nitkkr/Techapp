@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:techapp/providers/fetch_data_provider.dart';
-import 'package:techapp/screens/pages/eventDetail.dart';
+import 'package:techapp/screens/pages/event_detail.dart';
 import '../components/style.dart';
 import '../../screens/components/style.dart';
 

@@ -2,11 +2,11 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:localstorage/localstorage.dart';
-import 'package:techapp/models/notificationModel.dart';
+import 'package:techapp/models/notification_model.dart';
 import 'package:techapp/providers/fetch_data_provider.dart';
 import 'package:techapp/screens/components/style.dart';
 import 'package:techapp/screens/layouts/page_layout.dart';
-import 'package:techapp/widgets/NotificationItem.dart';
+import 'package:techapp/widgets/notification_item.dart';
 
 class NotificationsWidget extends StatefulWidget {
   @override

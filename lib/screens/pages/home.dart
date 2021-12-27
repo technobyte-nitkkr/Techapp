@@ -4,7 +4,7 @@ import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:techapp/providers/fetch_data_provider.dart';
 import 'package:techapp/screens/components/style.dart';
 import 'package:techapp/screens/layouts/page_layout.dart';
-import 'package:techapp/widgets/Swipercard.dart';
+import 'package:techapp/widgets/swiper_card.dart';
 
 class Home extends StatelessWidget {
   Home({

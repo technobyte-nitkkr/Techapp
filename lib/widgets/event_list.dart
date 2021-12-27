@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:techapp/providers/fetch_data_provider.dart';
-import 'package:techapp/widgets/eventListItem.dart';
+import 'package:techapp/widgets/event_list_item.dart';
 
 class EventsByCategoryWidget extends StatelessWidget {
   final String categoryName;

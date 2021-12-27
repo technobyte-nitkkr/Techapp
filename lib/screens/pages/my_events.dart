@@ -2,7 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:techapp/screens/components/style.dart';
 import 'package:techapp/screens/layouts/page_layout.dart';
-import 'package:techapp/widgets/myEventList.dart';
+import 'package:techapp/widgets/my_event_list.dart';
 
 class MyEvents extends StatelessWidget {
   MyEvents({

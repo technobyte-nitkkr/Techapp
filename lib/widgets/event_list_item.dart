@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:techapp/providers/fetch_data_provider.dart';
 import 'package:techapp/screens/components/style.dart';
-import 'package:techapp/screens/pages/eventDetail.dart';
+import 'package:techapp/screens/pages/event_detail.dart';
 // ignore: import_of_legacy_library_into_null_safe
 
 class ListItem extends StatelessWidget {
