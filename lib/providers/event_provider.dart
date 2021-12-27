@@ -4,6 +4,8 @@ import 'package:techapp/models/eventAll.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
+import '../widgets/section.dart';
+
 class FetchDataProvider {
   // event map first key refer for category and second key refer to event name
   static Map<String, Map<String, Event>> eventsMap = new Map();
@@ -20,6 +22,8 @@ class FetchDataProvider {
 
   static List<Event> myEvents = [];
 
+  static List<Contacts> contacts = [];
+
   static loadMyevents(String? email) async {
     final url =
         'https://us-central1-techspardha-87928.cloudfunctions.net/api/user/eventApp?email=$email';
@@ -30,6 +34,17 @@ class FetchDataProvider {
     final eventList =
         events.map<Event>((json) => Event.fromJson(json)).toList();
     myEvents = eventList;
+  }
+
+
+  static getContacts() async{
+    var response = await http.get(Uri.parse(
+        'https://us-central1-techspardha-87928.cloudfunctions.net/api/contacts'));
+
+    var jsondata = jsonDecode(response.body)["data"]["contacts"];
+
+    contacts =
+        jsondata.map<Contacts>((json) => Contacts.fromJson(json)).toList();
   }
 
   static loadSponsor() async {
