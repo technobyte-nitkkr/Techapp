@@ -273,7 +273,6 @@ Widget cordinatorItem(Cordinators cordinator) {
         onPressed: () async {
           var number = cordinator.coordinator_number;
           if (!await launch('tel:$number')) {
-            print(number);
             print(cordinator.coordinator_name);
           }
         },

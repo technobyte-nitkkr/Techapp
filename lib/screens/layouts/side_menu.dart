@@ -1,6 +1,7 @@
 // ignore: unused_import
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:techapp/providers/event_provider.dart';
 import 'package:techapp/screens/auth/firebase_services.dart';
 import 'package:techapp/screens/auth/google_login.dart';
 import 'package:techapp/screens/components/style.dart';
@@ -124,6 +125,24 @@ class SideMenu extends StatelessWidget {
                 onTap: () {
                   Navigator.pop(context);
                   Navigator.pushNamed(context, '/developers');
+                },
+              ),
+              Divider(
+                height: 1,
+                thickness: 1,
+              ),
+              ListTile(
+                title: Text('Notifications',
+                    style: TextStyle(color: Colors.white)),
+                leading: Icon(
+                  FetchDataProvider.notification
+                      ? Icons.notifications_active_sharp
+                      : Icons.notifications_none_sharp,
+                  color: white,
+                ),
+                onTap: () {
+                  Navigator.pop(context);
+                  Navigator.pushNamed(context, '/notification');
                 },
               ),
               Divider(
