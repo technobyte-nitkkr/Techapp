@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:techapp/providers/fetch_data_provider.dart';
+import 'package:techapp/screens/layouts/header.dart';
+import 'package:techapp/screens/layouts/page_layout.dart';
 
 class TeamAltius extends StatelessWidget {
   TeamAltius({
@@ -10,67 +12,66 @@ class TeamAltius extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Team Altius'),
-      ),
-      body: ListView.builder(
-        itemCount: FetchDataProvider.contacts.length,
-        itemBuilder: (context, index) {
-          return Padding(
-            padding: const EdgeInsets.all(6.0),
-            child: Card(
-              elevation: 5.0,
-              child: Container(
-                decoration: BoxDecoration(color: Colors.green[100]),
-                child: ListTile(
-                  onTap: () {
-                    showDialog(
-                        context: context,
-                        builder: (context) {
-                          return AlertDialog(
-                            title: Center(
-                              child: Text(
-                                FetchDataProvider.contacts[index].section,
-                                style: TextStyle(
-                                    fontSize: 40.0,
-                                    color: Colors.amberAccent[200],
-                                    backgroundColor: Colors.blue[200]),
+    return PageLayout(
+      child: SizedBox(
+        height: MediaQuery.of(context).size.height * 0.85,
+        child: ListView.builder(
+          itemCount: FetchDataProvider.contacts.length,
+          itemBuilder: (context, index) {
+            return Padding(
+              padding: const EdgeInsets.all(6.0),
+              child: Card(
+                elevation: 5.0,
+                child: Container(
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10.0)),
+                  child: ListTile(
+                    onTap: () {
+                      showDialog(
+                          context: context,
+                          builder: (context) {
+                            return AlertDialog(
+                              title: Center(
+                                child: Text(
+                                  FetchDataProvider.contacts[index].section,
+                                  style: TextStyle(
+                                    fontSize: 30.0,
+                                  ),
+                                ),
                               ),
-                            ),
-                            backgroundColor: Colors.blue[200],
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(40.0),
-                            ),
-                            elevation: 16,
-                            content: Container(
-                                height: 1000.0,
-                                width: 300.0,
-                                child: ListView.builder(
-                                    shrinkWrap: true,
-                                    itemCount: FetchDataProvider
-                                        .contacts[index].people.length,
-                                    itemBuilder: (context, id) {
-                                      return buildwid(
-                                          FetchDataProvider.contacts[index]
-                                              .people[id].imageUrl,
-                                          FetchDataProvider
-                                              .contacts[index].people[id].name,
-                                          FetchDataProvider
-                                              .contacts[index].people[id].post);
-                                    })),
-                          );
-                        });
-                  },
-                  title: Text(FetchDataProvider.contacts[index].section),
-                  leading: CircleAvatar(
-                      backgroundImage: NetworkImage(
-                          'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwii.fandom.com%2Fwiki%2FPikachu&psig=AOvVaw3YLWFDO_pNi8GDAKi7Htwc&ust=1640695397581000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCJD77OaAhPUCFQAAAAAdAAAAABAD')),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(40.0),
+                              ),
+                              elevation: 16,
+                              content: Container(
+                                  alignment: Alignment.center,
+                                  child: ListView.builder(
+                                      shrinkWrap: true,
+                                      itemCount: FetchDataProvider
+                                          .contacts[index].people.length,
+                                      itemBuilder: (context, id) {
+                                        return buildwid(
+                                            FetchDataProvider.contacts[index]
+                                                .people[id].imageUrl,
+                                            FetchDataProvider.contacts[index]
+                                                .people[id].name,
+                                            FetchDataProvider.contacts[index]
+                                                .people[id].post);
+                                      })),
+                            );
+                          });
+                    },
+                    title: Text(FetchDataProvider.contacts[index].section),
+                    leading: CircleAvatar(
+                        backgroundImage:
+                            AssetImage('assets/images/technologo.png')),
+                  ),
                 ),
               ),
-            ),
-          );
-        },
+            );
+          },
+        ),
       ),
     );
   }
