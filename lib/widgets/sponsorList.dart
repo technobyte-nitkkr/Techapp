@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:techapp/models/Sponsor.dart';
 import 'package:techapp/providers/fetch_data_provider.dart';
 import 'package:techapp/screens/components/style.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 // ignore: must_be_immutable
 class SponsorsWidget extends StatelessWidget {
@@ -31,40 +32,44 @@ class ListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+      margin: const EdgeInsets. only(bottom: 20.0),
       elevation: 8,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(32)),
       color: white,
-      child: Container(
-        padding: const EdgeInsets.all(0.0),
-        child: SizedBox(
-          height: MediaQuery.of(context).size.height * 0.56,
-          child: Column(
-            children: <Widget>[
-              ClipRRect(
-                borderRadius: BorderRadius.only(
-                    topRight: Radius.circular(32),
-                    topLeft: Radius.circular(32)),
-                child: Image.network(
-                  '${item.imageurl}',
-                  height: 300,
+      child: InkWell(
+        borderRadius: BorderRadius.circular(32),
+        onTap: () => launch('${item.link}'),          
+        child: Container(
+          padding: const EdgeInsets.all(0.0),
+          child: SizedBox(
+            height: MediaQuery.of(context).size.height * 0.56,
+            child: Column(
+              children: <Widget>[
+                ClipRRect(
+                  borderRadius: BorderRadius.only(
+                      topRight: Radius.circular(32),
+                      topLeft: Radius.circular(32)),
+                  child: Image.network(
+                    '${item.imageurl}',
+                    height: 300,
+                  ),
                 ),
-              ),
-              Divider(
-                color: black,
-                thickness: 5,
-              ),
-              Expanded(
-                child: Text(
-                  '${item.name}',
-                  style: TextStyle(
-                      fontFamily: 'Avenir',
-                      color: const Color(0xff47455f),
-                      fontWeight: FontWeight.w900,
-                      fontSize: 26),
-                  textAlign: TextAlign.left,
+                Divider(
+                  color: black,
+                  thickness: 5,
                 ),
-              ),
-            ],
+                Expanded(
+                  child: Text(
+                    '${item.name}',
+                    style: TextStyle(
+                        fontFamily: 'Avenir',
+                        color: const Color(0xff47455f),
+                        fontWeight: FontWeight.w900,
+                        fontSize: 26),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
