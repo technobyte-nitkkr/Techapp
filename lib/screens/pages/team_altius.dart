@@ -1,8 +1,5 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:techapp/providers/event_provider.dart';
-import 'package:techapp/screens/components/style.dart';
-import 'package:techapp/screens/layouts/page_layout.dart';
 
 class TeamAltius extends StatelessWidget {
   TeamAltius({
