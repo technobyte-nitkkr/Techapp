@@ -36,13 +36,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.0"
-  bubble:
-    dependency: "direct main"
-    description:
-      name: bubble
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.2.1"
   characters:
     dependency: transitive
     description:
@@ -99,13 +92,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.6.6"
-  dialog_flowtter:
-    dependency: "direct main"
-    description:
-      name: dialog_flowtter
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.3.1"
   dialogflow_flutter:
     dependency: "direct main"
     description:
@@ -113,13 +99,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.0.4"
-  equatable:
-    dependency: transitive
-    description:
-      name: equatable
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.0.3"
   fake_async:
     dependency: transitive
     description:
@@ -324,13 +303,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.6.3"
-  json_annotation:
-    dependency: transitive
-    description:
-      name: json_annotation
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "4.4.0"
   lints:
     dependency: transitive
     description:
