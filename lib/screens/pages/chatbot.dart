@@ -19,11 +19,9 @@ class _ChatBotScreenState extends State<ChatBotScreen> {
         await AuthGoogle(fileJson: "assets/techchatbot.json").build();
     DialogFlow dialogflow = DialogFlow(authGoogle: authGoogle, language: "en");
     AIResponse aiResponse = await dialogflow.detectIntent(query);
+    String _text = aiResponse.getMessage().toString();
     setState(() {
-      aiResponse.getListMessage().forEach((element) {
-        messsages.insert(
-            0, {"data": 0, "message": element["text"]["text"][0].toString()});
-      });
+      messsages.insert(0, {"data": 0, "message": _text});
     });
   }
 
