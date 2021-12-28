@@ -1,11 +1,12 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class SimpleMessage extends StatelessWidget {
-  SimpleMessage({required this.text, this.name, required this.type});
+  SimpleMessage({required this.text, required this.type});
 
   final String text;
-  final String? name;
+  final String? ImageUrl = FirebaseAuth.instance.currentUser?.photoURL;
   final bool type;
 
   List<Widget> otherMessage(context) {
@@ -64,6 +65,13 @@ class SimpleMessage extends StatelessWidget {
           ],
         ),
       ),
+      if (ImageUrl != null)
+        new Container(
+          margin: const EdgeInsets.only(left: 16.0),
+          child: new CircleAvatar(
+            backgroundImage: NetworkImage(ImageUrl!),
+          ),
+        ),
     ];
   }
 

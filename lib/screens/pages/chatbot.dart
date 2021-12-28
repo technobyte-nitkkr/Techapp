@@ -88,7 +88,6 @@ class _ChatBotWidget extends State<ChatBotWidget> {
     if (_message != null) {
       SimpleMessage _message = new SimpleMessage(
         text: response.getMessage(),
-        name: "Bot",
         type: false,
       );
       setState(() {
@@ -121,7 +120,6 @@ class _ChatBotWidget extends State<ChatBotWidget> {
     _textController.clear();
     SimpleMessage message = new SimpleMessage(
       text: text,
-      name: "Rances",
       type: true,
     );
     setState(() {
