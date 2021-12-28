@@ -1,3 +1,4 @@
+import 'package:techapp/models/developers.dart';
 import 'package:techapp/models/event_by_categories.dart';
 import 'package:techapp/models/sponsor.dart';
 import 'package:techapp/models/event_all.dart';
@@ -17,6 +18,7 @@ class FetchDataProvider {
   static List<Sponsor> sponsors = [];
   static List<Event> myEvents = [];
   static List<Contacts> contacts = [];
+  static List<Developers> developers = [];
 
   // functions
 
@@ -79,5 +81,13 @@ class FetchDataProvider {
             element.eventName] = element;
       });
     }
+  }
+
+  static loadDevelopers() async {
+    final data = await _helper.get('aboutAppDevs');
+    final developersJSON =
+        data['data']['information'].cast<Map<String, dynamic>>();
+    developers =
+        developersJSON.map<Developers>((json) => Developers.fromJson(json)).toList();
   }
 }
