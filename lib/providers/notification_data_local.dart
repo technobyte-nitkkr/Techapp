@@ -1,5 +1,6 @@
 import 'package:localstorage/localstorage.dart';
 import 'package:techapp/models/notification_model.dart';
+import 'package:techapp/providers/fetch_data_provider.dart';
 
 class NotificationsProvider {
   // data
@@ -14,13 +15,14 @@ class NotificationsProvider {
   }
 
   // check the notification list if present
-  static Future<bool> checkNoti() async {
+  static Future<int> checkNoti() async {
     await storage.ready;
     var notiList = await storage.getItem('notifications');
     if (notiList != null && notiList.length > 0) {
-      return true;
+      FetchDataProvider.notification = notiList.length;
+      return notiList.length;
     }
-    return false;
+    return 0;
   }
 
   // add notification to list
@@ -34,6 +36,7 @@ class NotificationsProvider {
     }
     final item = new Noti(body: body, title: title, link: link, image: image);
     list.add(item);
+    FetchDataProvider.notification++;
     await _saveToStorage();
   }
 

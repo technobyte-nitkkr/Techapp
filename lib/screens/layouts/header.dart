@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:techapp/providers/fetch_data_provider.dart';
 import 'package:techapp/screens/pages/chatbot.dart';
 import 'package:techapp/screens/pages/event_detail.dart';
+import 'package:techapp/screens/pages/notifications.dart';
+import 'package:techapp/widgets/notification_icon.dart';
 import '../components/style.dart';
 import '../../screens/components/style.dart';
 
@@ -19,17 +21,31 @@ class Header extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            IconButton(
-              icon: Icon(
-                FetchDataProvider.notification
-                    ? Icons.notifications
-                    : Icons.menu,
-                size: 30,
-                color: white,
-              ),
-              onPressed: () {
-                Scaffold.of(context).openDrawer();
-              },
+            Row(
+              children: [ 
+                IconButton(
+                  icon: Icon(
+                    Icons.menu,
+                    size: 30,
+                    color: white,
+                  ),
+                  onPressed: () {
+                    Scaffold.of(context).openDrawer();
+                  },
+                ),
+                NamedIcon(
+                  iconData: Icons.notifications,
+                  size: 30,
+                  color: white,
+                  notificationCount: FetchDataProvider.notification,
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => NotificationsWidget()));
+                  },
+                ),    
+              ],
             ),
             Text(
               "  Altius",

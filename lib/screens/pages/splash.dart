@@ -42,7 +42,6 @@ class _SplashScreenState extends State<SplashScreen> {
               message.notification.title, message.notification.body,
               image: message.notification.android.imageUrl,
               link: message.notification.android.link);
-          FetchDataProvider.notification = true;
         }
         if (notification != null && android != null) {
           // ignore: avoid_init_to_null
@@ -106,7 +105,6 @@ class _SplashScreenState extends State<SplashScreen> {
     } catch (e) {
       FetchDataProvider.myEvents = [];
     }
-    FetchDataProvider.notification = await NotificationsProvider.checkNoti();
   }
 
   @override

@@ -92,7 +92,7 @@ class _NotificationsWidgetState extends State<NotificationsWidget> {
                   onPressed: () {
                     _notificatinons.clear();
                     _storage.setItem('notifications', []);
-                    FetchDataProvider.notification = false;
+                    FetchDataProvider.notification = 0;
                     setState(() {});
                   },
                   child: Text("Clear"),

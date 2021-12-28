@@ -12,7 +12,7 @@ class FetchDataProvider {
   static Map<String, Map<String, Event>> eventsMap = new Map();
   static ApiBaseHelper _helper = ApiBaseHelper();
   static bool loading = false;
-  static bool notification = false;
+  static int notification = 0;
   static List<String> categories = [];
   static List<AllEvents> allEvents = [];
   static List<Sponsor> sponsors = [];

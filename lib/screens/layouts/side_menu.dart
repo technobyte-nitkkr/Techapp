@@ -70,13 +70,6 @@ class SideMenu extends StatelessWidget {
                 thickness: 1,
               ),
               DrawerItem(
-                title: "Notifications",
-                route: '/notification',
-                icon: FetchDataProvider.notification
-                    ? Icons.notifications_active_sharp
-                    : Icons.notifications_none_sharp,
-              ),
-              DrawerItem(
                   title: "My Events",
                   route: '/my_events',
                   icon: Icons.calendar_today_rounded),
