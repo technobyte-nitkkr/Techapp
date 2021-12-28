@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:techapp/providers/fetch_data_provider.dart';
+import 'package:techapp/screens/pages/chatbot.dart';
 import 'package:techapp/screens/pages/event_detail.dart';
 import '../components/style.dart';
 import '../../screens/components/style.dart';
@@ -38,16 +39,33 @@ class Header extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            IconButton(
-              onPressed: () {
-                showSearch(context: context, delegate: DataSearch());
-              },
-              icon: Icon(
-                Icons.search,
-                size: 30,
-                color: white,
-              ),
-            )
+            Container(
+              child: Row(children: [
+                IconButton(
+                  onPressed: () {
+                    showSearch(context: context, delegate: DataSearch());
+                  },
+                  icon: Icon(
+                    Icons.search,
+                    size: 30,
+                    color: white,
+                  ),
+                ),
+                IconButton(
+                  onPressed: () {
+                    Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => ChatBotWidget()));
+                  },
+                  icon: Icon(
+                    Icons.question_answer,
+                    size: 30,
+                    color: white,
+                  ),
+                )
+              ],),
+            ),
           ],
         ),
       ),

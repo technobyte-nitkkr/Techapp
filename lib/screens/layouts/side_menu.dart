@@ -88,10 +88,6 @@ class SideMenu extends StatelessWidget {
                   title: "Developers ",
                   route: '/developers',
                   icon: Icons.developer_mode),
-              DrawerItem(
-                  title: "ChatBot",
-                  route: '/chatbot',
-                  icon: Icons.question_answer),
               ListTile(
                 title: Text('Logout', style: TextStyle(color: Colors.white)),
                 leading: Icon(
