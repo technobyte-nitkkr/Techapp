@@ -1,6 +1,7 @@
 // @dart=2.9
 import 'package:flutter/material.dart';
 import 'package:dialog_flowtter/dialog_flowtter.dart';
+import 'package:techapp/screens/components/style.dart';
 import 'package:techapp/widgets/chat_body.dart';
 
 class ChatBotScreen extends StatefulWidget {
@@ -57,40 +58,55 @@ class _ChatBotScreenState extends State<ChatBotScreen> {
   @override
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Chat Bot'),
-      ),
-      body: Column(
-        children: [
-          Expanded(child: AppBody(messages: messages)),
-          Container(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 10,
-              vertical: 5,
-            ),
-            color: Colors.blue,
-            child: Row(
-              children: [
-                Expanded(
-                  child: TextField(
-                    controller: _controller,
-                    style: TextStyle(color: Colors.white),
-                  ),
-                ),
-                IconButton(
-                  color: Colors.white,
-                  icon: Icon(Icons.send),
-                  onPressed: () {
-                    sendMessage(_controller.text);
-                    _controller.clear();
-                  },
-                ),
-              ],
-            ),
+    return Stack(
+      children: [
+        getGradient(),
+        Scaffold(
+          backgroundColor: Colors.transparent,
+          appBar: AppBar(
+            title: Text('ChatBot'),
+            backgroundColor: Colors.transparent,
           ),
-        ],
-      ),
+          body: Column(
+            children: [
+              Expanded(child: AppBody(messages: messages)),
+              Container(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 10,
+                  vertical: 5,
+                ),
+                color: Colors.transparent,
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: TextField(
+                        style: TextStyle(color: Colors.white),
+                        controller: _controller,
+                         decoration: new InputDecoration(
+                          hintText: "Ask your query",
+                          hintStyle: TextStyle(color: Colors.white),
+                          enabledBorder: const OutlineInputBorder(
+                            borderSide: const BorderSide(color: Colors.white, width: 2.0),
+                          ),
+                          border: const OutlineInputBorder(),
+                        ),
+                      ),
+                    ),
+                    IconButton(
+                      color: Colors.white,
+                      icon: Icon(Icons.send),
+                      onPressed: () {
+                        sendMessage(_controller.text);
+                        _controller.clear();
+                      },
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
     );
   }
 }

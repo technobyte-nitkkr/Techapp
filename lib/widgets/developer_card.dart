@@ -44,7 +44,7 @@ class DeveloperCard extends StatelessWidget {
               child: Column(
                 children: <Widget>[
                   Spacer(),
-                  Image.network(imageSrc),
+                  Image.network(imageSrc, height:100, width: 100,),
                   Spacer(),
                   Text(
                     name,
@@ -52,7 +52,7 @@ class DeveloperCard extends StatelessWidget {
                   ),
                   Spacer(),
                   Text(
-                    year,
+                    "$year year",
                     textAlign: TextAlign.center,
                   ),
                 ],
