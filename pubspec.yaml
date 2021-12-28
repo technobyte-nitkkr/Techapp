@@ -28,6 +28,7 @@ dependencies:
   localstorage: ^4.0.0+1
   dialogflow_flutter: ^0.0.3
   bubble: ^1.2.1
+  dialog_flowtter: ^0.3.1
   
   
   

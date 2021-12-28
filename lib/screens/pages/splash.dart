@@ -9,7 +9,6 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:techapp/main.dart';
 import 'package:techapp/providers/fetch_data_provider.dart';
 import 'package:techapp/providers/notification_data_local.dart';
-import 'package:techapp/routes.dart';
 import 'package:techapp/screens/components/style.dart';
 import 'package:techapp/screens/pages/navigation.dart';
 import 'package:http/http.dart' as http;
