@@ -29,6 +29,7 @@ dependencies:
   dialogflow_flutter: ^0.0.3
   bubble: ^1.2.1
   auto_size_text: ^3.0.0
+  dialog_flowtter: ^0.3.1
   
   
   

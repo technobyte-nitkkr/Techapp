@@ -12,6 +12,12 @@ Color navigationColor = Color(0xFF6751B5);
 Color gradientStartColor2 = Color(0xFF0050AC);
 Color gradientEndColor2 = Color(0xFF9354B9);
 Color technoBackColor = Color(0xFF143642);
+const kBackgroundColor = Color(0xFFF8F8F8);
+const kActiveIconColor = Color(0xFFE68342);
+const kTextColor = Color(0xFF222B45);
+const kBlueLightColor = Color(0xFFC7B8F5);
+const kBlueColor = Color(0xFF817DC0);
+const kShadowColor = Color(0xFFE6E6E6);
 
 const defaultPadding = 20.0;
 
