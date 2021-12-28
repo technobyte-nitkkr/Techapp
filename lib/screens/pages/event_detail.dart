@@ -108,6 +108,13 @@ class EventDetailWidget extends StatelessWidget {
   }
 
   Container _getContent(Event item, BuildContext context) {
+    bool isRegisterButtonDisabled = false;
+    for (int i = 0; i < FetchDataProvider.myEvents.length; i++) {
+      if (FetchDataProvider.myEvents[i].eventName == item.eventName) {
+        isRegisterButtonDisabled = true;
+        break;
+      }
+    }
     return new Container(
       child: new ListView(
         padding: new EdgeInsets.fromLTRB(0.0, 72.0, 0.0, 32.0),
@@ -301,23 +308,33 @@ class EventDetailWidget extends StatelessWidget {
           Container(
             margin: EdgeInsets.fromLTRB(40, 5, 40, 5),
             child: ElevatedButton(
-              child: Text("Register Now"),
+              child: Text(isRegisterButtonDisabled?"Tap To Unregister":"Register Now"),
               onPressed: () async => {
-                //
-
                 if (user == null)
-                  {
-                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                      content: Text('Login to register for events !'),
-                      backgroundColor: Colors.green,
-                      behavior: SnackBarBehavior.floating,
-                    ))
-                  }
+                {
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                    content: Text('Login to register for events !'),
+                    backgroundColor: Colors.green,
+                    behavior: SnackBarBehavior.floating,
+                  ))
+                }
+                else if(isRegisterButtonDisabled){
+                  print(isRegisterButtonDisabled),
+                  for(int i=0; i<FetchDataProvider.myEvents.length; i++){
+                    if(FetchDataProvider.myEvents[i].eventName==item.eventName){
+                      //TODO: Add code to remove registered item
+                      //FetchDataProvider.myEvents.remove(item)
+                    }
+                  },
+                  isRegisterButtonDisabled=false
+                }
                 else
-                  {
-                    addMyEvent(user != null ? user!.email : "dummy@gmail.com",
-                        item.eventName, item.eventCategory, context)
-                  }
+                {
+                  print(isRegisterButtonDisabled),
+                  addMyEvent(user != null ? user!.email : "dummy@gmail.com",
+                      item.eventName, item.eventCategory, context),
+                  isRegisterButtonDisabled=true
+                }
               },
             ),
           )
