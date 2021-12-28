@@ -1,5 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
-
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:techapp/models/event_by_categories.dart';
 
@@ -8,6 +8,7 @@ import 'package:techapp/providers/fetch_data_provider.dart';
 import 'package:techapp/screens/components/style.dart';
 import 'package:intl/intl.dart';
 import 'package:techapp/services/apiBaseHelper.dart';
+import 'package:techapp/widgets/event_poster.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 DateFormat dateFormat = DateFormat("MMMM dd,yyyy HH:mm");
@@ -129,7 +130,12 @@ class EventDetailWidget extends StatelessWidget {
                             height: 40.0,
                           ),
                           new Container(height: 4.0),
-                          new Text(item.eventName, style: Style.titleTextStyle),
+                          new Container(
+                              child: AutoSizeText(
+                            item.eventName,
+                            style: Style.titleTextStyle,
+                            maxLines: 1,
+                          )),
                           new Container(height: 10.0),
                           new Text(item.eventCategory,
                               style: Style.commonTextStyle),
@@ -141,7 +147,8 @@ class EventDetailWidget extends StatelessWidget {
                               "Start Time: " +
                                   dateFormat.format(
                                       DateTime.fromMicrosecondsSinceEpoch(
-                                          item.startTime * 1000)),
+                                          item.startTime * 1000,
+                                          isUtc: false)),
                               style: Style.commonTextStyle),
                           SizedBox(
                             height: 10.0,
@@ -173,21 +180,31 @@ class EventDetailWidget extends StatelessWidget {
                   Container(
                     // margin: new EdgeInsets.symmetric(vertical: 16.0),
                     alignment: FractionalOffset.center,
-                    child: new Hero(
-                        tag: item.eventName,
-                        child: Container(
-                            width: 250.0,
-                            height: 150.0,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20.0),
-                            ),
-                            child: FadeInImage.assetNetwork(
-                                placeholder: 'assets/images/technologo.png',
-                                image: item.file,
-                                fit: BoxFit.contain,
-                                imageErrorBuilder:
-                                    (context, error, stackTrace) => Image.asset(
-                                        'assets/images/technologo.png')))),
+                    child: GestureDetector(
+                      child: new Hero(
+                          tag: item.eventName,
+                          child: Container(
+                              width: 250.0,
+                              height: 150.0,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20.0),
+                              ),
+                              child: FadeInImage.assetNetwork(
+                                  placeholder: 'assets/images/technologo.png',
+                                  image: item.file,
+                                  fit: BoxFit.contain,
+                                  imageErrorBuilder: (context, error,
+                                          stackTrace) =>
+                                      Image.asset(
+                                          'assets/images/technologo.png')))),
+                      onTap: () {
+                        Navigator.push(context, MaterialPageRoute(builder: (_) {
+                          return EventPosterWidget(
+                            item: item,
+                          );
+                        }));
+                      },
+                    ),
                   ),
                 ],
               )),
@@ -348,10 +365,12 @@ Widget cordinatorItem(Cordinators cordinator) {
         child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
           Icon(Icons.call),
           FittedBox(
-            fit: BoxFit.cover,
-            child: Text(cordinator.coordinator_name,
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-          ),
+              fit: BoxFit.cover,
+              child: AutoSizeText(
+                cordinator.coordinator_name,
+                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                maxLines: 1,
+              )),
         ]),
       ),
     ),
