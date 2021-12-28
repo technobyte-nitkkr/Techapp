@@ -61,13 +61,12 @@ class EventsByCategory extends StatelessWidget {
             Column(
               children: [
                 // image container
-
                 SizedBox(
                   height: 160,
                 ),
                 // text astronomy
                 Text(
-                  categoryName + ' Events',
+                  categoryName,
                   style: TextStyle(
                     fontFamily: 'Avenir',
                     fontSize: 30,
