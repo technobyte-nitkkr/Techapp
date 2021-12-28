@@ -35,9 +35,7 @@ class FetchDataProvider {
   static getContacts() async {
     final data = await _helper.get('contacts');
     var jsondata = data["data"]["contacts"];
-
-    contacts =
-        jsondata.map<Contacts>((json) => Contacts.fromJson(json)).toList();
+    contacts = jsondata.map<Contacts>((json) => Contacts.fromJson(json)).toList();
   }
 
   // load sponsers

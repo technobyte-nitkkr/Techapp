@@ -21,7 +21,7 @@ class TeamAltius extends StatelessWidget {
             childAspectRatio: .85,
             crossAxisSpacing: 20,
             mainAxisSpacing: 20,
-            children: FetchDataProvider.contacts.map<Widget>((contact) =>
+            children: FetchDataProvider.contacts.reversed.map<Widget>((contact) =>
               Card(
                 child: InkWell(
                   onTap: (){
