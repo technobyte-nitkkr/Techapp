@@ -7,6 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:techapp/screens/components/style.dart';
 import 'package:techapp/widgets/basicCard.dart';
 import 'package:techapp/widgets/carousel_select.dart';
+import 'package:techapp/widgets/dialog_card.dart';
+import 'package:techapp/widgets/quickReplies.dart';
 import 'package:techapp/widgets/simple_message.dart';
 
 class ChatBotWidget extends StatefulWidget {
@@ -54,27 +56,23 @@ class _ChatBotWidget extends State<ChatBotWidget> {
 
   dynamic getWidgetMessage(message) {
     TypeMessage ms = TypeMessage(message);
-    if (ms.platform == "ACTIONS_ON_GOOGLE") {
-      if (ms.type == "simpleResponses") {
-        return SimpleMessage(
-          text: message['simpleResponses']['simpleResponses'][0]
-              ['textToSpeech'],
-          name: "Bot",
-          type: false,
-        );
-      }
-      if (ms.type == "basicCard") {
-        return BasicCardWidget(card: BasicCardDialogflow(message));
-      }
-      if (ms.type == "carouselSelect") {
-        return CarouselSelectWidget(
-            carouselSelect: CarouselSelect(message),
-            clickItem: (info) {
-              print(info); // Item Click print List Keys
-            });
-      }
+
+    if (ms.type == "basicCard") {
+      return BasicCardWidget(card: BasicCardDialogflow(message));
     }
-    return null;
+    if (ms.type == "carouselSelect") {
+      return CarouselSelectWidget(
+          carouselSelect: CarouselSelect(message),
+          clickItem: (info) {
+            print(info); // Item Click print List Keys
+          });
+    }
+    if (ms.type == "card") {
+      return DialogCard(card: CardDialogflow(message));
+    }
+    if (message.containsKey("quickReplies")) {
+      return "quickReplies";
+    }
   }
 
   void Response(query) async {
@@ -84,17 +82,37 @@ class _ChatBotWidget extends State<ChatBotWidget> {
     DialogFlow dialogflow = DialogFlow(authGoogle: authGoogle, language: "en");
 
     AIResponse response = await dialogflow.detectIntent(query);
+    String? _message = response.getMessage();
 
     List<dynamic> messages = response.getListMessage();
+    if (_message != null) {
+      SimpleMessage _message = new SimpleMessage(
+        text: response.getMessage(),
+        name: "Bot",
+        type: false,
+      );
+      setState(() {
+        _messages.insert(0, _message);
+      });
+    }
     if (messages != null) {
+      int quick_index = -1;
       for (var i = 0; i < messages.length; i++) {
         dynamic message = getWidgetMessage(messages[i]);
-        if (message != null) {
+        if (message != null && message != "quickReplies") {
           setState(() {
             _messages.insert(0, message);
           });
+        } else if (message == "quickReplies") {
+          quick_index = i;
         }
-        // }
+      }
+      if (quick_index != -1) {
+        print(quick_index);
+        setState(() {
+          _messages.insert(0,
+              QuickReplyWidget(replies: QuickReplies(messages[quick_index])));
+        });
       }
     }
   }

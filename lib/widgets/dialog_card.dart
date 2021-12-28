@@ -2,10 +2,10 @@
 import 'package:dialogflow_flutter/message.dart';
 import 'package:flutter/material.dart';
 
-class BasicCardWidget extends StatelessWidget {
-  BasicCardWidget({required this.card});
+class DialogCard extends StatelessWidget {
+  DialogCard({required this.card});
 
-  final BasicCardDialogflow card;
+  final CardDialogflow card;
 
   List<Widget> generateButton() {
     List<Widget> buttons = [];
@@ -14,7 +14,7 @@ class BasicCardWidget extends StatelessWidget {
       buttons.add(new SizedBox(
           child: new ElevatedButton(
         onPressed: () {},
-        child: Text(this.card.buttons[i]['title'] ?? 'click here'),
+        child: Text(this.card.buttons[i].text),
       )));
     }
     return buttons;
@@ -41,14 +41,15 @@ class BasicCardWidget extends StatelessWidget {
                     borderRadius: BorderRadius.all(Radius.circular(20.0)),
                     color: Colors.white),
                 child: new Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: <Widget>[
-                    if (this.card.image?.imageUri != null)
-                      Image.network(this.card.image.imageUri),
+                    if (this.card.imageUri != null)
+                      Image.network(this.card.imageUri),
                     new Padding(
                       padding: EdgeInsets.all(10.0),
                       child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: <Widget>[
                           if (this.card.title != null)
                             new Text(
@@ -62,17 +63,13 @@ class BasicCardWidget extends StatelessWidget {
                               style: TextStyle(
                                   color: Colors.black.withOpacity(0.6)),
                             ),
-                          if (this.card.formattedText != null)
-                            new Container(
-                              margin: const EdgeInsets.only(top: 5.0),
-                              child: new Text(this.card.formattedText),
-                            ),
                         ],
                       ),
                     ),
                     if (this.card.buttons != null)
                       new Container(
                         child: new Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: generateButton(),
                         ),
                       ),
