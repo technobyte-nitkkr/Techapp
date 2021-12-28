@@ -88,7 +88,6 @@ class _SplashScreenState extends State<SplashScreen> {
           message.notification.title, message.notification.body,
           image: message.notification.android.imageUrl,
           link: message.notification.android.link);
-
       Navigator.pushNamed(context, "/notification");
     });
   }
@@ -114,12 +113,13 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Clean Code',
+      title: 'Tech App',
       home: AnimatedSplashScreen.withScreenFunction(
         splashIconSize: MediaQuery.of(context).size.height,
         screenFunction: () async {
           await loadDataDuringSplash();
-          return Navigation();
+          return Navigator.pushReplacement(
+              context, MaterialPageRoute(builder: (context) => Navigation()));
         },
         curve: Curves.easeInOut,
         splash: Container(
@@ -148,7 +148,6 @@ class _SplashScreenState extends State<SplashScreen> {
           ),
         ),
       ),
-      onGenerateRoute: RouteGenerator.generateRoute,
     );
   }
 }

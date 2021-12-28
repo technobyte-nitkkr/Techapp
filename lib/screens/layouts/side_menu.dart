@@ -70,6 +70,13 @@ class SideMenu extends StatelessWidget {
                 thickness: 1,
               ),
               DrawerItem(
+                title: "Notifications",
+                route: '/notification',
+                icon: FetchDataProvider.notification
+                    ? Icons.notifications_active_sharp
+                    : Icons.notifications_none_sharp,
+              ),
+              DrawerItem(
                   title: "My Events",
                   route: '/my_events',
                   icon: Icons.calendar_today_rounded),
@@ -78,20 +85,13 @@ class SideMenu extends StatelessWidget {
                   route: '/team_altius',
                   icon: Icons.group),
               DrawerItem(
-                  title: "About Us",
-                  route: '/about_us',
-                  icon: Icons.info_outline),
-              DrawerItem(
                   title: "Developers ",
                   route: '/developers',
                   icon: Icons.developer_mode),
               DrawerItem(
-                title: "Notifications",
-                route: '/notification',
-                icon: FetchDataProvider.notification
-                    ? Icons.notifications_active_sharp
-                    : Icons.notifications_none_sharp,
-              ),
+                  title: "ChatBot",
+                  route: '/chatbot',
+                  icon: Icons.question_answer),
               ListTile(
                 title: Text('Logout', style: TextStyle(color: Colors.white)),
                 leading: Icon(
