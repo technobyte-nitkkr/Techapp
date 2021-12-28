@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:flutter/material.dart';
@@ -10,7 +9,6 @@ import 'package:techapp/screens/components/style.dart';
 import 'package:intl/intl.dart';
 import 'package:techapp/services/apiBaseHelper.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:http/http.dart' as http;
 
 DateFormat dateFormat = DateFormat("MMMM dd,yyyy HH:mm");
 

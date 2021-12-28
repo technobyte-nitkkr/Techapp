@@ -26,6 +26,10 @@ dependencies:
   animated_splash_screen: ^1.1.0
   flutter_local_notifications: ^9.1.5
   localstorage: ^4.0.0+1
+  dialogflow_flutter: ^0.0.3
+  bubble: ^1.2.1
+  dialog_flowtter: ^0.3.1
+  
   
   
 
