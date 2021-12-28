@@ -12,67 +12,79 @@ class TeamAltius extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PageLayout(
-      child: SizedBox(
-        height: MediaQuery.of(context).size.height * 0.85,
-        child: ListView.builder(
-          itemCount: FetchDataProvider.contacts.length,
-          itemBuilder: (context, index) {
-            return Padding(
-              padding: const EdgeInsets.all(6.0),
-              child: Card(
-                elevation: 5.0,
-                child: Container(
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(10.0)),
-                  child: ListTile(
-                    onTap: () {
-                      showDialog(
-                          context: context,
-                          builder: (context) {
-                            return AlertDialog(
-                              title: Center(
-                                child: Text(
-                                  FetchDataProvider.contacts[index].section,
-                                  style: TextStyle(
-                                    fontSize: 30.0,
-                                  ),
-                                ),
+      child: Padding(
+        padding: const EdgeInsets.all(32.0),
+        child: SizedBox(
+          height: MediaQuery.of(context).size.height * 0.8,
+          child:GridView.count(
+            crossAxisCount: 2,
+            childAspectRatio: .85,
+            crossAxisSpacing: 20,
+            mainAxisSpacing: 20,
+            children: FetchDataProvider.contacts.map<Widget>((contact) =>
+              Card(
+                child: InkWell(
+                  onTap: (){
+                    showDialog(
+                      context: context,
+                      builder: (context) {
+                        return AlertDialog(
+                          title: Center(
+                            child: Text(
+                              contact.section,
+                              style: TextStyle(
+                                fontSize: 30.0,
                               ),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(40.0),
-                              ),
-                              elevation: 16,
-                              content: Container(
-                                  height:
-                                      MediaQuery.of(context).size.height * 0.7,
-                                  width: 400.0,
-                                  alignment: Alignment.center,
-                                  child: ListView.builder(
-                                      shrinkWrap: true,
-                                      itemCount: FetchDataProvider
-                                          .contacts[index].people.length,
-                                      itemBuilder: (context, id) {
-                                        return buildwid(
-                                            FetchDataProvider.contacts[index]
-                                                .people[id].imageUrl,
-                                            FetchDataProvider.contacts[index]
-                                                .people[id].name,
-                                            FetchDataProvider.contacts[index]
-                                                .people[id].post);
-                                      })),
-                            );
-                          });
-                    },
-                    title: Text(FetchDataProvider.contacts[index].section),
-                    leading: CircleAvatar(
-                        backgroundImage:
-                            AssetImage('assets/images/technologo.png')),
+                            ),
+                          ),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(40.0),
+                          ),
+                          elevation: 16,
+                          content: Container(
+                            height:
+                                MediaQuery.of(context).size.height * 0.7,
+                            width: 400.0,
+                            alignment: Alignment.center,
+                            child: ListView.builder(
+                              shrinkWrap: true,
+                              itemCount: contact.people.length,
+                              itemBuilder: (context, id) {
+                                return buildwid(
+                                  contact.people[id].imageUrl,
+                                  contact.people[id].name,
+                                  contact.people[id].post);
+                              }
+                            )
+                          ),
+                        );
+                      }
+                    );
+                  },
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        height: 20,
+                      ),
+                      CircleAvatar(
+                        backgroundImage:AssetImage('assets/images/technologo.png'),
+                        radius: 40,
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Text(contact.section,
+                        style: TextStyle(
+                          fontSize: 18, 
+                          fontWeight: FontWeight.bold
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ),
-            );
-          },
+            ).toList(),
+          ),
         ),
       ),
     );

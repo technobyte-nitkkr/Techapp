@@ -54,12 +54,11 @@ class _NavigationState extends State<Navigation> {
         extendBody: true,
         backgroundColor: Colors.transparent,
         bottomNavigationBar: Theme(
-          data: Theme.of(context)
-              .copyWith(iconTheme: const IconThemeData(color: white)),
+          data: Theme.of(context).copyWith(iconTheme: const IconThemeData(color: black)),
           child: CurvedNavigationBar(
             backgroundColor: Colors.transparent,
-            color: navigationColor,
-            height: 45,
+            color: white,
+            height: 50,
             index: index,
             animationDuration: const Duration(milliseconds: 450),
             items: items,
