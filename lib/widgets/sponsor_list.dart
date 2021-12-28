@@ -13,59 +13,63 @@ class SponsorsWidget extends StatelessWidget {
         child: CircularProgressIndicator(),
       );
     else
-      return ListView.builder(
-          shrinkWrap: true,
-          itemCount: FetchDataProvider.sponsors.length,
-          scrollDirection: Axis.vertical,
-          padding: EdgeInsets.all(10),
-          itemBuilder: (context, index) {
-            return ListItem(item: FetchDataProvider.sponsors[index]);
-          });
+      return GridView.count(
+          crossAxisCount: 2,
+          childAspectRatio: .85,
+          crossAxisSpacing: 20,
+          mainAxisSpacing: 20,
+          children: FetchDataProvider.sponsors
+              .map<Widget>((sponsor) => CardItem(item: sponsor))
+              .toList());
   }
 }
 
-class ListItem extends StatelessWidget {
+class CardItem extends StatelessWidget {
   final Sponsor item;
 
-  const ListItem({Key? key, required this.item}) : super(key: key);
+  const CardItem({Key? key, required this.item}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: const EdgeInsets. only(bottom: 20.0),
+      margin: const EdgeInsets.only(bottom: 20.0),
       elevation: 8,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(32)),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
       color: white,
       child: InkWell(
         borderRadius: BorderRadius.circular(32),
-        onTap: () => launch('${item.link}'),          
+        onTap: () => launch('${item.link}'),
         child: Container(
           padding: const EdgeInsets.all(0.0),
           child: SizedBox(
             height: MediaQuery.of(context).size.height * 0.56,
             child: Column(
               children: <Widget>[
+                 SizedBox(
+                  height: 10,
+                ),
+                Divider(
+                  color: grey,
+                  thickness: 2,
+                ),
                 ClipRRect(
-                  borderRadius: BorderRadius.only(
-                      topRight: Radius.circular(32),
-                      topLeft: Radius.circular(32)),
                   child: Image.network(
                     '${item.imageurl}',
-                    height: 300,
+                    height: 100,
                   ),
                 ),
                 Divider(
-                  color: black,
-                  thickness: 5,
+                  color: grey,
+                  thickness: 2,
                 ),
                 Expanded(
                   child: Text(
                     '${item.name}',
                     style: TextStyle(
                         fontFamily: 'Avenir',
-                        color: const Color(0xff47455f),
+                        color: Colors.black,
                         fontWeight: FontWeight.w900,
-                        fontSize: 26),
+                        fontSize: 18),
                   ),
                 ),
               ],
