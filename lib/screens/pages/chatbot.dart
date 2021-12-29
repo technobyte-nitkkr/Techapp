@@ -75,7 +75,7 @@ class _ChatBotWidget extends State<ChatBotWidget> {
     }
   }
 
-  void Response(query) async {
+  void response(query) async {
     _textController.clear();
     AuthGoogle authGoogle =
         await AuthGoogle(fileJson: "assets/dialog_flow_auth.json").build();
@@ -85,6 +85,7 @@ class _ChatBotWidget extends State<ChatBotWidget> {
     String? _message = response.getMessage();
 
     List<dynamic> messages = response.getListMessage();
+    // ignore: unnecessary_null_comparison
     if (_message != null) {
       SimpleMessage _message = new SimpleMessage(
         text: response.getMessage(),
@@ -94,8 +95,9 @@ class _ChatBotWidget extends State<ChatBotWidget> {
         _messages.insert(0, _message);
       });
     }
+    // ignore: unnecessary_null_comparison
     if (messages != null) {
-      int quick_index = -1;
+      int quickindex = -1;
       for (var i = 0; i < messages.length; i++) {
         dynamic message = getWidgetMessage(messages[i]);
         if (message != null && message != "quickReplies") {
@@ -103,14 +105,14 @@ class _ChatBotWidget extends State<ChatBotWidget> {
             _messages.insert(0, message);
           });
         } else if (message == "quickReplies") {
-          quick_index = i;
+          quickindex = i;
         }
       }
-      if (quick_index != -1) {
-        print(quick_index);
+      if (quickindex != -1) {
+        print(quickindex);
         setState(() {
-          _messages.insert(0,
-              QuickReplyWidget(replies: QuickReplies(messages[quick_index])));
+          _messages.insert(
+              0, QuickReplyWidget(replies: QuickReplies(messages[quickindex])));
         });
       }
     }
@@ -125,7 +127,7 @@ class _ChatBotWidget extends State<ChatBotWidget> {
     setState(() {
       _messages.insert(0, message);
     });
-    Response(text);
+    response(text);
   }
 
   @override

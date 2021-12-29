@@ -31,9 +31,22 @@ final TextStyle mainTitle = TextStyle(
 
 Container getGradient() {
   return new Container(
-      decoration: BoxDecoration(
-          gradient: LinearGradient(
-              begin: Alignment.bottomLeft,
-              end: Alignment.topRight,
-              colors: [gradientStartColor2, gradientEndColor2])));
+    decoration: BoxDecoration(
+      gradient: LinearGradient(
+        begin: Alignment.bottomLeft,
+        end: Alignment.topRight,
+        colors: [gradientStartColor2, gradientEndColor2],
+      ),
+    ),
+  );
 }
+
+ThemeData _darkTheme = ThemeData(
+  brightness: Brightness.dark,
+  primaryColor: Colors.amber,
+);
+
+ThemeData _lightTheme = ThemeData(
+  brightness: Brightness.light,
+  primaryColor: Colors.blue,
+);

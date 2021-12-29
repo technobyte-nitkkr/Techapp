@@ -1,15 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:glassmorphism/glassmorphism.dart';
 import 'package:flutter/material.dart';
 import 'package:techapp/models/event_by_categories.dart';
-import 'package:progress_indicator_button/button_stagger_animation.dart';
-import 'package:progress_indicator_button/progress_button.dart';
 import 'package:techapp/providers/fetch_data_provider.dart';
-
 import 'package:techapp/screens/components/style.dart';
 import 'package:intl/intl.dart';
-import 'package:techapp/services/apiBaseHelper.dart';
 import 'package:techapp/widgets/SmartButton.dart';
 import 'package:techapp/widgets/event_poster.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -39,13 +34,11 @@ class EventDetailWidget extends StatelessWidget {
 
   EventDetailWidget(
       {Key? key, required this.eventName, required this.eventCategory})
-      : super(key: key) {
-    FetchDataProvider.loadMyevents(
-        (user != null) ? (user!.email) : "dummy@gmail.com");
-  }
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    print("widget build");
     final Event item = FetchDataProvider.eventsMap[eventCategory]![eventName]!;
     return new Scaffold(
         body: SafeArea(

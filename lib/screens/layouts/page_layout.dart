@@ -7,11 +7,10 @@ import 'side_menu.dart';
 
 class PageLayout extends StatelessWidget {
   final Widget child;
-  String? Title;
+
   PageLayout({
     Key? key,
     required this.child,
-    this.Title,
   }) : super(key: key);
 
   @override

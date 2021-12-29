@@ -27,9 +27,10 @@ class _SmartButtonWidgetState extends State<SmartButtonWidget> {
         break;
       }
     }
+    super.initState();
   }
 
-  void registerEvent(
+  void _registerEvent(
       String? email, String name, String category, BuildContext context) async {
     setState(() {
       isLoading = true;
@@ -57,7 +58,7 @@ class _SmartButtonWidgetState extends State<SmartButtonWidget> {
     });
   }
 
-  void unRegisterEvent(
+  void _unRegisterEvent(
       String? email, String name, String category, BuildContext context) async {
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content:
@@ -75,6 +76,7 @@ class _SmartButtonWidgetState extends State<SmartButtonWidget> {
 
   @override
   Widget build(BuildContext context) {
+    print("button build");
     return Container(
       height: 50,
       width: 250,
@@ -107,10 +109,10 @@ class _SmartButtonWidgetState extends State<SmartButtonWidget> {
               ),
         onPressed: () {
           if (!isRegistered) {
-            registerEvent(
+            _registerEvent(
                 widget.email, widget.eventName, widget.eventCategory, context);
           } else {
-            unRegisterEvent(
+            _unRegisterEvent(
                 widget.email, widget.eventName, widget.eventCategory, context);
           }
         },
