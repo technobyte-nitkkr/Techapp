@@ -247,6 +247,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  glassmorphism:
+    dependency: "direct main"
+    description:
+      name: glassmorphism
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.0.0"
   google_sign_in:
     dependency: "direct main"
     description:
@@ -436,6 +443,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.2.4"
+  progress_indicator_button:
+    dependency: "direct main"
+    description:
+      name: progress_indicator_button
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.3"
   quiver:
     dependency: transitive
     description:
