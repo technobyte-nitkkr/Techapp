@@ -20,7 +20,7 @@ class ApiBaseHelper {
   }
 
   Future<dynamic> put(String url, Object body) async {
-    print('Api Get, url $url');
+    print('Api Put, url $url');
     var responseJson;
     try {
       final response = await http.put(Uri.parse(_baseUrl + url), body: body);

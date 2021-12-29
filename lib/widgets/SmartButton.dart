@@ -28,10 +28,10 @@ class _SmartButtonWidgetState extends State<SmartButtonWidget> {
         break;
       }
     }
+    super.initState();
   }
 
-  @override
-  void registerEvent(
+  void _registerEvent(
       String? email, String name, String category, BuildContext context) async {
     setState(() {
       isLoading = true;
@@ -60,8 +60,8 @@ class _SmartButtonWidgetState extends State<SmartButtonWidget> {
   }
 
   @override
-  @override
   Widget build(BuildContext context) {
+    print("button build");
     return Container(
       child: ElevatedButton(
         style: !isRegistered
@@ -79,7 +79,7 @@ class _SmartButtonWidgetState extends State<SmartButtonWidget> {
         onPressed: () {
           if (!isRegistered) {
 //call register api
-            registerEvent(
+            _registerEvent(
                 widget.email, widget.eventName, widget.eventCategory, context);
           } else {
 // call un-register api

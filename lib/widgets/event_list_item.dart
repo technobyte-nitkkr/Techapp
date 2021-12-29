@@ -15,7 +15,6 @@ class ListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final item = FetchDataProvider.eventsMap[eventCategory]![eventName]!;
-
     return Card(
         margin: const EdgeInsets.only(top: 10),
         elevation: 10,
@@ -23,12 +22,14 @@ class ListItem extends StatelessWidget {
         child: GestureDetector(
           onTap: () => {
             Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => EventDetailWidget(
-                          eventCategory: item.eventCategory,
-                          eventName: item.eventName,
-                        )))
+              context,
+              MaterialPageRoute(
+                builder: (context) => EventDetailWidget(
+                  eventCategory: item.eventCategory,
+                  eventName: item.eventName,
+                ),
+              ),
+            )
           },
           child: Container(
               padding: const EdgeInsets.all(10),

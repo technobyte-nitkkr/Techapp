@@ -1,7 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
-import 'package:techapp/providers/fetch_data_provider.dart';
 import 'package:techapp/screens/auth/firebase_services.dart';
 import 'package:techapp/screens/auth/google_login.dart';
 import 'package:techapp/screens/components/style.dart';
@@ -109,9 +107,9 @@ class SideMenu extends StatelessWidget {
 }
 
 class DrawerItem extends StatelessWidget {
-  String title;
-  String route;
-  IconData icon;
+  final String title;
+  final String route;
+  final IconData icon;
 
   DrawerItem({
     Key? key,
