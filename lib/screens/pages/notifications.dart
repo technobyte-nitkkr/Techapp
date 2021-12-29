@@ -73,19 +73,18 @@ class _NotificationsWidgetState extends State<NotificationsWidget> {
                         ),
                       ),
                     )
-                  : SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.6,
-                      child: ListView.builder(
-                        itemBuilder: (context, index) {
-                          return NotificatonItemWidget(
-                            title: _notificatinons[index].title,
-                            description: _notificatinons[index].body,
-                            imageUrl: _notificatinons[index].image,
-                            link: _notificatinons[index].link,
-                          );
-                        },
-                        itemCount: _notificatinons.length,
-                      ),
+                  : ListView.builder(
+                      shrinkWrap: true,
+                      physics: NeverScrollableScrollPhysics(),
+                      itemBuilder: (context, index) {
+                        return NotificatonItemWidget(
+                          title: _notificatinons[index].title,
+                          description: _notificatinons[index].body,
+                          imageUrl: _notificatinons[index].image,
+                          link: _notificatinons[index].link,
+                        );
+                      },
+                      itemCount: _notificatinons.length,
                     ),
               if (_notificatinons.length != 0)
                 ElevatedButton(
@@ -104,7 +103,10 @@ class _NotificationsWidgetState extends State<NotificationsWidget> {
                     ElevatedButton(
                       onPressed: () async {
                         await FirebaseMessaging.instance
-                            .subscribeToTopic('dev');
+                            .subscribeToTopic('dev')
+                            .then((value) {
+                          print("subscribed");
+                        });
                         //
                       },
                       child: Text("Subscribe Dev"),

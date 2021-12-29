@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
+
 import 'package:techapp/screens/components/style.dart';
+
 import '../../screens/layouts/header.dart';
 import 'side_menu.dart';
 
 class PageLayout extends StatelessWidget {
-  const PageLayout({Key? key, required this.child}) : super(key: key);
   final Widget child;
+  String? Title;
+  PageLayout({
+    Key? key,
+    required this.child,
+    this.Title,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,13 +28,19 @@ class PageLayout extends StatelessWidget {
                 Expanded(
                   // It takes 5/6 part of the screen
                   flex: 5,
-                  child: SingleChildScrollView(
-                    child: Column(
-                      children: [
-                        Header(),
-                        child,
-                      ],
-                    ),
+                  child: Column(
+                    children: [
+                      Header(),
+                      Expanded(
+                        child: SingleChildScrollView(
+                          child: Column(
+                            children: [
+                              child,
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ],
