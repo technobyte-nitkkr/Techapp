@@ -14,34 +14,30 @@ class MyEvents extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PageLayout(
-      child: SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Scrollbar(
-                controller: _trackingScrollController,
-                isAlwaysShown: true,
-                child: SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  controller: _trackingScrollController,
-                  dragStartBehavior: DragStartBehavior.start,
-                  child: Text(
-                    "My Events",
-                    style: TextStyle(
-                      color: white,
-                      fontSize: 50,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
+      child: Column(
+        children: [
+          Scrollbar(
+            controller: _trackingScrollController,
+            isAlwaysShown: true,
+            child: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              controller: _trackingScrollController,
+              dragStartBehavior: DragStartBehavior.start,
+              child: Text(
+                "My Events",
+                style: TextStyle(
+                  color: white,
+                  fontSize: 50,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
-              Container(
-                height: MediaQuery.of(context).size.height * 0.8,
-                child: MyEventList(),
-              ),
-            ],
+            ),
           ),
-        ),
+          SingleChildScrollView(
+            scrollDirection: Axis.vertical,
+            child: MyEventList(),
+          ),
+        ],
       ),
     );
   }

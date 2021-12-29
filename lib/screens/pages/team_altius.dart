@@ -13,78 +13,77 @@ class TeamAltius extends StatelessWidget {
   Widget build(BuildContext context) {
     return PageLayout(
       child: Padding(
-        padding: const EdgeInsets.all(32.0),
-        child: SizedBox(
-          height: MediaQuery.of(context).size.height * 0.8,
-          child:GridView.count(
-            crossAxisCount: 2,
-            childAspectRatio: .85,
-            crossAxisSpacing: 20,
-            mainAxisSpacing: 20,
-            children: FetchDataProvider.contacts.reversed.map<Widget>((contact) =>
-              Card(
-                child: InkWell(
-                  onTap: (){
-                    showDialog(
-                      context: context,
-                      builder: (context) {
-                        return AlertDialog(
-                          title: Center(
-                            child: Text(
-                              contact.section,
-                              style: TextStyle(
-                                fontSize: 30.0,
+        padding: const EdgeInsets.all(15.0),
+        child: GridView.count(
+          shrinkWrap: true,
+          physics: NeverScrollableScrollPhysics(),
+          crossAxisCount: 2,
+          childAspectRatio: .85,
+          crossAxisSpacing: 15,
+          mainAxisSpacing: 15,
+          children: FetchDataProvider.contacts.reversed
+              .map<Widget>(
+                (contact) => Card(
+                  child: InkWell(
+                    onTap: () {
+                      showDialog(
+                        context: context,
+                        builder: (context) {
+                          return AlertDialog(
+                            title: Center(
+                              child: Text(
+                                contact.section,
+                                style: TextStyle(
+                                  fontSize: 30.0,
+                                ),
                               ),
                             ),
-                          ),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(40.0),
-                          ),
-                          elevation: 16,
-                          content: Container(
-                            height:
-                                MediaQuery.of(context).size.height * 0.7,
-                            width: 400.0,
-                            alignment: Alignment.center,
-                            child: ListView.builder(
-                              shrinkWrap: true,
-                              itemCount: contact.people.length,
-                              itemBuilder: (context, id) {
-                                return buildwid(
-                                  contact.people[id].imageUrl,
-                                  contact.people[id].name,
-                                  contact.people[id].post);
-                              }
-                            )
-                          ),
-                        );
-                      }
-                    );
-                  },
-                  child: Column(
-                    children: [
-                      SizedBox(
-                        height: 20,
-                      ),
-                      CircleAvatar(
-                        backgroundImage:AssetImage('assets/images/technologo.png'),
-                        radius: 40,
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      Text(contact.section,
-                        style: TextStyle(
-                          fontSize: 18, 
-                          fontWeight: FontWeight.bold
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(40.0),
+                            ),
+                            elevation: 16,
+                            content: Container(
+                                height:
+                                    MediaQuery.of(context).size.height * 0.6,
+                                width: 400.0,
+                                alignment: Alignment.center,
+                                child: ListView.builder(
+                                    shrinkWrap: true,
+                                    itemCount: contact.people.length,
+                                    itemBuilder: (context, id) {
+                                      return buildwid(
+                                          contact.people[id].imageUrl,
+                                          contact.people[id].name,
+                                          contact.people[id].post);
+                                    })),
+                          );
+                        },
+                      );
+                    },
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          height: 20,
                         ),
-                      ),
-                    ],
+                        CircleAvatar(
+                          backgroundImage:
+                              AssetImage('assets/images/technologo.png'),
+                          radius: 40,
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Text(
+                          contact.section,
+                          style: TextStyle(
+                              fontSize: 18, fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-            ).toList(),
-          ),
+              )
+              .toList(),
         ),
       ),
     );

@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:techapp/models/sponsor.dart';
 import 'package:techapp/providers/fetch_data_provider.dart';
@@ -15,6 +16,8 @@ class SponsorsWidget extends StatelessWidget {
     else
       return GridView.count(
           crossAxisCount: 2,
+          shrinkWrap: true,
+          physics: NeverScrollableScrollPhysics(),
           childAspectRatio: .85,
           crossAxisSpacing: 20,
           mainAxisSpacing: 20,
@@ -32,7 +35,6 @@ class CardItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: const EdgeInsets.only(bottom: 20.0),
       elevation: 8,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
       color: white,
@@ -40,40 +42,35 @@ class CardItem extends StatelessWidget {
         borderRadius: BorderRadius.circular(32),
         onTap: () => launch('${item.link}'),
         child: Container(
-          padding: const EdgeInsets.all(0.0),
-          child: SizedBox(
-            height: MediaQuery.of(context).size.height * 0.56,
-            child: Column(
-              children: <Widget>[
-                 SizedBox(
-                  height: 10,
+          child: Column(
+            children: <Widget>[
+              SizedBox(
+                height: 10,
+              ),
+              Divider(
+                color: grey,
+                thickness: 2,
+              ),
+              ClipRRect(
+                child: Image.network(
+                  '${item.imageurl}',
+                  height: 100,
                 ),
-                Divider(
-                  color: grey,
-                  thickness: 2,
-                ),
-                ClipRRect(
-                  child: Image.network(
-                    '${item.imageurl}',
-                    height: 100,
-                  ),
-                ),
-                Divider(
-                  color: grey,
-                  thickness: 2,
-                ),
-                Expanded(
-                  child: Text(
-                    '${item.name}',
-                    style: TextStyle(
-                        fontFamily: 'Avenir',
-                        color: Colors.black,
-                        fontWeight: FontWeight.w900,
-                        fontSize: 18),
-                  ),
-                ),
-              ],
-            ),
+              ),
+              Divider(
+                color: grey,
+                thickness: 2,
+              ),
+              AutoSizeText(
+                '${item.name}',
+                style: TextStyle(
+                    fontFamily: 'Avenir',
+                    color: Colors.black,
+                    fontWeight: FontWeight.w900,
+                    fontSize: 18),
+                maxLines: 1,
+              ),
+            ],
           ),
         ),
       ),
