@@ -215,10 +215,10 @@ class EventDetailWidget extends StatelessWidget {
               children: <Widget>[
                 new Text("Description", style: Style.headerTextStyle),
                 Container(
-                    margin: new EdgeInsets.symmetric(vertical: 8.0),
+                    margin: new EdgeInsets.symmetric(vertical: 5.0),
                     height: 2.0,
                     width: 18.0,
-                    color: new Color(0xff00c6ff)),
+                    color: Colors.purple[800]),
                 new Text(item.description, style: Style.commonTextStyle),
               ],
             ),
@@ -234,19 +234,20 @@ class EventDetailWidget extends StatelessWidget {
                 children: <Widget>[
                   new Text("Rules", style: Style.headerTextStyle),
                   Container(
-                      margin: new EdgeInsets.symmetric(vertical: 8.0),
+                      margin: new EdgeInsets.symmetric(vertical: 5.0),
                       height: 2.0,
                       width: 18.0,
-                      color: new Color(0xff00c6ff)),
+                      color: Colors.purple[800]),
                   Column(
                       children:
                           item.rules.map((rule) => ruleItem(rule)).toList())
                 ],
               ),
             ),
-          Container(
-            height: 20,
-          ),
+          if (item.rules.length > 0)
+            Container(
+              height: 20,
+            ),
           new Container(
             padding: new EdgeInsets.symmetric(horizontal: 32.0),
             child: new Column(
@@ -254,10 +255,10 @@ class EventDetailWidget extends StatelessWidget {
               children: <Widget>[
                 new Text("Venue", style: Style.headerTextStyle),
                 Container(
-                    margin: new EdgeInsets.symmetric(vertical: 8.0),
+                    margin: new EdgeInsets.symmetric(vertical: 5.0),
                     height: 2.0,
                     width: 18.0,
-                    color: new Color(0xff00c6ff)),
+                    color: Colors.purple[800]),
                 Container(child: Text(item.venue, style: Style.commonTextStyle))
               ],
             ),
@@ -268,26 +269,30 @@ class EventDetailWidget extends StatelessWidget {
             child: new Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                new Text("Event Coordinators", style: Style.headerTextStyle),
+                new Text("Coordinators", style: Style.headerTextStyle),
                 Container(
-                    margin: new EdgeInsets.symmetric(vertical: 8.0),
+                    margin: new EdgeInsets.symmetric(vertical: 5.0),
                     height: 2.0,
                     width: 18.0,
-                    color: new Color(0xff00c6ff)),
+                    color: Colors.purple[800]),
               ],
             ),
           ),
           if (item.cordinators.length > 0)
             Container(
-              margin: new EdgeInsets.symmetric(horizontal: 32.0),
-              child: Column(
-                  // crossAxisCount: 2,
-                  // childAspectRatio: 1.0,
+              margin: new EdgeInsets.symmetric(horizontal: 30.0),
+              child: GridView.count(
+                  shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
+                  crossAxisCount: 2,
+                  childAspectRatio: 2.5,
+                  crossAxisSpacing: 0,
+                  mainAxisSpacing: 0,
                   children: item.cordinators
                       .map((cordinator) => cordinatorItem(cordinator))
                       .toList()),
             ),
-          Container(height: 50)
+          if (item.cordinators.length > 0) Container(height: 50)
         ],
       ),
     );
@@ -318,28 +323,31 @@ Container ruleItem(String rule) {
 
 Widget cordinatorItem(Cordinators cordinator) {
   return Padding(
-    padding: const EdgeInsets.all(8.0),
-    child: Container(
-      width: 200,
-      height: 50,
-      child: ElevatedButton(
-        onPressed: () async {
-          var number = cordinator.coordinator_number;
-          if (!await launch('tel:$number')) {
-            print(cordinator.coordinator_name);
-          }
-        },
-        child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-          Icon(Icons.call),
-          FittedBox(
-              fit: BoxFit.cover,
-              child: AutoSizeText(
-                cordinator.coordinator_name,
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
-                maxLines: 1,
-              )),
-        ]),
-      ),
-    ),
-  );
+      padding: const EdgeInsets.all(8.0),
+      child: Container(
+        width: 200,
+        height: 50,
+        child: ElevatedButton(
+            style: ElevatedButton.styleFrom(
+                primary: Colors.purple[200],
+                onPrimary: Colors.white,
+                shadowColor: Colors.black,
+                elevation: 5,
+                shape: (RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                ))),
+            onPressed: () async {
+              var number = cordinator.coordinator_number;
+              if (!await launch('tel:$number')) {
+                print(cordinator.coordinator_name);
+              }
+            },
+            child: AutoSizeText(
+              cordinator.coordinator_name,
+              style: TextStyle(
+                fontSize: 18,
+              ),
+              maxLines: 1,
+            )),
+      ));
 }
