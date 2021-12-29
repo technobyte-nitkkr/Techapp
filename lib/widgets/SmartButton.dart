@@ -21,7 +21,6 @@ class _SmartButtonWidgetState extends State<SmartButtonWidget> {
 
   @override
   void initState() {
-    //bool result = FetchDataProvider.myEvents.contains(element)
     for (int i = 0; i < FetchDataProvider.myEvents.length; i++) {
       if (FetchDataProvider.myEvents[i].eventName == widget.eventName) {
         isRegistered = true;
@@ -30,7 +29,6 @@ class _SmartButtonWidgetState extends State<SmartButtonWidget> {
     }
   }
 
-  @override
   void registerEvent(
       String? email, String name, String category, BuildContext context) async {
     setState(() {
@@ -46,7 +44,7 @@ class _SmartButtonWidgetState extends State<SmartButtonWidget> {
             Text("Registered Successfully !!", textAlign: TextAlign.center),
         backgroundColor: Colors.green,
         behavior: SnackBarBehavior.floating,
-        duration: const Duration(seconds: 5),
+        duration: const Duration(seconds: 3),
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(10))),
         margin: EdgeInsets.only(
@@ -59,30 +57,61 @@ class _SmartButtonWidgetState extends State<SmartButtonWidget> {
     });
   }
 
-  @override
+  void unRegisterEvent(
+      String? email, String name, String category, BuildContext context) async {
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content:
+            Text("Backend Api not available !!", textAlign: TextAlign.center),
+        backgroundColor: Colors.orange,
+        behavior: SnackBarBehavior.floating,
+        duration: const Duration(seconds: 3),
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(10))),
+        margin: EdgeInsets.only(
+            bottom: MediaQuery.of(context).size.height - 100,
+            right: 20,
+            left: 20)));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: 50,
+      width: 250,
+      // decoration: BoxDecoration(borderRadius: BorderRadius.circular(80)),
       child: ElevatedButton(
         style: !isRegistered
-            ? ButtonStyle(
-                backgroundColor: MaterialStateProperty.all(Colors.blue))
-            : ButtonStyle(
-                backgroundColor: MaterialStateProperty.all(Colors.red)),
+            ? ElevatedButton.styleFrom(
+                primary: Colors.blueAccent[100],
+                onPrimary: Colors.white,
+                shadowColor: Colors.blue,
+                elevation: 15,
+                shape: (RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(25.0),
+                )))
+            : ElevatedButton.styleFrom(
+                primary: Colors.redAccent[100],
+                onPrimary: Colors.white,
+                shadowColor: Colors.red,
+                elevation: 15,
+                shape: (RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(25.0),
+                ))),
         child: !isLoading
             ? Text(
                 !isRegistered ? 'Register Now' : 'Unregister',
+                style: TextStyle(fontSize: 25, color: Colors.white),
               )
             : CircularProgressIndicator(
                 color: Colors.white,
               ),
         onPressed: () {
           if (!isRegistered) {
-//call register api
             registerEvent(
                 widget.email, widget.eventName, widget.eventCategory, context);
           } else {
-// call un-register api
+            unRegisterEvent(
+                widget.email, widget.eventName, widget.eventCategory, context);
           }
         },
       ),

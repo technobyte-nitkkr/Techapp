@@ -37,40 +37,6 @@ class EventDetailWidget extends StatelessWidget {
 
   final user = FirebaseAuth.instance.currentUser;
 
-  static addMyEvent(
-      String? email, String name, String category, BuildContext context) async {
-    final ApiBaseHelper _helper = ApiBaseHelper();
-    final data = await _helper.put('user/eventApp',
-        {'email': email, 'eventName': name, 'eventCategory': category});
-    if (data['success'] == true) {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content:
-              Text("Registered Successfully !!", textAlign: TextAlign.center),
-          backgroundColor: Colors.green,
-          behavior: SnackBarBehavior.floating,
-          duration: const Duration(seconds: 5),
-          shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.circular(10))),
-          margin: EdgeInsets.only(
-              bottom: MediaQuery.of(context).size.height - 100,
-              right: 20,
-              left: 20)));
-      await FetchDataProvider.loadMyevents(email);
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text(data['message'], textAlign: TextAlign.center),
-          backgroundColor: Colors.red,
-          behavior: SnackBarBehavior.floating,
-          duration: const Duration(seconds: 5),
-          shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.circular(10))),
-          margin: EdgeInsets.only(
-              bottom: MediaQuery.of(context).size.height - 100,
-              right: 20,
-              left: 20)));
-    }
-  }
-
   EventDetailWidget(
       {Key? key, required this.eventName, required this.eventCategory})
       : super(key: key) {
@@ -86,20 +52,38 @@ class EventDetailWidget extends StatelessWidget {
       child: Container(
         constraints: new BoxConstraints.expand(),
         color: gradientEndColor,
-        child: SingleChildScrollView(
-          child: Flexible(
-            child: new Stack(
-              children: <Widget>[
-                _getBackground(),
-                _getGradient(),
-                _getContent(item, context),
-                _getToolbar(context),
-              ],
+        child: Stack(
+          children: [
+            Container(
+              child: SingleChildScrollView(
+                child: Flexible(
+                  child: new Stack(
+                    children: <Widget>[
+                      _getBackground(),
+                      _getGradient(),
+                      _getContent(item, context),
+                      _getToolbar(context),
+                    ],
+                  ),
+                ),
+              ),
             ),
-          ),
+            _getRegisterButton(item, context)
+          ],
         ),
       ),
     ));
+  }
+
+  Container _getRegisterButton(Event item, BuildContext context) {
+    return new Container(
+        margin: EdgeInsets.fromLTRB(
+            10, MediaQuery.of(context).size.height - 100, 10, 10),
+        alignment: Alignment.center,
+        child: SmartButtonWidget(
+            email: (user != null) ? (user!.email) : "dummy@gmail.com",
+            eventName: item.eventName,
+            eventCategory: item.eventCategory));
   }
 
   Container _getBackground() {
@@ -129,13 +113,6 @@ class EventDetailWidget extends StatelessWidget {
   }
 
   Container _getContent(Event item, BuildContext context) {
-    bool isRegisterButtonDisabled = false;
-    for (int i = 0; i < FetchDataProvider.myEvents.length; i++) {
-      if (FetchDataProvider.myEvents[i].eventName == item.eventName) {
-        isRegisterButtonDisabled = true;
-        break;
-      }
-    }
     return new Container(
       child: new ListView(
         shrinkWrap: true,
@@ -274,6 +251,9 @@ class EventDetailWidget extends StatelessWidget {
                 ],
               ),
             ),
+          Container(
+            height: 20,
+          ),
           new Container(
             padding: new EdgeInsets.symmetric(horizontal: 32.0),
             child: new Column(
@@ -289,7 +269,7 @@ class EventDetailWidget extends StatelessWidget {
               ],
             ),
           ),
-          Container(height: 5),
+          Container(height: 20),
           new Container(
             padding: new EdgeInsets.symmetric(horizontal: 32.0),
             child: new Column(
@@ -314,63 +294,7 @@ class EventDetailWidget extends StatelessWidget {
                       .map((cordinator) => cordinatorItem(cordinator))
                       .toList()),
             ),
-          new Container(
-            padding: new EdgeInsets.symmetric(horizontal: 32.0),
-            child: new Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                new Text("Register", style: Style.headerTextStyle),
-                Container(
-                    margin: new EdgeInsets.symmetric(vertical: 8.0),
-                    height: 2.0,
-                    width: 18.0,
-                    color: new Color(0xff00c6ff)),
-              ],
-            ),
-          ),
-          Container(
-              margin: EdgeInsets.fromLTRB(40, 5, 40, 5),
-              child: SmartButtonWidget(
-                  email: (user != null) ? (user!.email) : "dummy@gmail.com",
-                  eventName: item.eventName,
-                  eventCategory: item.eventCategory)
-              // child: ElevatedButton(
-              //   child: Text(isRegisterButtonDisabled
-              //       ? "Tap To Unregister"
-              //       : "Register Now"),
-              //   onPressed: () async => {
-              //     if (user == null)
-              //       {
-              //         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-              //           content: Text('Login to register for events !'),
-              //           backgroundColor: Colors.green,
-              //           behavior: SnackBarBehavior.floating,
-              //         ))
-              //       }
-              //     else if (isRegisterButtonDisabled)
-              //       {
-              //         print(isRegisterButtonDisabled),
-              //         for (int i = 0; i < FetchDataProvider.myEvents.length; i++)
-              //           {
-              //             if (FetchDataProvider.myEvents[i].eventName ==
-              //                 item.eventName)
-              //               {
-              //                 //TODO: Add code to remove registered item
-              //                 //FetchDataProvider.myEvents.remove(item)
-              //               }
-              //           },
-              //         isRegisterButtonDisabled = false
-              //       }
-              //     else
-              //       {
-              //         print(isRegisterButtonDisabled),
-              //         addMyEvent(user != null ? user!.email : "dummy@gmail.com",
-              //             item.eventName, item.eventCategory, context),
-              //         isRegisterButtonDisabled = true
-              //       }
-              //   },
-              // ),
-              )
+          Container(height: 50)
         ],
       ),
     );
