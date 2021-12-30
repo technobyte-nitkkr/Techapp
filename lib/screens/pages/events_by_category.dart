@@ -6,20 +6,6 @@ import 'package:techapp/widgets/event_list.dart';
 class EventsByCategory extends StatelessWidget {
   final String categoryName;
 
-  Container _getGradient2() {
-    return new Container(
-      height: 150.0,
-      decoration: new BoxDecoration(
-        gradient: new LinearGradient(
-            colors: <Color>[gradientStartColor, gradientEndColor],
-
-            // stops: [0.0, 0.9],
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter),
-      ),
-    );
-  }
-
   const EventsByCategory({Key? key, required this.categoryName})
       : super(key: key);
 
@@ -35,7 +21,7 @@ class EventsByCategory extends StatelessWidget {
           leading: IconButton(
             icon: Icon(
               Icons.arrow_back,
-              color: Colors.black,
+              color: grey,
             ),
             onPressed: () => Navigator.pop(context),
           ),
@@ -49,15 +35,18 @@ class EventsByCategory extends StatelessWidget {
                 width: MediaQuery.of(context).size.width,
                 height: 150,
                 decoration: BoxDecoration(
+                  borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(30),
+                    bottomRight: Radius.circular(30),
+                  ),
                   image: DecorationImage(
                       image: AssetImage('assets/images/categories/' +
                           categoryName.toLowerCase() +
                           '.png'),
-                      fit: BoxFit.none),
+                      fit: BoxFit.cover),
                 ),
               ),
             ),
-            _getGradient2(),
             Column(
               children: [
                 // image container

@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
@@ -41,15 +43,25 @@ class EventDetailWidget extends StatelessWidget {
     print("widget build");
     final Event item = FetchDataProvider.eventsMap[eventCategory]![eventName]!;
     return new Scaffold(
-        body: SafeArea(
-      child: Container(
-        constraints: new BoxConstraints.expand(),
-        color: gradientEndColor,
-        child: Stack(
-          children: [
-            Container(
-              child: SingleChildScrollView(
-                child: Flexible(
+        backgroundColor: Colors.transparent,
+        extendBodyBehindAppBar: true,
+        appBar: new AppBar(
+          elevation: 0,
+          backgroundColor: Colors.transparent,
+          leading: new IconButton(
+            icon: new Icon(Icons.arrow_back, color: black),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          ),
+        ),
+        body: Container(
+          constraints: new BoxConstraints.expand(),
+          color: gradientEndColor,
+          child: Stack(
+            children: [
+              Container(
+                child: SingleChildScrollView(
                   child: new Stack(
                     children: <Widget>[
                       _getBackground(),
@@ -60,12 +72,10 @@ class EventDetailWidget extends StatelessWidget {
                   ),
                 ),
               ),
-            ),
-            _getRegisterButton(item, context)
-          ],
-        ),
-      ),
-    ));
+              _getRegisterButton(item, context)
+            ],
+          ),
+        ));
   }
 
   Container _getRegisterButton(Event item, BuildContext context) {
@@ -81,10 +91,13 @@ class EventDetailWidget extends StatelessWidget {
 
   Container _getBackground() {
     return new Container(
-      child: new Image.asset(
-        'assets/images/categories/' + eventCategory.toLowerCase() + '.png',
-        fit: BoxFit.cover,
-        height: 300.0,
+      child: ImageFiltered(
+        imageFilter: ImageFilter.blur(sigmaX: 4, sigmaY: 4),
+        child: new Image.asset(
+          'assets/images/categories/' + eventCategory.toLowerCase() + '.png',
+          fit: BoxFit.cover,
+          height: 300.0,
+        ),
       ),
       constraints: new BoxConstraints.expand(height: 300.0),
     );
@@ -93,7 +106,7 @@ class EventDetailWidget extends StatelessWidget {
   Container _getGradient() {
     return Container(
       margin: new EdgeInsets.only(top: 190.0),
-      height: 110.0,
+      height: 130.0,
       decoration: new BoxDecoration(
         gradient: new LinearGradient(
           colors: <Color>[gradientStartColor, gradientEndColor],
@@ -113,101 +126,109 @@ class EventDetailWidget extends StatelessWidget {
         padding: new EdgeInsets.fromLTRB(0.0, 72.0, 0.0, 32.0),
         children: <Widget>[
           Container(
-              margin: const EdgeInsets.symmetric(
-                vertical: 16.0,
-                horizontal: 24.0,
-              ),
-              child: new Stack(
-                children: <Widget>[
-                  Container(
-                    child: Container(
-                      margin: const EdgeInsets.only(top: 40.0),
-                      constraints: new BoxConstraints.expand(),
-                      child: new Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: <Widget>[
-                          SizedBox(
-                            height: 40.0,
-                          ),
-                          new Container(height: 4.0),
-                          new Container(
-                              child: AutoSizeText(
-                            item.eventName,
-                            style: Style.titleTextStyle,
-                            maxLines: 1,
-                          )),
-                          new Container(height: 10.0),
-                          new Text(item.eventCategory,
-                              style: Style.commonTextStyle),
-                          Container(
-                              margin: new EdgeInsets.symmetric(vertical: 8.0),
-                              width: 18.0,
-                              color: new Color(0xff00c6ff)),
-                          Text(
-                              "Start Time: " +
-                                  dateFormat.format(
-                                      DateTime.fromMicrosecondsSinceEpoch(
-                                          item.startTime * 1000,
-                                          isUtc: false)),
-                              style: Style.commonTextStyle),
-                          SizedBox(
-                            height: 10.0,
-                          ),
-                          Text(
-                              "End Time: " +
-                                  dateFormat.format(
-                                      DateTime.fromMicrosecondsSinceEpoch(
-                                          item.endTime * 1000)),
-                              style: Style.commonTextStyle),
-                        ],
-                      ),
-                    ),
-                    height: 220,
-                    margin: new EdgeInsets.only(top: 72.0),
-                    decoration: new BoxDecoration(
-                      color: new Color(0xFF333366),
-                      shape: BoxShape.rectangle,
-                      borderRadius: new BorderRadius.circular(8.0),
-                      boxShadow: <BoxShadow>[
-                        new BoxShadow(
-                          color: Colors.black12,
-                          blurRadius: 10.0,
-                          offset: new Offset(0.0, 10.0),
+            margin: const EdgeInsets.symmetric(
+              vertical: 16.0,
+              horizontal: 24.0,
+            ),
+            child: new Stack(
+              children: <Widget>[
+                Container(
+                  child: Container(
+                    margin: const EdgeInsets.only(top: 40.0),
+                    constraints: new BoxConstraints.expand(),
+                    child: new Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        SizedBox(
+                          height: 100.0,
                         ),
+                        new Container(height: 4.0),
+                        new Container(
+                            child: AutoSizeText(
+                          item.eventName,
+                          style: Style.titleTextStyle,
+                          maxLines: 1,
+                        )),
+                        new Container(height: 10.0),
+                        new Text(item.eventCategory,
+                            style: Style.commonTextStyle),
+                        Container(
+                            margin: new EdgeInsets.symmetric(vertical: 8.0),
+                            width: 18.0,
+                            color: new Color(0xff00c6ff)),
+                        Text(
+                            "Start Time: " +
+                                dateFormat.format(
+                                    DateTime.fromMicrosecondsSinceEpoch(
+                                        item.startTime * 1000,
+                                        isUtc: false)),
+                            style: Style.commonTextStyle),
+                        SizedBox(
+                          height: 10.0,
+                        ),
+                        Text(
+                            "End Time: " +
+                                dateFormat.format(
+                                    DateTime.fromMicrosecondsSinceEpoch(
+                                        item.endTime * 1000)),
+                            style: Style.commonTextStyle),
                       ],
                     ),
                   ),
-                  Container(
-                    // margin: new EdgeInsets.symmetric(vertical: 16.0),
-                    alignment: FractionalOffset.center,
-                    child: GestureDetector(
-                      child: new Hero(
-                          tag: item.eventName,
-                          child: Container(
-                              width: 250.0,
-                              height: 150.0,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(20.0),
-                              ),
-                              child: FadeInImage.assetNetwork(
-                                  placeholder: 'assets/images/technologo.png',
-                                  image: item.file,
-                                  fit: BoxFit.contain,
-                                  imageErrorBuilder: (context, error,
-                                          stackTrace) =>
-                                      Image.asset(
-                                          'assets/images/technologo.png')))),
-                      onTap: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (_) {
-                          return EventPosterWidget(
-                            item: item,
-                          );
-                        }));
-                      },
-                    ),
+                  height: 300,
+                  margin: new EdgeInsets.only(top: 72.0),
+                  decoration: new BoxDecoration(
+                    color: new Color(0xFF333366),
+                    shape: BoxShape.rectangle,
+                    borderRadius: new BorderRadius.circular(8.0),
+                    boxShadow: <BoxShadow>[
+                      new BoxShadow(
+                        color: Colors.black12,
+                        blurRadius: 10.0,
+                        offset: new Offset(0.0, 10.0),
+                      ),
+                    ],
                   ),
-                ],
-              )),
+                ),
+                Container(
+                  // margin: new EdgeInsets.symmetric(vertical: 16.0),
+                  alignment: FractionalOffset.center,
+                  child: GestureDetector(
+                    child: new Hero(
+                      tag: item.eventName,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(10),
+                        child: Container(
+                          width: 200.0,
+                          height: 200.0,
+                          child: FadeInImage.assetNetwork(
+                            placeholder: 'assets/images/technologo.png',
+                            image: item.file,
+                            fit: BoxFit.cover,
+                            imageErrorBuilder: (context, error, stackTrace) =>
+                                Image.asset('assets/images/technologo.png',
+                                    fit: BoxFit.cover),
+                          ),
+                        ),
+                      ),
+                    ),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) {
+                            return EventPosterWidget(
+                              item: item,
+                            );
+                          },
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              ],
+            ),
+          ),
           new Container(
             padding: new EdgeInsets.symmetric(horizontal: 32.0),
             child: new Column(

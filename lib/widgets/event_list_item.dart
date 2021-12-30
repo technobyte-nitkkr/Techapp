@@ -15,81 +15,89 @@ class ListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final item = FetchDataProvider.eventsMap[eventCategory]![eventName]!;
-    return Card(
-        margin: const EdgeInsets.only(top: 10),
-        elevation: 10,
-        // card with event image and name
-        child: GestureDetector(
-          onTap: () => {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => EventDetailWidget(
-                  eventCategory: item.eventCategory,
-                  eventName: item.eventName,
-                ),
-              ),
-            )
-          },
-          child: Container(
-              padding: const EdgeInsets.all(10),
-              child: Row(
-                children: <Widget>[
-                  Hero(
-                    tag: item.eventName,
-                    child: Container(
-                        width: 100,
-                        height: 100,
-                        child: FadeInImage.assetNetwork(
-                            placeholder: 'assets/images/technologo.png',
-                            image: item.file,
-                            fit: BoxFit.cover,
-                            imageErrorBuilder: (context, error, stackTrace) =>
-                                Image.asset('assets/images/technologo.png'))),
+    return Container(
+      child: Card(
+          color: Colors.transparent,
+          margin: const EdgeInsets.only(top: 10),
+          borderOnForeground: true,
+          elevation: 5,
+          shadowColor: Colors.grey,
+          child: GestureDetector(
+            onTap: () => {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => EventDetailWidget(
+                    eventCategory: item.eventCategory,
+                    eventName: item.eventName,
                   ),
-                  Expanded(
-                    child: Container(
-                      padding: const EdgeInsets.only(left: 10),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Text(
-                            item.eventName,
-                            style: TextStyle(
-                                fontSize: 20, fontWeight: FontWeight.bold),
-                          ),
-                          Text(
-                            item.description.length > 100
-                                ? item.description.substring(0, 100) + '...'
-                                : item.description,
-                            style: TextStyle(fontSize: 15),
-                          ),
-                          //  read more button
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: <Widget>[
-                              Text(
-                                'Know more',
-                                style: TextStyle(
-                                  fontFamily: 'Avenir',
-                                  fontSize: 18,
-                                  color: grey,
-                                  fontWeight: FontWeight.w500,
+                ),
+              )
+            },
+            child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(15),
+                  color: Colors.white,
+                ),
+                padding: const EdgeInsets.all(10),
+                child: Row(
+                  children: <Widget>[
+                    Hero(
+                      tag: item.eventName,
+                      child: Container(
+                          width: 100,
+                          height: 100,
+                          child: FadeInImage.assetNetwork(
+                              placeholder: 'assets/images/technologo.png',
+                              image: item.file,
+                              fit: BoxFit.cover,
+                              imageErrorBuilder: (context, error, stackTrace) =>
+                                  Image.asset('assets/images/technologo.png'))),
+                    ),
+                    Expanded(
+                      child: Container(
+                        padding: const EdgeInsets.only(left: 10),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Text(
+                              item.eventName,
+                              style: TextStyle(
+                                  fontSize: 20, fontWeight: FontWeight.bold),
+                            ),
+                            Text(
+                              item.description.length > 100
+                                  ? item.description.substring(0, 100) + '...'
+                                  : item.description,
+                              style: TextStyle(fontSize: 15),
+                            ),
+                            //  read more button
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: <Widget>[
+                                Text(
+                                  'Know more',
+                                  style: TextStyle(
+                                    fontFamily: 'Avenir',
+                                    fontSize: 18,
+                                    color: grey,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                  textAlign: TextAlign.left,
                                 ),
-                                textAlign: TextAlign.left,
-                              ),
-                              Icon(
-                                Icons.arrow_forward,
-                                color: grey,
-                              ),
-                            ],
-                          ),
-                        ],
+                                Icon(
+                                  Icons.arrow_forward,
+                                  color: grey,
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                ],
-              )),
-        ));
+                  ],
+                )),
+          )),
+    );
   }
 }
