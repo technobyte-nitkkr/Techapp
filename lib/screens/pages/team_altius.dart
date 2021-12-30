@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:techapp/providers/fetch_data_provider.dart';
 import 'package:techapp/screens/layouts/page_layout.dart';
@@ -115,13 +116,15 @@ Widget buildwid(String imageUrl, String name, String post) {
         SizedBox(
           height: 10.0,
         ),
-        Text(
+        AutoSizeText(
           name.toUpperCase(),
           style: TextStyle(
             letterSpacing: 1.0,
             fontSize: 25.0,
           ),
+          maxLines: 1,
         ),
+
         SizedBox(
           height: 10.0,
         ),

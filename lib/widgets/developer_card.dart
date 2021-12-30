@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:techapp/screens/components/style.dart';
 
@@ -8,6 +9,7 @@ class DeveloperCard extends StatelessWidget {
   final String link;
 
   final Function()? press;
+
   const DeveloperCard({
     Key? key,
     required this.imageSrc,
@@ -40,15 +42,23 @@ class DeveloperCard extends StatelessWidget {
           child: InkWell(
             onTap: press,
             child: Padding(
-              padding: const EdgeInsets.all(20.0),
+              padding: const EdgeInsets.all(10.0),
               child: Column(
                 children: <Widget>[
                   Spacer(),
-                  Image.network(imageSrc, height:100, width: 100,),
+                  Image.network(
+                    imageSrc,
+                    height: 100,
+                    width: 100,
+                    fit: BoxFit.cover,
+                  ),
                   Spacer(),
-                  Text(
+                  AutoSizeText(
                     name,
-                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 15.0,
+                    ),
+                    maxLines: 1,
                   ),
                   Spacer(),
                   Text(
