@@ -247,13 +247,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  glassmorphism:
-    dependency: "direct main"
-    description:
-      name: glassmorphism
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "3.0.0"
   google_sign_in:
     dependency: "direct main"
     description:
@@ -317,6 +310,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.1"
+  loading_animation_widget:
+    dependency: "direct main"
+    description:
+      name: loading_animation_widget
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.2+2"
   localstorage:
     dependency: "direct main"
     description:

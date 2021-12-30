@@ -10,8 +10,11 @@ import 'package:techapp/main.dart';
 import 'package:techapp/providers/fetch_data_provider.dart';
 import 'package:techapp/providers/notification_data_local.dart';
 import 'package:techapp/screens/components/style.dart';
+import 'package:techapp/screens/pages/error_page.dart';
 import 'package:techapp/screens/pages/navigation.dart';
 import 'package:http/http.dart' as http;
+import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:techapp/services/apiBaseHelper.dart';
 
 Future<Uint8List> _getByteArrayFromUrl(String url) async {
   final http.Response response = await http.get(Uri.parse(url));
@@ -105,6 +108,7 @@ class _SplashScreenState extends State<SplashScreen> {
     } catch (e) {
       FetchDataProvider.myEvents = [];
     }
+    await FirebaseMessaging.instance.subscribeToTopic("allNoti");
   }
 
   @override
@@ -115,7 +119,27 @@ class _SplashScreenState extends State<SplashScreen> {
       home: AnimatedSplashScreen.withScreenFunction(
         splashIconSize: MediaQuery.of(context).size.height,
         screenFunction: () async {
-          await loadDataDuringSplash();
+          try {
+            await loadDataDuringSplash();
+          } on AppException catch (e) {
+            if (e.code == 500)
+              return Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ErrorPagge(
+                    message: "No internet",
+                  ),
+                ),
+              );
+            return Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) => ErrorPagge(
+                  message: "Server Under Maintenance",
+                ),
+              ),
+            );
+          }
           return Navigator.pushReplacement(
               context, MaterialPageRoute(builder: (context) => Navigation()));
         },
@@ -139,9 +163,9 @@ class _SplashScreenState extends State<SplashScreen> {
                 height: MediaQuery.of(context).size.height * 0.2,
               ),
               Flexible(
-                  child: CircularProgressIndicator(
-                color: white,
-              ))
+                child: LoadingAnimationWidget.staggeredDotWave(
+                    color: white, size: 50),
+              ),
             ],
           ),
         ),

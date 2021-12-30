@@ -14,7 +14,7 @@ class ApiBaseHelper {
       responseJson = _returnResponse(response);
     } on SocketException {
       print('No net');
-      throw AppException('No Internet connection');
+      throw AppException('No Internet connection', 500);
     }
     return responseJson;
   }
@@ -27,7 +27,7 @@ class ApiBaseHelper {
       responseJson = _returnResponse(response);
     } on SocketException {
       print('No net');
-      throw AppException('No Internet connection');
+      throw AppException('No Internet connection', 500);
     }
     return responseJson;
   }
@@ -44,10 +44,10 @@ class ApiBaseHelper {
 }
 
 class AppException implements Exception {
-  final _message;
-  final _prefix;
-  AppException([this._message, this._prefix]);
+  final message;
+  final int? code;
+  AppException([this.message, this.code]);
   String toString() {
-    return "$_prefix:$_message";
+    return "$message:$code";
   }
 }

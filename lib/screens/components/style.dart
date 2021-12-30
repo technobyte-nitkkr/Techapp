@@ -40,13 +40,3 @@ Container getGradient() {
     ),
   );
 }
-
-ThemeData _darkTheme = ThemeData(
-  brightness: Brightness.dark,
-  primaryColor: Colors.amber,
-);
-
-ThemeData _lightTheme = ThemeData(
-  brightness: Brightness.light,
-  primaryColor: Colors.blue,
-);

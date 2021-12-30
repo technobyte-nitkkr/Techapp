@@ -71,7 +71,7 @@ Future<void> main() async {
   );
 
   // subscribe to notificatinon chanel
-  await FirebaseMessaging.instance.subscribeToTopic("allNoti");
+
   runApp(MyApp());
 }
 

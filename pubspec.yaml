@@ -28,8 +28,8 @@ dependencies:
   localstorage: ^4.0.0+1
   dialogflow_flutter: ^0.0.3
   auto_size_text: ^3.0.0
-  glassmorphism: ^3.0.0
   progress_indicator_button: ^0.0.3
+  loading_animation_widget:
   
   
   

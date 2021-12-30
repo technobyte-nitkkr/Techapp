@@ -29,6 +29,7 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => Navigation());
       case '/chatbot':
         return MaterialPageRoute(builder: (_) => ChatBotWidget());
+
       default:
         return MaterialPageRoute(builder: (_) => Navigation());
 
