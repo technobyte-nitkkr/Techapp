@@ -1,5 +1,4 @@
 import 'dart:ui';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
@@ -67,7 +66,6 @@ class EventDetailWidget extends StatelessWidget {
                       _getBackground(),
                       _getGradient(),
                       _getContent(item, context),
-                      _getToolbar(context),
                     ],
                   ),
                 ),
@@ -285,24 +283,26 @@ class EventDetailWidget extends StatelessWidget {
             ),
           ),
           Container(height: 20),
-          new Container(
-            padding: new EdgeInsets.symmetric(horizontal: 32.0),
-            child: new Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                new Text("Coordinators", style: Style.headerTextStyle),
-                Container(
-                    margin: new EdgeInsets.symmetric(vertical: 5.0),
-                    height: 2.0,
-                    width: 18.0,
-                    color: Colors.purple[800]),
-              ],
+          if (item.cordinators.length > 0)
+            new Container(
+              padding: new EdgeInsets.symmetric(horizontal: 32.0),
+              child: new Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  new Text("Coordinators", style: Style.headerTextStyle),
+                  Container(
+                      margin: new EdgeInsets.symmetric(vertical: 5.0),
+                      height: 2.0,
+                      width: 18.0,
+                      color: Colors.purple[800]),
+                ],
+              ),
             ),
-          ),
           if (item.cordinators.length > 0)
             Container(
               margin: new EdgeInsets.symmetric(horizontal: 30.0),
               child: GridView.count(
+                  padding: EdgeInsets.all(0),
                   shrinkWrap: true,
                   physics: NeverScrollableScrollPhysics(),
                   crossAxisCount: 2,
@@ -312,17 +312,14 @@ class EventDetailWidget extends StatelessWidget {
                   children: item.cordinators
                       .map((cordinator) => cordinatorItem(cordinator))
                       .toList()),
+              // child: Column(
+              //     children: item.cordinators
+              //         .map((cordinator) => cordinatorItem(cordinator))
+              //         .toList()),
             ),
-          if (item.cordinators.length > 0) Container(height: 50)
+          if (item.cordinators.length > 0) Container(height: 60)
         ],
       ),
-    );
-  }
-
-  Container _getToolbar(BuildContext context) {
-    return new Container(
-      margin: new EdgeInsets.only(top: MediaQuery.of(context).padding.top),
-      child: new BackButton(color: Colors.white),
     );
   }
 }

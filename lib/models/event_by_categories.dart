@@ -35,9 +35,11 @@ class Event {
         venue = json['venue'],
         endTime = json['endTime'],
         startTime = json['startTime'],
-        cordinators = json['coordinators']
-            .map<Cordinators>((json) => Cordinators.fromJson(json))
-            .toList();
+        cordinators = json['coordinators'] != null
+            ? json['coordinators']
+                .map<Cordinators>((json) => Cordinators.fromJson(json))
+                .toList()
+            : [];
 }
 
 class Cordinators {

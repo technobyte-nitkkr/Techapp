@@ -35,7 +35,8 @@ class FetchDataProvider {
   static getContacts() async {
     final data = await _helper.get('contacts');
     var jsondata = data["data"]["contacts"];
-    contacts = jsondata.map<Contacts>((json) => Contacts.fromJson(json)).toList();
+    contacts =
+        jsondata.map<Contacts>((json) => Contacts.fromJson(json)).toList();
   }
 
   // load sponsers
@@ -69,6 +70,7 @@ class FetchDataProvider {
       final data = await _helper
           .get('events/description?eventCategory=${categories[i]}');
       final events = data['data']['events'];
+
       List<Event> eventList =
           events.map<Event>((json) => Event.fromJson(json)).toList();
 
@@ -85,7 +87,8 @@ class FetchDataProvider {
     final data = await _helper.get('aboutAppDevs');
     final developersJSON =
         data['data']['information'].cast<Map<String, dynamic>>();
-    developers =
-        developersJSON.map<Developers>((json) => Developers.fromJson(json)).toList();
+    developers = developersJSON
+        .map<Developers>((json) => Developers.fromJson(json))
+        .toList();
   }
 }
