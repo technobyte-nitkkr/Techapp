@@ -1,5 +1,6 @@
 import 'package:localstorage/localstorage.dart';
 import 'package:techapp/models/notification_model.dart';
+import 'package:techapp/models/user.dart';
 import 'package:techapp/providers/fetch_data_provider.dart';
 
 class NotificationsProvider {
@@ -44,5 +45,29 @@ class NotificationsProvider {
   static clearStorage() async {
     await storage.ready;
     await storage.clear();
+  }
+
+  // save the jwt token in the storage
+  static saveToken(String token) async {
+    await storage.ready;
+    await storage.setItem('token', token);
+  }
+
+  // get the jwt token from the storage
+  static Future<String> getToken() async {
+    await storage.ready;
+    return await storage.getItem('token');
+  }
+
+  // save the user to local storage
+  static saveUser(UserDetails user) async {
+    await storage.ready;
+    await storage.setItem('user', user.toJson());
+  }
+
+  // get the user from the storage
+  static Future<dynamic> getUser() async {
+    await storage.ready;
+    return await storage.getItem('user');
   }
 }

@@ -1,7 +1,12 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:techapp/models/developers.dart';
 import 'package:techapp/models/event_by_categories.dart';
 import 'package:techapp/models/sponsor.dart';
 import 'package:techapp/models/event_all.dart';
+import 'package:techapp/models/user.dart';
+import 'package:techapp/providers/local_storage_provider.dart';
+import 'package:techapp/screens/auth/firebase_services.dart';
 import 'package:techapp/services/apiBaseHelper.dart';
 
 // ignore: import_of_legacy_library_into_null_safe
@@ -19,6 +24,7 @@ class FetchDataProvider {
   static List<Event> myEvents = [];
   static List<Contacts> contacts = [];
   static List<Developers> developers = [];
+  static UserDetails? user = null;
 
   // functions
 
@@ -90,5 +96,37 @@ class FetchDataProvider {
     developers = developersJSON
         .map<Developers>((json) => Developers.fromJson(json))
         .toList();
+  }
+
+  static loadProfileOnline() async {
+    // get the user from local storage
+    final _user = await NotificationsProvider.getUser();
+    var _token;
+    if (_user != null) {
+      user = UserDetails.fromJson(_user);
+      print("got the user form local storage");
+    } else {
+      _token = await NotificationsProvider.getToken();
+
+      if (_token != null) {
+        print("got token form local storage");
+
+        final data = await _helper.post('loginApp', {'idToken': _token});
+        print(data);
+        final isOnboard = data['onBoard'] ?? null;
+        if (isOnboard == null || isOnboard == false) {
+          user = null;
+        } else {
+          // got the profle form api
+          print("got the profile form api");
+          final profile = data['information'] as Map<String, dynamic>;
+          user = UserDetails.fromJson(profile);
+          // save user to local storage
+          await NotificationsProvider.saveUser(user!);
+        }
+      } else {
+        await FirebaseServices().googleSignOut();
+      }
+    }
   }
 }

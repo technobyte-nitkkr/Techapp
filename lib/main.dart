@@ -7,7 +7,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:techapp/providers/notification_data_local.dart';
+import 'package:techapp/providers/local_storage_provider.dart';
 import 'package:techapp/routes.dart';
 
 // creating the android channel
