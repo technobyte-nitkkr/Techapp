@@ -13,8 +13,6 @@ import 'package:techapp/screens/pages/team_altius.dart';
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
-      case '/splash':
-        return MaterialPageRoute(builder: (_) => SplashScreen());
       case '/google_auth':
         return MaterialPageRoute(builder: (_) => GoogleLoginScreen());
       case '/my_events':
@@ -29,9 +27,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => Navigation());
       case '/chatbot':
         return MaterialPageRoute(builder: (_) => ChatBotWidget());
-
       default:
-        return MaterialPageRoute(builder: (_) => Navigation());
+        return MaterialPageRoute(builder: (_) => SplashScreen());
 
       // return _errorRoute();
     }

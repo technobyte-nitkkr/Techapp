@@ -31,8 +31,6 @@ class EventDetailWidget extends StatelessWidget {
   final String eventName;
   final String eventCategory;
 
-  final user = FirebaseAuth.instance.currentUser;
-
   EventDetailWidget(
       {Key? key, required this.eventName, required this.eventCategory})
       : super(key: key);
@@ -82,9 +80,7 @@ class EventDetailWidget extends StatelessWidget {
             10, MediaQuery.of(context).size.height - 100, 10, 10),
         alignment: Alignment.center,
         child: SmartButtonWidget(
-            email: (user != null) ? (user!.email) : "dummy@gmail.com",
-            eventName: item.eventName,
-            eventCategory: item.eventCategory));
+            eventName: item.eventName, eventCategory: item.eventCategory));
   }
 
   Container _getBackground() {

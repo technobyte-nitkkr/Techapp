@@ -3,10 +3,10 @@ class UserDetails {
   String name;
   String picture;
   bool onBoard;
-  String phone;
-  String college;
-  String year;
-  bool admin;
+  String? phone;
+  String? college;
+  String? year;
+  bool? admin;
 
   UserDetails(
       {required this.email,
@@ -24,10 +24,10 @@ class UserDetails {
       name: json['name'],
       picture: json['picture'],
       onBoard: json['onBoard'],
-      phone: json['phone'],
-      college: json['college'],
-      year: json['year'],
-      admin: json['admin'],
+      phone: json['phone'] ?? null,
+      college: json['college'] ?? null,
+      year: json['year'] ?? null,
+      admin: json['admin'] ?? null,
     );
   }
 

@@ -1,12 +1,13 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:techapp/providers/fetch_data_provider.dart';
 
 class SimpleMessage extends StatelessWidget {
   SimpleMessage({required this.text, required this.type});
 
   final String text;
-  final String? ImageUrl = FirebaseAuth.instance.currentUser?.photoURL;
+  final String? ImageUrl = FetchDataProvider.user!.picture;
   final bool type;
 
   List<Widget> otherMessage(context) {

@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:techapp/providers/fetch_data_provider.dart';
 import 'package:techapp/services/apiBaseHelper.dart';
+import 'package:techapp/widgets/sign_in_modal.dart';
 
 class SmartButtonWidget extends StatefulWidget {
   const SmartButtonWidget(
-      {Key? key,
-      required this.email,
-      required this.eventName,
-      required this.eventCategory})
+      {Key? key, required this.eventName, required this.eventCategory})
       : super(key: key);
 
-  final email, eventName, eventCategory;
+  final eventName, eventCategory;
   @override
   _SmartButtonWidgetState createState() => _SmartButtonWidgetState();
 }
@@ -18,6 +16,7 @@ class SmartButtonWidget extends StatefulWidget {
 class _SmartButtonWidgetState extends State<SmartButtonWidget> {
   bool isLoading = false;
   bool isRegistered = false;
+  final _user = FetchDataProvider.user;
 
   @override
   void initState() {
@@ -108,12 +107,20 @@ class _SmartButtonWidgetState extends State<SmartButtonWidget> {
                 color: Colors.white,
               ),
         onPressed: () {
-          if (!isRegistered) {
+          if (!_user!.onBoard) {
+            showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return AlertDialog(
+                    content: SignInModalWidget(),
+                  );
+                });
+          } else if (!isRegistered) {
             _registerEvent(
-                widget.email, widget.eventName, widget.eventCategory, context);
+                _user!.email, widget.eventName, widget.eventCategory, context);
           } else {
             _unRegisterEvent(
-                widget.email, widget.eventName, widget.eventCategory, context);
+                _user!.email, widget.eventName, widget.eventCategory, context);
           }
         },
       ),

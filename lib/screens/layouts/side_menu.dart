@@ -16,10 +16,8 @@ class SideMenu extends StatelessWidget {
             children: [
               GestureDetector(
                 onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const ProfilePage()));
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => ProfilePage()));
                 },
                 child: DrawerHeader(
                   child: Column(
@@ -96,10 +94,8 @@ class SideMenu extends StatelessWidget {
                   color: white,
                 ),
                 onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const ProfilePage()));
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => ProfilePage()));
                 },
               ),
               Divider(

@@ -27,8 +27,8 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  final user = FirebaseAuth.instance.currentUser != null
-      ? FirebaseAuth.instance.currentUser.displayName
+  final user = FetchDataProvider.user != null
+      ? FetchDataProvider.user.name
       : " Dummy user";
   void initState() {
     super.initState();
@@ -93,19 +93,21 @@ class _SplashScreenState extends State<SplashScreen> {
     });
   }
 
-  Future<void> loadDataDuringSplash() async {
+  Future<void> loadDataDuringSplash(BuildContext context) async {
     await FetchDataProvider.loadCategories();
     await FetchDataProvider.loadEvents();
     await FetchDataProvider.loadEventDescription();
     await FetchDataProvider.loadSponsor();
     await FetchDataProvider.loadDevelopers();
     await FetchDataProvider.getContacts();
+    await FetchDataProvider.loadProfileOnline();
     try {
-      if (FirebaseAuth.instance.currentUser != null) {
-        await FetchDataProvider.loadMyevents(
-            FirebaseAuth.instance.currentUser.email);
-
-        await FetchDataProvider.loadProfileOnline();
+      if (FetchDataProvider.user != null) {
+        await FetchDataProvider.loadMyevents(FetchDataProvider.user.email);
+      }
+      if (FirebaseAuth.instance.currentUser == null) {
+        return Navigator.pushNamedAndRemoveUntil(
+            context, '/google_auth', (route) => false);
       }
     } catch (e) {
       print(e);
@@ -123,9 +125,10 @@ class _SplashScreenState extends State<SplashScreen> {
         splashIconSize: MediaQuery.of(context).size.height,
         screenFunction: () async {
           try {
-            await loadDataDuringSplash();
+            await loadDataDuringSplash(context);
           } on AppException catch (e) {
-            if (e.code == 500)
+            Navigator.popUntil(context, (route) => false);
+            if (e.code == 500) {
               return Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
@@ -134,7 +137,9 @@ class _SplashScreenState extends State<SplashScreen> {
                   ),
                 ),
               );
-            return Navigator.pushReplacement(
+            }
+
+            return Navigator.push(
               context,
               MaterialPageRoute(
                 builder: (context) => ErrorPagge(
