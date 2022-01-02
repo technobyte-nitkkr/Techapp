@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:techapp/screens/auth/firebase_services.dart';
 import 'package:techapp/screens/auth/google_login.dart';
 import 'package:techapp/screens/components/style.dart';
+import 'package:techapp/screens/pages/profile.dart';
 
 class SideMenu extends StatelessWidget {
   @override
@@ -13,35 +14,43 @@ class SideMenu extends StatelessWidget {
           getGradient(),
           ListView(
             children: [
-              DrawerHeader(
-                child: Column(
-                  children: [
-                    FirebaseAuth.instance.currentUser != null
-                        ? CircleAvatar(
-                            backgroundImage: NetworkImage(
-                                FirebaseAuth.instance.currentUser!.photoURL!),
-                            radius: 40,
-                          )
-                        : CircleAvatar(
-                            backgroundImage: AssetImage(
-                              'assets/images/technologo.png',
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const ProfilePage()));
+                },
+                child: DrawerHeader(
+                  child: Column(
+                    children: [
+                      FirebaseAuth.instance.currentUser != null
+                          ? CircleAvatar(
+                              backgroundImage: NetworkImage(
+                                  FirebaseAuth.instance.currentUser!.photoURL!),
+                              radius: 40,
+                            )
+                          : CircleAvatar(
+                              backgroundImage: AssetImage(
+                                'assets/images/technologo.png',
+                              ),
+                              radius: 40,
                             ),
-                            radius: 40,
-                          ),
-                    const SizedBox(
-                      height: 6,
-                    ),
-                    Text(
-                      "${FirebaseAuth.instance.currentUser != null ? FirebaseAuth.instance.currentUser!.displayName : "Dummy Name"}",
-                      style: TextStyle(color: white),
-                    ),
-                    const SizedBox(
-                      height: 2,
-                    ),
-                    Text(
-                        "${FirebaseAuth.instance.currentUser != null ? FirebaseAuth.instance.currentUser!.email : "Dummy Email"}",
-                        style: TextStyle(color: white)),
-                  ],
+                      const SizedBox(
+                        height: 6,
+                      ),
+                      Text(
+                        "${FirebaseAuth.instance.currentUser != null ? FirebaseAuth.instance.currentUser!.displayName : "Dummy Name"}",
+                        style: TextStyle(color: white),
+                      ),
+                      const SizedBox(
+                        height: 2,
+                      ),
+                      Text(
+                          "${FirebaseAuth.instance.currentUser != null ? FirebaseAuth.instance.currentUser!.email : "Dummy Email"}",
+                          style: TextStyle(color: white)),
+                    ],
+                  ),
                 ),
               ),
               Divider(
@@ -79,6 +88,24 @@ class SideMenu extends StatelessWidget {
                   title: "Developers ",
                   route: '/developers',
                   icon: Icons.developer_mode),
+              ListTile(
+                title:
+                    Text('Your Profile', style: TextStyle(color: Colors.white)),
+                leading: Icon(
+                  Icons.person,
+                  color: white,
+                ),
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const ProfilePage()));
+                },
+              ),
+              Divider(
+                height: 1,
+                thickness: 1,
+              ),
               ListTile(
                 title: Text('Logout', style: TextStyle(color: Colors.white)),
                 leading: Icon(
