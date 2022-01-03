@@ -17,6 +17,7 @@ class Navigation extends StatefulWidget {
 class _NavigationState extends State<Navigation> {
   // ignore: non_constant_identifier_names
 
+  // ignore: non_constant_identifier_names
   DateTime pre_backpress = DateTime.now();
   int index = 1;
   @override
@@ -54,7 +55,8 @@ class _NavigationState extends State<Navigation> {
         extendBody: true,
         backgroundColor: Colors.transparent,
         bottomNavigationBar: Theme(
-          data: Theme.of(context).copyWith(iconTheme: const IconThemeData(color: black)),
+          data: Theme.of(context)
+              .copyWith(iconTheme: const IconThemeData(color: black)),
           child: CurvedNavigationBar(
             backgroundColor: Colors.transparent,
             color: white,

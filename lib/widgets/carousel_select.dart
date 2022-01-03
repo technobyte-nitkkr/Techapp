@@ -15,7 +15,6 @@ class ItemCarouselWidget extends StatefulWidget {
 class _ItemCarouselWidget extends State<ItemCarouselWidget> {
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return InkWell(
         onTap: () {
           widget.clickItem(widget.item.info);

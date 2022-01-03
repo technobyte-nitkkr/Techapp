@@ -134,8 +134,9 @@ class _SignInModalWidgetState extends State<SignInModalWidget> {
 
       if (user['success'] == true) {
         // let the user on profile
-        FetchDataProvider.user =
-            UserDetails.fromJson(user['information'] as Map<String, dynamic>);
+
+        final profile = user['information'] as Map<String, dynamic>;
+        FetchDataProvider.user = UserDetails.fromJson(profile);
         // save to storage
         await NotificationsProvider.saveUser(user);
       }

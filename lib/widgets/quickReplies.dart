@@ -1,10 +1,9 @@
-import 'package:dialogflow_flutter/message.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+// ignore: import_of_legacy_library_into_null_safe
+import 'package:dialogflow_flutter/message.dart';
 
 class QuickReplyWidget extends StatelessWidget {
-  QuickReplies replies;
-  final bool _type = false;
+  final QuickReplies replies;
   QuickReplyWidget({
     Key? key,
     required this.replies,

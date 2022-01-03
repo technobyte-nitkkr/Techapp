@@ -19,7 +19,7 @@ class ProfilePage extends StatelessWidget {
                   Container(
                     alignment: Alignment.center,
                     child: Text(
-                      "User Profile Here",
+                      "Profile",
                       style: TextStyle(
                           fontSize: 40,
                           fontWeight: FontWeight.bold,
@@ -74,7 +74,7 @@ class ProfilePage extends StatelessWidget {
                                 );
                               });
                         },
-                        child: Text("Sign In Model check"))
+                        child: Text("Update Profile"))
                 ],
               ))
         ],

@@ -1,20 +1,23 @@
-// @dart=2.9
 class Contacts {
-  String section;
+  final String section;
   List<People> people = [];
 
-  Contacts({this.section, this.people});
+  Contacts({required this.section, required this.people});
 
-  Contacts.fromJson(Map<String, dynamic> json) {
-    section = json['section'];
-    if (json['people'] != null) {
-      people = json["people"].map<People>((p) => People.fromJson(p)).toList();
-    }
+  factory Contacts.fromJson(Map<String, dynamic> json) {
+    return Contacts(
+      section: json['section'],
+      people: (json['people'] as List<dynamic>)
+          .map((e) => People.fromJson(e))
+          .toList(),
+    );
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['section'] = this.section;
+
+    // ignore: unnecessary_null_comparison
     if (this.people != null) {
       data['people'] = this.people.map((v) => v.toJson()).toList();
     }
@@ -27,12 +30,14 @@ class People {
   String name;
   String post;
 
-  People({this.imageUrl, this.name, this.post});
+  People({required this.imageUrl, required this.name, required this.post});
 
-  People.fromJson(Map<String, dynamic> json) {
-    imageUrl = json['imageUrl'] ?? "";
-    name = json['name'] ?? "";
-    post = json['post'] ?? "";
+  factory People.fromJson(Map<String, dynamic> json) {
+    return People(
+      imageUrl: json['imageUrl'] ?? '',
+      name: json['name'] ?? '',
+      post: json['post'] ?? '',
+    );
   }
 
   Map<String, dynamic> toJson() {

@@ -22,7 +22,7 @@ class Header extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Row(
-              children: [ 
+              children: [
                 IconButton(
                   icon: Icon(
                     Icons.menu,
@@ -40,11 +40,11 @@ class Header extends StatelessWidget {
                   notificationCount: FetchDataProvider.notification,
                   onTap: () {
                     Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => NotificationsWidget()));
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => NotificationsWidget()));
                   },
-                ),    
+                ),
               ],
             ),
             Text(
@@ -56,31 +56,33 @@ class Header extends StatelessWidget {
               ),
             ),
             Container(
-              child: Row(children: [
-                IconButton(
-                  onPressed: () {
-                    showSearch(context: context, delegate: DataSearch());
-                  },
-                  icon: Icon(
-                    Icons.search,
-                    size: 30,
-                    color: white,
+              child: Row(
+                children: [
+                  IconButton(
+                    onPressed: () {
+                      showSearch(context: context, delegate: DataSearch());
+                    },
+                    icon: Icon(
+                      Icons.search,
+                      size: 30,
+                      color: white,
+                    ),
                   ),
-                ),
-                IconButton(
-                  onPressed: () {
-                    Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => ChatBotWidget()));
-                  },
-                  icon: Icon(
-                    Icons.question_answer,
-                    size: 30,
-                    color: white,
-                  ),
-                )
-              ],),
+                  IconButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ChatBotWidget()));
+                    },
+                    icon: Icon(
+                      Icons.question_answer,
+                      size: 30,
+                      color: white,
+                    ),
+                  )
+                ],
+              ),
             ),
           ],
         ),

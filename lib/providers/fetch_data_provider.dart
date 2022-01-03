@@ -5,10 +5,7 @@ import 'package:techapp/models/sponsor.dart';
 import 'package:techapp/models/event_all.dart';
 import 'package:techapp/models/user.dart';
 import 'package:techapp/providers/local_storage_provider.dart';
-import 'package:techapp/screens/auth/firebase_services.dart';
 import 'package:techapp/services/apiBaseHelper.dart';
-
-// ignore: import_of_legacy_library_into_null_safe
 import '../models/section.dart';
 
 class FetchDataProvider {
@@ -23,6 +20,7 @@ class FetchDataProvider {
   static List<Event> myEvents = [];
   static List<Contacts> contacts = [];
   static List<Developers> developers = [];
+  // ignore: avoid_init_to_null
   static UserDetails? user = null;
 
   // functions
@@ -61,14 +59,6 @@ class FetchDataProvider {
         categoriesjson.map<String>((e) => e.toString()).toList();
   }
 
-  // load events
-  static Future<void> loadEvents() async {
-    final data = await _helper.get('events');
-    final events = data['data']['events'];
-    FetchDataProvider.allEvents =
-        events.map<AllEvents>((json) => AllEvents.fromJson(json)).toList();
-  }
-
   // load events descripton an stroe to map
   static Future<void> loadEventDescription() async {
     for (int i = 0; i < FetchDataProvider.categories.length; i++) {
@@ -84,6 +74,9 @@ class FetchDataProvider {
       eventList.forEach((element) {
         FetchDataProvider.eventsMap[FetchDataProvider.categories[i]]![
             element.eventName] = element;
+        allEvents.add(AllEvents(
+            eventName: element.eventName,
+            eventCategory: element.eventCategory));
       });
     }
   }

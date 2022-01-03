@@ -1,12 +1,11 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:techapp/providers/fetch_data_provider.dart';
 
 class SimpleMessage extends StatelessWidget {
   SimpleMessage({required this.text, required this.type});
 
   final String text;
+  // ignore: non_constant_identifier_names
   final String? ImageUrl = FetchDataProvider.user!.picture;
   final bool type;
 

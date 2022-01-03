@@ -1,5 +1,3 @@
-// ignore_for_file: non_constant_identifier_names
-
 class Developers {
   final String imageurl;
   final String link;
@@ -13,12 +11,6 @@ class Developers {
     required this.year,
   });
 
-  // Developers.fromJson(Map<String, dynamic> json)
-  //     : imageurl = json['imageUrl'],
-  //       link = json['link'],
-  //       name = json['name'];
-
-  // ignore: empty_constructor_bodies
   factory Developers.fromJson(Map<String, dynamic> json) {
     return Developers(
       imageurl: json['imageUrl'] as String,
