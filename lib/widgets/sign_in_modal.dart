@@ -17,6 +17,8 @@ class _SignInModalWidgetState extends State<SignInModalWidget> {
       ? FirebaseAuth.instance.currentUser!.displayName
       : "Dummy Name";
 
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
   TextEditingController _college = TextEditingController();
   TextEditingController _phone = TextEditingController();
   String _year = "First Year";
@@ -25,124 +27,165 @@ class _SignInModalWidgetState extends State<SignInModalWidget> {
 
   @override
   void initState() {
+    super.initState();
     _college.clear();
     _phone.clear();
-    super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        height: MediaQuery.of(context).size.height * 0.6,
-        width: MediaQuery.of(context).size.width * 0.8,
-        child: Column(
-          children: [
-            Container(
-              padding: EdgeInsets.all(5),
-              height: 30,
-              alignment: Alignment.topRight,
-              child: ElevatedButton(
-                child: Icon(Icons.close),
-                onPressed: () {
-                  Navigator.pop(context);
-                },
+    return SingleChildScrollView(
+        child: Container(
+      margin: MediaQuery.of(context).viewInsets,
+      //margin: EdgeInsets.all(0),
+      decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
+      child: Form(
+          key: _formKey,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Container(
+                padding: EdgeInsets.all(5),
+                height: 50,
+                alignment: Alignment.topRight,
+                child: new TextButton(
+                    child: new Icon(Icons.close, color: Colors.black, size: 30),
+                    onPressed: () {
+                      Navigator.pop(context);
+                    }),
               ),
-            ),
-            Container(
-              child: Text("Hi " + name!),
-            ),
-            Container(
-              child: Text("we want few more details !"),
-            ),
-            Container(
+              Container(
+                child: Text(
+                  "Hi " + name! + " !",
+                  style: TextStyle(fontSize: 20),
+                ),
                 margin: EdgeInsets.all(10),
-                child: TextFormField(
-                    controller: _college,
-                    decoration: InputDecoration(
-                        prefixIcon: Icon(Icons.school),
-                        border: OutlineInputBorder(),
-                        contentPadding: EdgeInsets.all(10),
-                        hintText: 'Enter your college',
-                        hintStyle: TextStyle(color: Colors.grey),
-                        labelText: 'College',
-                        labelStyle: TextStyle(color: Colors.black)))),
-            Container(
-              margin: EdgeInsets.all(10),
-              child: InputDecorator(
-                decoration: InputDecoration(
-                    errorStyle:
-                        TextStyle(color: Colors.redAccent, fontSize: 16.0),
-                    hintText: 'Please select expense',
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(5.0))),
-                child: DropdownButtonHideUnderline(
-                  child: DropdownButton<String>(
-                    value: _years[0],
-                    onChanged: (value) => {},
-                    items: _years.map((String value) {
-                      return DropdownMenuItem<String>(
-                        value: value,
-                        child: Text(value),
-                      );
-                    }).toList(),
-                  ),
+              ),
+              Container(
+                margin: EdgeInsets.fromLTRB(10, 0, 10, 10),
+                child: Text(
+                  " Please enter these details",
+                  textAlign: TextAlign.center,
                 ),
               ),
-            ),
-            Container(
-                margin: EdgeInsets.all(10),
-                child: TextFormField(
-                    controller: _phone,
-                    decoration: InputDecoration(
-                        prefixIcon: Icon(Icons.phone),
-                        border: OutlineInputBorder(),
-                        contentPadding: EdgeInsets.all(10),
-                        hintText: 'Phone Number',
-                        hintStyle: TextStyle(color: Colors.grey),
-                        labelText: 'Phone',
-                        labelStyle: TextStyle(color: Colors.black)))),
-            Container(
-              child: ElevatedButton(
-                child: Text("Submit"),
-                onPressed: () async =>
-                    await _handleSubmit(_college.text, _year, _phone.text),
-              ),
-            )
-          ],
-        ));
+              Container(
+                  margin: EdgeInsets.all(10),
+                  child: TextFormField(
+                      controller: _college,
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Required';
+                        }
+                        return null;
+                      },
+                      decoration: InputDecoration(
+                          prefixIcon: Icon(Icons.school),
+                          border: OutlineInputBorder(),
+                          contentPadding: EdgeInsets.all(10),
+                          hintText: 'Enter your college',
+                          hintStyle: TextStyle(color: Colors.grey),
+                          labelText: 'College Name',
+                          labelStyle: TextStyle(color: Colors.black)))),
+              Container(
+                  margin: EdgeInsets.all(10),
+                  child: TextFormField(
+                      controller: _phone,
+                      validator: (value) {
+                        String patttern = r'(^(?:[+0]9)?[0-9]{10,12}$)';
+                        RegExp regExp = new RegExp(patttern);
+                        if (value == null || value.isEmpty) {
+                          return 'Required';
+                        } else if (!regExp.hasMatch(value)) {
+                          return 'Invalid Mobile Number';
+                        } else {
+                          return null;
+                        }
+                      },
+                      decoration: InputDecoration(
+                          prefixIcon: Icon(Icons.phone),
+                          border: OutlineInputBorder(),
+                          contentPadding: EdgeInsets.all(10),
+                          hintText: 'Mobile Number',
+                          hintStyle: TextStyle(color: Colors.grey),
+                          labelText: 'Mobile Number',
+                          labelStyle: TextStyle(color: Colors.black)))),
+              Container(
+                  margin: EdgeInsets.all(10),
+                  height: 50,
+                  child: InputDecorator(
+                      decoration: InputDecoration(
+                          labelText: 'Study Year',
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(5.0)),
+                          contentPadding: EdgeInsets.all(10)),
+                      child: DropdownButtonHideUnderline(
+                        child: DropdownButton<String>(
+                          hint: Text("Study Year"),
+                          icon: Icon(Icons.arrow_drop_down_outlined),
+                          isExpanded: true,
+                          iconSize: 30,
+                          elevation: 16,
+                          value: _year,
+                          onChanged: (String? newValue) {
+                            setState(() {
+                              _year = newValue!;
+                            });
+                          },
+                          items: _years.map((String value) {
+                            return DropdownMenuItem<String>(
+                                value: value,
+                                child: Container(
+                                  child: Text(value),
+                                ));
+                          }).toList(),
+                        ),
+                      ))),
+              Container(
+                child: ElevatedButton(
+                  child: Text("Submit"),
+                  onPressed: () =>
+                      _handleSubmit(_college.text, _year, _phone.text),
+                ),
+              )
+            ],
+          )),
+    ));
   }
 
   _handleSubmit(String college, String year, String phone) async {
-    print("college: " + college + " year: " + year + " phone: " + phone);
-    setState(() {
-      _college.clear();
+    if (_formKey.currentState!.validate() == true) {
+      print("college: " + college + " year: " + year + " phone: " + phone);
 
-      _phone.clear();
-    });
-    // deal with api
-    ApiBaseHelper _apiBaseHelper = ApiBaseHelper();
-    // deal with data and all
-    var user;
-    try {
-      user = await _apiBaseHelper.put('signUpApp', {
-        'email': FirebaseAuth.instance.currentUser!.email,
-        'college': college,
-        'year': year,
-        'phone': phone,
+      setState(() {
+        _college.clear();
+        _phone.clear();
       });
-      print(user);
 
-      if (user['success'] == true) {
-        // let the user on profile
+      //deal with api
+      ApiBaseHelper _apiBaseHelper = ApiBaseHelper();
+      // deal with data and all
+      var user;
+      try {
+        user = await _apiBaseHelper.put('signUpApp', {
+          'email': FirebaseAuth.instance.currentUser!.email,
+          'college': college,
+          'year': year,
+          'phone': phone,
+        });
+        print(user);
 
-        final profile = user['information'] as Map<String, dynamic>;
-        FetchDataProvider.user = UserDetails.fromJson(profile);
-        // save to storage
-        await NotificationsProvider.saveUser(user);
+        if (user['success'] == true) {
+          // let the user on profile
+
+          final profile = user['information'] as Map<String, dynamic>;
+          FetchDataProvider.user = UserDetails.fromJson(profile);
+          // save to storage
+          await NotificationsProvider.saveUser(FetchDataProvider.user!);
+        }
+      } catch (e) {
+        print(e);
       }
-    } catch (e) {
-      print(e);
+      Navigator.pop(context);
     }
-    Navigator.pop(context);
   }
 }

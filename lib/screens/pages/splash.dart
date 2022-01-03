@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+// ignore: import_of_legacy_library_into_null_safe
 import 'package:techapp/main.dart';
 import 'package:techapp/providers/fetch_data_provider.dart';
 import 'package:techapp/providers/local_storage_provider.dart';
