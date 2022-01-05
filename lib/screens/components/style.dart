@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 
 const primaryColor = Color(0xFFec1b34);
@@ -9,8 +11,8 @@ const white = Color(0xFFFFFFFF);
 Color gradientStartColor = Color(0x00736AB7);
 Color gradientEndColor = Color(0xFF9354B9);
 Color navigationColor = Color(0xFF6751B5);
-Color gradientStartColor2 = Color(0xFF0050AC);
-Color gradientEndColor2 = Color(0xFF9354B9);
+Color gradientStartColor2 = Color(0xFF152233);
+Color gradientEndColor2 = Color(0xFF710a5b);
 Color technoBackColor = Color(0xFF143642);
 const kBackgroundColor = Color(0xFFF8F8F8);
 const kActiveIconColor = Color(0xFFE68342);
@@ -33,9 +35,18 @@ Container getGradient() {
   return new Container(
     decoration: BoxDecoration(
       gradient: LinearGradient(
-        begin: Alignment.bottomLeft,
-        end: Alignment.topRight,
+        begin: Alignment.topLeft,
+        end: Alignment.bottomRight,
+        stops: [0, 1],
         colors: [gradientStartColor2, gradientEndColor2],
+      ),
+    ),
+    child: BackdropFilter(
+      filter: new ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+      child: Container(
+        decoration: BoxDecoration(
+          color: gradientStartColor2.withOpacity(0.4),
+        ),
       ),
     ),
   );

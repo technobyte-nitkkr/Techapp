@@ -51,273 +51,269 @@ class EventDetailWidget extends StatelessWidget {
         ),
         body: Container(
           constraints: new BoxConstraints.expand(),
-          color: gradientEndColor,
+          color: gradientStartColor2,
           child: Stack(
             children: [
               Container(
                 child: SingleChildScrollView(
                   child: new Stack(
                     children: <Widget>[
-                      _getBackground(this.item),
-                      _getGradient(),
-                      _getContent(this.item, context),
+                      getBackground(this.item),
+                      getGradient3(),
+                      getContent(this.item, context),
                     ],
                   ),
                 ),
               ),
-              _getRegisterButton(this.item, context)
+              getRegisterButton(this.item, context)
             ],
           ),
         ));
   }
+}
 
-  Container _getRegisterButton(Event item, BuildContext context) {
-    return new Container(
-        margin: EdgeInsets.fromLTRB(
-            10, MediaQuery.of(context).size.height - 100, 10, 10),
-        alignment: Alignment.center,
-        child: SmartButtonWidget(
-            eventName: this.item.eventName,
-            eventCategory: this.item.eventCategory));
-  }
+Container getRegisterButton(Event item, BuildContext context) {
+  return new Container(
+      margin: EdgeInsets.fromLTRB(
+          10, MediaQuery.of(context).size.height - 100, 10, 10),
+      alignment: Alignment.center,
+      child: SmartButtonWidget(
+          eventName: item.eventName, eventCategory: item.eventCategory));
+}
 
-  Container _getBackground(Event item) {
-    return new Container(
-      child: ImageFiltered(
-        imageFilter: ImageFilter.blur(sigmaX: 4, sigmaY: 4),
-        child: new Image.asset(
-          'assets/images/categories/' +
-              item.eventCategory.toLowerCase() +
-              '.png',
-          fit: BoxFit.cover,
-          height: 300.0,
-        ),
+Container getBackground(Event item) {
+  return new Container(
+    child: ImageFiltered(
+      imageFilter: ImageFilter.blur(sigmaX: 4, sigmaY: 4),
+      child: new Image.asset(
+        'assets/images/categories/' + item.eventCategory.toLowerCase() + '.png',
+        fit: BoxFit.cover,
+        height: 300.0,
       ),
-      constraints: new BoxConstraints.expand(height: 300.0),
-    );
-  }
+    ),
+    constraints: new BoxConstraints.expand(height: 300.0),
+  );
+}
 
-  Container _getGradient() {
-    return Container(
-      margin: new EdgeInsets.only(top: 190.0),
-      height: 130.0,
-      decoration: new BoxDecoration(
-        gradient: new LinearGradient(
-          colors: <Color>[gradientStartColor, gradientEndColor],
-          stops: [0.0, 0.9],
-          begin: const FractionalOffset(0.0, 0.0),
-          end: const FractionalOffset(0.0, 1.0),
-        ),
+Container getGradient3() {
+  return Container(
+    margin: new EdgeInsets.only(top: 190.0),
+    height: 130.0,
+    decoration: new BoxDecoration(
+      gradient: new LinearGradient(
+        colors: <Color>[gradientStartColor, gradientStartColor2],
+        stops: [0.0, 0.9],
+        begin: const FractionalOffset(0.0, 0.0),
+        end: const FractionalOffset(0.0, 1.0),
       ),
-    );
-  }
+    ),
+  );
+}
 
-  Container _getContent(Event item, BuildContext context) {
-    return new Container(
-      child: new ListView(
-        shrinkWrap: true,
-        physics: NeverScrollableScrollPhysics(),
-        padding: new EdgeInsets.fromLTRB(0.0, 72.0, 0.0, 32.0),
-        children: <Widget>[
-          Container(
-            margin: const EdgeInsets.symmetric(
-              vertical: 16.0,
-              horizontal: 24.0,
-            ),
-            child: new Stack(
-              children: <Widget>[
-                Container(
-                  child: Container(
-                    margin: const EdgeInsets.only(top: 40.0),
-                    constraints: new BoxConstraints.expand(),
-                    child: new Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: <Widget>[
-                        SizedBox(
-                          height: 100.0,
-                        ),
-                        new Container(height: 4.0),
-                        new Container(
-                            child: AutoSizeText(
-                          item.eventName,
-                          style: Style.titleTextStyle,
-                          maxLines: 1,
-                        )),
-                        new Container(height: 10.0),
-                        new Text(item.eventCategory,
-                            style: Style.commonTextStyle),
-                        Container(
-                            margin: new EdgeInsets.symmetric(vertical: 8.0),
-                            width: 18.0,
-                            color: new Color(0xff00c6ff)),
-                        Text(
-                            "Start Time: " +
-                                dateFormat.format(
-                                    DateTime.fromMicrosecondsSinceEpoch(
-                                        item.startTime * 1000,
-                                        isUtc: false)),
-                            style: Style.commonTextStyle),
-                        SizedBox(
-                          height: 10.0,
-                        ),
-                        Text(
-                            "End Time: " +
-                                dateFormat.format(
-                                    DateTime.fromMicrosecondsSinceEpoch(
-                                        item.endTime * 1000)),
-                            style: Style.commonTextStyle),
-                      ],
-                    ),
-                  ),
-                  height: 300,
-                  margin: new EdgeInsets.only(top: 72.0),
-                  decoration: new BoxDecoration(
-                    color: new Color(0xFF333366),
-                    shape: BoxShape.rectangle,
-                    borderRadius: new BorderRadius.circular(8.0),
-                    boxShadow: <BoxShadow>[
-                      new BoxShadow(
-                        color: Colors.black12,
-                        blurRadius: 10.0,
-                        offset: new Offset(0.0, 10.0),
+Container getContent(Event item, BuildContext context) {
+  return new Container(
+    child: new ListView(
+      shrinkWrap: true,
+      physics: NeverScrollableScrollPhysics(),
+      padding: new EdgeInsets.fromLTRB(0.0, 72.0, 0.0, 32.0),
+      children: <Widget>[
+        Container(
+          margin: const EdgeInsets.symmetric(
+            vertical: 16.0,
+            horizontal: 24.0,
+          ),
+          child: new Stack(
+            children: <Widget>[
+              Container(
+                child: Container(
+                  margin: const EdgeInsets.only(top: 40.0),
+                  constraints: new BoxConstraints.expand(),
+                  child: new Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      SizedBox(
+                        height: 100.0,
                       ),
+                      new Container(height: 4.0),
+                      new Container(
+                          child: AutoSizeText(
+                        item.eventName,
+                        style: Style.titleTextStyle,
+                        maxLines: 1,
+                      )),
+                      new Container(height: 10.0),
+                      new Text(item.eventCategory,
+                          style: Style.commonTextStyle),
+                      Container(
+                          margin: new EdgeInsets.symmetric(vertical: 8.0),
+                          width: 18.0,
+                          color: new Color(0xff00c6ff)),
+                      Text(
+                          "Start Time: " +
+                              dateFormat.format(
+                                  DateTime.fromMicrosecondsSinceEpoch(
+                                      item.startTime * 1000,
+                                      isUtc: false)),
+                          style: Style.commonTextStyle),
+                      SizedBox(
+                        height: 10.0,
+                      ),
+                      Text(
+                          "End Time: " +
+                              dateFormat.format(
+                                  DateTime.fromMicrosecondsSinceEpoch(
+                                      item.endTime * 1000)),
+                          style: Style.commonTextStyle),
                     ],
                   ),
                 ),
-                Container(
-                  // margin: new EdgeInsets.symmetric(vertical: 16.0),
-                  alignment: FractionalOffset.center,
-                  child: GestureDetector(
-                    child: new Hero(
-                      tag: item.eventName,
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(10),
-                        child: Container(
-                          width: 200.0,
-                          height: 200.0,
-                          child: FadeInImage.assetNetwork(
-                            placeholder: 'assets/images/technologo.png',
-                            image: item.file,
-                            fit: BoxFit.cover,
-                            imageErrorBuilder: (context, error, stackTrace) =>
-                                Image.asset('assets/images/technologo.png',
-                                    fit: BoxFit.cover),
-                          ),
+                height: 300,
+                margin: new EdgeInsets.only(top: 72.0),
+                decoration: new BoxDecoration(
+                  color: new Color(0xFF333366),
+                  shape: BoxShape.rectangle,
+                  borderRadius: new BorderRadius.circular(8.0),
+                  boxShadow: <BoxShadow>[
+                    new BoxShadow(
+                      color: Colors.black12,
+                      blurRadius: 10.0,
+                      offset: new Offset(0.0, 10.0),
+                    ),
+                  ],
+                ),
+              ),
+              Container(
+                // margin: new EdgeInsets.symmetric(vertical: 16.0),
+                alignment: FractionalOffset.center,
+                child: GestureDetector(
+                  child: new Hero(
+                    tag: item.eventName,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(10),
+                      child: Container(
+                        width: 200.0,
+                        height: 200.0,
+                        child: FadeInImage.assetNetwork(
+                          placeholder: 'assets/images/technologo.png',
+                          image: item.file,
+                          fit: BoxFit.cover,
+                          imageErrorBuilder: (context, error, stackTrace) =>
+                              Image.asset('assets/images/technologo.png',
+                                  fit: BoxFit.cover),
                         ),
                       ),
                     ),
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (_) {
-                            return EventPosterWidget(
-                              item: item,
-                            );
-                          },
-                        ),
-                      );
-                    },
                   ),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) {
+                          return EventPosterWidget(
+                            item: item,
+                          );
+                        },
+                      ),
+                    );
+                  },
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
+        ),
+        new Container(
+          padding: new EdgeInsets.symmetric(horizontal: 32.0),
+          child: new Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              new Text("Description", style: Style.headerTextStyle),
+              Container(
+                  margin: new EdgeInsets.symmetric(vertical: 5.0),
+                  height: 2.0,
+                  width: 18.0,
+                  color: Colors.purple[800]),
+              new Text(item.description, style: Style.commonTextStyle),
+            ],
+          ),
+        ),
+        Container(
+          height: 20,
+        ),
+        if (item.rules.length > 0)
           new Container(
             padding: new EdgeInsets.symmetric(horizontal: 32.0),
             child: new Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                new Text("Description", style: Style.headerTextStyle),
+                new Text("Rules", style: Style.headerTextStyle),
                 Container(
                     margin: new EdgeInsets.symmetric(vertical: 5.0),
                     height: 2.0,
                     width: 18.0,
                     color: Colors.purple[800]),
-                new Text(item.description, style: Style.commonTextStyle),
+                Column(
+                    children: item.rules.map((rule) => ruleItem(rule)).toList())
               ],
             ),
           ),
+        if (item.rules.length > 0)
           Container(
             height: 20,
           ),
-          if (item.rules.length > 0)
-            new Container(
-              padding: new EdgeInsets.symmetric(horizontal: 32.0),
-              child: new Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  new Text("Rules", style: Style.headerTextStyle),
-                  Container(
-                      margin: new EdgeInsets.symmetric(vertical: 5.0),
-                      height: 2.0,
-                      width: 18.0,
-                      color: Colors.purple[800]),
-                  Column(
-                      children:
-                          item.rules.map((rule) => ruleItem(rule)).toList())
-                ],
-              ),
-            ),
-          if (item.rules.length > 0)
-            Container(
-              height: 20,
-            ),
+        new Container(
+          padding: new EdgeInsets.symmetric(horizontal: 32.0),
+          child: new Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              new Text("Venue", style: Style.headerTextStyle),
+              Container(
+                  margin: new EdgeInsets.symmetric(vertical: 5.0),
+                  height: 2.0,
+                  width: 18.0,
+                  color: Colors.purple[800]),
+              Container(child: Text(item.venue, style: Style.commonTextStyle))
+            ],
+          ),
+        ),
+        Container(height: 20),
+        if (item.cordinators.length > 0)
           new Container(
             padding: new EdgeInsets.symmetric(horizontal: 32.0),
             child: new Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                new Text("Venue", style: Style.headerTextStyle),
+                new Text("Coordinators", style: Style.headerTextStyle),
                 Container(
                     margin: new EdgeInsets.symmetric(vertical: 5.0),
                     height: 2.0,
                     width: 18.0,
                     color: Colors.purple[800]),
-                Container(child: Text(item.venue, style: Style.commonTextStyle))
               ],
             ),
           ),
-          Container(height: 20),
-          if (item.cordinators.length > 0)
-            new Container(
-              padding: new EdgeInsets.symmetric(horizontal: 32.0),
-              child: new Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  new Text("Coordinators", style: Style.headerTextStyle),
-                  Container(
-                      margin: new EdgeInsets.symmetric(vertical: 5.0),
-                      height: 2.0,
-                      width: 18.0,
-                      color: Colors.purple[800]),
-                ],
-              ),
-            ),
-          if (item.cordinators.length > 0)
-            Container(
-              margin: new EdgeInsets.symmetric(horizontal: 30.0),
-              child: GridView.count(
-                  padding: EdgeInsets.all(0),
-                  shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
-                  crossAxisCount: 2,
-                  childAspectRatio: 2.5,
-                  crossAxisSpacing: 0,
-                  mainAxisSpacing: 0,
-                  children: item.cordinators
-                      .map((cordinator) => cordinatorItem(cordinator))
-                      .toList()),
-              // child: Column(
-              //     children: item.cordinators
-              //         .map((cordinator) => cordinatorItem(cordinator))
-              //         .toList()),
-            ),
-          if (item.cordinators.length > 0) Container(height: 60)
-        ],
-      ),
-    );
-  }
+        if (item.cordinators.length > 0)
+          Container(
+            margin: new EdgeInsets.symmetric(horizontal: 30.0),
+            child: GridView.count(
+                padding: EdgeInsets.all(0),
+                shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
+                crossAxisCount: 2,
+                childAspectRatio: 2.5,
+                crossAxisSpacing: 0,
+                mainAxisSpacing: 0,
+                children: item.cordinators
+                    .map((cordinator) => cordinatorItem(cordinator))
+                    .toList()),
+            // child: Column(
+            //     children: item.cordinators
+            //         .map((cordinator) => cordinatorItem(cordinator))
+            //         .toList()),
+          ),
+        if (item.cordinators.length > 0) Container(height: 60)
+      ],
+    ),
+  );
 }
 
 Container ruleItem(String rule) {

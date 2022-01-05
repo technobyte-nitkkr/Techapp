@@ -3,6 +3,7 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:techapp/models/developers.dart';
 import 'package:techapp/retrofit/api_client.dart';
 import 'package:techapp/screens/components/style.dart';
@@ -93,8 +94,13 @@ class Developers extends StatelessWidget {
                       );
                     }
                   } else {
-                    return Center(
-                      child: CircularProgressIndicator(),
+                    return SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.6,
+                      width: MediaQuery.of(context).size.width,
+                      child: Center(
+                        child: LoadingAnimationWidget.dotsTriangle(
+                            color: white, size: 200),
+                      ),
                     );
                   }
                 }),

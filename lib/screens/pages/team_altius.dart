@@ -2,8 +2,10 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:techapp/models/section.dart';
 import 'package:techapp/retrofit/api_client.dart';
+import 'package:techapp/screens/components/style.dart';
 import 'package:techapp/screens/layouts/page_layout.dart';
 
 class TeamAltius extends StatelessWidget {
@@ -97,8 +99,13 @@ class TeamAltius extends StatelessWidget {
                     .toList(),
               );
             } else {
-              return Center(
-                child: CircularProgressIndicator(),
+              return SizedBox(
+                height: MediaQuery.of(context).size.height * 0.6,
+                width: MediaQuery.of(context).size.width,
+                child: Center(
+                  child: LoadingAnimationWidget.dotsTriangle(
+                      color: white, size: 200),
+                ),
               );
             }
           },

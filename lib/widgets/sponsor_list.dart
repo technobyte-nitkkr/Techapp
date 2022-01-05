@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:techapp/models/Sponsor.dart';
 
 import 'package:techapp/retrofit/api_client.dart';
@@ -44,8 +45,13 @@ class SponsorsWidget extends StatelessWidget {
                     .toList());
           }
         } else {
-          return Center(
-            child: CircularProgressIndicator(),
+          return SizedBox(
+            height: MediaQuery.of(context).size.height * 0.6,
+            width: MediaQuery.of(context).size.width,
+            child: Center(
+              child:
+                  LoadingAnimationWidget.dotsTriangle(color: white, size: 200),
+            ),
           );
         }
       },

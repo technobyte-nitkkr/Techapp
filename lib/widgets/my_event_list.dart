@@ -3,6 +3,7 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:techapp/models/event_by_categories.dart';
 import 'package:techapp/providers/fetch_data_provider.dart';
 import 'package:techapp/retrofit/api_client.dart';
@@ -48,8 +49,13 @@ class MyEventList extends StatelessWidget {
             );
           }
         } else {
-          return Center(
-            child: CircularProgressIndicator(),
+          return SizedBox(
+            height: MediaQuery.of(context).size.height * 0.6,
+            width: MediaQuery.of(context).size.width,
+            child: Center(
+              child:
+                  LoadingAnimationWidget.dotsTriangle(color: white, size: 200),
+            ),
           );
         }
       },

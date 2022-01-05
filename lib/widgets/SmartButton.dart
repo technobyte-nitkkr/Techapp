@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:techapp/providers/fetch_data_provider.dart';
+import 'package:techapp/screens/components/style.dart';
 import 'package:techapp/services/apiBaseHelper.dart';
 import 'package:techapp/widgets/sign_in_modal.dart';
 
@@ -102,9 +104,8 @@ class _SmartButtonWidgetState extends State<SmartButtonWidget> {
                 !isRegistered ? 'Register Now' : 'Unregister',
                 style: TextStyle(fontSize: 25, color: Colors.white),
               )
-            : CircularProgressIndicator(
-                color: Colors.white,
-              ),
+            : LoadingAnimationWidget.threeHorizontalDots(
+                color: white, size: 30),
         onPressed: () {
           if (!_user!.onBoard) {
             showDialog(

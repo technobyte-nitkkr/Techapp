@@ -4,6 +4,7 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:techapp/models/Speaker.dart';
 import 'package:folding_cell/folding_cell.dart';
 import 'package:techapp/retrofit/api_client.dart';
@@ -40,8 +41,13 @@ class SpeakersWidget extends StatelessWidget {
             },
           );
         } else {
-          return Center(
-            child: CircularProgressIndicator(),
+          return SizedBox(
+            height: MediaQuery.of(context).size.height * 0.6,
+            width: MediaQuery.of(context).size.width,
+            child: Center(
+              child:
+                  LoadingAnimationWidget.dotsTriangle(color: white, size: 200),
+            ),
           );
         }
       },
@@ -215,7 +221,7 @@ class ListItem extends StatelessWidget {
     return Builder(
       builder: (BuildContext context) {
         return Container(
-          color: Color(0xFFDDDDE0),
+          color: Colors.white,
           alignment: Alignment.center,
           child: Stack(children: [
             Padding(
@@ -297,7 +303,7 @@ class ListItem extends StatelessWidget {
     return Builder(
       builder: (context) {
         return Container(
-          color: Color(0xFFC7C6CB),
+          color: Colors.white,
           padding: EdgeInsets.all(8.0),
           child: Stack(
             children: [
