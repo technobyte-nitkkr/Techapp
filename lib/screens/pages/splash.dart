@@ -102,6 +102,7 @@ class _SplashScreenState extends State<SplashScreen> {
     await FetchDataProvider.loadDevelopers();
     await FetchDataProvider.getContacts();
     await FetchDataProvider.loadProfileOnline();
+    await FetchDataProvider.loadSpeaker();
     try {
       if (FetchDataProvider.user != null) {
         await FetchDataProvider.loadMyevents(FetchDataProvider.user?.email);

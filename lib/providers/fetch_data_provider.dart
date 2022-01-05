@@ -4,6 +4,7 @@ import 'package:techapp/models/event_by_categories.dart';
 import 'package:techapp/models/sponsor.dart';
 import 'package:techapp/models/event_all.dart';
 import 'package:techapp/models/user.dart';
+import 'package:techapp/models/Speaker.dart';
 import 'package:techapp/providers/local_storage_provider.dart';
 import 'package:techapp/services/apiBaseHelper.dart';
 import '../models/section.dart';
@@ -20,6 +21,7 @@ class FetchDataProvider {
   static List<Event> myEvents = [];
   static List<Contacts> contacts = [];
   static List<Developers> developers = [];
+  static List<Speaker> speakers=[];
   // ignore: avoid_init_to_null
   static UserDetails? user = null;
 
@@ -50,6 +52,15 @@ class FetchDataProvider {
     sponsors =
         sponsorsJSON.map<Sponsor>((json) => Sponsor.fromJson(json)).toList();
   }
+  //load speakers
+  static loadSpeaker() async {
+    final data = await _helper.get('lectures');
+    final speakersJSON = data['data']['lectures'].cast<Map<String, dynamic>>();
+    print('hello');
+    speakers = speakersJSON.map<Speaker>((json) => Speaker.fromJson(json)).toList();
+    print(speakers.length);
+  }
+
 
   // load categories
   static Future<void> loadCategories() async {

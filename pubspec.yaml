@@ -30,6 +30,8 @@ dependencies:
   auto_size_text: ^3.0.0
   progress_indicator_button: ^0.0.3
   loading_animation_widget:
+  folding_cell: ^1.0.2
+  slimy_card: ^1.0.4
   
   
   
