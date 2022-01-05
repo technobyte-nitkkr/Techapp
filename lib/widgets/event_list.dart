@@ -1,4 +1,6 @@
 // @dart=2.9
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:techapp/models/event_by_categories.dart';
@@ -10,6 +12,8 @@ class EventsByCategoryWidget extends StatelessWidget {
 
   const EventsByCategoryWidget({Key key, this.categoryName}) : super(key: key);
 
+  get white => null;
+
   @override
   Widget build(BuildContext context) {
     final client = ApiClient(Dio(BaseOptions(contentType: "application/json")));
@@ -19,8 +23,14 @@ class EventsByCategoryWidget extends StatelessWidget {
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
           if (snapshot.hasError) {
+            final errormessage =
+                json.decode((snapshot.error as DioError).response.toString());
+
             return Center(
-              child: Text("Error"),
+              child: Text(
+                errormessage['message'] ?? "Error",
+                style: TextStyle(color: white, fontSize: 20),
+              ),
             );
           } else {
             List<Event> events = snapshot.data.getEventList();

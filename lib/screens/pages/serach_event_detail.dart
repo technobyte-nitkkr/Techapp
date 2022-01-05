@@ -1,4 +1,5 @@
 // @dart=2.9
+import 'dart:convert';
 import 'dart:ui';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:dio/dio.dart';
@@ -54,6 +55,17 @@ class SearchEventDetail extends StatelessWidget {
           child: FutureBuilder(
             future: client.getEvent(this.eventCategory, this.eventName),
             builder: (context, snapshot) {
+              if (snapshot.hasError) {
+                final errormessage = json
+                    .decode((snapshot.error as DioError).response.toString());
+
+                return Center(
+                  child: Text(
+                    errormessage['message'] ?? "Error",
+                    style: TextStyle(color: white, fontSize: 20),
+                  ),
+                );
+              }
               if (snapshot.hasData) {
                 Event event = snapshot.data.getEvent();
                 return Stack(

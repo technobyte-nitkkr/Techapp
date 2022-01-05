@@ -1,9 +1,12 @@
 // @dart=2.9
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:techapp/models/event_by_categories.dart';
 import 'package:techapp/providers/fetch_data_provider.dart';
 import 'package:techapp/retrofit/api_client.dart';
+import 'package:techapp/screens/components/style.dart';
 import 'package:techapp/widgets/event_list_item.dart';
 
 class MyEventList extends StatelessWidget {
@@ -20,8 +23,14 @@ class MyEventList extends StatelessWidget {
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
           if (snapshot.hasError) {
+            final errormessage =
+                json.decode((snapshot.error as DioError).response.toString());
+
             return Center(
-              child: Text("Error"),
+              child: Text(
+                errormessage['message'] ?? "Error",
+                style: TextStyle(color: white, fontSize: 20),
+              ),
             );
           } else {
             List<Event> events = snapshot.data.getMyEvents();

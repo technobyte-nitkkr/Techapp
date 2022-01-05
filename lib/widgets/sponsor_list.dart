@@ -1,4 +1,6 @@
 // @dart=2.9
+import 'dart:convert';
+
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -18,9 +20,15 @@ class SponsorsWidget extends StatelessWidget {
       future: client.getSponsors(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
-          if (!snapshot.data.success) {
+          if (snapshot.hasError) {
+            final errormessage =
+                json.decode((snapshot.error as DioError).response.toString());
+
             return Center(
-              child: Text("Error"),
+              child: Text(
+                errormessage['message'] ?? "Error",
+                style: TextStyle(color: white, fontSize: 20),
+              ),
             );
           } else {
             return GridView.count(

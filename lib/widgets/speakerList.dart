@@ -1,31 +1,51 @@
+// ignore_for_file: import_of_legacy_library_into_null_safe
+// @dart=2.9
+import 'dart:convert';
+
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:techapp/models/Speaker.dart';
-import 'package:techapp/providers/fetch_data_provider.dart';
-import 'package:techapp/screens/components/style.dart';
 import 'package:folding_cell/folding_cell.dart';
-import 'package:slimy_card/slimy_card.dart';
+import 'package:techapp/retrofit/api_client.dart';
+import 'package:techapp/screens/components/style.dart';
 // ignore: must_be_immutable
 
-
-//
 class SpeakersWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    if (FetchDataProvider.speakers.length == 0)
-      return Center(
-        child: CircularProgressIndicator(),
-      );
-    else
+    final client = ApiClient(Dio(BaseOptions(contentType: "application/json")));
+    return FutureBuilder(
+      future: client.getLectures(),
+      builder: (context, snapshot) {
+        if (snapshot.hasError) {
+          final errormessage =
+              json.decode((snapshot.error as DioError).response.toString());
 
-      return ListView.builder(
-        //shrinkWrap: true,
-        itemCount: FetchDataProvider.speakers.length,
-        scrollDirection: Axis.vertical,
-        //padding: EdgeInsets.all(10),
-        itemBuilder: (context, index) {
-          return ListItem(item: FetchDataProvider.speakers[index]);
-        },
-      );
+          return Center(
+            child: Text(
+              errormessage['message'] ?? "Error",
+              style: TextStyle(color: white, fontSize: 20),
+            ),
+          );
+        }
+        if (snapshot.hasData) {
+          List<Speaker> speakers = snapshot.data.getLectures();
+          return ListView.builder(
+            //shrinkWrap: true,
+            itemCount: speakers.length,
+            scrollDirection: Axis.vertical,
+            //padding: EdgeInsets.all(10),
+            itemBuilder: (context, index) {
+              return ListItem(item: speakers[index]);
+            },
+          );
+        } else {
+          return Center(
+            child: CircularProgressIndicator(),
+          );
+        }
+      },
+    );
   }
 }
 // Design-1 for guest lecture page:-
@@ -175,8 +195,7 @@ class SpeakersWidget extends StatelessWidget {
 class ListItem extends StatelessWidget {
   final Speaker item;
 
-  const ListItem({Key? key, required this.item})
-      : super(key: key);
+  const ListItem({Key key, this.item}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -198,97 +217,77 @@ class ListItem extends StatelessWidget {
         return Container(
           color: Color(0xFFDDDDE0),
           alignment: Alignment.center,
-          child: Stack(
-            children:[
-              Padding(
-                padding: const EdgeInsets.fromLTRB(5,10,0,0),
-                child: Row(
-                    children:[
-                      Column(
-                          children:[
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: CircleAvatar(
-                                backgroundColor: Colors.black,
-                                radius: 40.0,
-                                child: CircleAvatar(
-                                  radius: 38.0,
-                                  //backgroundColor: const Color(0xff47455f),
-                                  backgroundImage: NetworkImage('${item.imageurl}'),
-
-                                ),
-                              ),
-                            ),
-                          ]
+          child: Stack(children: [
+            Padding(
+              padding: const EdgeInsets.fromLTRB(5, 10, 0, 0),
+              child: Row(children: [
+                Column(children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: CircleAvatar(
+                      backgroundColor: Colors.black,
+                      radius: 40.0,
+                      child: CircleAvatar(
+                        radius: 38.0,
+                        //backgroundColor: const Color(0xff47455f),
+                        backgroundImage: NetworkImage('${item.imageurl}'),
                       ),
-                      Expanded(
-                          flex:1,
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                                children:[
-                                  Text(
-                                      '${item.name}',
-                                      style:TextStyle(
-                                        fontSize: 35.0,
-                                        overflow:TextOverflow.ellipsis
-
-
-                                      )),
-                                  SizedBox(height: 10.0,),
-                                  Row(
-                                    //mainAxisAlignment: MainAxisAlignment.end,
-                                    //crossAxisAlignment: CrossAxisAlignment.stretch,
-                                    children:[
-                                      Icon(Icons.calendar_today_outlined),
-                                      SizedBox(width:8.0),
-                                      Text('${item.date}',
-                                      style:TextStyle(
-                                        fontSize: 20.0,
-                                        //color: Colors.white,
-
-                                        )
-                                      ),
-
-
-
-                                    ],
-                                  ),
-                                  SizedBox(height:10.0),
-                                  Row(
-                                    children:[
-                                      Icon(Icons.alarm_on),
-                                      SizedBox(width:8.0),
-                                      Text('${item.time}',
-                                          style:TextStyle(
-                                            fontSize: 20.0,
-                                            //color: Colors.white,
-                                          )
-                                      ),
-
-                                    ]
-                                  )
-                                ]
+                    ),
+                  ),
+                ]),
+                Expanded(
+                    flex: 1,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text('${item.name}',
+                                style: TextStyle(
+                                    fontSize: 35.0,
+                                    overflow: TextOverflow.ellipsis)),
+                            SizedBox(
+                              height: 10.0,
                             ),
-                          )
-                      )
-                    ]
-                ),
+                            Row(
+                              //mainAxisAlignment: MainAxisAlignment.end,
+                              //crossAxisAlignment: CrossAxisAlignment.stretch,
+                              children: [
+                                Icon(Icons.calendar_today_outlined),
+                                SizedBox(width: 8.0),
+                                Text('${item.date}',
+                                    style: TextStyle(
+                                      fontSize: 20.0,
+                                      //color: Colors.white,
+                                    )),
+                              ],
+                            ),
+                            SizedBox(height: 10.0),
+                            Row(children: [
+                              Icon(Icons.alarm_on),
+                              SizedBox(width: 8.0),
+                              Text('${item.time}',
+                                  style: TextStyle(
+                                    fontSize: 20.0,
+                                    //color: Colors.white,
+                                  )),
+                            ])
+                          ]),
+                    ))
+              ]),
+            ),
+            Align(
+              alignment: Alignment.bottomRight,
+              child: IconButton(
+                icon: const Icon(Icons.arrow_drop_down),
+                onPressed: () {
+                  final foldingCellState =
+                      context.findAncestorStateOfType<SimpleFoldingCellState>();
+                  foldingCellState?.toggleFold();
+                },
               ),
-              Align(
-                alignment: Alignment.bottomRight,
-                child: IconButton(
-                  icon:const Icon(Icons.arrow_drop_down),
-                  onPressed: () {
-                    final foldingCellState = context.findAncestorStateOfType<SimpleFoldingCellState>();
-                    foldingCellState?.toggleFold();
-                  },
-
-                ),
-              ),
-            ]
-          ),
+            ),
+          ]),
         );
       },
     );
@@ -302,32 +301,25 @@ class ListItem extends StatelessWidget {
           padding: EdgeInsets.all(8.0),
           child: Stack(
             children: [
-              Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children:[
-                    Text(
-                        '${item.name}  ',
-                        style:TextStyle(
-                          fontSize: 25.0,
-                          fontWeight: FontWeight.bold,
-
-                        )),
-                    SizedBox(height: 5.0,),
-                    Expanded(
-                      flex:1,
-                      child:SingleChildScrollView(
-                        child: Text(
-                            '${item.desc}',
-                          style:TextStyle(
+              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                Text('${item.name}  ',
+                    style: TextStyle(
+                      fontSize: 25.0,
+                      fontWeight: FontWeight.bold,
+                    )),
+                SizedBox(
+                  height: 5.0,
+                ),
+                Expanded(
+                    flex: 1,
+                    child: SingleChildScrollView(
+                      child: Text('${item.desc}',
+                          style: TextStyle(
                             fontSize: 15.0,
-                          )
-                        ),
-                      )
-                    ),
-                    SizedBox(height:5.0)
-                  ]
-
-              ),
+                          )),
+                    )),
+                SizedBox(height: 5.0)
+              ]),
               Positioned(
                 right: 0,
                 bottom: 0,
@@ -338,7 +330,6 @@ class ListItem extends StatelessWidget {
                         .findAncestorStateOfType<SimpleFoldingCellState>();
                     foldingCellState?.toggleFold();
                   },
-
                 ),
               ),
             ],

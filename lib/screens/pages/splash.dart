@@ -101,7 +101,7 @@ class _SplashScreenState extends State<SplashScreen> {
     await FetchDataProvider.loadCategories();
     await FetchDataProvider.loadEvents();
     await FetchDataProvider.loadProfileOnline();
-    await FetchDataProvider.loadSpeaker();
+
     try {
       if (FetchDataProvider.user != null) {
         final client =

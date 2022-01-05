@@ -17,6 +17,9 @@ abstract class ApiClient {
   @GET("/contacts")
   Future<ResponseData> getTeam();
 
+  @GET("/lectures")
+  Future<ResponseData> getLectures();
+
   @GET("/events/description?eventCategory={category}")
   Future<ResponseData> getEvents(@Path("category") String category);
 

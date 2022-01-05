@@ -1,3 +1,4 @@
+import 'package:techapp/models/Speaker.dart';
 import 'package:techapp/models/Sponsor.dart';
 import 'package:techapp/models/developers.dart';
 import 'package:techapp/models/event_by_categories.dart';
@@ -75,6 +76,15 @@ class ResponseData {
     List<Contacts> datad = [];
     for (var item in data["contacts"]) {
       datad.add(Contacts.fromJson(item));
+      // print(item);
+    }
+    return datad;
+  }
+
+  List<Speaker> getLectures() {
+    List<Speaker> datad = [];
+    for (var item in data["lectures"]) {
+      datad.add(Speaker.fromJson(item));
       // print(item);
     }
     return datad;
