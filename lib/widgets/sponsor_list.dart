@@ -1,7 +1,10 @@
+// @dart=2.9
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:techapp/models/sponsor.dart';
-import 'package:techapp/providers/fetch_data_provider.dart';
+import 'package:techapp/models/Sponsor.dart';
+
+import 'package:techapp/retrofit/api_client.dart';
 import 'package:techapp/screens/components/style.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -9,28 +12,43 @@ import 'package:url_launcher/url_launcher.dart';
 class SponsorsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    if (FetchDataProvider.sponsors.length == 0)
-      return Center(
-        child: CircularProgressIndicator(),
-      );
-    else
-      return GridView.count(
-          crossAxisCount: 2,
-          shrinkWrap: true,
-          physics: NeverScrollableScrollPhysics(),
-          childAspectRatio: .85,
-          crossAxisSpacing: 20,
-          mainAxisSpacing: 20,
-          children: FetchDataProvider.sponsors
-              .map<Widget>((sponsor) => CardItem(item: sponsor))
-              .toList());
+    final client = ApiClient(Dio(BaseOptions(contentType: "application/json")));
+
+    return FutureBuilder(
+      future: client.getSponsors(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.done) {
+          if (!snapshot.data.success) {
+            return Center(
+              child: Text("Error"),
+            );
+          } else {
+            return GridView.count(
+                crossAxisCount: 2,
+                shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
+                childAspectRatio: .85,
+                crossAxisSpacing: 20,
+                mainAxisSpacing: 20,
+                children: snapshot.data
+                    .getFoodSponsors()
+                    .map<Widget>((sponsor) => CardItem(item: sponsor))
+                    .toList());
+          }
+        } else {
+          return Center(
+            child: CircularProgressIndicator(),
+          );
+        }
+      },
+    );
   }
 }
 
 class CardItem extends StatelessWidget {
   final Sponsor item;
 
-  const CardItem({Key? key, required this.item}) : super(key: key);
+  const CardItem({Key key, this.item}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -1,5 +1,6 @@
 import 'dart:typed_data';
 import 'package:animated_splash_screen/animated_splash_screen.dart';
+import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -8,6 +9,7 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:techapp/main.dart';
 import 'package:techapp/providers/fetch_data_provider.dart';
 import 'package:techapp/providers/local_storage_provider.dart';
+import 'package:techapp/retrofit/api_client.dart';
 import 'package:techapp/screens/components/style.dart';
 import 'package:techapp/screens/pages/error_page.dart';
 import 'package:techapp/screens/pages/navigation.dart';
@@ -97,14 +99,15 @@ class _SplashScreenState extends State<SplashScreen> {
 
   Future<dynamic> loadDataDuringSplash(BuildContext context) async {
     await FetchDataProvider.loadCategories();
-    await FetchDataProvider.loadEventDescription();
-    await FetchDataProvider.loadSponsor();
-    await FetchDataProvider.loadDevelopers();
-    await FetchDataProvider.getContacts();
+    await FetchDataProvider.loadEvents();
     await FetchDataProvider.loadProfileOnline();
     try {
       if (FetchDataProvider.user != null) {
-        await FetchDataProvider.loadMyevents(FetchDataProvider.user?.email);
+        final client =
+            ApiClient(Dio(BaseOptions(contentType: "application/json")));
+        client.getMyEvents(FetchDataProvider.user!.email).then((value) {
+          FetchDataProvider.myEvents = value.getMyEvents();
+        });
       }
       if (FirebaseAuth.instance.currentUser == null) {
         return await Navigator.pushNamedAndRemoveUntil(

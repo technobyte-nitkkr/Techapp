@@ -13,7 +13,7 @@ dependencies:
     sdk: flutter
 
   cupertino_icons: ^1.0.3
-  flutter_svg: ^0.23.0+1
+  flutter_svg: ^1.0.0
   firebase_core: ^1.10.5
   firebase_messaging: ^11.2.4
   firebase_auth: ^3.3.3
@@ -30,14 +30,22 @@ dependencies:
   auto_size_text: ^3.0.0
   progress_indicator_button: ^0.0.3
   loading_animation_widget:
+  retrofit: ^3.0.1
+  dio: ^4.0.4
+  built_value: ^8.1.3
+  
   
   
   
   
 
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  retrofit_generator: ^3.0.1+1
+  build_runner: ^2.1.7
+  built_value_generator: ^8.1.3
 
 flutter:
   uses-material-design: true

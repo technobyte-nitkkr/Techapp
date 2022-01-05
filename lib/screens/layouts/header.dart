@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:techapp/providers/fetch_data_provider.dart';
 import 'package:techapp/screens/pages/chatbot.dart';
-import 'package:techapp/screens/pages/event_detail.dart';
 import 'package:techapp/screens/pages/notifications.dart';
+// ignore: import_of_legacy_library_into_null_safe
+import 'package:techapp/screens/pages/serach_event_detail.dart';
 import 'package:techapp/widgets/notification_icon.dart';
 import '../components/style.dart';
 import '../../screens/components/style.dart';
@@ -159,7 +160,7 @@ class DataSearch extends SearchDelegate<String> {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => EventDetailWidget(
+              builder: (context) => SearchEventDetail(
                 eventName: eventName,
                 eventCategory: eventCategory,
               ),

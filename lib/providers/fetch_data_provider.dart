@@ -1,54 +1,27 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:techapp/models/developers.dart';
 import 'package:techapp/models/event_by_categories.dart';
-import 'package:techapp/models/sponsor.dart';
 import 'package:techapp/models/event_all.dart';
 import 'package:techapp/models/user.dart';
 import 'package:techapp/providers/local_storage_provider.dart';
 import 'package:techapp/services/apiBaseHelper.dart';
-import '../models/section.dart';
 
 class FetchDataProvider {
   // data
-  static Map<String, Map<String, Event>> eventsMap = new Map();
+
   static ApiBaseHelper _helper = ApiBaseHelper();
   static bool loading = false;
   static int notification = 0;
   static List<String> categories = [];
   static List<AllEvents> allEvents = [];
-  static List<Sponsor> sponsors = [];
   static List<Event> myEvents = [];
-  static List<Contacts> contacts = [];
-  static List<Developers> developers = [];
   // ignore: avoid_init_to_null
   static UserDetails? user = null;
 
-  // functions
-
-  // my events
-  static loadMyevents(String? email) async {
-    final data = await _helper.get('user/eventApp?email=$email');
+  static Future<void> loadEvents() async {
+    final data = await _helper.get('events');
     final events = data['data']['events'];
-    final eventList =
-        events.map<Event>((json) => Event.fromJson(json)).toList();
-    myEvents = eventList;
-  }
-
-  // team altius
-  static getContacts() async {
-    final data = await _helper.get('contacts');
-    var jsondata = data["data"]["contacts"];
-    contacts =
-        jsondata.map<Contacts>((json) => Contacts.fromJson(json)).toList();
-  }
-
-  // load sponsers
-  static loadSponsor() async {
-    final data = await _helper.get('foodsponsors');
-    final sponsorsJSON =
-        data['data']['foodSponsors'].cast<Map<String, dynamic>>();
-    sponsors =
-        sponsorsJSON.map<Sponsor>((json) => Sponsor.fromJson(json)).toList();
+    FetchDataProvider.allEvents =
+        events.map<AllEvents>((json) => AllEvents.fromJson(json)).toList();
   }
 
   // load categories
@@ -57,37 +30,6 @@ class FetchDataProvider {
     final categoriesjson = data['data']['categories'];
     FetchDataProvider.categories =
         categoriesjson.map<String>((e) => e.toString()).toList();
-  }
-
-  // load events descripton an stroe to map
-  static Future<void> loadEventDescription() async {
-    for (int i = 0; i < FetchDataProvider.categories.length; i++) {
-      final data = await _helper
-          .get('events/description?eventCategory=${categories[i]}');
-      final events = data['data']['events'];
-
-      List<Event> eventList =
-          events.map<Event>((json) => Event.fromJson(json)).toList();
-
-      FetchDataProvider.eventsMap[FetchDataProvider.categories[i]] = new Map();
-
-      eventList.forEach((element) {
-        FetchDataProvider.eventsMap[FetchDataProvider.categories[i]]![
-            element.eventName] = element;
-        allEvents.add(AllEvents(
-            eventName: element.eventName,
-            eventCategory: element.eventCategory));
-      });
-    }
-  }
-
-  static loadDevelopers() async {
-    final data = await _helper.get('aboutAppDevs');
-    final developersJSON =
-        data['data']['information'].cast<Map<String, dynamic>>();
-    developers = developersJSON
-        .map<Developers>((json) => Developers.fromJson(json))
-        .toList();
   }
 
   static loadProfileOnline() async {
