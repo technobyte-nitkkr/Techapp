@@ -1,7 +1,10 @@
+// @dart=2.9
 import 'dart:ui';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:techapp/retrofit/api_client.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:techapp/models/event_by_categories.dart';
 import 'package:techapp/screens/components/style.dart';
@@ -25,17 +28,14 @@ class Style {
       color: Colors.white, fontSize: 25.0, fontWeight: FontWeight.w400);
 }
 
-class EventDetailWidget extends StatelessWidget {
-  final Event item;
-  const EventDetailWidget({
-    Key? key,
-    required this.item,
-  }) : super(key: key);
-
+class SearchEventDetail extends StatelessWidget {
+  final String eventName;
+  final String eventCategory;
+  SearchEventDetail({Key key, this.eventName, this.eventCategory})
+      : super(key: key);
   @override
   Widget build(BuildContext context) {
-    print("widget build");
-
+    final client = ApiClient(Dio(BaseOptions(contentType: "application/json")));
     return new Scaffold(
         backgroundColor: Colors.transparent,
         extendBodyBehindAppBar: true,
@@ -50,23 +50,33 @@ class EventDetailWidget extends StatelessWidget {
           ),
         ),
         body: Container(
-          constraints: new BoxConstraints.expand(),
           color: gradientEndColor,
-          child: Stack(
-            children: [
-              Container(
-                child: SingleChildScrollView(
-                  child: new Stack(
-                    children: <Widget>[
-                      _getBackground(this.item),
-                      _getGradient(),
-                      _getContent(this.item, context),
-                    ],
-                  ),
-                ),
-              ),
-              _getRegisterButton(this.item, context)
-            ],
+          child: FutureBuilder(
+            future: client.getEvent(this.eventCategory, this.eventName),
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                Event event = snapshot.data.getEvent();
+                return Stack(
+                  children: [
+                    SingleChildScrollView(
+                      child: new Stack(
+                        children: <Widget>[
+                          _getBackground(event),
+                          _getGradient(),
+                          _getContent(event, context),
+                        ],
+                      ),
+                    ),
+                    _getRegisterButton(event, context)
+                  ],
+                );
+              } else if (snapshot.hasError) {
+                return Text("${snapshot.error}");
+              }
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+            },
           ),
         ));
   }
@@ -77,8 +87,7 @@ class EventDetailWidget extends StatelessWidget {
             10, MediaQuery.of(context).size.height - 100, 10, 10),
         alignment: Alignment.center,
         child: SmartButtonWidget(
-            eventName: this.item.eventName,
-            eventCategory: this.item.eventCategory));
+            eventName: item.eventName, eventCategory: item.eventCategory));
   }
 
   Container _getBackground(Event item) {

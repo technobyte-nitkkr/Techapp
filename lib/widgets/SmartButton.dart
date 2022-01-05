@@ -37,7 +37,6 @@ class _SmartButtonWidgetState extends State<SmartButtonWidget> {
     final ApiBaseHelper _helper = ApiBaseHelper();
     await _helper.put('user/eventApp',
         {'email': email, 'eventName': name, 'eventCategory': category});
-    await FetchDataProvider.loadMyevents(email);
 
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content:
