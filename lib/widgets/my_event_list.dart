@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:techapp/models/event_by_categories.dart';
 import 'package:techapp/providers/fetch_data_provider.dart';
+import 'package:techapp/providers/local_storage_provider.dart';
 import 'package:techapp/retrofit/api_client.dart';
 import 'package:techapp/screens/components/style.dart';
 import 'package:techapp/widgets/event_list_item.dart';
@@ -20,13 +21,13 @@ class MyEventList extends StatelessWidget {
     final client = ApiClient(Dio(BaseOptions(contentType: "application/json")));
 
     return FutureBuilder(
-      future: client.getMyEvents(FetchDataProvider.user.email),
+      future: client.getMyEvents(FetchDataProvider.jwt),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
           if (snapshot.hasError) {
             final errormessage =
                 json.decode((snapshot.error as DioError).response.toString());
-
+            print(errormessage);
             return Center(
               child: Text(
                 errormessage['message'] ?? "Error",

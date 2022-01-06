@@ -45,8 +45,8 @@ class SpeakersWidget extends StatelessWidget {
             height: MediaQuery.of(context).size.height * 0.6,
             width: MediaQuery.of(context).size.width,
             child: Center(
-              child:
-                  LoadingAnimationWidget.dotsTriangle(color: white, size: 200),
+              child: LoadingAnimationWidget.staggeredDotWave(
+                  color: white, size: 150),
             ),
           );
         }
@@ -208,7 +208,7 @@ class ListItem extends StatelessWidget {
     return SimpleFoldingCell.create(
       frontWidget: _buildFrontWidget(),
       innerWidget: _buildInnerWidget(),
-      cellSize: Size(MediaQuery.of(context).size.width, 165),
+      cellSize: Size(MediaQuery.of(context).size.width, 200),
       //padding: EdgeInsets.all(15),
       animationDuration: Duration(milliseconds: 200),
       borderRadius: 10,

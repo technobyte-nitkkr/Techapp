@@ -9,41 +9,38 @@ class Speakers extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
-  final _trackingScrollController = TrackingScrollController();
-
   @override
   Widget build(BuildContext context) {
     return PageLayout(
       child: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.only(top: 16.0, right: 20.0, left: 20.0),
-            child: SizedBox(
-              height: MediaQuery.of(context).size.height*0.76,
-              child: Column (
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Text(
-                    'Guest Lectures',
-                    style: TextStyle(
-                      fontFamily: 'Avenir',
-                      fontSize: 30,
-                      color: white,
-                      fontWeight: FontWeight.w900,
-                    ),
-                    textAlign: TextAlign.center,  // TODO: Not working
+        child: Padding(
+          padding: const EdgeInsets.only(top: 16.0, right: 5.0, left: 5.0),
+          child: SizedBox(
+            height: MediaQuery.of(context).size.height * 0.76,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                Text(
+                  'Guest Lectures',
+                  style: TextStyle(
+                    fontFamily: 'Avenir',
+                    fontSize: 30,
+                    color: white,
+                    fontWeight: FontWeight.w900,
                   ),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.02,
-                  ),
-                  Expanded(
-                    child: SpeakersWidget(),
-                  ),
-                ],
-              ),
+                  textAlign: TextAlign.center,
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.02,
+                ),
+                Expanded(
+                  child: SpeakersWidget(),
+                ),
+              ],
             ),
           ),
         ),
-
+      ),
     );
   }
 }

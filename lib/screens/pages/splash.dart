@@ -98,14 +98,12 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   Future<dynamic> loadDataDuringSplash(BuildContext context) async {
-    await FetchDataProvider.loadCategories();
-    await FetchDataProvider.loadEvents();
-    await FetchDataProvider.loadProfileOnline();
+    final client = ApiClient(Dio(BaseOptions(contentType: "application/json")));
+    await client.getAllEvents();
+    await await FetchDataProvider.loadProfileOnline();
 
     try {
       if (FetchDataProvider.user != null) {
-        final client =
-            ApiClient(Dio(BaseOptions(contentType: "application/json")));
         client.getMyEvents(FetchDataProvider.user!.email).then((value) {
           FetchDataProvider.myEvents = value.getMyEvents();
         });

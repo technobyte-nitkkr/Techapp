@@ -3,8 +3,7 @@ import 'package:retrofit/http.dart';
 import 'package:techapp/retrofit/response.dart';
 part 'api_client.g.dart';
 
-@RestApi(
-    baseUrl: "https://us-central1-techspardha-87928.cloudfunctions.net/api/")
+@RestApi(baseUrl: "https://techspardhabackend.herokuapp.com/")
 abstract class ApiClient {
   factory ApiClient(Dio dio, {String baseUrl}) = _ApiClient;
 
@@ -20,6 +19,9 @@ abstract class ApiClient {
   @GET("/lectures")
   Future<ResponseData> getLectures();
 
+  @GET("/events")
+  Future<ResponseData> getAllEvents();
+
   @GET("/events/description?eventCategory={category}")
   Future<ResponseData> getEvents(@Path("category") String category);
 
@@ -27,6 +29,24 @@ abstract class ApiClient {
   Future<ResponseData> getEvent(
       @Path("category") String category, @Path("eventName") String eventName);
 
-  @GET("/user/eventApp?email={email}")
-  Future<ResponseData> getMyEvents(@Path("email") String email);
+  @GET("/user/event")
+  Future<ResponseData> getMyEvents(@Header("Authorization") String token);
+
+  @PUT("/user/event")
+  Future<ResponseData> addEvent(
+      @Header("Authorization") String token, @Body() Map<String, dynamic> body);
+
+  @PUT("/signUpApp")
+  Future<ResponseData> signUp(
+      @Header("Authorization") String token, @Body() Map<String, dynamic> body);
+
+  @POST("/loginApp")
+  Future<ResponseData> login(@Body() Map<String, String> body);
+
+  @PUT("/user/event/unregister")
+  Future<ResponseData> delEvent(
+      @Header("Authorization") String token, @Body() Map<String, String> body);
+
+  @GET("/events/categories")
+  Future<ResponseData> getCategories();
 }

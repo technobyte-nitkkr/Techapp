@@ -70,4 +70,24 @@ class NotificationsProvider {
     await storage.ready;
     return await storage.getItem('user');
   }
+
+  // save the login time to storage
+  static saveLoginTime() async {
+    await storage.ready;
+    await storage.setItem('loginTime', DateTime.now().toString());
+  }
+
+  // check if login time expired
+  static Future<bool> checkLoginTime() async {
+    await storage.ready;
+    var loginTime = await storage.getItem('loginTime');
+    if (loginTime != null) {
+      var time = DateTime.parse(loginTime);
+      var diff = DateTime.now().difference(time);
+      if (diff.inDays > 2) {
+        return true;
+      }
+    }
+    return false;
+  }
 }

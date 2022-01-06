@@ -7,6 +7,7 @@ class UserDetails {
   String? college;
   String? year;
   bool? admin;
+  String? role;
 
   UserDetails(
       {required this.email,
@@ -16,7 +17,8 @@ class UserDetails {
       required this.phone,
       required this.college,
       required this.year,
-      required this.admin});
+      required this.admin,
+      required this.role});
 
   factory UserDetails.fromJson(Map<String, dynamic> json) {
     return UserDetails(
@@ -28,6 +30,7 @@ class UserDetails {
       college: json['college'] ?? null,
       year: json['year'] ?? null,
       admin: json['admin'] ?? null,
+      role: json['role'] ?? null,
     );
   }
 

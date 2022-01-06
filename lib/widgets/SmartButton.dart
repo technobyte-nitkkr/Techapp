@@ -1,8 +1,9 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:techapp/providers/fetch_data_provider.dart';
+import 'package:techapp/retrofit/api_client.dart';
 import 'package:techapp/screens/components/style.dart';
-import 'package:techapp/services/apiBaseHelper.dart';
 import 'package:techapp/widgets/sign_in_modal.dart';
 
 class SmartButtonWidget extends StatefulWidget {
@@ -16,6 +17,7 @@ class SmartButtonWidget extends StatefulWidget {
 }
 
 class _SmartButtonWidgetState extends State<SmartButtonWidget> {
+  final client = ApiClient(Dio(BaseOptions(contentType: "application/json")));
   bool isLoading = false;
   bool isRegistered = false;
   final _user = FetchDataProvider.user;
@@ -32,46 +34,73 @@ class _SmartButtonWidgetState extends State<SmartButtonWidget> {
   }
 
   void _registerEvent(
-      String? email, String name, String category, BuildContext context) async {
+      String name, String category, BuildContext context) async {
     setState(() {
       isLoading = true;
     });
-    final ApiBaseHelper _helper = ApiBaseHelper();
-    await _helper.put('user/eventApp',
-        {'email': email, 'eventName': name, 'eventCategory': category});
 
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content:
-            Text("Registered Successfully !!", textAlign: TextAlign.center),
-        backgroundColor: Colors.green,
-        behavior: SnackBarBehavior.floating,
-        duration: const Duration(seconds: 3),
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(10))),
-        margin: EdgeInsets.only(
-            bottom: MediaQuery.of(context).size.height - 100,
-            right: 20,
-            left: 20)));
-    setState(() {
+    try {
+      await client.addEvent(FetchDataProvider.jwt, {
+        "eventName": name,
+        "eventCategory": category,
+      });
+
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content:
+              Text("Registered Successfully !!", textAlign: TextAlign.center),
+          backgroundColor: Colors.green,
+          behavior: SnackBarBehavior.floating,
+          duration: const Duration(seconds: 3),
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(10))),
+          margin: EdgeInsets.only(
+              bottom: MediaQuery.of(context).size.height - 100,
+              right: 20,
+              left: 20)));
+      setState(() {
+        isLoading = false;
+        isRegistered = true;
+      });
+    } catch (e) {
+      print(e);
       isLoading = false;
-      isRegistered = true;
-    });
+      isRegistered = false;
+    }
   }
 
   void _unRegisterEvent(
-      String? email, String name, String category, BuildContext context) async {
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content:
-            Text("Backend Api not available !!", textAlign: TextAlign.center),
-        backgroundColor: Colors.orange,
-        behavior: SnackBarBehavior.floating,
-        duration: const Duration(seconds: 3),
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(10))),
-        margin: EdgeInsets.only(
-            bottom: MediaQuery.of(context).size.height - 100,
-            right: 20,
-            left: 20)));
+      String name, String category, BuildContext context) async {
+    setState(() {
+      isLoading = true;
+    });
+
+    try {
+      await client.delEvent(FetchDataProvider.jwt, {
+        "eventName": name,
+        "eventCategory": category,
+      });
+
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content:
+              Text("Unregistered Successfully !!", textAlign: TextAlign.center),
+          backgroundColor: Colors.green,
+          behavior: SnackBarBehavior.floating,
+          duration: const Duration(seconds: 3),
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(10))),
+          margin: EdgeInsets.only(
+              bottom: MediaQuery.of(context).size.height - 100,
+              right: 20,
+              left: 20)));
+      setState(() {
+        isLoading = false;
+        isRegistered = false;
+      });
+    } catch (e) {
+      print(e);
+      isLoading = false;
+      isRegistered = true;
+    }
   }
 
   @override
@@ -106,7 +135,7 @@ class _SmartButtonWidgetState extends State<SmartButtonWidget> {
               )
             : LoadingAnimationWidget.threeHorizontalDots(
                 color: white, size: 30),
-        onPressed: () {
+        onPressed: () async {
           if (!_user!.onBoard) {
             showDialog(
                 context: context,
@@ -116,11 +145,9 @@ class _SmartButtonWidgetState extends State<SmartButtonWidget> {
                   );
                 });
           } else if (!isRegistered) {
-            _registerEvent(
-                _user!.email, widget.eventName, widget.eventCategory, context);
+            _registerEvent(widget.eventName, widget.eventCategory, context);
           } else {
-            _unRegisterEvent(
-                _user!.email, widget.eventName, widget.eventCategory, context);
+            _unRegisterEvent(widget.eventName, widget.eventCategory, context);
           }
         },
       ),

@@ -1,9 +1,10 @@
+import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:techapp/models/user.dart';
 import 'package:techapp/providers/fetch_data_provider.dart';
 import 'package:techapp/providers/local_storage_provider.dart';
-import 'package:techapp/services/apiBaseHelper.dart';
+import 'package:techapp/retrofit/api_client.dart';
 
 class SignInModalWidget extends StatefulWidget {
   const SignInModalWidget({Key? key}) : super(key: key);
@@ -153,6 +154,7 @@ class _SignInModalWidgetState extends State<SignInModalWidget> {
   }
 
   _handleSubmit(String college, String year, String phone) async {
+    final client = ApiClient(Dio(BaseOptions(contentType: "application/json")));
     if (_formKey.currentState!.validate() == true) {
       print("college: " + college + " year: " + year + " phone: " + phone);
 
@@ -162,16 +164,13 @@ class _SignInModalWidgetState extends State<SignInModalWidget> {
       });
 
       //deal with api
-      ApiBaseHelper _apiBaseHelper = ApiBaseHelper();
+
       // deal with data and all
       var user;
       try {
-        user = await _apiBaseHelper.put('signUpApp', {
-          'email': FirebaseAuth.instance.currentUser!.email,
-          'college': college,
-          'year': year,
-          'phone': phone,
-        });
+        user = await client.signUp(await NotificationsProvider.getToken(),
+            {"name": name, "college": college, "year": year, "phone": phone});
+
         print(user);
 
         if (user['success'] == true) {

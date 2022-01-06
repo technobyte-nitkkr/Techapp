@@ -1,11 +1,11 @@
 // @dart=2.9
 import 'dart:convert';
-
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:techapp/models/event_by_categories.dart';
 import 'package:techapp/retrofit/api_client.dart';
+import 'package:techapp/screens/components/style.dart';
 import 'package:techapp/widgets/event_list_item.dart';
 
 class EventsByCategoryWidget extends StatelessWidget {
@@ -13,12 +13,9 @@ class EventsByCategoryWidget extends StatelessWidget {
 
   const EventsByCategoryWidget({Key key, this.categoryName}) : super(key: key);
 
-  get white => null;
-
   @override
   Widget build(BuildContext context) {
     final client = ApiClient(Dio(BaseOptions(contentType: "application/json")));
-
     return FutureBuilder(
       future: client.getEvents(categoryName),
       builder: (context, snapshot) {
@@ -51,7 +48,7 @@ class EventsByCategoryWidget extends StatelessWidget {
           }
         } else {
           return SizedBox(
-            height: MediaQuery.of(context).size.height * 0.6,
+            height: MediaQuery.of(context).size.height * 0.5,
             width: MediaQuery.of(context).size.width,
             child: Center(
               child:

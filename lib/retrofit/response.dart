@@ -1,8 +1,10 @@
 import 'package:techapp/models/Speaker.dart';
 import 'package:techapp/models/Sponsor.dart';
 import 'package:techapp/models/developers.dart';
+import 'package:techapp/models/event_all.dart';
 import 'package:techapp/models/event_by_categories.dart';
 import 'package:techapp/models/section.dart';
+import 'package:techapp/models/user.dart';
 import 'package:techapp/providers/fetch_data_provider.dart';
 
 class ResponseData {
@@ -16,12 +18,15 @@ class ResponseData {
     required this.message,
   });
 
-  factory ResponseData.fromJson(Map<String, dynamic> json) => ResponseData(
-        success: json["success"],
-        data: Map.from(json["data"])
-            .map((k, v) => MapEntry<String, dynamic>(k, v)),
-        message: json["message"],
-      );
+  factory ResponseData.fromJson(Map<String, dynamic> json) {
+    // print(json.toString());
+    return ResponseData(
+      success: json["success"],
+      data: Map.from(json["data"] ?? {})
+          .map((k, v) => MapEntry<String, dynamic>(k, v)),
+      message: json["message"],
+    );
+  }
 
   Map<String, dynamic> toJson() => {
         "success": success,
@@ -88,5 +93,29 @@ class ResponseData {
       // print(item);
     }
     return datad;
+  }
+
+  List<String> getCategories() {
+    List<String> datad = [];
+    for (var item in data["categories"]) {
+      datad.add(item);
+      // print(item);
+    }
+    return datad;
+  }
+
+  List<AllEvents> getAllEvents() {
+    List<AllEvents> datad = [];
+    for (var item in data["events"]) {
+      datad.add(AllEvents.fromJson(item));
+      // print(item);
+    }
+    FetchDataProvider.allEvents = datad;
+    return datad;
+  }
+
+  UserDetails getProfile() {
+    print(data);
+    return UserDetails.fromJson(data["user"]);
   }
 }

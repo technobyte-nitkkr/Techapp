@@ -8,7 +8,7 @@ part of 'api_client.dart';
 
 class _ApiClient implements ApiClient {
   _ApiClient(this._dio, {this.baseUrl}) {
-    baseUrl ??= 'https://us-central1-techspardha-87928.cloudfunctions.net/api/';
+    baseUrl ??= 'https://techspardhabackend.herokuapp.com/';
   }
 
   final Dio _dio;
@@ -80,6 +80,22 @@ class _ApiClient implements ApiClient {
   }
 
   @override
+  Future<ResponseData> getAllEvents() async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<ResponseData>(
+            Options(method: 'GET', headers: _headers, extra: _extra)
+                .compose(_dio.options, '/events',
+                    queryParameters: queryParameters, data: _data)
+                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = ResponseData.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
   Future<ResponseData> getEvents(category) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
@@ -114,7 +130,95 @@ class _ApiClient implements ApiClient {
   }
 
   @override
-  Future<ResponseData> getMyEvents(email) async {
+  Future<ResponseData> getMyEvents(token) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': token};
+    _headers.removeWhere((k, v) => v == null);
+    final _data = <String, dynamic>{};
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<ResponseData>(
+            Options(method: 'GET', headers: _headers, extra: _extra)
+                .compose(_dio.options, '/user/event',
+                    queryParameters: queryParameters, data: _data)
+                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = ResponseData.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<ResponseData> addEvent(token, body) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': token};
+    _headers.removeWhere((k, v) => v == null);
+    final _data = <String, dynamic>{};
+    _data.addAll(body);
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<ResponseData>(
+            Options(method: 'PUT', headers: _headers, extra: _extra)
+                .compose(_dio.options, '/user/event',
+                    queryParameters: queryParameters, data: _data)
+                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = ResponseData.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<ResponseData> signUp(token, body) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': token};
+    _headers.removeWhere((k, v) => v == null);
+    final _data = <String, dynamic>{};
+    _data.addAll(body);
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<ResponseData>(
+            Options(method: 'PUT', headers: _headers, extra: _extra)
+                .compose(_dio.options, '/signUpApp',
+                    queryParameters: queryParameters, data: _data)
+                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = ResponseData.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<ResponseData> login(body) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(body);
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<ResponseData>(
+            Options(method: 'POST', headers: _headers, extra: _extra)
+                .compose(_dio.options, '/loginApp',
+                    queryParameters: queryParameters, data: _data)
+                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = ResponseData.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<ResponseData> delEvent(token, body) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': token};
+    _headers.removeWhere((k, v) => v == null);
+    final _data = <String, dynamic>{};
+    _data.addAll(body);
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<ResponseData>(
+            Options(method: 'PUT', headers: _headers, extra: _extra)
+                .compose(_dio.options, '/user/event/unregister',
+                    queryParameters: queryParameters, data: _data)
+                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = ResponseData.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<ResponseData> getCategories() async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -122,7 +226,7 @@ class _ApiClient implements ApiClient {
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<ResponseData>(
             Options(method: 'GET', headers: _headers, extra: _extra)
-                .compose(_dio.options, '/user/eventApp?email=${email}',
+                .compose(_dio.options, '/events/categories',
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = ResponseData.fromJson(_result.data!);
