@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:techapp/screens/components/style.dart';
 import 'package:techapp/widgets/basicCard.dart';
 import 'package:techapp/widgets/carousel_select.dart';
+import 'package:techapp/widgets/chatbot_loading_reply.dart';
 import 'package:techapp/widgets/dialog_card.dart';
 import 'package:techapp/widgets/quickReplies.dart';
 import 'package:techapp/widgets/simple_message.dart';
@@ -75,6 +76,9 @@ class _ChatBotWidget extends State<ChatBotWidget> {
   }
 
   void response(query) async {
+    setState(() {
+      _messages.insert(0, ChatbotLoadingReply());
+    });
     _textController.clear();
     AuthGoogle authGoogle =
         await AuthGoogle(fileJson: "assets/dialog_flow_auth.json").build();
@@ -84,6 +88,10 @@ class _ChatBotWidget extends State<ChatBotWidget> {
     String? _message = response.getMessage();
 
     List<dynamic> messages = response.getListMessage();
+
+    setState(() {
+      _messages.removeAt(0);
+    });
     // ignore: unnecessary_null_comparison
     if (_message != null) {
       SimpleMessage _message = new SimpleMessage(

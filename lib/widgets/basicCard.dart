@@ -1,6 +1,7 @@
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:dialogflow_flutter/message.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class BasicCardWidget extends StatelessWidget {
   BasicCardWidget({required this.card});
@@ -13,7 +14,14 @@ class BasicCardWidget extends StatelessWidget {
     for (var i = 0; i < this.card.buttons.length; i++) {
       buttons.add(new SizedBox(
           child: new ElevatedButton(
-        onPressed: () {},
+        onPressed: () async {
+          if (!await canLaunch(this.card.buttons[i]['openUriAction']['uri'])) {
+            print("Invalid Link !!");
+          } else {
+            await launch(
+                this.card.buttons[i]['openUriAction']['uri'].toString());
+          }
+        },
         child: Text(this.card.buttons[i]['title'] ?? 'click here'),
       )));
     }
@@ -44,7 +52,14 @@ class BasicCardWidget extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: <Widget>[
                     if (this.card.image?.imageUri != null)
-                      Image.network(this.card.image.imageUri),
+                      FadeInImage.assetNetwork(
+                        placeholder: 'assets/images/technologo.png',
+                        image: this.card.image.imageUri,
+                        fit: BoxFit.cover,
+                        imageErrorBuilder: (context, error, stackTrace) =>
+                            Image.asset('assets/images/technologo.png',
+                                fit: BoxFit.cover),
+                      ),
                     new Padding(
                       padding: EdgeInsets.all(10.0),
                       child: Column(
