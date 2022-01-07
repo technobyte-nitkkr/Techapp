@@ -17,7 +17,7 @@ class SmartButtonWidget extends StatefulWidget {
 }
 
 class _SmartButtonWidgetState extends State<SmartButtonWidget> {
-  final client = ApiClient(Dio(BaseOptions(contentType: "application/json")));
+  final client = ApiClient.create();
   bool isLoading = false;
   bool isRegistered = false;
   final _user = FetchDataProvider.user;
@@ -57,14 +57,27 @@ class _SmartButtonWidgetState extends State<SmartButtonWidget> {
               bottom: MediaQuery.of(context).size.height - 100,
               right: 20,
               left: 20)));
+      await client.getMyEvents(FetchDataProvider.jwt);
       setState(() {
         isLoading = false;
         isRegistered = true;
       });
-    } catch (e) {
-      print(e);
-      isLoading = false;
-      isRegistered = false;
+    } on DioError catch (e) {
+      final errormessage = e.error.toString();
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text(errormessage, textAlign: TextAlign.center),
+          backgroundColor: Colors.red,
+          behavior: SnackBarBehavior.floating,
+          duration: const Duration(seconds: 3),
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(10))),
+          margin: EdgeInsets.only(
+              bottom: MediaQuery.of(context).size.height - 100,
+              right: 20,
+              left: 20)));
+      setState(() {
+        isLoading = false;
+      });
     }
   }
 
@@ -96,10 +109,24 @@ class _SmartButtonWidgetState extends State<SmartButtonWidget> {
         isLoading = false;
         isRegistered = false;
       });
-    } catch (e) {
-      print(e);
-      isLoading = false;
-      isRegistered = true;
+      await client.getMyEvents(FetchDataProvider.jwt);
+    } on DioError catch (e) {
+      final errormessage = e.error.toString();
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text(errormessage, textAlign: TextAlign.center),
+          backgroundColor: Colors.red,
+          behavior: SnackBarBehavior.floating,
+          duration: const Duration(seconds: 3),
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(10))),
+          margin: EdgeInsets.only(
+              bottom: MediaQuery.of(context).size.height - 100,
+              right: 20,
+              left: 20)));
+
+      setState(() {
+        isLoading = false;
+      });
     }
   }
 

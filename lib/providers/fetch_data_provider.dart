@@ -16,7 +16,7 @@ class FetchDataProvider {
   static String jwt = "";
 
   static loadProfileOnline() async {
-    final client = ApiClient(Dio(BaseOptions(contentType: "application/json")));
+    final client = ApiClient.create();
     // get the user from local storage
     final _user = await NotificationsProvider.getUser();
     var _token;

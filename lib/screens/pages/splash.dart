@@ -98,15 +98,14 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   Future<dynamic> loadDataDuringSplash(BuildContext context) async {
-    final client = ApiClient(Dio(BaseOptions(contentType: "application/json")));
-    await client.getAllEvents();
-    await await FetchDataProvider.loadProfileOnline();
+    final client = ApiClient.create();
+    await FetchDataProvider.loadProfileOnline();
+    var data = await client.getAllEvents();
+    data.getAllEvents();
 
     try {
       if (FetchDataProvider.user != null) {
-        client.getMyEvents(FetchDataProvider.user!.email).then((value) {
-          FetchDataProvider.myEvents = value.getMyEvents();
-        });
+        await client.getMyEvents(FetchDataProvider.jwt);
       }
       if (FirebaseAuth.instance.currentUser == null) {
         return await Navigator.pushNamedAndRemoveUntil(
@@ -129,23 +128,13 @@ class _SplashScreenState extends State<SplashScreen> {
         screenFunction: () async {
           try {
             await loadDataDuringSplash(context);
-          } on AppException catch (e) {
-            if (e.code == 500) {
-              return await Navigator.pushAndRemoveUntil(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => ErrorPagge(
-                      message: "No internet",
-                    ),
-                  ),
-                  (route) => false);
-            }
-
+          } on DioError catch (e) {
+            final errormessage = e.error.toString();
             return await Navigator.pushAndRemoveUntil(
                 context,
                 MaterialPageRoute(
                   builder: (context) => ErrorPagge(
-                    message: "Server Under maintainece",
+                    message: errormessage,
                   ),
                 ),
                 (route) => false);

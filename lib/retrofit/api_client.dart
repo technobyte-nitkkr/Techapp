@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:retrofit/http.dart';
 import 'package:techapp/retrofit/response.dart';
@@ -6,6 +8,48 @@ part 'api_client.g.dart';
 @RestApi(baseUrl: "https://techspardhabackend.herokuapp.com/")
 abstract class ApiClient {
   factory ApiClient(Dio dio, {String baseUrl}) = _ApiClient;
+
+  static ApiClient create() {
+    final dio = Dio();
+    dio.options.headers['Content-Type'] = 'application/json';
+    dio.options.receiveTimeout = 60000;
+    dio.options.connectTimeout = 120000;
+    dio.interceptors.add(InterceptorsWrapper(onError: (DioError e, handler) {
+      print("dioerrr  ");
+
+      if (e.type == DioErrorType.other) {
+        print("socket exception");
+        // print(e.toString());
+
+        return handler.next(
+          new DioError(
+              requestOptions: RequestOptions(
+                method: "GET",
+                path: "https://techspardhabackend.herokuapp.com/",
+              ),
+              error: "No internet"),
+        );
+      }
+
+      if (e.type == DioErrorType.response) {
+        var resp = json.decode(e.response.toString());
+        print("response exception");
+        // print(e.toString());
+        return handler.next(
+          new DioError(
+              requestOptions: RequestOptions(
+                method: "GET",
+                path: "https://techspardhabackend.herokuapp.com/",
+              ),
+              error: resp['message'] ?? resp['err'] ?? "internal server error"),
+        );
+      }
+
+      // you can resolve a `Response` object eg: `handler.resolve(response)`.
+    }));
+
+    return _ApiClient(dio);
+  }
 
   @GET("/foodsponsors")
   Future<ResponseData> getSponsors();

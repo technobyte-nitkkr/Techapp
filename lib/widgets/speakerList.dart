@@ -14,17 +14,16 @@ import 'package:techapp/screens/components/style.dart';
 class SpeakersWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final client = ApiClient(Dio(BaseOptions(contentType: "application/json")));
+    final client = ApiClient.create();
     return FutureBuilder(
       future: client.getLectures(),
       builder: (context, snapshot) {
         if (snapshot.hasError) {
-          final errormessage =
-              json.decode((snapshot.error as DioError).response.toString());
-
+          final errormessage = (snapshot.error as DioError).error.toString();
+          print(errormessage);
           return Center(
             child: Text(
-              errormessage['message'] ?? "Error",
+              errormessage ?? "Error",
               style: TextStyle(color: white, fontSize: 20),
             ),
           );
