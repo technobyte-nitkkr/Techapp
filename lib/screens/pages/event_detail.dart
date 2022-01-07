@@ -356,7 +356,7 @@ Container getContent(Event item, BuildContext context, bool isflagship) {
                 return cordinatorItem(item.cordinators[index]);
               },
               gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                mainAxisExtent: 80,
+                mainAxisExtent: 65,
                 maxCrossAxisExtent: 200,
                 mainAxisSpacing: 10,
                 crossAxisSpacing: 10,

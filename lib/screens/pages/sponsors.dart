@@ -18,19 +18,26 @@ class Sponsors extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Text(
-              'Our Sponsors',
-              style: TextStyle(
-                fontFamily: 'Avenir',
-                fontSize: 30,
-                color: white,
-                fontWeight: FontWeight.w900,
+            Container(
+              alignment: Alignment.center,
+              child: Text(
+                'Our Sponsors',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontFamily: 'Avenir',
+                  fontSize: 30,
+                  color: white,
+                  fontWeight: FontWeight.w900,
+                ),
               ),
             ),
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.02,
             ),
             SponsorsWidget(),
+            SizedBox(
+              height: 20,
+            )
           ],
         ),
       )),

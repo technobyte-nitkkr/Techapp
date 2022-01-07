@@ -80,7 +80,7 @@ class CardItem extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               SizedBox(
-                height: 10,
+                height: 8,
               ),
               Divider(
                 color: grey,
@@ -89,7 +89,7 @@ class CardItem extends StatelessWidget {
               ClipRRect(
                 child: Image.network(
                   '${item.imageurl}',
-                  height: 100,
+                  height: 90,
                 ),
               ),
               Divider(

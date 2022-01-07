@@ -57,7 +57,8 @@ class _SmartButtonWidgetState extends State<SmartButtonWidget> {
               bottom: MediaQuery.of(context).size.height - 100,
               right: 20,
               left: 20)));
-      await client.getMyEvents(FetchDataProvider.jwt);
+      var data = await client.getMyEvents(FetchDataProvider.jwt);
+      data.getMyEvents();
       setState(() {
         isLoading = false;
         isRegistered = true;

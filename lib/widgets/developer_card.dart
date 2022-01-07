@@ -62,7 +62,7 @@ class DeveloperCard extends StatelessWidget {
                   ),
                   Spacer(),
                   AutoSizeText(
-                    year,
+                    year + ' Year',
                     style: TextStyle(
                       fontSize: 15.0,
                     ),

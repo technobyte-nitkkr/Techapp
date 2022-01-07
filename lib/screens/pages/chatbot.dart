@@ -24,7 +24,14 @@ class _ChatBotWidget extends State<ChatBotWidget> {
   final List<dynamic> _messages = <dynamic>[];
   final TextEditingController _textController = new TextEditingController();
   late BuildContext buildContext;
+  bool isdisabled = false;
+
   Widget _buildTextComposer() {
+    if (_textController.text.length == 0)
+      setState(() {
+        isdisabled = true;
+      });
+
     return new IconTheme(
       data: new IconThemeData(color: Theme.of(context).backgroundColor),
       child: new Container(
@@ -35,6 +42,7 @@ class _ChatBotWidget extends State<ChatBotWidget> {
               child: new TextField(
                 controller: _textController,
                 onSubmitted: _handleSubmitted,
+                onChanged: _handleChange,
                 decoration:
                     new InputDecoration.collapsed(hintText: "Send a message"),
               ),
@@ -42,11 +50,14 @@ class _ChatBotWidget extends State<ChatBotWidget> {
             new Container(
               margin: new EdgeInsets.symmetric(horizontal: 4.0),
               child: new IconButton(
+                  disabledColor: Colors.grey,
                   icon: new Icon(
                     Icons.send,
-                    color: Colors.blue,
+                    color: isdisabled ? Colors.grey : Colors.blue,
                   ),
-                  onPressed: () => _handleSubmitted(_textController.text)),
+                  onPressed: () => isdisabled
+                      ? null
+                      : _handleSubmitted(_textController.text)),
             ),
           ],
         ),
@@ -166,5 +177,17 @@ class _ChatBotWidget extends State<ChatBotWidget> {
         ),
       ],
     );
+  }
+
+  void _handleChange(String value) {
+    if (value.length > 0) {
+      setState(() {
+        isdisabled = false;
+      });
+    } else {
+      setState(() {
+        isdisabled = true;
+      });
+    }
   }
 }
