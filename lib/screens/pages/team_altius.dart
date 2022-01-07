@@ -17,7 +17,7 @@ class TeamAltius extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final client = ApiClient(Dio(BaseOptions(contentType: "application/json")));
+    final client = ApiClient.create();
     return PageLayout(
       child: Padding(
         padding: const EdgeInsets.all(15.0),

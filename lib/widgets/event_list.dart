@@ -15,44 +15,41 @@ class EventsByCategoryWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final client = ApiClient(Dio(BaseOptions(contentType: "application/json")));
+    final client = ApiClient.create();
     return FutureBuilder(
       future: client.getEvents(categoryName),
       builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.done) {
-          if (snapshot.hasError) {
-            final errormessage =
-                json.decode((snapshot.error as DioError).response.toString());
-
-            return Center(
-              child: Text(
-                errormessage['message'] ?? "Error",
-                style: TextStyle(color: white, fontSize: 20),
-              ),
-            );
-          } else {
-            List<Event> events = snapshot.data.getEventList();
-            return Flexible(
-              child: ListView.builder(
-                shrinkWrap: true,
-                itemCount: events.length,
-                scrollDirection: Axis.vertical,
-                padding: EdgeInsets.all(10),
-                itemBuilder: (context, index) {
-                  return ListItem(
-                    item: events[index],
-                  );
-                },
-              ),
-            );
-          }
+        if (snapshot.hasError) {
+          final errormessage = (snapshot.error as DioError).error.toString();
+          print(errormessage);
+          return Center(
+            child: Text(
+              errormessage ?? "Error",
+              style: TextStyle(color: white, fontSize: 20),
+            ),
+          );
+        } else if (snapshot.hasData) {
+          List<Event> events = snapshot.data.getEventList();
+          return Flexible(
+            child: ListView.builder(
+              shrinkWrap: true,
+              itemCount: events.length,
+              scrollDirection: Axis.vertical,
+              padding: EdgeInsets.all(10),
+              itemBuilder: (context, index) {
+                return ListItem(
+                  item: events[index],
+                );
+              },
+            ),
+          );
         } else {
           return SizedBox(
-            height: MediaQuery.of(context).size.height * 0.5,
+            height: MediaQuery.of(context).size.height * 0.6,
             width: MediaQuery.of(context).size.width,
             child: Center(
               child:
-                  LoadingAnimationWidget.dotsTriangle(color: white, size: 100),
+                  LoadingAnimationWidget.dotsTriangle(color: white, size: 200),
             ),
           );
         }

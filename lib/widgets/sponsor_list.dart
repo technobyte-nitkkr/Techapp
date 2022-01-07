@@ -15,35 +15,33 @@ import 'package:url_launcher/url_launcher.dart';
 class SponsorsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final client = ApiClient(Dio(BaseOptions(contentType: "application/json")));
+    final client = ApiClient.create();
 
     return FutureBuilder(
       future: client.getSponsors(),
       builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.done) {
-          if (snapshot.hasError) {
-            final errormessage =
-                json.decode((snapshot.error as DioError).response.toString());
-
-            return Center(
-              child: Text(
-                errormessage['message'] ?? "Error",
-                style: TextStyle(color: white, fontSize: 20),
-              ),
-            );
-          } else {
-            return GridView.count(
-                crossAxisCount: 2,
-                shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
-                childAspectRatio: .85,
-                crossAxisSpacing: 20,
-                mainAxisSpacing: 20,
-                children: snapshot.data
-                    .getFoodSponsors()
-                    .map<Widget>((sponsor) => CardItem(item: sponsor))
-                    .toList());
-          }
+        if (snapshot.hasError) {
+          final errormessage = (snapshot.error as DioError).error.toString();
+          print(errormessage);
+          return Center(
+            child: Text(
+              errormessage ?? "Error",
+              style: TextStyle(color: white, fontSize: 20),
+            ),
+          );
+        }
+        if (snapshot.hasData) {
+          return GridView.count(
+              crossAxisCount: 2,
+              shrinkWrap: true,
+              physics: NeverScrollableScrollPhysics(),
+              childAspectRatio: .85,
+              crossAxisSpacing: 20,
+              mainAxisSpacing: 20,
+              children: snapshot.data
+                  .getFoodSponsors()
+                  .map<Widget>((sponsor) => CardItem(item: sponsor))
+                  .toList());
         } else {
           return SizedBox(
             height: MediaQuery.of(context).size.height * 0.6,

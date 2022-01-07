@@ -16,7 +16,7 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final client = ApiClient(Dio(BaseOptions(contentType: "application/json")));
+    final client = ApiClient.create();
     return PageLayout(
       child: FutureBuilder(
         future: client.getCategories(),
@@ -26,12 +26,11 @@ class Home extends StatelessWidget {
               categories: snapshot.data.getCategories(),
             );
           } else if (snapshot.hasError) {
-            final errormessage =
-                json.decode((snapshot.error as DioError).response.toString());
-
+            final errormessage = (snapshot.error as DioError).error.toString();
+            print(errormessage);
             return Center(
               child: Text(
-                errormessage['message'] ?? "Error",
+                errormessage ?? "Error",
                 style: TextStyle(color: white, fontSize: 20),
               ),
             );

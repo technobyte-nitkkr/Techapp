@@ -154,7 +154,7 @@ class _SignInModalWidgetState extends State<SignInModalWidget> {
   }
 
   _handleSubmit(String college, String year, String phone) async {
-    final client = ApiClient(Dio(BaseOptions(contentType: "application/json")));
+    final client = ApiClient.create();
     if (_formKey.currentState!.validate() == true) {
       print("college: " + college + " year: " + year + " phone: " + phone);
 

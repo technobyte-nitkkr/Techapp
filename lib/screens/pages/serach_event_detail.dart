@@ -18,7 +18,7 @@ class SearchEventDetail extends StatelessWidget {
       : super(key: key);
   @override
   Widget build(BuildContext context) {
-    final client = ApiClient(Dio(BaseOptions(contentType: "application/json")));
+    final client = ApiClient.create();
     return new Scaffold(
         backgroundColor: Colors.transparent,
         extendBodyBehindAppBar: true,
@@ -38,17 +38,16 @@ class SearchEventDetail extends StatelessWidget {
             future: client.getEvent(this.eventCategory, this.eventName),
             builder: (context, snapshot) {
               if (snapshot.hasError) {
-                final errormessage = json
-                    .decode((snapshot.error as DioError).response.toString());
-
+                final errormessage =
+                    (snapshot.error as DioError).error.toString();
+                print(errormessage);
                 return Center(
                   child: Text(
-                    errormessage['message'] ?? "Error",
+                    errormessage ?? "Error",
                     style: TextStyle(color: white, fontSize: 20),
                   ),
                 );
-              }
-              if (snapshot.hasData) {
+              } else if (snapshot.hasData) {
                 Event event = snapshot.data.getEvent();
                 return Stack(
                   children: [
@@ -64,8 +63,6 @@ class SearchEventDetail extends StatelessWidget {
                     getRegisterButton(event, context)
                   ],
                 );
-              } else if (snapshot.hasError) {
-                return Text("${snapshot.error}");
               }
               return SizedBox(
                 height: MediaQuery.of(context).size.height,
