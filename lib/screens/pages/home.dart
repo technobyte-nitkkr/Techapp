@@ -1,5 +1,6 @@
 // @dart=2.9
 import 'dart:convert';
+import 'dart:math';
 import 'package:card_swiper/card_swiper.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -83,7 +84,8 @@ class DataToLoad extends StatelessWidget {
                 // decoration: BoxDecoration(border: Border.all(color: grey)),
                 child: Swiper(
                   itemCount: categories.length,
-                  itemWidth: MediaQuery.of(context).size.width - 2 * 50,
+                  itemWidth:
+                      min(MediaQuery.of(context).size.width - 2 * 50, 600),
                   layout: SwiperLayout.STACK,
                   pagination: SwiperPagination(
                     builder: DotSwiperPaginationBuilder(

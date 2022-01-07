@@ -4,12 +4,13 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:url_launcher/url_launcher.dart';
+
 import 'package:techapp/models/developers.dart';
 import 'package:techapp/retrofit/api_client.dart';
 import 'package:techapp/screens/components/style.dart';
 import 'package:techapp/screens/layouts/page_layout.dart';
 import 'package:techapp/widgets/developer_card.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class Developers extends StatelessWidget {
   Developers({
@@ -46,51 +47,20 @@ class Developers extends StatelessWidget {
                       ),
                     );
                   } else if (snapshot.hasData) {
-                    if (!snapshot.data.success) {
-                      return Text(snapshot.data.message ?? "Error");
-                    } else {
-                      List<Developer> developers =
-                          snapshot.data.getDevelopers();
-                      return GridView.count(
-                        shrinkWrap: true,
-                        physics: NeverScrollableScrollPhysics(),
-                        crossAxisCount: 2,
-                        childAspectRatio: .85,
-                        crossAxisSpacing: 20,
-                        mainAxisSpacing: 20,
-                        children: developers
-                            .map<Widget>((developer) => DeveloperCard(
-                                name: developer.name,
-                                imageSrc: developer.imageurl,
-                                year: developer.year,
-                                link: developer.link,
-                                press: () async {
-                                  if (!await canLaunch(developer.link)) {
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                        SnackBar(
-                                            content: Text("Link Invalid !!",
-                                                textAlign: TextAlign.center),
-                                            backgroundColor: Colors.orange,
-                                            behavior: SnackBarBehavior.floating,
-                                            duration:
-                                                const Duration(seconds: 3),
-                                            shape: RoundedRectangleBorder(
-                                                borderRadius: BorderRadius.all(
-                                                    Radius.circular(10))),
-                                            margin: EdgeInsets.only(
-                                                bottom: MediaQuery.of(context)
-                                                        .size
-                                                        .height -
-                                                    100,
-                                                right: 20,
-                                                left: 20)));
-                                  } else {
-                                    await launch(developer.link);
-                                  }
-                                }))
-                            .toList(),
-                      );
-                    }
+                    List<Developer> developers = snapshot.data.getDevelopers();
+                    return GridView.builder(
+                      shrinkWrap: true,
+                      physics: NeverScrollableScrollPhysics(),
+                      itemCount: developers.length,
+                      itemBuilder: (BuildContext ctx, int index) {
+                        return DeveloperWidget(developer: developers[index]);
+                      },
+                      gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                        maxCrossAxisExtent: 250,
+                        mainAxisSpacing: 10,
+                        crossAxisSpacing: 10,
+                      ),
+                    );
                   } else {
                     return SizedBox(
                       height: MediaQuery.of(context).size.height * 0.6,
@@ -106,5 +76,39 @@ class Developers extends StatelessWidget {
         ],
       ),
     );
+  }
+}
+
+class DeveloperWidget extends StatelessWidget {
+  final Developer developer;
+  const DeveloperWidget({
+    Key key,
+    this.developer,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return DeveloperCard(
+        name: developer.name,
+        imageSrc: developer.imageurl,
+        year: developer.year,
+        link: developer.link,
+        press: () async {
+          if (!await canLaunch(developer.link)) {
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                content: Text("Link Invalid !!", textAlign: TextAlign.center),
+                backgroundColor: Colors.orange,
+                behavior: SnackBarBehavior.floating,
+                duration: const Duration(seconds: 3),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(10))),
+                margin: EdgeInsets.only(
+                    bottom: MediaQuery.of(context).size.height - 100,
+                    right: 20,
+                    left: 20)));
+          } else {
+            await launch(developer.link);
+          }
+        });
   }
 }

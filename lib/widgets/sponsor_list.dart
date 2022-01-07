@@ -31,17 +31,20 @@ class SponsorsWidget extends StatelessWidget {
           );
         }
         if (snapshot.hasData) {
-          return GridView.count(
-              crossAxisCount: 2,
-              shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(),
-              childAspectRatio: .85,
-              crossAxisSpacing: 20,
-              mainAxisSpacing: 20,
-              children: snapshot.data
-                  .getFoodSponsors()
-                  .map<Widget>((sponsor) => CardItem(item: sponsor))
-                  .toList());
+          List<Sponsor> sponsors = snapshot.data.getFoodSponsors();
+          return GridView.builder(
+            shrinkWrap: true,
+            physics: NeverScrollableScrollPhysics(),
+            itemCount: sponsors.length,
+            itemBuilder: (BuildContext ctx, int index) {
+              return CardItem(item: sponsors[index]);
+            },
+            gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+              maxCrossAxisExtent: 200,
+              mainAxisSpacing: 10,
+              crossAxisSpacing: 10,
+            ),
+          );
         } else {
           return SizedBox(
             height: MediaQuery.of(context).size.height * 0.6,
@@ -73,6 +76,8 @@ class CardItem extends StatelessWidget {
         onTap: () => launch('${item.link}'),
         child: Container(
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               SizedBox(
                 height: 10,
@@ -90,6 +95,7 @@ class CardItem extends StatelessWidget {
               Divider(
                 color: grey,
                 thickness: 2,
+                height: 5,
               ),
               AutoSizeText(
                 '${item.name}',
