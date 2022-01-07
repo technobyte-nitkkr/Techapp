@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:techapp/screens/components/style.dart';
@@ -39,12 +41,13 @@ class SwiperCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       SizedBox(
-                          height: MediaQuery.of(context).size.height * 0.2),
+                          height: min(
+                              MediaQuery.of(context).size.width * 0.35, 400)),
                       Text(
                         categoryName,
                         style: TextStyle(
                           fontFamily: 'Avenir',
-                          fontSize: MediaQuery.of(context).size.width * 0.08,
+                          fontSize: MediaQuery.of(context).size.width * 0.09,
                           color: const Color(0xff47455f),
                           fontWeight: FontWeight.w900,
                         ),
@@ -97,13 +100,13 @@ class SwiperCard extends StatelessWidget {
             ),
           ),
           Positioned(
-            right: 20,
+            right: MediaQuery.of(context).size.height * 0.05,
             bottom: MediaQuery.of(context).size.height * 0.15,
             child: Text(
               fadeText,
               style: TextStyle(
                 fontFamily: 'Avenir',
-                fontSize: 150,
+                fontSize: MediaQuery.of(context).size.width * 0.2,
                 color: black.withOpacity(0.09),
                 fontWeight: FontWeight.w900,
               ),

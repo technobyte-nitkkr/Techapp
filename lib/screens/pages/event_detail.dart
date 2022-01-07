@@ -294,21 +294,20 @@ Container getContent(Event item, BuildContext context) {
         if (item.cordinators.length > 0)
           Container(
             margin: new EdgeInsets.symmetric(horizontal: 30.0),
-            child: GridView.count(
-                padding: EdgeInsets.all(0),
-                shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
-                crossAxisCount: 2,
-                childAspectRatio: 2.5,
-                crossAxisSpacing: 0,
-                mainAxisSpacing: 0,
-                children: item.cordinators
-                    .map((cordinator) => cordinatorItem(cordinator))
-                    .toList()),
-            // child: Column(
-            //     children: item.cordinators
-            //         .map((cordinator) => cordinatorItem(cordinator))
-            //         .toList()),
+            child: GridView.builder(
+              shrinkWrap: true,
+              physics: NeverScrollableScrollPhysics(),
+              itemCount: item.cordinators.length,
+              itemBuilder: (BuildContext ctx, int index) {
+                return cordinatorItem(item.cordinators[index]);
+              },
+              gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                mainAxisExtent: 80,
+                maxCrossAxisExtent: 200,
+                mainAxisSpacing: 10,
+                crossAxisSpacing: 10,
+              ),
+            ),
           ),
         if (item.cordinators.length > 0) Container(height: 60)
       ],
