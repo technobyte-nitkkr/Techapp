@@ -7,6 +7,7 @@ import 'package:techapp/models/event_by_categories.dart';
 import 'package:techapp/screens/components/style.dart';
 import 'package:techapp/widgets/SmartButton.dart';
 import 'package:techapp/widgets/event_poster.dart';
+import 'package:avatar_glow/avatar_glow.dart';
 
 DateFormat dateFormat = DateFormat("MMMM dd,yyyy HH:mm");
 
@@ -35,7 +36,7 @@ class EventDetailWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     print("widget build");
-
+    bool isflagship = (item.flagship.toString() == "true") ? true : false;
     return new Scaffold(
         backgroundColor: Colors.transparent,
         extendBodyBehindAppBar: true,
@@ -60,25 +61,62 @@ class EventDetailWidget extends StatelessWidget {
                     children: <Widget>[
                       getBackground(this.item),
                       getGradient3(),
-                      getContent(this.item, context),
+                      getContent(this.item, context, isflagship),
                     ],
                   ),
                 ),
               ),
-              getRegisterButton(this.item, context)
+              getRegisterButton(this.item, context, isflagship)
             ],
           ),
         ));
   }
 }
 
-Container getRegisterButton(Event item, BuildContext context) {
-  return new Container(
-      margin: EdgeInsets.fromLTRB(
-          10, MediaQuery.of(context).size.height - 100, 10, 10),
-      alignment: Alignment.center,
-      child: SmartButtonWidget(
-          eventName: item.eventName, eventCategory: item.eventCategory));
+Container getRegisterButton(Event item, BuildContext context, bool isflagship) {
+  return (!isflagship)
+      ? new Container(
+          margin: EdgeInsets.fromLTRB(
+              10, MediaQuery.of(context).size.height - 100, 10, 10),
+          alignment: Alignment.center,
+          child: SmartButtonWidget(
+              eventName: item.eventName, eventCategory: item.eventCategory))
+      : Container(
+          child: Column(
+            children: [
+              Container(
+                alignment: Alignment.topRight,
+                margin: EdgeInsets.fromLTRB(10, 30, 10, 0),
+                child: AvatarGlow(
+                  animate: true,
+                  glowColor: Colors.amber,
+                  endRadius: 30.0,
+                  duration: Duration(milliseconds: 2000),
+                  repeat: true,
+                  showTwoGlows: true,
+                  repeatPauseDuration: Duration(milliseconds: 100),
+                  child: Material(
+                    color: Colors.transparent,
+                    elevation: 0.0,
+                    type: MaterialType.card,
+                    child: Icon(
+                      Icons.star,
+                      size: 35,
+                      color: Colors.amber[700],
+                    ),
+                  ),
+                ),
+              ),
+              Container(
+                  margin: EdgeInsets.fromLTRB(
+                      10, MediaQuery.of(context).size.height - 180, 10, 10),
+                  alignment: Alignment.center,
+                  child: SmartButtonWidget(
+                      eventName: item.eventName,
+                      eventCategory: item.eventCategory))
+            ],
+          ),
+        );
 }
 
 Container getBackground(Event item) {
@@ -110,7 +148,7 @@ Container getGradient3() {
   );
 }
 
-Container getContent(Event item, BuildContext context) {
+Container getContent(Event item, BuildContext context, bool isflagship) {
   return new Container(
     child: new ListView(
       shrinkWrap: true,
@@ -141,6 +179,16 @@ Container getContent(Event item, BuildContext context) {
                         style: Style.titleTextStyle,
                         maxLines: 1,
                       )),
+                      if (isflagship)
+                        new Container(
+                            child: AutoSizeText(
+                          '( Flagship Event )',
+                          style: TextStyle(
+                              fontSize: 5,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.amber),
+                          maxLines: 1,
+                        )),
                       new Container(height: 10.0),
                       new Text(item.eventCategory,
                           style: Style.commonTextStyle),
@@ -191,6 +239,11 @@ Container getContent(Event item, BuildContext context) {
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(10),
                       child: Container(
+                        decoration: BoxDecoration(
+                            border: Border.all(
+                          color: isflagship ? Colors.amber : Colors.transparent,
+                          width: 5,
+                        )),
                         width: 200.0,
                         height: 200.0,
                         child: FadeInImage.assetNetwork(

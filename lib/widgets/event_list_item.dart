@@ -11,6 +11,9 @@ class ListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isflagship = (item.flagship.toString() == 'true') ? true : false;
+    Color eventcolor = isflagship ? Colors.amber : Colors.white;
+
     return Container(
       child: Card(
           color: Colors.transparent,
@@ -31,9 +34,9 @@ class ListItem extends StatelessWidget {
             },
             child: Container(
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15),
-                  color: Colors.white,
-                ),
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(15),
+                    border: Border.all(color: eventcolor, width: 3)),
                 padding: const EdgeInsets.all(10),
                 child: Row(
                   children: <Widget>[

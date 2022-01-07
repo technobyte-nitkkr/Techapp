@@ -57,11 +57,13 @@ class SearchEventDetail extends StatelessWidget {
                         children: <Widget>[
                           getBackground(event),
                           getGradient3(),
-                          getContent(event, context),
+                          getContent(event, context,
+                              event.flagship.toString() == "true"),
                         ],
                       ),
                     ),
-                    getRegisterButton(event, context)
+                    getRegisterButton(
+                        event, context, event.flagship.toString() == "true")
                   ],
                 );
               } else if (snapshot.hasError) {
