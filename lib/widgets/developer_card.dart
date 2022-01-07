@@ -48,8 +48,8 @@ class DeveloperCard extends StatelessWidget {
                   Spacer(),
                   Image.network(
                     imageSrc,
-                    height: 100,
-                    width: 100,
+                    height: 80,
+                    width: 80,
                     fit: BoxFit.cover,
                   ),
                   Spacer(),
@@ -61,9 +61,12 @@ class DeveloperCard extends StatelessWidget {
                     maxLines: 1,
                   ),
                   Spacer(),
-                  Text(
-                    "$year year",
-                    textAlign: TextAlign.center,
+                  AutoSizeText(
+                    year,
+                    style: TextStyle(
+                      fontSize: 15.0,
+                    ),
+                    maxLines: 1,
                   ),
                 ],
               ),

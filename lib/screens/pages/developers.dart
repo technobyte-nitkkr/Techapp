@@ -56,7 +56,7 @@ class Developers extends StatelessWidget {
                         return DeveloperWidget(developer: developers[index]);
                       },
                       gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                        maxCrossAxisExtent: 250,
+                        maxCrossAxisExtent: 200,
                         mainAxisSpacing: 10,
                         crossAxisSpacing: 10,
                       ),

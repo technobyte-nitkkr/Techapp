@@ -29,52 +29,72 @@ class SwiperCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               SizedBox(height: MediaQuery.of(context).size.height * 0.1),
-              Card(
-                elevation: 8,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(32),
-                ),
-                color: Colors.white,
-                child: Padding(
-                  padding: const EdgeInsets.all(32.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      SizedBox(
-                          height: min(
-                              MediaQuery.of(context).size.width * 0.35, 400)),
-                      Text(
-                        categoryName,
-                        style: TextStyle(
-                          fontFamily: 'Avenir',
-                          fontSize: MediaQuery.of(context).size.width * 0.09,
-                          color: const Color(0xff47455f),
-                          fontWeight: FontWeight.w900,
-                        ),
-                        textAlign: TextAlign.left,
-                      ),
-                      SizedBox(height: 16),
-                      Row(
+              Stack(
+                children: [
+                  Card(
+                    elevation: 8,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(32),
+                    ),
+                    color: Colors.white,
+                    child: Padding(
+                      padding: const EdgeInsets.all(32.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
+                          SizedBox(
+                              height: min(
+                                  MediaQuery.of(context).size.width * 0.35,
+                                  400)),
                           Text(
-                            'Know more',
+                            categoryName,
                             style: TextStyle(
                               fontFamily: 'Avenir',
-                              fontSize: 18,
-                              color: grey,
-                              fontWeight: FontWeight.w500,
+                              fontSize:
+                                  MediaQuery.of(context).size.width * 0.08,
+                              color: const Color(0xff47455f),
+                              fontWeight: FontWeight.w900,
                             ),
                             textAlign: TextAlign.left,
                           ),
-                          Icon(
-                            Icons.arrow_forward,
-                            color: grey,
+                          SizedBox(height: 16),
+                          Row(
+                            children: <Widget>[
+                              Text(
+                                'Know more',
+                                style: TextStyle(
+                                  fontFamily: 'Avenir',
+                                  fontSize: 18,
+                                  color: grey,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                                textAlign: TextAlign.left,
+                              ),
+                              Icon(
+                                Icons.arrow_forward,
+                                color: grey,
+                              ),
+                            ],
                           ),
                         ],
                       ),
-                    ],
+                    ),
                   ),
-                ),
+                  Positioned(
+                    right: MediaQuery.of(context).size.width * 0.05,
+                    bottom: MediaQuery.of(context).size.width * 0.05,
+                    child: Text(
+                      fadeText,
+                      style: TextStyle(
+                        fontFamily: 'Avenir',
+                        fontSize: MediaQuery.of(context).size.width * 0.2,
+                        color: black.withOpacity(0.09),
+                        fontWeight: FontWeight.w900,
+                      ),
+                      textAlign: TextAlign.left,
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
@@ -97,20 +117,6 @@ class SwiperCard extends StatelessWidget {
                     fit: BoxFit.fill),
                 borderRadius: BorderRadius.circular(32),
               ),
-            ),
-          ),
-          Positioned(
-            right: MediaQuery.of(context).size.height * 0.05,
-            bottom: MediaQuery.of(context).size.height * 0.15,
-            child: Text(
-              fadeText,
-              style: TextStyle(
-                fontFamily: 'Avenir',
-                fontSize: MediaQuery.of(context).size.width * 0.2,
-                color: black.withOpacity(0.09),
-                fontWeight: FontWeight.w900,
-              ),
-              textAlign: TextAlign.left,
             ),
           ),
         ],

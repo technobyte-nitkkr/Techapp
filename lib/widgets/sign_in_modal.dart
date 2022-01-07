@@ -5,6 +5,7 @@ import 'package:techapp/models/user.dart';
 import 'package:techapp/providers/fetch_data_provider.dart';
 import 'package:techapp/providers/local_storage_provider.dart';
 import 'package:techapp/retrofit/api_client.dart';
+import 'package:techapp/retrofit/response.dart';
 
 class SignInModalWidget extends StatefulWidget {
   const SignInModalWidget({Key? key}) : super(key: key);
@@ -166,17 +167,19 @@ class _SignInModalWidgetState extends State<SignInModalWidget> {
       //deal with api
 
       // deal with data and all
-      var user;
+      ResponseData user;
       try {
         user = await client.signUp(await NotificationsProvider.getToken(),
             {"name": name, "college": college, "year": year, "phone": phone});
 
-        print(user);
+        print(user.data.toString());
 
-        if (user['success'] == true) {
+        if (user.success) {
           // let the user on profile
+          var token = user.data['token'];
+          await NotificationsProvider.saveToken(token);
 
-          final profile = user['information'] as Map<String, dynamic>;
+          final profile = user.data['user'] as Map<String, dynamic>;
           FetchDataProvider.user = UserDetails.fromJson(profile);
           // save to storage
           await NotificationsProvider.saveUser(FetchDataProvider.user!);

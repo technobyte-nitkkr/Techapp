@@ -351,6 +351,7 @@ Container getContent(Event item, BuildContext context, bool isflagship) {
               shrinkWrap: true,
               physics: NeverScrollableScrollPhysics(),
               itemCount: item.cordinators.length,
+              padding: EdgeInsets.all(0),
               itemBuilder: (BuildContext ctx, int index) {
                 return cordinatorItem(item.cordinators[index]);
               },
