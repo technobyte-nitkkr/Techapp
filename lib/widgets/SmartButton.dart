@@ -168,9 +168,7 @@ class _SmartButtonWidgetState extends State<SmartButtonWidget> {
             showDialog(
                 context: context,
                 builder: (BuildContext context) {
-                  return AlertDialog(
-                    content: SignInModalWidget(),
-                  );
+                  return SignInModalWidget();
                 });
           } else if (!isRegistered) {
             _registerEvent(widget.eventName, widget.eventCategory, context);

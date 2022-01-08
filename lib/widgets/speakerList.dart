@@ -2,9 +2,11 @@
 // @dart=2.9
 import 'dart:convert';
 
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:slimy_card/slimy_card.dart';
 import 'package:techapp/models/Speaker.dart';
 import 'package:folding_cell/folding_cell.dart';
 import 'package:techapp/retrofit/api_client.dart';
@@ -53,147 +55,135 @@ class SpeakersWidget extends StatelessWidget {
     );
   }
 }
-// Design-1 for guest lecture page:-
-// class ListItem extends StatefulWidget{
+
+//Design-1 for guest lecture page:-
+// class ListItem extends StatefulWidget {
 //   final Speaker item;
-//
-//   const ListItem({Key? key, required this.item}) : super(key: key);
+
+//   const ListItem({Key key, this.item}) : super(key: key);
 //   @override
 //   ListItemState createState() => ListItemState();
-//
 // }
-// class ListItemState extends State<ListItem>{
+
+// class ListItemState extends State<ListItem> {
 //   //final Speaker item;
-//
+
 //   //ListItemState(this.item);
 //   @override
 //   Widget build(BuildContext context) {
-//     return Column(
-//       children:[
-//         ListView(
-//             physics: ClampingScrollPhysics(),
-//             shrinkWrap:true,
-//             children:[
-//               SlimyCard(
-//                 width:MediaQuery.of(context).size.width*0.9,
-//                 topCardHeight: 160,
-//                 bottomCardHeight: 300,
-//                 color: Color(0xFFC7C6CB),
-//                 topCardWidget:_buildFrontWidget(),
-//                 bottomCardWidget: _buildInnerWidget(),
-//               ),
-//             ]
+//     return Column(children: [
+//       ListView(physics: ClampingScrollPhysics(), shrinkWrap: true, children: [
+//         SlimyCard(
+//           width: MediaQuery.of(context).size.width * 0.9,
+//           topCardHeight: 160,
+//           bottomCardHeight: 300,
+//           color: Color(0xFFC7C6CB),
+//           topCardWidget: _buildFrontWidget(),
+//           bottomCardWidget: _buildInnerWidget(),
 //         ),
-//         SizedBox(height:20.0)
-//       ]
-//
-//     );
-//
+//       ]),
+//       SizedBox(height: 20.0)
+//     ]);
 //   }
-//
+
 //   Widget _buildFrontWidget() {
 //     return Builder(
 //       builder: (BuildContext context) {
 //         return Container(
 //           alignment: Alignment.center,
-//           child: Row(
-//               children:[
-//                 Column(
-//                     children:[
-//                       Padding(
-//                         padding: const EdgeInsets.all(8.0),
-//                         child: ClipRRect(
-//                           borderRadius: BorderRadius.circular(25.0),
-//                           //radius: 35.0,
-//                           //backgroundColor: const Color(0xff47455f),
-//                           child: Image.network('${widget.item.imageurl}',
-//                             fit: BoxFit.fill,
-//                             width: 100,
-//                             height: 100,       ),
-//
-//                         ),
-//                       ),
-//                     ]
+//           child: Row(children: [
+//             Column(children: [
+//               Padding(
+//                 padding: const EdgeInsets.all(10.0),
+//                 child: ClipRRect(
+//                   borderRadius: BorderRadius.circular(25.0),
+//                   //radius: 35.0,
+//                   //backgroundColor: const Color(0xff47455f),
+//                   child: Image.network(
+//                     '${widget.item.imageurl}',
+//                     fit: BoxFit.fill,
+//                     width: 100,
+//                     height: 100,
+//                   ),
 //                 ),
-//                 Expanded(
-//                     flex:1,
-//                     child: Padding(
-//                       padding: const EdgeInsets.fromLTRB(8.0,12,8,8),
-//                       child: Column(
-//                           crossAxisAlignment: CrossAxisAlignment.start,
-//                           children:[
-//                             Text(
-//                                 '${widget.item.name}',
-//                                 overflow:TextOverflow.ellipsis ,
-//                                 style:TextStyle(
-//                                   fontSize: 35.0,
-//                                   //color:Colors.white,
-//
-//
-//                                 )),
-//                             SizedBox(height: 10.0,),
-//                             Row(
-//                               //mainAxisAlignment: MainAxisAlignment.end,
-//                               //crossAxisAlignment: CrossAxisAlignment.stretch,
-//                               children:[
-//                                 Icon(Icons.calendar_today_outlined),
-//                                 SizedBox(width:4.0),
-//                                 Text('${widget.item.date}',
-//                                     style:TextStyle(
-//                                       fontSize: 20.0,
-//                                       //color: Colors.white,
-//
-//                                   )
-//                                 ),
-//                                 SizedBox(width:30.0),
-//                                 Icon(Icons.alarm_on),
-//                                 SizedBox(width:4.0),
-//                                 Text('${widget.item.time}',
-//                                     style:TextStyle(
-//                                       fontSize: 20.0,
-//                                       //color: Colors.white,
-//                                     )
-//                                 ),
-//
-//                               ],
-//                             ),
-//                           ]
+//               ),
+//             ]),
+//             Expanded(
+//               flex: 1,
+//               child: Padding(
+//                 padding: const EdgeInsets.fromLTRB(8.0, 12, 8, 8),
+//                 child: Column(
+//                   crossAxisAlignment: CrossAxisAlignment.start,
+//                   children: [
+//                     AutoSizeText(
+//                       '${widget.item.name}',
+//                       style: TextStyle(
+//                         fontSize: 35.0,
+//                         //color:Colors.white,
 //                       ),
-//                     )
-//                 )
-//               ]
-//           ),
+//                       maxLines: 1,
+//                     ),
+//                     SizedBox(
+//                       height: 10.0,
+//                     ),
+//                     Column(
+//                       //mainAxisAlignment: MainAxisAlignment.end,
+//                       //crossAxisAlignment: CrossAxisAlignment.stretch,
+//                       children: [
+//                         Row(children: [
+//                           Icon(Icons.calendar_today_outlined),
+//                           SizedBox(width: 4.0),
+//                           Text('${widget.item.date}',
+//                               style: TextStyle(
+//                                 fontSize: 20.0,
+//                                 //color: Colors.white,
+//                               )),
+//                         ]),
+//                         SizedBox(
+//                           height: 10,
+//                         ),
+//                         Row(children: [
+//                           Icon(Icons.alarm_on),
+//                           SizedBox(width: 4.0),
+//                           Text('${widget.item.time}',
+//                               style: TextStyle(
+//                                 fontSize: 20.0,
+//                                 //color: Colors.white,
+//                               )),
+//                         ]),
+//                         SizedBox(
+//                           height: 10,
+//                         ),
+//                       ],
+//                     ),
+//                   ],
+//                 ),
+//               ),
+//             )
+//           ]),
 //         );
 //       },
 //     );
 //   }
-//
+
 //   Widget _buildInnerWidget() {
 //     return Builder(
 //       builder: (context) {
 //         return ClipRRect(
 //           borderRadius: BorderRadius.circular(25),
 //           child: Container(
-//             color:Colors.white,
-//             alignment: Alignment.topCenter,
-//             padding: EdgeInsets.all(10),
-//               child:SingleChildScrollView(
+//               color: Colors.white,
+//               alignment: Alignment.topCenter,
+//               padding: EdgeInsets.all(10),
+//               child: SingleChildScrollView(
 //                 scrollDirection: Axis.vertical,
-//                 child: Text(
-//                     '${widget.item.desc}',
-//                     style:TextStyle(
-//                       fontSize: 15.0,
-//                       color: Colors.black
-//                     )
-//                 ),
-//               )
-//
-//           ),
+//                 child: Text('${widget.item.desc}',
+//                     style: TextStyle(fontSize: 15.0, color: Colors.black)),
+//               )),
 //         );
 //       },
 //     );
 //   }
-//
 // }
 
 //Design 2 for guest lecture page-
@@ -247,10 +237,14 @@ class ListItem extends StatelessWidget {
                       child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text('${item.name}',
-                                style: TextStyle(
-                                    fontSize: 35.0,
-                                    overflow: TextOverflow.ellipsis)),
+                            AutoSizeText(
+                              '${item.name}',
+                              style: TextStyle(
+                                fontSize: 35.0,
+                                //color:Colors.white,
+                              ),
+                              maxLines: 1,
+                            ),
                             SizedBox(
                               height: 10.0,
                             ),

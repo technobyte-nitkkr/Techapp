@@ -26,144 +26,181 @@ class _SignInModalWidgetState extends State<SignInModalWidget> {
   String _year = "First Year";
 
   var _years = ["First Year", "Second Year", "Third Year", "Fourth Year"];
+  bool isloading = false;
 
   @override
   void initState() {
     super.initState();
     _college.clear();
     _phone.clear();
+    isloading = false;
   }
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-        child: Container(
-      margin: MediaQuery.of(context).viewInsets,
-      //margin: EdgeInsets.all(0),
-      decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
-      child: Form(
-          key: _formKey,
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Container(
-                padding: EdgeInsets.all(5),
-                height: 50,
-                alignment: Alignment.topRight,
-                child: new TextButton(
-                    child: new Icon(Icons.close, color: Colors.black, size: 30),
-                    onPressed: () {
-                      Navigator.pop(context);
-                    }),
-              ),
-              Container(
-                child: Text(
-                  "Hi " + name! + " !",
-                  style: TextStyle(fontSize: 20),
-                ),
-                margin: EdgeInsets.all(10),
-              ),
-              Container(
-                margin: EdgeInsets.fromLTRB(10, 0, 10, 10),
-                child: Text(
-                  " Please enter these details",
-                  textAlign: TextAlign.center,
-                ),
-              ),
-              Container(
+    return AlertDialog(
+      title: Container(
+        margin: EdgeInsets.all(0),
+        alignment: Alignment.topRight,
+        child: new TextButton(
+            child: new Icon(Icons.close, color: Colors.black, size: 30),
+            onPressed: () {
+              Navigator.pop(context);
+            }),
+      ),
+      titlePadding: EdgeInsets.all(0),
+      contentPadding: EdgeInsets.fromLTRB(5, 0, 5, 10),
+      backgroundColor: Colors.white,
+      scrollable: true,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+      content: SingleChildScrollView(
+          child: Container(
+        child: Form(
+            key: _formKey,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Container(
+                  child: Text(
+                    "Hi " + name! + " !",
+                    style: TextStyle(fontSize: 20),
+                  ),
                   margin: EdgeInsets.all(10),
-                  child: TextFormField(
-                      controller: _college,
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Required';
-                        }
-                        return null;
-                      },
-                      decoration: InputDecoration(
-                          prefixIcon: Icon(Icons.school),
-                          border: OutlineInputBorder(),
-                          contentPadding: EdgeInsets.all(10),
-                          hintText: 'Enter your college',
-                          hintStyle: TextStyle(color: Colors.grey),
-                          labelText: 'College Name',
-                          labelStyle: TextStyle(color: Colors.black)))),
-              Container(
-                  margin: EdgeInsets.all(10),
-                  child: TextFormField(
-                      controller: _phone,
-                      validator: (value) {
-                        String patttern = r'(^(?:[+0]9)?[0-9]{10,12}$)';
-                        RegExp regExp = new RegExp(patttern);
-                        if (value == null || value.isEmpty) {
-                          return 'Required';
-                        } else if (!regExp.hasMatch(value)) {
-                          return 'Invalid Mobile Number';
-                        } else {
+                ),
+                Container(
+                  margin: EdgeInsets.fromLTRB(10, 0, 10, 10),
+                  child: Text(
+                    " Please enter these details",
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+                Divider(
+                  color: Colors.grey,
+                  height: 8,
+                  thickness: 2,
+                  endIndent: 30,
+                  indent: 30,
+                ),
+                Container(
+                    margin: EdgeInsets.all(10),
+                    child: TextFormField(
+                        controller: _college,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Required';
+                          }
                           return null;
-                        }
-                      },
-                      decoration: InputDecoration(
-                          prefixIcon: Icon(Icons.phone),
-                          border: OutlineInputBorder(),
-                          contentPadding: EdgeInsets.all(10),
-                          hintText: 'Mobile Number',
-                          hintStyle: TextStyle(color: Colors.grey),
-                          labelText: 'Mobile Number',
-                          labelStyle: TextStyle(color: Colors.black)))),
-              Container(
-                  margin: EdgeInsets.all(10),
-                  height: 50,
-                  child: InputDecorator(
-                      decoration: InputDecoration(
-                          labelText: 'Study Year',
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(5.0)),
-                          contentPadding: EdgeInsets.all(10)),
-                      child: DropdownButtonHideUnderline(
-                        child: DropdownButton<String>(
-                          hint: Text("Study Year"),
-                          icon: Icon(Icons.arrow_drop_down_outlined),
-                          isExpanded: true,
-                          iconSize: 30,
-                          elevation: 16,
-                          value: _year,
-                          onChanged: (String? newValue) {
-                            setState(() {
-                              _year = newValue!;
-                            });
-                          },
-                          items: _years.map((String value) {
-                            return DropdownMenuItem<String>(
-                                value: value,
-                                child: Container(
-                                  child: Text(value),
-                                ));
-                          }).toList(),
-                        ),
-                      ))),
-              Container(
-                child: ElevatedButton(
-                  child: Text("Submit"),
-                  onPressed: () =>
-                      _handleSubmit(_college.text, _year, _phone.text),
-                ),
-              )
-            ],
-          )),
-    ));
+                        },
+                        decoration: InputDecoration(
+                            focusedBorder: OutlineInputBorder(
+                                borderSide: const BorderSide(
+                                    color: Colors.blueGrey, width: 2.0)),
+                            enabledBorder: OutlineInputBorder(
+                                borderSide: const BorderSide(
+                                    color: Colors.blueGrey, width: 1.0)),
+                            prefixIcon: Icon(
+                              Icons.school,
+                              color: Colors.blueGrey,
+                            ),
+                            border: OutlineInputBorder(),
+                            contentPadding: EdgeInsets.all(10),
+                            hintText: 'Enter your college',
+                            hintStyle: TextStyle(color: Colors.grey),
+                            labelText: 'College Name',
+                            labelStyle: TextStyle(color: Colors.black)))),
+                Container(
+                    margin: EdgeInsets.all(10),
+                    child: TextFormField(
+                        controller: _phone,
+                        validator: (value) {
+                          String patttern = r'(^(?:[+0]9)?[0-9]{10,12}$)';
+                          RegExp regExp = new RegExp(patttern);
+                          if (value == null || value.isEmpty) {
+                            return 'Required';
+                          } else if (!regExp.hasMatch(value)) {
+                            return 'Invalid Mobile Number';
+                          } else {
+                            return null;
+                          }
+                        },
+                        decoration: InputDecoration(
+                            border: OutlineInputBorder(),
+                            prefixIcon:
+                                Icon(Icons.phone, color: Colors.blueGrey),
+                            enabledBorder: OutlineInputBorder(
+                                borderSide: const BorderSide(
+                                    color: Colors.blueGrey, width: 1.0)),
+                            focusedBorder: OutlineInputBorder(
+                                borderSide: const BorderSide(
+                                    color: Colors.blueGrey, width: 2.0)),
+                            contentPadding: EdgeInsets.all(10),
+                            hintText: 'Mobile Number',
+                            hintStyle: TextStyle(color: Colors.grey),
+                            labelText: 'Mobile Number',
+                            labelStyle: TextStyle(color: Colors.black)))),
+                Container(
+                    margin: EdgeInsets.all(10),
+                    height: 50,
+                    child: InputDecorator(
+                        decoration: InputDecoration(
+                            labelText: 'Study Year',
+                            enabledBorder: OutlineInputBorder(
+                                borderSide: const BorderSide(
+                                    color: Colors.blueGrey, width: 1.0)),
+                            focusedBorder: OutlineInputBorder(
+                                borderSide: const BorderSide(
+                                    color: Colors.blueGrey, width: 2.0)),
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(5.0)),
+                            contentPadding: EdgeInsets.all(10)),
+                        child: DropdownButtonHideUnderline(
+                          child: DropdownButton<String>(
+                            hint: Text("Study Year"),
+                            icon: Icon(Icons.arrow_drop_down_outlined),
+                            isExpanded: true,
+                            iconSize: 30,
+                            elevation: 16,
+                            value: _year,
+                            onChanged: (String? newValue) {
+                              setState(() {
+                                _year = newValue!;
+                              });
+                            },
+                            items: _years.map((String value) {
+                              return DropdownMenuItem<String>(
+                                  value: value,
+                                  child: Container(
+                                    child: Text(value),
+                                  ));
+                            }).toList(),
+                          ),
+                        ))),
+                Container(
+                  child: ElevatedButton(
+                    child: (!isloading)
+                        ? Text("Submit")
+                        : CircularProgressIndicator(),
+                    style: ButtonStyle(
+                        backgroundColor:
+                            MaterialStateProperty.all(Colors.blueGrey)),
+                    onPressed: () =>
+                        _handleSubmit(_college.text, _year, _phone.text),
+                  ),
+                )
+              ],
+            )),
+      )),
+    );
   }
 
   _handleSubmit(String college, String year, String phone) async {
     final client = ApiClient.create();
     if (_formKey.currentState!.validate() == true) {
-      print("college: " + college + " year: " + year + " phone: " + phone);
+      print("college: " + college + "\n year: " + year + "\n phone: " + phone);
 
       setState(() {
-        _college.clear();
-        _phone.clear();
+        isloading = true;
       });
-
       //deal with api
 
       // deal with data and all
@@ -183,11 +220,19 @@ class _SignInModalWidgetState extends State<SignInModalWidget> {
           FetchDataProvider.user = UserDetails.fromJson(profile);
           // save to storage
           await NotificationsProvider.saveUser(FetchDataProvider.user!);
+
+          setState(() {
+            _college.clear();
+            _phone.clear();
+            isloading = false;
+          });
         }
       } catch (e) {
         print(e);
       }
       Navigator.pop(context);
+    } else {
+      print("Invalid Form Data");
     }
   }
 }

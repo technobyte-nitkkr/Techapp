@@ -95,9 +95,7 @@ class ProfilePage extends StatelessWidget {
                         showDialog(
                             context: context,
                             builder: (BuildContext context) {
-                              return AlertDialog(
-                                content: SignInModalWidget(),
-                              );
+                              return SignInModalWidget();
                             });
                       },
                       child: Text(

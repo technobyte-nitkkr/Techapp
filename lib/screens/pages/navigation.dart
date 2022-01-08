@@ -29,9 +29,21 @@ class _NavigationState extends State<Navigation> {
     ];
 
     final items = <Widget>[
-      const Icon(Icons.money_rounded, size: 30),
-      const Icon(Icons.home, size: 30),
-      const Icon(Icons.speaker_group, size: 30),
+      Icon(
+        Icons.money,
+        size: 30,
+        color: (index == 0) ? Colors.purple[800] : Colors.black,
+      ),
+      Icon(
+        Icons.home,
+        size: 30,
+        color: (index == 1) ? Colors.purple[800] : Colors.black,
+      ),
+      Icon(
+        Icons.school,
+        size: 30,
+        color: (index == 2) ? Colors.purple[800] : Colors.black,
+      ),
     ];
     return WillPopScope(
       onWillPop: () async {
