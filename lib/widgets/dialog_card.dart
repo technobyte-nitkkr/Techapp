@@ -75,10 +75,19 @@ class DialogCard extends StatelessWidget {
                       ),
                     ),
                     if (this.card.buttons != null)
-                      new Container(
-                        child: new Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: generateButton(),
+                      GridView.builder(
+                        shrinkWrap: true,
+                        physics: NeverScrollableScrollPhysics(),
+                        itemCount: this.card.buttons.length,
+                        padding: EdgeInsets.all(20),
+                        itemBuilder: (BuildContext ctx, int index) {
+                          return this.generateButton()[index];
+                        },
+                        gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                          mainAxisExtent: 40,
+                          maxCrossAxisExtent: 140,
+                          mainAxisSpacing: 10,
+                          crossAxisSpacing: 10,
                         ),
                       ),
                   ],

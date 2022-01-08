@@ -84,9 +84,27 @@ class _ChatBotWidget extends State<ChatBotWidget> {
     if (message.containsKey("quickReplies")) {
       return "quickReplies";
     }
+
+    // if (ms.type == "simpleResponses") {
+    //   var response = new SimpleResponses(message).simpleResponses[0];
+    //   if(response)
+    //   return SimpleMessage(
+    //       text: response.displayText ?? response.textToSpeech, type: false);
+    // }
+
+    if (message.containsKey("text")) {
+      var text = message["text"]["text"][0];
+      if (text.toString().trim().length > 0)
+        return SimpleMessage(text: text ?? "invalid", type: false);
+
+      return null;
+    }
+
+    return null;
   }
 
   void response(query) async {
+    int index = _messages.length;
     setState(() {
       _messages.insert(0, ChatbotLoadingReply());
     });
@@ -94,29 +112,15 @@ class _ChatBotWidget extends State<ChatBotWidget> {
     AuthGoogle authGoogle =
         await AuthGoogle(fileJson: "assets/dialog_flow_auth.json").build();
     DialogFlow dialogflow = DialogFlow(authGoogle: authGoogle, language: "en");
-
     AIResponse response = await dialogflow.detectIntent(query);
-    String? _message = response.getMessage();
-
     List<dynamic> messages = response.getListMessage();
 
-    setState(() {
-      _messages.removeAt(0);
-    });
-    // ignore: unnecessary_null_comparison
-    if (_message != null) {
-      SimpleMessage _message = new SimpleMessage(
-        text: response.getMessage(),
-        type: false,
-      );
-      setState(() {
-        _messages.insert(0, _message);
-      });
-    }
-    // ignore: unnecessary_null_comparison
-    if (messages != null) {
+    if (messages != null && messages.length > 0) {
       int quickindex = -1;
       for (var i = 0; i < messages.length; i++) {
+        setState(() {
+          _messages.removeAt(0);
+        });
         dynamic message = getWidgetMessage(messages[i]);
         if (message != null && message != "quickReplies") {
           setState(() {
@@ -125,6 +129,13 @@ class _ChatBotWidget extends State<ChatBotWidget> {
         } else if (message == "quickReplies") {
           quickindex = i;
         }
+        if (i < messages.length - 1) {
+          setState(() {
+            _messages.insert(0, ChatbotLoadingReply());
+          });
+        }
+
+        await Future.delayed(Duration(seconds: 1));
       }
       if (quickindex != -1) {
         print(quickindex);
