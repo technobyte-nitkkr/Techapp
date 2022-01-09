@@ -74,14 +74,21 @@ class ContactSwiperCard extends StatelessWidget {
               height: MediaQuery.of(context).size.width * 0.5,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(32),
-                image: DecorationImage(
-                  image: NetworkImage(people.imageUrl),
+              ),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(32),
+                child: FadeInImage.assetNetwork(
+                  placeholder: 'assets/images/technologo.png',
+                  image: people.imageUrl,
                   fit: BoxFit.cover,
+                  imageErrorBuilder: (context, error, stackTrace) =>
+                      Image.asset('assets/images/technologo.png',
+                          fit: BoxFit.cover),
                 ),
               ),
             ),
           ),
-        ),
+        )
       ],
     );
   }

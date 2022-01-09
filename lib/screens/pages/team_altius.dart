@@ -28,7 +28,7 @@ class _TeamAltiusState extends State<TeamAltius> {
   void initState() {
     super.initState();
     _controller.addListener(() {
-      double value = _controller.offset / 130;
+      double value = _controller.offset / 120;
 
       setState(() {
         topContainer = value;
@@ -78,11 +78,7 @@ class _TeamAltiusState extends State<TeamAltius> {
                         child: Transform(
                           transform: Matrix4.identity()..scale(scale, scale),
                           alignment: Alignment.bottomCenter,
-                          child: Align(
-                            heightFactor: 0.8,
-                            alignment: Alignment.topCenter,
-                            child: ContactCard(contact: contacts[index]),
-                          ),
+                          child: ContactCard(contact: contacts[index]),
                         ),
                       );
                     },
@@ -134,15 +130,8 @@ class ContactCard extends StatelessWidget {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20.0),
             color: Colors.white,
-            boxShadow: [
-              BoxShadow(
-                color: Colors.grey,
-                blurRadius: 3,
-                offset: Offset(0, -2),
-              ),
-            ],
           ),
-          height: 150,
+          height: 100,
           padding: EdgeInsets.all(10.0),
           child: Column(
             children: [
@@ -157,7 +146,7 @@ class ContactCard extends StatelessWidget {
                   ),
                   CircleAvatar(
                     backgroundImage: AssetImage('assets/images/technologo.png'),
-                    radius: 40,
+                    radius: 30,
                   ),
                   SizedBox(
                     width: 50,
@@ -165,28 +154,11 @@ class ContactCard extends StatelessWidget {
                   Expanded(
                     child: Text(
                       contact.section,
-                      style:
-                          TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                      style: TextStyle(
+                          fontSize: 25,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black.withOpacity(0.5)),
                     ),
-                  ),
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: <Widget>[
-                  Text(
-                    'Know more',
-                    style: TextStyle(
-                      fontFamily: 'Avenir',
-                      fontSize: 18,
-                      color: grey,
-                      fontWeight: FontWeight.w500,
-                    ),
-                    textAlign: TextAlign.left,
-                  ),
-                  Icon(
-                    Icons.arrow_forward,
-                    color: grey,
                   ),
                 ],
               ),
