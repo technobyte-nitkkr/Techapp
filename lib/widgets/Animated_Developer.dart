@@ -1,6 +1,7 @@
 // @dart=2.9
 import 'dart:async';
 import 'dart:ui';
+import 'package:card_swiper/card_swiper.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
@@ -18,44 +19,11 @@ class AnimatedDeveloper extends StatefulWidget {
 }
 
 class _AnimatedDeveloperState extends State<AnimatedDeveloper> {
-  List<String> data = [
-    "https://cdn.dribbble.com/users/3281732/screenshots/8159457/media/9e7bfb83b0bd704e941baa7a44282b22.jpg?compress=1&resize=600x600",
-    "https://cdn.dribbble.com/users/3281732/screenshots/7012328/media/bcd672685071ca4da27d5f3ea44ac5db.jpg?compress=1&resize=600x600",
-    "https://cdn.dribbble.com/users/3281732/screenshots/6727912/samji_illustrator.jpeg?compress=1&resize=600x600",
-    "https://cdn.dribbble.com/users/3281732/screenshots/10940512/media/b2a8ea95c550e5f09d0ca07682a3c0da.jpg?compress=1&resize=600x600",
-    "https://cdn.dribbble.com/users/3281732/screenshots/8616916/media/a7e39b15640f8883212421d134013e38.jpg?compress=1&resize=600x600",
-    "https://cdn.dribbble.com/users/3281732/screenshots/6590709/samji_illustrator.jpg?compress=1&resize=600x600",
-  ];
-
   int _currentPage = 0;
-  PageController _pageController = PageController(
-    initialPage: 0,
-  );
-  Timer _timer;
-
-  @override
-  void initState() {
-    super.initState();
-    _currentPage = 0;
-    _timer = Timer.periodic(Duration(seconds: 2), (Timer timer) {
-      if (_currentPage < 5) {
-        _currentPage++;
-      } else {
-        _currentPage = 0;
-      }
-
-      _pageController.animateToPage(
-        _currentPage,
-        duration: Duration(milliseconds: 350),
-        curve: Curves.easeIn,
-      );
-    });
-  }
 
   @override
   void dispose() {
     super.dispose();
-    _timer?.cancel();
   }
 
   @override
@@ -90,17 +58,20 @@ class _AnimatedDeveloperState extends State<AnimatedDeveloper> {
               AnimatedSwitcher(
                 duration: Duration(milliseconds: 500),
                 child: Container(
-                  key: ValueKey<String>(data[_currentPage]),
+                  height: MediaQuery.of(context).size.height,
+                  width: MediaQuery.of(context).size.width,
                   decoration: BoxDecoration(
                     image: DecorationImage(
-                      image: NetworkImage(data[_currentPage]),
+                      image: AssetImage('assets/images/developers/wall' +
+                          (_currentPage + 1).toString() +
+                          '.png'),
                       fit: BoxFit.cover,
                     ),
                   ),
                   child: BackdropFilter(
                     filter: ImageFilter.blur(
-                      sigmaX: 15,
-                      sigmaY: 15,
+                      sigmaX: 5,
+                      sigmaY: 5,
                     ),
                     child: Container(
                       color: Colors.black.withOpacity(0.2),
@@ -108,23 +79,35 @@ class _AnimatedDeveloperState extends State<AnimatedDeveloper> {
                   ),
                 ),
               ),
-              FractionallySizedBox(
-                heightFactor: 0.55,
-                child: PageView.builder(
-                  itemCount: developers.length,
-                  onPageChanged: (int page) {
-                    setState(() {
-                      _currentPage = page;
-                    });
-                  },
-                  controller: _pageController,
-                  itemBuilder: (BuildContext context, int index) {
-                    return FractionallySizedBox(
-                        widthFactor: 0.8,
-                        child: DeveloperWidget(developer: developers[index]));
-                  },
-                ),
-              )
+              Column(
+                children: [
+                  SizedBox(
+                    height: 100,
+                  ),
+                  Container(
+                    height: MediaQuery.of(context).size.height * 0.7,
+                    padding: EdgeInsets.symmetric(horizontal: 20),
+                    child: Swiper(
+                      itemHeight: MediaQuery.of(context).size.height * 0.5,
+                      itemWidth: MediaQuery.of(context).size.width * 0.8,
+                      onIndexChanged: (index) {
+                        setState(() {
+                          _currentPage = index % 6;
+                        });
+                      },
+                      itemCount: developers.length,
+                      layout: SwiperLayout.TINDER,
+                      autoplay: true,
+                      autoplayDelay: 2000,
+                      itemBuilder: (context, index) {
+                        return DeveloperWidget(
+                          developer: developers[index],
+                        );
+                      },
+                    ),
+                  ),
+                ],
+              ),
             ],
           );
         } else {
