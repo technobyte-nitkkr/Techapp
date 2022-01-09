@@ -20,11 +20,6 @@ class FetchDataProvider {
     final _user = await NotificationsProvider.getUser();
     var _token;
     if (_user != null) {
-      if (await NotificationsProvider.checkLoginTime()) {
-        print("login expired");
-        await FirebaseAuth.instance.signOut();
-      }
-
       user = UserDetails.fromJson(_user);
       jwt = await NotificationsProvider.getToken();
       print("got the user form local storage");
@@ -37,14 +32,14 @@ class FetchDataProvider {
         print("got token form local storage");
         try {
           final data = await client.login({"idToken": _token});
-          print(data.toJson());
+          // print(data.toJson());
           if (data.success) {
-            print(data);
+            // print(data);
             var token = data.data['token'];
             FetchDataProvider.jwt = token;
             await NotificationsProvider.saveToken(token);
             // set login time
-            await NotificationsProvider.saveLoginTime();
+
             // got the profle form api
             print("got the profile form api");
 

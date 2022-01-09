@@ -1,12 +1,10 @@
 // ignore_for_file: import_of_legacy_library_into_null_safe
 // @dart=2.9
-import 'dart:convert';
 
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
-import 'package:slimy_card/slimy_card.dart';
 import 'package:techapp/models/Speaker.dart';
 import 'package:folding_cell/folding_cell.dart';
 import 'package:techapp/retrofit/api_client.dart';

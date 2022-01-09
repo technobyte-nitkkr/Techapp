@@ -23,8 +23,7 @@ const kShadowColor = Color(0xFFE6E6E6);
 
 const defaultPadding = 20.0;
 
-// ignore: prefer_const_constructors
-final TextStyle mainTitle = TextStyle(
+const TextStyle mainTitle = TextStyle(
   fontSize: 26.0,
   fontWeight: FontWeight.bold,
   color: Colors.black,

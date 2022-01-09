@@ -36,6 +36,7 @@ class _NotificationsWidgetState extends State<NotificationsWidget> {
 
   @override
   Widget build(BuildContext context) {
+    // print(FetchDataProvider.user?.toJson().toString());
     return PageLayout(
       child: SafeArea(
         child: SingleChildScrollView(
@@ -96,7 +97,8 @@ class _NotificationsWidgetState extends State<NotificationsWidget> {
                   },
                   child: Text("Clear"),
                 ),
-              if (_notificatinons.length == 0)
+              if (_notificatinons.length == 0 &&
+                  FetchDataProvider.user?.role != "user")
                 ButtonBar(
                   alignment: MainAxisAlignment.center,
                   children: [

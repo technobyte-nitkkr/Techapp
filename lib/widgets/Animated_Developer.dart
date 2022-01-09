@@ -1,5 +1,6 @@
 // @dart=2.9
 import 'dart:async';
+import 'dart:math';
 import 'dart:ui';
 import 'package:card_swiper/card_swiper.dart';
 import 'package:dio/dio.dart';
@@ -85,10 +86,11 @@ class _AnimatedDeveloperState extends State<AnimatedDeveloper> {
                     height: 100,
                   ),
                   Container(
-                    height: MediaQuery.of(context).size.height * 0.7,
+                    height: MediaQuery.of(context).size.height * 0.8,
                     padding: EdgeInsets.symmetric(horizontal: 20),
                     child: Swiper(
-                      itemHeight: MediaQuery.of(context).size.height * 0.5,
+                      itemHeight:
+                          min(MediaQuery.of(context).size.height * 0.6, 600),
                       itemWidth: MediaQuery.of(context).size.width * 0.8,
                       onIndexChanged: (index) {
                         setState(() {
@@ -140,26 +142,12 @@ class DeveloperWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DeveloperCard(
-        name: developer.name,
-        imageSrc: developer.imageurl,
-        year: developer.year,
-        link: developer.link,
-        press: () async {
-          if (!await canLaunch(developer.link)) {
-            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                content: Text("Link Invalid !!", textAlign: TextAlign.center),
-                backgroundColor: Colors.orange,
-                behavior: SnackBarBehavior.floating,
-                duration: const Duration(seconds: 3),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(10))),
-                margin: EdgeInsets.only(
-                    bottom: MediaQuery.of(context).size.height - 100,
-                    right: 20,
-                    left: 20)));
-          } else {
-            await launch(developer.link);
-          }
-        });
+      name: developer.name,
+      imageSrc: developer.imageurl,
+      year: developer.year,
+      linkedin: developer.linkedin,
+      github: developer.github,
+      insta: developer.insta,
+    );
   }
 }

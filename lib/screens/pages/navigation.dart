@@ -1,5 +1,6 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:techapp/screens/components/style.dart';
 import 'package:techapp/screens/pages/speakers.dart';
 import 'package:techapp/screens/pages/sponsors.dart';
@@ -29,20 +30,23 @@ class _NavigationState extends State<Navigation> {
     ];
 
     final items = <Widget>[
-      Icon(
-        Icons.money,
+      FaIcon(
+        FontAwesomeIcons.moneyBill,
         size: 30,
-        color: (index == 0) ? Colors.purple[800] : Colors.black,
+        color:
+            (index == 0) ? Colors.purple[800] : Colors.black.withOpacity(0.5),
       ),
-      Icon(
-        Icons.home,
+      FaIcon(
+        FontAwesomeIcons.home,
         size: 30,
-        color: (index == 1) ? Colors.purple[800] : Colors.black,
+        color:
+            (index == 1) ? Colors.purple[800] : Colors.black.withOpacity(0.5),
       ),
-      Icon(
-        Icons.school,
+      FaIcon(
+        FontAwesomeIcons.laptopCode,
         size: 30,
-        color: (index == 2) ? Colors.purple[800] : Colors.black,
+        color:
+            (index == 2) ? Colors.purple[800] : Colors.black.withOpacity(0.5),
       ),
     ];
     return WillPopScope(

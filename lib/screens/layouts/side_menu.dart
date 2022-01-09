@@ -9,6 +9,7 @@ class SideMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
+      elevation: 100,
       child: Stack(
         children: [
           getGradient(),

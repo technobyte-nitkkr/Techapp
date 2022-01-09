@@ -408,6 +408,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.2"
+  font_awesome_flutter:
+    dependency: "direct main"
+    description:
+      name: font_awesome_flutter
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "9.2.0"
   frontend_server_client:
     dependency: transitive
     description:
@@ -723,6 +730,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.0.1+1"
+  salomon_bottom_bar:
+    dependency: "direct main"
+    description:
+      name: salomon_bottom_bar
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.2.0"
   shelf:
     dependency: transitive
     description:

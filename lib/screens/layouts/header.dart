@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:techapp/providers/fetch_data_provider.dart';
 import 'package:techapp/screens/pages/chatbot.dart';
 import 'package:techapp/screens/pages/notifications.dart';
@@ -76,9 +77,9 @@ class Header extends StatelessWidget {
                           MaterialPageRoute(
                               builder: (context) => ChatBotWidget()));
                     },
-                    icon: Icon(
-                      Icons.question_answer,
-                      size: 30,
+                    icon: FaIcon(
+                      FontAwesomeIcons.discord,
+                      size: 25,
                       color: white,
                     ),
                   )

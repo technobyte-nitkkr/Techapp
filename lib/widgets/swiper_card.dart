@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:techapp/screens/components/style.dart';
@@ -46,8 +47,9 @@ class SwiperCard extends StatelessWidget {
                               height: min(
                                   MediaQuery.of(context).size.width * 0.35,
                                   400)),
-                          Text(
-                            categoryName,
+                          AutoSizeText(
+                            categoryName.substring(0, 1).toUpperCase() +
+                                categoryName.substring(1),
                             style: TextStyle(
                               fontFamily: 'Avenir',
                               fontSize:
@@ -55,6 +57,7 @@ class SwiperCard extends StatelessWidget {
                               color: const Color(0xff47455f),
                               fontWeight: FontWeight.w900,
                             ),
+                            maxLines: 1,
                             textAlign: TextAlign.left,
                           ),
                           SizedBox(height: 16),

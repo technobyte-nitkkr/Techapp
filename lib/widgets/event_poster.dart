@@ -13,7 +13,7 @@ class EventPosterWidget extends StatelessWidget {
                 tag: item.eventName,
                 child: FadeInImage.assetNetwork(
                     placeholder: 'assets/images/technologo.png',
-                    image: item.file,
+                    image: item.poster,
                     fit: BoxFit.contain,
                     imageErrorBuilder: (context, error, stackTrace) =>
                         Image.asset('assets/images/technologo.png')))),

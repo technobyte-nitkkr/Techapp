@@ -4,7 +4,8 @@ class Event {
   final String eventName;
   final String eventCategory;
   final String description;
-  final String file;
+  final String poster;
+  final String document;
   final List<String> rules;
   final String flagship;
   final String venue;
@@ -16,7 +17,8 @@ class Event {
       {required this.eventName,
       required this.eventCategory,
       required this.description,
-      required this.file,
+      required this.poster,
+      required this.document,
       required this.rules,
       required this.flagship,
       required this.venue,
@@ -28,7 +30,8 @@ class Event {
       : eventName = json['eventName'],
         eventCategory = json['eventCategory'],
         description = json['description'],
-        file = json['file'],
+        poster = json['poster'] ?? '',
+        document = json['document'] ?? '',
         rules =
             json['rules'] != null ? new List<String>.from(json['rules']) : [],
         flagship = json['flagship'],

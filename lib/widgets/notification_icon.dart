@@ -31,21 +31,22 @@ class NamedIcon extends StatelessWidget {
                 Icon(iconData, color: color, size: size),
               ],
             ),
-            Positioned(
-              top: 0,
-              right: 0,
-              child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 4, vertical: 1),
-                decoration:
-                    BoxDecoration(shape: BoxShape.circle, color: Colors.red),
-                alignment: Alignment.center,
-                child: Text(
-                  '$notificationCount',
-                  style: TextStyle(
-                      color: Colors.white, fontWeight: FontWeight.bold),
+            if (notificationCount > 0)
+              Positioned(
+                top: 0,
+                right: 0,
+                child: Container(
+                  padding: EdgeInsets.symmetric(horizontal: 4, vertical: 1),
+                  decoration:
+                      BoxDecoration(shape: BoxShape.circle, color: Colors.red),
+                  alignment: Alignment.center,
+                  child: Text(
+                    '$notificationCount',
+                    style: TextStyle(
+                        color: Colors.white, fontWeight: FontWeight.bold),
+                  ),
                 ),
-              ),
-            )
+              )
           ],
         ),
       ),

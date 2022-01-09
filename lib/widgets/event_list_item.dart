@@ -47,7 +47,7 @@ class ListItem extends StatelessWidget {
                           height: 100,
                           child: FadeInImage.assetNetwork(
                               placeholder: 'assets/images/technologo.png',
-                              image: item.file,
+                              image: item.poster,
                               fit: BoxFit.cover,
                               imageErrorBuilder: (context, error, stackTrace) =>
                                   Image.asset('assets/images/technologo.png'))),

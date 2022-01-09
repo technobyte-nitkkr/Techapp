@@ -55,7 +55,8 @@ class EventsByCategory extends StatelessWidget {
                 ),
                 // text astronomy
                 Text(
-                  categoryName,
+                  categoryName.substring(0, 1).toUpperCase() +
+                      categoryName.substring(1),
                   style: TextStyle(
                     fontFamily: 'Avenir',
                     fontSize: 30,

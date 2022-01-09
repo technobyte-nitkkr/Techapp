@@ -1,5 +1,4 @@
 // @dart=2.9
-import 'dart:convert';
 import 'dart:math';
 import 'package:card_swiper/card_swiper.dart';
 import 'package:dio/dio.dart';
@@ -23,8 +22,10 @@ class Home extends StatelessWidget {
         future: client.getCategories(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
+            List<String> categories = snapshot.data.getCategories();
+            categories = categories.reversed.toList();
             return DataToLoad(
-              categories: snapshot.data.getCategories(),
+              categories: categories,
             );
           } else if (snapshot.hasError) {
             final errormessage = (snapshot.error as DioError).error.toString();
