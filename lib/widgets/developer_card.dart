@@ -21,55 +21,54 @@ class DeveloperCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(13),
-      child: Container(
-        // padding: EdgeInsets.all(20),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(13),
-          boxShadow: [
-            BoxShadow(
-              offset: Offset(0, 17),
-              blurRadius: 17,
-              spreadRadius: -23,
-              color: kShadowColor,
-            ),
-          ],
-        ),
-        child: Material(
-          color: Colors.transparent,
-          child: InkWell(
-            onTap: press,
-            child: Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Column(
-                children: <Widget>[
-                  Spacer(),
-                  Image.network(
-                    imageSrc,
-                    height: 80,
-                    width: 80,
-                    fit: BoxFit.cover,
+    return Container(
+      // padding: EdgeInsets.all(20),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(13),
+        boxShadow: [
+          BoxShadow(
+            offset: Offset(0, 17),
+            blurRadius: 17,
+            spreadRadius: -23,
+            color: kShadowColor,
+          ),
+        ],
+      ),
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          onTap: press,
+          child: Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Column(
+              children: <Widget>[
+                Spacer(),
+                Image.network(
+                  imageSrc,
+                  height: 180,
+                  width: 180,
+                  fit: BoxFit.cover,
+                ),
+                Divider(),
+                AutoSizeText(
+                  name,
+                  style: TextStyle(
+                    fontSize: 25.0,
                   ),
-                  Spacer(),
-                  AutoSizeText(
-                    name,
-                    style: TextStyle(
-                      fontSize: 15.0,
-                    ),
-                    maxLines: 1,
+                  maxLines: 1,
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                AutoSizeText(
+                  year + ' Year',
+                  style: TextStyle(
+                    fontSize: 25.0,
                   ),
-                  Spacer(),
-                  AutoSizeText(
-                    year + ' Year',
-                    style: TextStyle(
-                      fontSize: 15.0,
-                    ),
-                    maxLines: 1,
-                  ),
-                ],
-              ),
+                  maxLines: 1,
+                ),
+              ],
             ),
           ),
         ),
