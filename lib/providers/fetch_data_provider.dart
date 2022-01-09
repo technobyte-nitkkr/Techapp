@@ -1,4 +1,3 @@
-import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:techapp/models/event_by_categories.dart';
 import 'package:techapp/models/event_all.dart';

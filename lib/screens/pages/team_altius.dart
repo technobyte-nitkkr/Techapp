@@ -8,50 +8,95 @@ import 'package:techapp/models/section.dart';
 import 'package:techapp/retrofit/api_client.dart';
 import 'package:techapp/screens/components/style.dart';
 import 'package:techapp/screens/layouts/page_layout.dart';
+import 'package:techapp/screens/pages/team_details.dart';
 
-class TeamAltius extends StatelessWidget {
+class TeamAltius extends StatefulWidget {
   TeamAltius({
     Key key,
   }) : super(key: key);
 
-  // final _trackingScrollController = TrackingScrollController();
+  @override
+  State<TeamAltius> createState() => _TeamAltiusState();
+}
+
+class _TeamAltiusState extends State<TeamAltius> {
+  double topContainer = 0;
+
+  ScrollController _controller = ScrollController();
+
+  @override
+  void initState() {
+    super.initState();
+    _controller.addListener(() {
+      double value = _controller.offset / 120;
+
+      setState(() {
+        topContainer = value;
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     final client = ApiClient.create();
-    return PageLayout(
-      child: Padding(
-        padding: const EdgeInsets.all(15.0),
-        child: FutureBuilder(
-          future: client.getTeam(),
-          builder: (context, snapshot) {
-            if (snapshot.hasData) {
-              List<Contacts> contacts = snapshot.data.getTeam();
-              return GridView.builder(
-                shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
-                itemCount: contacts.length,
-                itemBuilder: (BuildContext ctx, int index) {
-                  return ContactCard(contact: contacts[index]);
-                },
-                gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                  maxCrossAxisExtent: 200,
-                  mainAxisSpacing: 10,
-                  crossAxisSpacing: 10,
-                ),
-              );
-            } else {
-              return SizedBox(
-                height: MediaQuery.of(context).size.height * 0.6,
-                width: MediaQuery.of(context).size.width,
-                child: Center(
-                  child: LoadingAnimationWidget.dotsTriangle(
-                      color: white, size: 200),
-                ),
-              );
-            }
-          },
-        ),
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        title: Text("Team Altius"),
+      ),
+      extendBodyBehindAppBar: true,
+      backgroundColor: black,
+      body: Stack(
+        children: [
+          getGradient(),
+          Container(
+            padding: const EdgeInsets.all(10),
+            child: FutureBuilder(
+              future: client.getTeam(),
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  List<Contacts> contacts = snapshot.data.getTeam().toList();
+                  contacts = contacts.reversed.toList();
+                  return ListView.builder(
+                    // reverse: true,
+                    physics: BouncingScrollPhysics(),
+                    controller: _controller,
+                    itemCount: contacts.length,
+                    itemBuilder: (BuildContext ctx, int index) {
+                      double scale = 1.0;
+                      if (topContainer > 0.5) {
+                        scale = index + 0.5 - topContainer;
+                        if (scale < 0) {
+                          scale = 0;
+                        } else if (scale > 1) {
+                          scale = 1;
+                        }
+                      }
+                      return Opacity(
+                        opacity: scale,
+                        child: Transform(
+                          transform: Matrix4.identity()..scale(scale, scale),
+                          alignment: Alignment.bottomCenter,
+                          child: ContactCard(contact: contacts[index]),
+                        ),
+                      );
+                    },
+                  );
+                } else {
+                  return SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.6,
+                    width: MediaQuery.of(context).size.width,
+                    child: Center(
+                      child: LoadingAnimationWidget.dotsTriangle(
+                          color: white, size: 200),
+                    ),
+                  );
+                }
+              },
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -67,107 +112,60 @@ class ContactCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+      color: Colors.transparent,
+      elevation: 5,
+      shadowColor: Colors.grey,
       child: InkWell(
         onTap: () {
-          showDialog(
-            context: context,
-            builder: (context) {
-              return AlertDialog(
-                title: Center(
-                  child: Text(
-                    contact.section,
-                    style: TextStyle(
-                      fontSize: 30.0,
-                    ),
-                  ),
-                ),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(40.0),
-                ),
-                elevation: 16,
-                content: Container(
-                    height: MediaQuery.of(context).size.height * 0.6,
-                    width: 400.0,
-                    alignment: Alignment.center,
-                    child: ListView.builder(
-                        shrinkWrap: true,
-                        itemCount: contact.people.length,
-                        itemBuilder: (context, id) {
-                          return buildwid(contact.people[id].imageUrl,
-                              contact.people[id].name, contact.people[id].post);
-                        })),
-              );
-            },
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => TeamDetail(
+                contacts: contact,
+              ),
+            ),
           );
         },
-        child: Column(
-          children: [
-            SizedBox(
-              height: 20,
-            ),
-            CircleAvatar(
-              backgroundImage: AssetImage('assets/images/technologo.png'),
-              radius: 40,
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            Text(
-              contact.section,
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-            ),
-          ],
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20.0),
+            color: Colors.white,
+          ),
+          height: 100,
+          padding: EdgeInsets.all(10.0),
+          child: Column(
+            children: [
+              SizedBox(
+                height: 10.0,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  SizedBox(
+                    width: 10,
+                  ),
+                  CircleAvatar(
+                    backgroundImage: AssetImage('assets/images/technologo.png'),
+                    radius: 30,
+                  ),
+                  SizedBox(
+                    width: 50,
+                  ),
+                  Expanded(
+                    child: Text(
+                      contact.section,
+                      style: TextStyle(
+                          fontSize: 25,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black.withOpacity(0.5)),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
   }
-}
-
-Widget buildwid(String imageUrl, String name, String post) {
-  return Container(
-    child: Column(
-      children: <Widget>[
-        SizedBox(
-          height: 10.0,
-        ),
-        ClipOval(
-          child: FadeInImage.assetNetwork(
-            height: 130,
-            width: 130,
-            placeholder: 'assets/images/technologo.png',
-            image: imageUrl,
-            fit: BoxFit.cover,
-            imageErrorBuilder: (context, error, stackTrace) => Image.asset(
-              'assets/images/technologo.png',
-              height: 130.0,
-              width: 130.0,
-            ),
-          ),
-        ),
-        SizedBox(
-          height: 10.0,
-        ),
-        AutoSizeText(
-          name.toUpperCase(),
-          style: TextStyle(
-            letterSpacing: 1.0,
-            fontSize: 25.0,
-          ),
-          maxLines: 1,
-        ),
-
-        SizedBox(
-          height: 10.0,
-        ),
-        Text(
-          post.toUpperCase(),
-          style: TextStyle(fontSize: 15.0),
-        ),
-        SizedBox(
-          height: 20.0,
-        ),
-        // Spacer(),
-      ],
-    ),
-  );
 }

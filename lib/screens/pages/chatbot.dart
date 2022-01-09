@@ -160,6 +160,12 @@ class _ChatBotWidget extends State<ChatBotWidget> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    response("hi");
+  }
+
+  @override
   Widget build(BuildContext context) {
     this.buildContext = context;
     return Stack(
