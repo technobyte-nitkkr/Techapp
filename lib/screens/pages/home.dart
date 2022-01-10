@@ -33,7 +33,7 @@ class Home extends StatelessWidget {
             return Center(
               child: Text(
                 errormessage ?? "Error",
-                style: TextStyle(color: white, fontSize: 20),
+                style: h1s,
               ),
             );
           }
@@ -69,12 +69,7 @@ class DataToLoad extends StatelessWidget {
             children: <Widget>[
               Text(
                 'Event Categories',
-                style: TextStyle(
-                  fontFamily: 'Avenir',
-                  fontSize: 30,
-                  color: white,
-                  fontWeight: FontWeight.w900,
-                ),
+                style: Pagelabel,
                 textAlign: TextAlign.left,
               ),
               SizedBox(

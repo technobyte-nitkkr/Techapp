@@ -14,11 +14,10 @@ class Developers extends StatelessWidget {
       backgroundColor: Colors.transparent,
       extendBodyBehindAppBar: true,
       appBar: new AppBar(
-          title: Text('Developers',
-              style: TextStyle(
-                color: white,
-                fontSize: 20,
-              )),
+          title: Text(
+            'Developers',
+            style: h2s,
+          ),
           elevation: 0,
           backgroundColor: Colors.transparent,
           leading: new IconButton(

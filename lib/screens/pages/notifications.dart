@@ -50,14 +50,7 @@ class _NotificationsWidgetState extends State<NotificationsWidget> {
                   scrollDirection: Axis.horizontal,
                   controller: _trackingScrollController,
                   dragStartBehavior: DragStartBehavior.start,
-                  child: Text(
-                    "Notifications",
-                    style: TextStyle(
-                      color: white,
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
+                  child: Text("Notifications", style: Pagelabel),
                 ),
               ),
               SizedBox(
@@ -65,14 +58,7 @@ class _NotificationsWidgetState extends State<NotificationsWidget> {
               ),
               _notificatinons.length == 0
                   ? Container(
-                      child: Text(
-                        "No notifications",
-                        style: TextStyle(
-                          color: white,
-                          fontSize: 30,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
+                      child: Text("No notifications", style: h2s),
                     )
                   : ListView.builder(
                       shrinkWrap: true,

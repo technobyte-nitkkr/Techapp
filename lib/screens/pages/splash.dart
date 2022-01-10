@@ -158,30 +158,34 @@ class SplashAnimation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: MediaQuery.of(context).size.width,
-      height: MediaQuery.of(context).size.height,
-      decoration: BoxDecoration(color: technoBackColor),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          SizedBox(
-            height: MediaQuery.of(context).size.height * 0.2,
+    return Stack(
+      children: [
+        getGradient(),
+        Container(
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.2,
+              ),
+              Image.asset(
+                'assets/images/logo.png',
+                width: MediaQuery.of(context).size.width * 0.6,
+                height: MediaQuery.of(context).size.height * 0.4,
+              ),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.2,
+              ),
+              Flexible(
+                child: LoadingAnimationWidget.staggeredDotWave(
+                    color: white, size: 50),
+              ),
+            ],
           ),
-          Image.asset(
-            'assets/images/logo.png',
-            width: MediaQuery.of(context).size.width * 0.4,
-            height: MediaQuery.of(context).size.height * 0.4,
-          ),
-          SizedBox(
-            height: MediaQuery.of(context).size.height * 0.2,
-          ),
-          Flexible(
-            child:
-                LoadingAnimationWidget.staggeredDotWave(color: white, size: 50),
-          ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

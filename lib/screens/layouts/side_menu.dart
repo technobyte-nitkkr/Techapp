@@ -9,10 +9,10 @@ class SideMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
+      backgroundColor: Colors.black.withOpacity(0.8),
       elevation: 100,
       child: Stack(
         children: [
-          getGradient(),
           ListView(
             children: [
               GestureDetector(
@@ -31,7 +31,7 @@ class SideMenu extends StatelessWidget {
                             )
                           : CircleAvatar(
                               backgroundImage: AssetImage(
-                                'assets/images/technologo.png',
+                                'assets/images/altius.png',
                               ),
                               radius: 40,
                             ),
@@ -40,14 +40,14 @@ class SideMenu extends StatelessWidget {
                       ),
                       Text(
                         "${FirebaseAuth.instance.currentUser != null ? FirebaseAuth.instance.currentUser!.displayName : "Dummy Name"}",
-                        style: TextStyle(color: white),
+                        style: h4s,
                       ),
                       const SizedBox(
                         height: 2,
                       ),
                       Text(
                           "${FirebaseAuth.instance.currentUser != null ? FirebaseAuth.instance.currentUser!.email : "Dummy Email"}",
-                          style: TextStyle(color: white)),
+                          style: h4s),
                     ],
                   ),
                 ),
@@ -59,7 +59,7 @@ class SideMenu extends StatelessWidget {
               ListTile(
                 title: Text(
                   'Home',
-                  style: TextStyle(color: Colors.white),
+                  style: h4s,
                 ),
                 leading: Icon(
                   Icons.home,
@@ -74,6 +74,7 @@ class SideMenu extends StatelessWidget {
               Divider(
                 height: 1,
                 thickness: 1,
+                color: Colors.grey.withOpacity(0.5),
               ),
               DrawerItem(
                   title: "My Events",
@@ -88,8 +89,7 @@ class SideMenu extends StatelessWidget {
                   route: '/developers',
                   icon: Icons.developer_mode),
               ListTile(
-                title:
-                    Text('Your Profile', style: TextStyle(color: Colors.white)),
+                title: Text('Your Profile', style: h4s),
                 leading: Icon(
                   Icons.person,
                   color: white,
@@ -102,9 +102,10 @@ class SideMenu extends StatelessWidget {
               Divider(
                 height: 1,
                 thickness: 1,
+                color: Colors.grey.withOpacity(0.5),
               ),
               ListTile(
-                title: Text('Logout', style: TextStyle(color: Colors.white)),
+                title: Text('Logout', style: h4s),
                 leading: Icon(
                   Icons.logout_outlined,
                   color: white,
@@ -119,9 +120,7 @@ class SideMenu extends StatelessWidget {
                 },
               ),
               Divider(
-                height: 1,
-                thickness: 1,
-              ),
+                  height: 1, thickness: 1, color: Colors.grey.withOpacity(0.5)),
             ],
           ),
         ],
@@ -147,7 +146,7 @@ class DrawerItem extends StatelessWidget {
     return Column(
       children: [
         ListTile(
-          title: Text(title, style: TextStyle(color: Colors.white)),
+          title: Text(title, style: h4s),
           leading: Icon(
             icon,
             color: white,
@@ -157,10 +156,7 @@ class DrawerItem extends StatelessWidget {
             Navigator.pushNamed(context, route);
           },
         ),
-        Divider(
-          height: 1,
-          thickness: 1,
-        ),
+        Divider(height: 1, thickness: 1, color: Colors.grey.withOpacity(0.5)),
       ],
     );
   }

@@ -1,5 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:techapp/screens/components/style.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -40,9 +41,7 @@ class DeveloperCard extends StatelessWidget {
           Divider(),
           AutoSizeText(
             name,
-            style: TextStyle(
-              fontSize: 25.0,
-            ),
+            style: h1,
             maxLines: 1,
           ),
           SizedBox(
@@ -50,9 +49,7 @@ class DeveloperCard extends StatelessWidget {
           ),
           AutoSizeText(
             year + ' Year',
-            style: TextStyle(
-              fontSize: 20,
-            ),
+            style: h2,
             maxLines: 1,
           ),
           SizedBox(

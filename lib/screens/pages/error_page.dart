@@ -20,12 +20,7 @@ class ErrorPagge extends StatelessWidget {
             children: <Widget>[
               Text(
                 message,
-                style: TextStyle(
-                  fontFamily: 'Avenir',
-                  fontSize: 30,
-                  color: white,
-                  fontWeight: FontWeight.w900,
-                ),
+                style: h1,
                 textAlign: TextAlign.center,
               ),
               SizedBox(

@@ -33,20 +33,23 @@ class _NavigationState extends State<Navigation> {
       FaIcon(
         FontAwesomeIcons.moneyBill,
         size: 30,
-        color:
-            (index == 0) ? Colors.purple[800] : Colors.black.withOpacity(0.5),
+        color: (index == 0)
+            ? Colors.black.withOpacity(0.8)
+            : Colors.black.withOpacity(0.5),
       ),
       FaIcon(
         FontAwesomeIcons.home,
         size: 30,
-        color:
-            (index == 1) ? Colors.purple[800] : Colors.black.withOpacity(0.5),
+        color: (index == 1)
+            ? Colors.black.withOpacity(0.8)
+            : Colors.black.withOpacity(0.5),
       ),
       FaIcon(
         FontAwesomeIcons.laptopCode,
         size: 30,
-        color:
-            (index == 2) ? Colors.purple[800] : Colors.black.withOpacity(0.5),
+        color: (index == 2)
+            ? Colors.black.withOpacity(0.8)
+            : Colors.black.withOpacity(0.5),
       ),
     ];
     return WillPopScope(
@@ -76,7 +79,7 @@ class _NavigationState extends State<Navigation> {
           child: CurvedNavigationBar(
             backgroundColor: Colors.transparent,
             color: white,
-            height: 50,
+            height: 45,
             index: index,
             animationDuration: const Duration(milliseconds: 450),
             items: items,

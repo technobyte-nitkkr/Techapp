@@ -30,12 +30,7 @@ class TeamDetail extends StatelessWidget {
               ),
               Text(
                 contacts.section,
-                style: TextStyle(
-                  fontFamily: 'Avenir',
-                  fontSize: 40,
-                  color: white,
-                  fontWeight: FontWeight.w900,
-                ),
+                style: Pagelabel,
                 textAlign: TextAlign.center,
               ),
               SizedBox(

@@ -49,14 +49,7 @@ class Header extends StatelessWidget {
                 ),
               ],
             ),
-            Text(
-              "  Altius",
-              style: TextStyle(
-                color: white,
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
+            Text("  Altius", style: h2s),
             Container(
               child: Row(
                 children: [
@@ -172,11 +165,11 @@ class DataSearch extends SearchDelegate<String> {
         title: RichText(
           text: TextSpan(
             text: suggestionList[index]!.substring(0, query.length),
-            style: TextStyle(color: black, fontWeight: FontWeight.bold),
+            style: h3,
             children: [
               TextSpan(
                   text: suggestionList[index]!.substring(query.length),
-                  style: TextStyle(color: grey))
+                  style: h3)
             ],
           ),
         ),

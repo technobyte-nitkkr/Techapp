@@ -1,6 +1,7 @@
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:dialogflow_flutter/message.dart';
 import 'package:flutter/material.dart';
+import 'package:techapp/screens/components/style.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class DialogCard extends StatelessWidget {
@@ -60,17 +61,9 @@ class DialogCard extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: <Widget>[
                           if (this.card.title != null)
-                            new Text(
-                              this.card.title,
-                              style: TextStyle(
-                                  fontSize: 20.0, fontWeight: FontWeight.bold),
-                            ),
+                            new Text(this.card.title, style: h1),
                           if (this.card.subtitle != null)
-                            new Text(
-                              this.card.subtitle,
-                              style: TextStyle(
-                                  color: Colors.black.withOpacity(0.6)),
-                            ),
+                            new Text(this.card.subtitle, style: h3),
                         ],
                       ),
                     ),

@@ -29,7 +29,7 @@ class MyEventList extends StatelessWidget {
           return Center(
             child: Text(
               errormessage ?? "Error",
-              style: TextStyle(color: white, fontSize: 20),
+              style: h1s,
             ),
           );
         } else if (snapshot.hasData) {

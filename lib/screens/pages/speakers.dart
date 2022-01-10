@@ -22,12 +22,7 @@ class Speakers extends StatelessWidget {
               children: <Widget>[
                 Text(
                   'Guest Lectures',
-                  style: TextStyle(
-                    fontFamily: 'Avenir',
-                    fontSize: 30,
-                    color: white,
-                    fontWeight: FontWeight.w900,
-                  ),
+                  style: Pagelabel,
                   textAlign: TextAlign.center,
                 ),
                 SizedBox(

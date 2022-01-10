@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:techapp/screens/components/style.dart';
 
 class NamedIcon extends StatelessWidget {
   final IconData iconData;
@@ -42,8 +43,7 @@ class NamedIcon extends StatelessWidget {
                   alignment: Alignment.center,
                   child: Text(
                     '$notificationCount',
-                    style: TextStyle(
-                        color: Colors.white, fontWeight: FontWeight.bold),
+                    style: h4,
                   ),
                 ),
               )

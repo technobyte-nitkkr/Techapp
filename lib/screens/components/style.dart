@@ -2,49 +2,118 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
-const primaryColor = Color(0xFFec1b34);
-const secondaryColor = Color(0xFFffb500);
-const bgColor = Color(0xFFecf0f5);
+const glowColor = Color(0xFF03bcf4);
+
 const grey = Color(0xFF888888);
 const black = Color(0xFF000000);
 const white = Color(0xFFFFFFFF);
 Color gradientStartColor = Color(0x00736AB7);
 Color gradientEndColor = Color(0xFF9354B9);
-Color navigationColor = Color(0xFF6751B5);
 Color gradientStartColor2 = Color(0xFF152233);
 Color gradientEndColor2 = Color(0xFF710a5b);
 Color technoBackColor = Color(0xFF143642);
-const kBackgroundColor = Color(0xFFF8F8F8);
-const kActiveIconColor = Color(0xFFE68342);
-const kTextColor = Color(0xFF222B45);
-const kBlueLightColor = Color(0xFFC7B8F5);
-const kBlueColor = Color(0xFF817DC0);
-const kShadowColor = Color(0xFFE6E6E6);
 
-const defaultPadding = 20.0;
-
-const TextStyle mainTitle = TextStyle(
+const mainTitle = TextStyle(
   fontSize: 26.0,
   fontWeight: FontWeight.bold,
   color: Colors.black,
   fontFamily: 'OpenSans SemiBold',
 );
 
+const Pagelabel = TextStyle(
+  fontSize: 30,
+  fontWeight: FontWeight.w500,
+  color: white,
+  fontFamily: 'OpenSans SemiBold',
+);
+
+const h1 = TextStyle(
+  fontSize: 24,
+  fontWeight: FontWeight.w900,
+  color: black,
+  fontFamily: 'OpenSans Bold',
+);
+const h1s = TextStyle(
+  fontSize: 24,
+  fontWeight: FontWeight.w900,
+  color: white,
+  fontFamily: 'OpenSans Bold',
+);
+
+const h2 = TextStyle(
+  fontSize: 20,
+  fontWeight: FontWeight.w500,
+  color: black,
+  fontFamily: 'OpenSans SemiBold',
+);
+const h2s = TextStyle(
+  fontSize: 20,
+  fontWeight: FontWeight.w500,
+  color: white,
+  fontFamily: 'OpenSans SemiBold',
+);
+
+const h3 = TextStyle(
+  fontSize: 18,
+  fontWeight: FontWeight.w500,
+  color: black,
+  fontFamily: 'OpenSans SemiBold',
+);
+
+const h4 = TextStyle(
+  fontSize: 16,
+  fontWeight: FontWeight.w500,
+  color: black,
+  fontFamily: 'OpenSans SemiBold',
+);
+const h4s = TextStyle(
+  fontSize: 16,
+  fontWeight: FontWeight.w500,
+  color: white,
+  fontFamily: 'OpenSans SemiBold',
+);
+
+const h5 = TextStyle(
+  fontSize: 14,
+  fontWeight: FontWeight.w500,
+  color: black,
+  fontFamily: 'OpenSans SemiBold',
+);
+
+const h6 = TextStyle(
+  fontSize: 12,
+  fontWeight: FontWeight.w500,
+  color: black,
+  fontFamily: 'OpenSans SemiBold',
+);
+
+const paraBlack = TextStyle(
+  fontSize: 14,
+  fontWeight: FontWeight.w400,
+  color: black,
+  fontFamily: 'OpenSans SemiBold',
+);
+
+const parawhite = TextStyle(
+  fontSize: 14,
+  fontWeight: FontWeight.w400,
+  color: white,
+  fontFamily: 'OpenSans SemiBold',
+);
+
 Container getGradient() {
   return new Container(
     decoration: BoxDecoration(
-      gradient: LinearGradient(
-        begin: Alignment.topLeft,
-        end: Alignment.bottomRight,
-        stops: [0, 1],
-        colors: [gradientStartColor2, gradientEndColor2],
+      image: DecorationImage(
+        image: AssetImage("assets/images/back.jpg"),
+        fit: BoxFit.cover,
       ),
     ),
     child: BackdropFilter(
-      filter: new ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+      filter: new ImageFilter.blur(sigmaX: 2, sigmaY: 2),
       child: Container(
         decoration: BoxDecoration(
-          color: gradientStartColor2.withOpacity(0.4),
+          color: black.withOpacity(0.1),
         ),
       ),
     ),

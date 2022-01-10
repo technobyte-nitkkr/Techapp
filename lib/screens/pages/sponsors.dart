@@ -23,12 +23,7 @@ class Sponsors extends StatelessWidget {
               child: Text(
                 'Our Sponsors',
                 textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontFamily: 'Avenir',
-                  fontSize: 30,
-                  color: white,
-                  fontWeight: FontWeight.w900,
-                ),
+                style: Pagelabel,
               ),
             ),
             SizedBox(

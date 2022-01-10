@@ -24,14 +24,7 @@ class MyEvents extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               controller: _trackingScrollController,
               dragStartBehavior: DragStartBehavior.start,
-              child: Text(
-                "My Events",
-                style: TextStyle(
-                  color: white,
-                  fontSize: 50,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
+              child: Text("My Events", style: Pagelabel),
             ),
           ),
           SingleChildScrollView(

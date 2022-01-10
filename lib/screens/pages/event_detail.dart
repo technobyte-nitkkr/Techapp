@@ -247,11 +247,11 @@ Container getContent(Event item, BuildContext context, bool isflagship) {
                         width: 200.0,
                         height: 200.0,
                         child: FadeInImage.assetNetwork(
-                          placeholder: 'assets/images/technologo.png',
+                          placeholder: 'assets/images/altius.png',
                           image: item.poster,
                           fit: BoxFit.cover,
                           imageErrorBuilder: (context, error, stackTrace) =>
-                              Image.asset('assets/images/technologo.png',
+                              Image.asset('assets/images/altius.png',
                                   fit: BoxFit.cover),
                         ),
                       ),

@@ -57,12 +57,7 @@ class EventsByCategory extends StatelessWidget {
                 Text(
                   categoryName.substring(0, 1).toUpperCase() +
                       categoryName.substring(1),
-                  style: TextStyle(
-                    fontFamily: 'Avenir',
-                    fontSize: 30,
-                    color: white,
-                    fontWeight: FontWeight.w900,
-                  ),
+                  style: h1s,
                   textAlign: TextAlign.left,
                 ),
                 // events text

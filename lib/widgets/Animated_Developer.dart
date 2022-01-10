@@ -44,7 +44,7 @@ class _AnimatedDeveloperState extends State<AnimatedDeveloper> {
                 child: Text(
                   // ignore: unnecessary_null_comparison
                   (errormessage.toString() == null) ? 'Error' : errormessage,
-                  style: TextStyle(color: white, fontSize: 20),
+                  style: h2s,
                 ),
               )
             ],

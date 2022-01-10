@@ -1,6 +1,7 @@
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:dialogflow_flutter/message.dart';
 import 'package:flutter/material.dart';
+import 'package:techapp/screens/components/style.dart';
 
 class ItemCarouselWidget extends StatefulWidget {
   final ItemCarousel item;
@@ -53,8 +54,7 @@ class _ItemCarouselWidget extends State<ItemCarouselWidget> {
                       if (widget.item.title != null)
                         new Text(
                           widget.item.title,
-                          style: TextStyle(
-                              fontSize: 20.0, fontWeight: FontWeight.bold),
+                          style: h1,
                         ),
                       if (widget.item.description != null)
                         new Container(

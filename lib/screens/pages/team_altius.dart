@@ -145,7 +145,7 @@ class ContactCard extends StatelessWidget {
                     width: 10,
                   ),
                   CircleAvatar(
-                    backgroundImage: AssetImage('assets/images/technologo.png'),
+                    backgroundImage: AssetImage('assets/images/altius.png'),
                     radius: 30,
                   ),
                   SizedBox(
@@ -154,10 +154,7 @@ class ContactCard extends StatelessWidget {
                   Expanded(
                     child: Text(
                       contact.section,
-                      style: TextStyle(
-                          fontSize: 25,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black.withOpacity(0.5)),
+                      style: h1,
                     ),
                   ),
                 ],

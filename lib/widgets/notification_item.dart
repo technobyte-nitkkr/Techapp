@@ -46,11 +46,11 @@ class NotificatonItemWidget extends StatelessWidget {
                     width: 100,
                     height: 100,
                     child: FadeInImage.assetNetwork(
-                        placeholder: 'assets/images/technologo.png',
+                        placeholder: 'assets/images/altius.png',
                         image: imageUrl ?? '',
                         fit: BoxFit.cover,
                         imageErrorBuilder: (context, error, stackTrace) =>
-                            Image.asset('assets/images/technologo.png'))),
+                            Image.asset('assets/images/altius.png'))),
               ),
               Expanded(
                 child: Container(

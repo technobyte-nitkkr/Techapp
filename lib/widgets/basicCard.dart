@@ -1,6 +1,7 @@
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:dialogflow_flutter/message.dart';
 import 'package:flutter/material.dart';
+import 'package:techapp/screens/components/style.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class BasicCardWidget extends StatelessWidget {
@@ -52,13 +53,21 @@ class BasicCardWidget extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: <Widget>[
                     if (this.card.image?.imageUri != null)
-                      FadeInImage.assetNetwork(
-                        placeholder: 'assets/images/technologo.png',
-                        image: this.card.image.imageUri,
+                      new Image.network(
+                        this.card.image.imageUri,
                         fit: BoxFit.cover,
-                        imageErrorBuilder: (context, error, stackTrace) =>
-                            Image.asset('assets/images/technologo.png',
-                                fit: BoxFit.cover),
+                        loadingBuilder: (BuildContext context, Widget child,
+                            ImageChunkEvent? loadingProgress) {
+                          if (loadingProgress == null) return child;
+                          return Center(
+                            child: CircularProgressIndicator(
+                              value: loadingProgress.expectedTotalBytes != null
+                                  ? loadingProgress.cumulativeBytesLoaded /
+                                      loadingProgress.expectedTotalBytes!
+                                  : null,
+                            ),
+                          );
+                        },
                       ),
                     new Padding(
                       padding: EdgeInsets.all(10.0),
@@ -68,14 +77,12 @@ class BasicCardWidget extends StatelessWidget {
                           if (this.card.title != null)
                             new Text(
                               this.card.title,
-                              style: TextStyle(
-                                  fontSize: 20.0, fontWeight: FontWeight.bold),
+                              style: h2,
                             ),
                           if (this.card.subtitle != null)
                             new Text(
                               this.card.subtitle,
-                              style: TextStyle(
-                                  color: Colors.black.withOpacity(0.6)),
+                              style: h6,
                             ),
                           if (this.card.formattedText != null)
                             new Container(

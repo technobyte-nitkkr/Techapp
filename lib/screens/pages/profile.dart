@@ -37,11 +37,8 @@ class ProfilePage extends StatelessWidget {
                         ),
                         Container(
                             alignment: Alignment.center,
-                            child: Text(FetchDataProvider.user!.name,
-                                style: TextStyle(
-                                    fontSize: 25,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white))),
+                            child:
+                                Text(FetchDataProvider.user!.name, style: h2s)),
                         Divider(
                           color: Colors.white,
                         ),
@@ -77,7 +74,7 @@ class ProfilePage extends StatelessWidget {
                     alignment: Alignment.center,
                     child: Text(
                       'You cannot register for our events yet.\nClick on the button given below to signup for altius & start registering for our events.',
-                      style: TextStyle(color: Colors.white),
+                      style: h2s,
                       textAlign: TextAlign.center,
                     ),
                   ),
@@ -100,7 +97,7 @@ class ProfilePage extends StatelessWidget {
                       },
                       child: Text(
                         "SignUp For Altius",
-                        style: TextStyle(color: Colors.white, fontSize: 18),
+                        style: h2s,
                       ))
               ],
             )));
@@ -130,7 +127,7 @@ class DetailTile extends StatelessWidget {
         leading: Icon(this.icon),
         title: AutoSizeText(
           text,
-          style: TextStyle(fontSize: 15, color: white),
+          style: h4s,
           maxLines: 1,
         ),
       ),

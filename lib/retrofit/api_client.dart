@@ -15,10 +15,10 @@ abstract class ApiClient {
     dio.options.receiveTimeout = 60000;
     dio.options.connectTimeout = 120000;
     dio.interceptors.add(InterceptorsWrapper(onError: (DioError e, handler) {
-      // print("dioerrr  ");
+      print("dioerrr  ");
 
       if (e.type == DioErrorType.other) {
-        // print("socket exception");
+        print("socket exception");
         // print(e.toString());
 
         return handler.next(
@@ -33,7 +33,7 @@ abstract class ApiClient {
 
       if (e.type == DioErrorType.response) {
         var resp = json.decode(e.response.toString());
-        // print("response exception");
+        print("response exception");
         // print(e.toString());
         return handler.next(
           new DioError(

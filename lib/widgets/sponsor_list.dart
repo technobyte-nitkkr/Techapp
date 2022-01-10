@@ -26,7 +26,7 @@ class SponsorsWidget extends StatelessWidget {
           return Center(
             child: Text(
               errormessage ?? "Error",
-              style: TextStyle(color: white, fontSize: 20),
+              style: h1s,
             ),
           );
         }
@@ -99,11 +99,7 @@ class CardItem extends StatelessWidget {
               ),
               AutoSizeText(
                 '${item.name}',
-                style: TextStyle(
-                    fontFamily: 'Avenir',
-                    color: Colors.black,
-                    fontWeight: FontWeight.w900,
-                    fontSize: 18),
+                style: h4,
                 maxLines: 1,
               ),
             ],

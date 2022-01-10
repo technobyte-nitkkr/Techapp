@@ -35,10 +35,10 @@ class _SplashAnimationState extends State<SplashAnimation> {
   Widget build(BuildContext context) {
     return Stack(
       children: [
+        getGradient(),
         Container(
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height,
-          decoration: BoxDecoration(color: technoBackColor),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
@@ -47,7 +47,7 @@ class _SplashAnimationState extends State<SplashAnimation> {
               ),
               Image.asset(
                 'assets/images/logo.png',
-                width: MediaQuery.of(context).size.width * 0.4,
+                width: MediaQuery.of(context).size.width * 0.6,
                 height: MediaQuery.of(context).size.height * 0.4,
               ),
               SizedBox(

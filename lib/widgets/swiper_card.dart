@@ -50,13 +50,7 @@ class SwiperCard extends StatelessWidget {
                           AutoSizeText(
                             categoryName.substring(0, 1).toUpperCase() +
                                 categoryName.substring(1),
-                            style: TextStyle(
-                              fontFamily: 'Avenir',
-                              fontSize:
-                                  MediaQuery.of(context).size.width * 0.08,
-                              color: const Color(0xff47455f),
-                              fontWeight: FontWeight.w900,
-                            ),
+                            style: h1,
                             maxLines: 1,
                             textAlign: TextAlign.left,
                           ),

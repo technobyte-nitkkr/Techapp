@@ -46,11 +46,11 @@ class ListItem extends StatelessWidget {
                           width: 100,
                           height: 100,
                           child: FadeInImage.assetNetwork(
-                              placeholder: 'assets/images/technologo.png',
+                              placeholder: 'assets/images/altius.png',
                               image: item.poster,
                               fit: BoxFit.cover,
                               imageErrorBuilder: (context, error, stackTrace) =>
-                                  Image.asset('assets/images/technologo.png'))),
+                                  Image.asset('assets/images/altius.png'))),
                     ),
                     Expanded(
                       child: Container(
@@ -58,16 +58,12 @@ class ListItem extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
-                            Text(
-                              item.eventName,
-                              style: TextStyle(
-                                  fontSize: 20, fontWeight: FontWeight.bold),
-                            ),
+                            Text(item.eventName, style: h2),
                             Text(
                               item.description.length > 100
                                   ? item.description.substring(0, 100) + '...'
                                   : item.description,
-                              style: TextStyle(fontSize: 15),
+                              style: h6,
                             ),
                             //  read more button
                             Row(
@@ -75,12 +71,9 @@ class ListItem extends StatelessWidget {
                               children: <Widget>[
                                 Text(
                                   'Know more',
-                                  style: TextStyle(
-                                    fontFamily: 'Avenir',
-                                    fontSize: 18,
-                                    color: grey,
-                                    fontWeight: FontWeight.w500,
-                                  ),
+                                  style: h4.copyWith(
+                                      color: Colors.grey.withOpacity(0.6),
+                                      fontWeight: FontWeight.bold),
                                   textAlign: TextAlign.left,
                                 ),
                                 Icon(
