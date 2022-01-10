@@ -87,7 +87,13 @@ class _NavigationState extends State<Navigation> {
             animationCurve: Curves.easeInOut,
           ),
         ),
-        body: screens[index],
+        body: Column(
+          children: <Widget>[
+            Expanded(
+              child: screens[index],
+            ),
+          ],
+        ),
       ),
     );
   }

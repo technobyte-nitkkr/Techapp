@@ -213,8 +213,8 @@ class ListItem extends StatelessWidget {
           child: Stack(children: [
             Padding(
               padding: const EdgeInsets.fromLTRB(5, 10, 0, 0),
-              child: Row(children: [
-                Column(children: [
+              child: Column(children: [
+                Row(children: [
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: CircleAvatar(
@@ -227,50 +227,52 @@ class ListItem extends StatelessWidget {
                       ),
                     ),
                   ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          AutoSizeText(
+                            '${item.name}',
+                            style: TextStyle(
+                              fontSize: 35.0,
+                              //color:Colors.white,
+                            ),
+                            maxLines: 1,
+                          ),
+                        ]),
+                  )
                 ]),
-                Expanded(
-                    flex: 1,
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            AutoSizeText(
-                              '${item.name}',
-                              style: TextStyle(
-                                fontSize: 35.0,
-                                //color:Colors.white,
-                              ),
-                              maxLines: 1,
-                            ),
-                            SizedBox(
-                              height: 10.0,
-                            ),
-                            Row(
-                              //mainAxisAlignment: MainAxisAlignment.end,
-                              //crossAxisAlignment: CrossAxisAlignment.stretch,
-                              children: [
-                                Icon(Icons.calendar_today_outlined),
-                                SizedBox(width: 8.0),
-                                Text('${item.date}',
-                                    style: TextStyle(
-                                      fontSize: 20.0,
-                                      //color: Colors.white,
-                                    )),
-                              ],
-                            ),
-                            SizedBox(height: 10.0),
-                            Row(children: [
-                              Icon(Icons.alarm_on),
-                              SizedBox(width: 8.0),
-                              Text('${item.time}',
-                                  style: TextStyle(
-                                    fontSize: 20.0,
-                                    //color: Colors.white,
-                                  )),
-                            ])
-                          ]),
-                    ))
+                SizedBox(
+                  height: 10.0,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Row(
+                      //mainAxisAlignment: MainAxisAlignment.end,
+                      //crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        Icon(Icons.calendar_today_outlined),
+                        SizedBox(width: 8.0),
+                        Text('${item.date}',
+                            style: TextStyle(
+                              fontSize: 20.0,
+                              //color: Colors.white,
+                            )),
+                      ],
+                    ),
+                    Row(children: [
+                      Icon(Icons.alarm_on),
+                      SizedBox(width: 8.0),
+                      Text('${item.time}',
+                          style: TextStyle(
+                            fontSize: 20.0,
+                            //color: Colors.white,
+                          )),
+                    ])
+                  ],
+                )
               ]),
             ),
             Align(

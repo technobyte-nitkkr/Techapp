@@ -116,13 +116,13 @@ class DetailTile extends StatelessWidget {
     print(FetchDataProvider.user?.toJson());
     return Card(
       color: Colors.white24,
-      elevation: 20,
+      elevation: 1,
       shadowColor: glowColor,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(20.0),
       ),
       child: ListTile(
-        iconColor: glowColor,
+        iconColor: white,
         leading: Icon(this.icon),
         title: AutoSizeText(
           text,

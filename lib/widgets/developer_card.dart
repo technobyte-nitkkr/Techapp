@@ -29,10 +29,10 @@ class DeveloperCard extends StatelessWidget {
       borderRadius: BorderRadius.circular(10),
       child: Container(
         decoration: BoxDecoration(
-          color: Colors.white30,
+          color: Colors.white24,
           boxShadow: [
             BoxShadow(
-              color: glowColor.withOpacity(0.5),
+              color: glowColor.withOpacity(0.2),
               blurRadius: 30,
               offset: Offset(0, 2),
             ),

@@ -26,10 +26,14 @@ class MyEventList extends StatelessWidget {
         if (snapshot.hasError) {
           final errormessage = (snapshot.error as DioError).error.toString();
           print(errormessage);
-          return Center(
-            child: Text(
-              errormessage ?? "Error",
-              style: h1s,
+          return Container(
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height * 0.8,
+            child: Center(
+              child: Text(
+                errormessage ?? "Error",
+                style: h1s,
+              ),
             ),
           );
         } else if (snapshot.hasData) {
@@ -51,8 +55,8 @@ class MyEventList extends StatelessWidget {
             height: MediaQuery.of(context).size.height * 0.6,
             width: MediaQuery.of(context).size.width,
             child: Center(
-              child:
-                  LoadingAnimationWidget.dotsTriangle(color: white, size: 200),
+              child: LoadingAnimationWidget.staggeredDotWave(
+                  color: white, size: 100),
             ),
           );
         }

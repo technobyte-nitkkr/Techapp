@@ -12,8 +12,8 @@ class SideMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      backgroundColor: Colors.black54,
-      elevation: 1,
+      backgroundColor: Colors.black.withOpacity(0.82),
+      elevation: 3,
       child: ListView(
         children: [
           GestureDetector(
@@ -147,7 +147,7 @@ class SideMenu extends StatelessWidget {
             child: AutoSizeText(
               'Made with 🤍 by Technobyte',
               textAlign: TextAlign.center,
-              style: TextStyle(color: glowColor, fontSize: 17),
+              style: TextStyle(color: white, fontSize: 17),
             ),
           )
         ],

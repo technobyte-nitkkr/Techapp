@@ -85,8 +85,8 @@ class _TeamAltiusState extends State<TeamAltius> {
                     height: MediaQuery.of(context).size.height * 0.6,
                     width: MediaQuery.of(context).size.width,
                     child: Center(
-                      child: LoadingAnimationWidget.dotsTriangle(
-                          color: white, size: 200),
+                      child: LoadingAnimationWidget.staggeredDotWave(
+                          color: white, size: 100),
                     ),
                   );
                 }
@@ -125,11 +125,11 @@ class ContactCard extends StatelessWidget {
         child: Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20.0),
-            color: Colors.white38,
+            color: Colors.white70,
             boxShadow: [
               BoxShadow(
-                color: glowColor.withOpacity(0.5),
-                blurRadius: 30,
+                color: glowColor.withOpacity(0.2),
+                blurRadius: 10,
                 offset: Offset(0, 2),
               ),
             ],

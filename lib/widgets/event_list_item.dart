@@ -33,8 +33,8 @@ class ListItem extends StatelessWidget {
                 color: Colors.white54,
                 boxShadow: [
                   BoxShadow(
-                    color: glowColor.withOpacity(0.5),
-                    blurRadius: 30,
+                    color: glowColor.withOpacity(0.2),
+                    blurRadius: 10,
                     offset: Offset(0, 2),
                   ),
                 ],
@@ -63,11 +63,10 @@ class ListItem extends StatelessWidget {
                         children: <Widget>[
                           Text(item.eventName, style: h2),
                           Text(
-                            item.description.length > 100
-                                ? item.description.substring(0, 100) + '...'
-                                : item.description,
-                            style: h6,
-                          ),
+                              item.description.length > 100
+                                  ? item.description.substring(0, 100) + '...'
+                                  : item.description,
+                              style: h6),
                           //  read more button
                           Row(
                             mainAxisAlignment: MainAxisAlignment.end,
@@ -75,13 +74,13 @@ class ListItem extends StatelessWidget {
                               Text(
                                 'Know more',
                                 style: h4.copyWith(
-                                    color: Colors.grey.withOpacity(0.6),
+                                    color: Colors.black.withOpacity(0.8),
                                     fontWeight: FontWeight.bold),
                                 textAlign: TextAlign.left,
                               ),
                               Icon(
                                 Icons.arrow_forward,
-                                color: grey,
+                                color: Colors.black.withOpacity(0.8),
                               ),
                             ],
                           ),

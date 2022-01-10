@@ -42,7 +42,7 @@ class Home extends StatelessWidget {
             width: MediaQuery.of(context).size.width,
             child: Center(
               child: LoadingAnimationWidget.staggeredDotWave(
-                  color: white, size: 150),
+                  color: white, size: 100),
             ),
           );
         },

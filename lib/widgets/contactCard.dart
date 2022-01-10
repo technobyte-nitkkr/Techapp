@@ -39,14 +39,15 @@ class ContactSwiperCard extends StatelessWidget {
                             min(MediaQuery.of(context).size.width * 0.35, 400)),
                     AutoSizeText(
                       people.name,
-                      style: h2,
+                      style: h2.copyWith(
+                          fontWeight: FontWeight.bold, fontSize: 30),
                       maxLines: 1,
                       minFontSize: 20,
                       textAlign: TextAlign.center,
                     ),
                     AutoSizeText(
                       people.post,
-                      style: h4,
+                      style: h3.copyWith(color: black.withOpacity(0.7)),
                       textAlign: TextAlign.right,
                       maxLines: 1,
                       minFontSize: 20,

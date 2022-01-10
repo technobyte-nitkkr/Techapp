@@ -33,7 +33,6 @@ class SponsorsWidget extends StatelessWidget {
           List<Sponsor> sponsors = snapshot.data.getFoodSponsors();
           return GridView.builder(
             shrinkWrap: true,
-            physics: NeverScrollableScrollPhysics(),
             itemCount: sponsors.length,
             itemBuilder: (BuildContext ctx, int index) {
               return CardItem(item: sponsors[index]);
@@ -75,14 +74,7 @@ class CardItem extends StatelessWidget {
         onTap: () => launch('${item.link}'),
         child: Container(
           decoration: BoxDecoration(
-            color: Colors.white54,
-            boxShadow: [
-              BoxShadow(
-                color: glowColor.withOpacity(0.5),
-                blurRadius: 30,
-                offset: Offset(0, 2),
-              ),
-            ],
+            color: Colors.white,
             borderRadius: BorderRadius.circular(10),
           ),
           child: Column(
@@ -109,7 +101,7 @@ class CardItem extends StatelessWidget {
               ),
               AutoSizeText(
                 '${item.name}',
-                style: h4,
+                style: h3,
                 maxLines: 1,
               ),
             ],

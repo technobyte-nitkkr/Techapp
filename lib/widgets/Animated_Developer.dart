@@ -65,7 +65,7 @@ class AnimatedDeveloper extends StatelessWidget {
                 width: MediaQuery.of(context).size.width,
                 child: Center(
                   child: LoadingAnimationWidget.dotsTriangle(
-                      color: white, size: 200),
+                      color: white, size: 100),
                 ),
               )
             ],

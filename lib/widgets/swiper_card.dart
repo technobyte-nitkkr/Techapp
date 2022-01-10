@@ -41,7 +41,7 @@ class SwiperCard extends StatelessWidget {
                         color: Colors.white54,
                         boxShadow: [
                           BoxShadow(
-                            color: glowColor.withOpacity(0.5),
+                            color: glowColor.withOpacity(0.2),
                             blurRadius: 30,
                             offset: Offset(0, 2),
                           ),
@@ -113,7 +113,6 @@ class SwiperCard extends StatelessWidget {
               // margin: EdgeInsets.only(left: 30),
               decoration: BoxDecoration(
                 image: DecorationImage(
-                    opacity: 0.93,
                     image: AssetImage('assets/images/categories/' +
                         categoryName.toLowerCase() +
                         '.png'),

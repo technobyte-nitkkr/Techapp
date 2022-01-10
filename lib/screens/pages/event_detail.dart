@@ -46,7 +46,6 @@ class EventDetailWidget extends StatelessWidget {
                   child: new Stack(
                     children: <Widget>[
                       getBackground(this.item),
-                      getGradient3(),
                       getContent(this.item, context, isflagship),
                     ],
                   ),
@@ -75,7 +74,7 @@ Container getRegisterButton(Event item, BuildContext context, bool isflagship) {
                 margin: EdgeInsets.fromLTRB(10, 30, 10, 10),
                 child: AvatarGlow(
                   animate: true,
-                  glowColor: Colors.amber,
+                  glowColor: glowColor,
                   endRadius: 30.0,
                   duration: Duration(milliseconds: 2000),
                   repeat: true,
@@ -88,7 +87,7 @@ Container getRegisterButton(Event item, BuildContext context, bool isflagship) {
                     child: Icon(
                       Icons.star,
                       size: 35,
-                      color: Colors.amber[700],
+                      color: glowColor,
                     ),
                   ),
                 ),
@@ -176,9 +175,11 @@ Container getContent(Event item, BuildContext context, bool isflagship) {
                           maxLines: 1,
                         )),
                       new Container(height: 10.0),
-                      new Text(item.eventCategory,
+                      new Text(
+                          item.eventCategory.substring(0, 1).toUpperCase() +
+                              item.eventCategory.substring(1),
                           style: h2.copyWith(
-                              color: Colors.grey[600],
+                              color: Colors.black,
                               fontWeight: FontWeight.w300)),
                       Container(
                           margin: new EdgeInsets.symmetric(vertical: 8.0),
@@ -190,8 +191,7 @@ Container getContent(Event item, BuildContext context, bool isflagship) {
                                   DateTime.fromMicrosecondsSinceEpoch(
                                       item.startTime * 1000,
                                       isUtc: false)),
-                          style: commonTextStyle.copyWith(
-                              color: black, fontWeight: FontWeight.w300)),
+                          style: h5),
                       SizedBox(
                         height: 10.0,
                       ),
@@ -200,21 +200,20 @@ Container getContent(Event item, BuildContext context, bool isflagship) {
                               dateFormat.format(
                                   DateTime.fromMicrosecondsSinceEpoch(
                                       item.endTime * 1000)),
-                          style: commonTextStyle.copyWith(
-                              color: black, fontWeight: FontWeight.w300)),
+                          style: h5),
                     ],
                   ),
                 ),
                 height: 300,
                 margin: new EdgeInsets.only(top: 72.0),
                 decoration: new BoxDecoration(
-                  color: Colors.white70,
+                  color: white.withOpacity(0.8),
                   shape: BoxShape.rectangle,
                   borderRadius: new BorderRadius.circular(8.0),
                   boxShadow: [
                     BoxShadow(
-                      color: glowColor.withOpacity(0.6),
-                      blurRadius: 30,
+                      color: glowColor.withOpacity(0.3),
+                      blurRadius: 5,
                       offset: Offset(0, 2),
                     ),
                   ],

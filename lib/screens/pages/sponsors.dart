@@ -12,7 +12,7 @@ class Sponsors extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PageLayout(
-      child: SafeArea(
+      child: Container(
           child: Padding(
         padding: const EdgeInsets.only(top: 16.0, right: 20.0, left: 20.0),
         child: Column(
@@ -29,9 +29,11 @@ class Sponsors extends StatelessWidget {
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.02,
             ),
-            SponsorsWidget(),
+            Container(
+                height: MediaQuery.of(context).size.height * 0.65,
+                child: SponsorsWidget()),
             SizedBox(
-              height: 20,
+              height: 40,
             )
           ],
         ),
