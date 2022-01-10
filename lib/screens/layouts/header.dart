@@ -66,8 +66,10 @@ class Header extends StatelessWidget {
                   ),
                   AvatarGlow(
                     endRadius: 25,
-                    duration: Duration(seconds: 10),
                     glowColor: Colors.white,
+                    duration: Duration(milliseconds: 2000),
+                    repeat: true,
+                    showTwoGlows: true,
                     child: IconButton(
                       onPressed: () {
                         Navigator.push(

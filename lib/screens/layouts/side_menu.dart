@@ -1,9 +1,12 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:techapp/screens/auth/firebase_services.dart';
 import 'package:techapp/screens/auth/google_login.dart';
 import 'package:techapp/screens/components/style.dart';
 import 'package:techapp/screens/pages/profile.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class SideMenu extends StatelessWidget {
   @override
@@ -101,6 +104,25 @@ class SideMenu extends StatelessWidget {
             color: glowColor.withOpacity(0.5),
           ),
           ListTile(
+            title: Text('Website', style: h4s),
+            leading: FaIcon(
+              FontAwesomeIcons.desktop,
+              size: 25,
+              color: glowColor,
+            ),
+            onTap: () async {
+              if (!await launch(
+                  'https://website-frontend20-2mkfatxre.vercel.app/')) {
+                print('invalid link');
+              }
+            },
+          ),
+          Divider(
+            height: 1,
+            thickness: 1,
+            color: glowColor.withOpacity(0.5),
+          ),
+          ListTile(
             title: Text('Logout', style: h4s),
             leading: Icon(
               Icons.logout_outlined,
@@ -116,6 +138,16 @@ class SideMenu extends StatelessWidget {
             },
           ),
           Divider(height: 1, thickness: 1, color: glowColor.withOpacity(0.5)),
+          Container(
+            margin: EdgeInsets.all(10),
+            alignment: Alignment.center,
+            padding: EdgeInsets.all(5),
+            child: AutoSizeText(
+              'Made with 🤍 by Technobyte',
+              textAlign: TextAlign.center,
+              style: TextStyle(color: glowColor, fontSize: 17),
+            ),
+          )
         ],
       ),
     );

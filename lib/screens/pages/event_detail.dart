@@ -72,7 +72,7 @@ Container getRegisterButton(Event item, BuildContext context, bool isflagship) {
             children: [
               Container(
                 alignment: Alignment.topRight,
-                margin: EdgeInsets.fromLTRB(10, 30, 10, 0),
+                margin: EdgeInsets.fromLTRB(10, 30, 10, 10),
                 child: AvatarGlow(
                   animate: true,
                   glowColor: Colors.amber,
@@ -338,8 +338,8 @@ Container getContent(Event item, BuildContext context, bool isflagship) {
               gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
                 mainAxisExtent: 65,
                 maxCrossAxisExtent: 200,
-                mainAxisSpacing: 10,
-                crossAxisSpacing: 10,
+                mainAxisSpacing: 0,
+                crossAxisSpacing: 5,
               ),
             ),
           ),

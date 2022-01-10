@@ -41,7 +41,7 @@ class AnimatedDeveloper extends StatelessWidget {
                 shrinkWrap: true,
                 physics: NeverScrollableScrollPhysics(),
                 itemCount: developers.length,
-                padding: EdgeInsets.symmetric(horizontal: 10),
+                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                 itemBuilder: (BuildContext ctx, int index) {
                   return DeveloperWidget(
                     developer: developers[index],

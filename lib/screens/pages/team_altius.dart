@@ -1,13 +1,10 @@
 // @dart=2.9
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
-
 import 'package:techapp/models/section.dart';
 import 'package:techapp/retrofit/api_client.dart';
 import 'package:techapp/screens/components/style.dart';
-import 'package:techapp/screens/layouts/page_layout.dart';
 import 'package:techapp/screens/pages/team_details.dart';
 
 class TeamAltius extends StatefulWidget {
@@ -159,12 +156,13 @@ class ContactCard extends StatelessWidget {
                     width: 50,
                   ),
                   Expanded(
-                    child: Text(
+                    child: AutoSizeText(
                       contact.section,
                       style: h2.copyWith(
                           fontWeight: FontWeight.bold,
                           fontSize: 30,
                           color: black.withOpacity(0.7)),
+                      maxLines: 1,
                     ),
                   ),
                 ],
