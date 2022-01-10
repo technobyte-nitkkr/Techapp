@@ -1,10 +1,12 @@
 import 'dart:typed_data';
 import 'package:animated_splash_screen/animated_splash_screen.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:techapp/main.dart';
 import 'package:techapp/providers/fetch_data_provider.dart';
@@ -176,11 +178,34 @@ class SplashAnimation extends StatelessWidget {
                 height: MediaQuery.of(context).size.height * 0.4,
               ),
               SizedBox(
-                height: MediaQuery.of(context).size.height * 0.2,
+                height: MediaQuery.of(context).size.height * 0.1,
               ),
               Flexible(
                 child: LoadingAnimationWidget.staggeredDotWave(
                     color: white, size: 50),
+              ),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.1,
+              ),
+              Container(
+                child:
+                    Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                  AutoSizeText(
+                    'Made with  ',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(color: white, fontSize: 22),
+                  ),
+                  FaIcon(
+                    FontAwesomeIcons.solidHeart,
+                    size: 22,
+                    color: white,
+                  ),
+                  AutoSizeText(
+                    ' by Technobyte ',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(color: white, fontSize: 22),
+                  )
+                ]),
               ),
             ],
           ),

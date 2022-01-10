@@ -144,11 +144,23 @@ class SideMenu extends StatelessWidget {
             margin: EdgeInsets.all(10),
             alignment: Alignment.center,
             padding: EdgeInsets.all(5),
-            child: AutoSizeText(
-              'Made with 🤍 by Technobyte',
-              textAlign: TextAlign.center,
-              style: TextStyle(color: white, fontSize: 17),
-            ),
+            child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+              AutoSizeText(
+                'Made with  ',
+                textAlign: TextAlign.center,
+                style: TextStyle(color: white, fontSize: 17),
+              ),
+              FaIcon(
+                FontAwesomeIcons.solidHeart,
+                size: 17,
+                color: white,
+              ),
+              AutoSizeText(
+                ' by Technobyte ',
+                textAlign: TextAlign.center,
+                style: TextStyle(color: white, fontSize: 17),
+              )
+            ]),
           )
         ],
       ),

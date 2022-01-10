@@ -96,7 +96,7 @@ class Header extends StatelessWidget {
 
 class DataSearch extends SearchDelegate<String> {
   final recentSearches = [
-    "Search for events Names",
+    "Search for Event Names",
   ];
 
   @override

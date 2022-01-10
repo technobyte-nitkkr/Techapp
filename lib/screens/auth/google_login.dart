@@ -1,4 +1,6 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:techapp/screens/auth/firebase_services.dart';
 import 'package:techapp/screens/components/style.dart';
@@ -51,7 +53,30 @@ class _SplashAnimationState extends State<SplashAnimation> {
                 height: MediaQuery.of(context).size.height * 0.4,
               ),
               SizedBox(
-                height: MediaQuery.of(context).size.height * 0.2,
+                height: MediaQuery.of(context).size.height * 0.1,
+              ),
+              Container(
+                child:
+                    Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                  AutoSizeText(
+                    'Made with  ',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(color: white, fontSize: 22),
+                  ),
+                  FaIcon(
+                    FontAwesomeIcons.solidHeart,
+                    size: 22,
+                    color: white,
+                  ),
+                  AutoSizeText(
+                    ' by Technobyte ',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(color: white, fontSize: 22),
+                  )
+                ]),
+              ),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.1,
               ),
               ElevatedButton(
                 onPressed: () async {
@@ -75,21 +100,21 @@ class _SplashAnimationState extends State<SplashAnimation> {
                   return white;
                 })),
                 child: Container(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(6.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Image.asset(
                         "assets/images/google.png",
-                        height: 40,
-                        width: 40,
+                        height: 30,
+                        width: 30,
                       ),
                       const SizedBox(
                         width: 10,
                       ),
                       const Text(
-                        "Google",
+                        "Login",
                         style: mainTitle,
                       ),
                     ],
