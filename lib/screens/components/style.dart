@@ -13,6 +13,20 @@ Color gradientStartColor2 = Color(0xFF152233);
 Color gradientEndColor2 = Color(0xFF710a5b);
 Color technoBackColor = Color(0xFF143642);
 
+const baseTextStyle = const TextStyle(fontFamily: 'Poppins');
+
+const commonTextStyle = TextStyle(
+    color: const Color(0xffb6b2df),
+    fontSize: 16.0,
+    fontWeight: FontWeight.w400);
+const smallTextStyle = TextStyle(
+  fontSize: 11.0,
+);
+
+const titleTextStyle =
+    TextStyle(color: Colors.white, fontSize: 30.0, fontWeight: FontWeight.w600);
+const headerTextStyle =
+    TextStyle(color: Colors.white, fontSize: 25.0, fontWeight: FontWeight.w400);
 const mainTitle = TextStyle(
   fontSize: 26.0,
   fontWeight: FontWeight.bold,
@@ -21,20 +35,20 @@ const mainTitle = TextStyle(
 );
 
 const Pagelabel = TextStyle(
-  fontSize: 30,
-  fontWeight: FontWeight.w500,
+  fontSize: 35,
+  fontWeight: FontWeight.w900,
   color: white,
   fontFamily: 'OpenSans SemiBold',
 );
 
 const h1 = TextStyle(
-  fontSize: 24,
+  fontSize: 28,
   fontWeight: FontWeight.w900,
   color: black,
   fontFamily: 'OpenSans Bold',
 );
 const h1s = TextStyle(
-  fontSize: 24,
+  fontSize: 28,
   fontWeight: FontWeight.w900,
   color: white,
   fontFamily: 'OpenSans Bold',

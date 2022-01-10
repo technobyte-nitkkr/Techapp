@@ -1,8 +1,4 @@
 // @dart=2.9
-import 'dart:async';
-import 'dart:math';
-import 'dart:ui';
-import 'package:card_swiper/card_swiper.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
@@ -10,27 +6,11 @@ import 'package:techapp/models/developers.dart';
 import 'package:techapp/retrofit/api_client.dart';
 import 'package:techapp/screens/components/style.dart';
 import 'package:techapp/widgets/developer_card.dart';
-import 'package:url_launcher/url_launcher.dart';
 
-class AnimatedDeveloper extends StatefulWidget {
-  const AnimatedDeveloper({Key key}) : super(key: key);
-
-  @override
-  _AnimatedDeveloperState createState() => _AnimatedDeveloperState();
-}
-
-class _AnimatedDeveloperState extends State<AnimatedDeveloper> {
-  int _currentPage = 0;
-
-  @override
-  void dispose() {
-    super.dispose();
-  }
-
+class AnimatedDeveloper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final client = ApiClient.create();
-
     return FutureBuilder(
       future: client.getAboutDev(),
       builder: (context, snapshot) {
@@ -39,7 +19,6 @@ class _AnimatedDeveloperState extends State<AnimatedDeveloper> {
           print(errormessage);
           return Stack(
             children: [
-              getGradient(),
               Center(
                 child: Text(
                   // ignore: unnecessary_null_comparison
@@ -53,62 +32,27 @@ class _AnimatedDeveloperState extends State<AnimatedDeveloper> {
           // ignore: unused_local_variable
           List<Developer> developers = snapshot.data.getDevelopers();
 
-          return Stack(
-            alignment: Alignment.center,
+          return Column(
             children: [
-              AnimatedSwitcher(
-                duration: Duration(milliseconds: 500),
-                child: Container(
-                  height: MediaQuery.of(context).size.height,
-                  width: MediaQuery.of(context).size.width,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage('assets/images/developers/wall' +
-                          (_currentPage + 1).toString() +
-                          '.png'),
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                  child: BackdropFilter(
-                    filter: ImageFilter.blur(
-                      sigmaX: 5,
-                      sigmaY: 5,
-                    ),
-                    child: Container(
-                      color: Colors.black.withOpacity(0.2),
-                    ),
-                  ),
-                ),
+              SizedBox(
+                height: 20,
               ),
-              Column(
-                children: [
-                  SizedBox(
-                    height: 100,
-                  ),
-                  Container(
-                    height: MediaQuery.of(context).size.height * 0.8,
-                    padding: EdgeInsets.symmetric(horizontal: 20),
-                    child: Swiper(
-                      itemHeight:
-                          min(MediaQuery.of(context).size.height * 0.6, 600),
-                      itemWidth: MediaQuery.of(context).size.width * 0.8,
-                      onIndexChanged: (index) {
-                        setState(() {
-                          _currentPage = index % 6;
-                        });
-                      },
-                      itemCount: developers.length,
-                      layout: SwiperLayout.TINDER,
-                      autoplay: true,
-                      autoplayDelay: 2000,
-                      itemBuilder: (context, index) {
-                        return DeveloperWidget(
-                          developer: developers[index],
-                        );
-                      },
-                    ),
-                  ),
-                ],
+              GridView.builder(
+                shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
+                itemCount: developers.length,
+                padding: EdgeInsets.symmetric(horizontal: 10),
+                itemBuilder: (BuildContext ctx, int index) {
+                  return DeveloperWidget(
+                    developer: developers[index],
+                  );
+                },
+                gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                  mainAxisExtent: MediaQuery.of(context).size.width * 0.7,
+                  maxCrossAxisExtent: MediaQuery.of(context).size.width * 0.62,
+                  mainAxisSpacing: 10,
+                  crossAxisSpacing: 10,
+                ),
               ),
             ],
           );

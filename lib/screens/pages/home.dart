@@ -38,7 +38,7 @@ class Home extends StatelessWidget {
             );
           }
           return SizedBox(
-            height: MediaQuery.of(context).size.height * 0.6,
+            height: MediaQuery.of(context).size.height * 0.7,
             width: MediaQuery.of(context).size.width,
             child: Center(
               child: LoadingAnimationWidget.staggeredDotWave(
@@ -76,7 +76,7 @@ class DataToLoad extends StatelessWidget {
                 height: MediaQuery.of(context).size.height * 0.06,
               ),
               Container(
-                height: MediaQuery.of(context).size.height * 0.65,
+                height: MediaQuery.of(context).size.height * 0.6,
                 // decoration: BoxDecoration(border: Border.all(color: grey)),
                 child: Swiper(
                   itemCount: categories.length,

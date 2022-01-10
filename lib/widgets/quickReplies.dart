@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:dialogflow_flutter/message.dart';
+import 'package:techapp/screens/components/style.dart';
 
 class QuickReplyWidget extends StatelessWidget {
   final QuickReplies replies;
@@ -34,13 +35,12 @@ class QuickReplyWidget extends StatelessWidget {
                   children: [
                     new Text(
                       "Other Similar Comamnds",
-                      style: TextStyle(
-                          fontSize: 15.0, fontWeight: FontWeight.bold),
+                      style: h6,
                     ),
                     new Text(
                       replies.quickReplies
                           .reduce((value, element) => value + "\n" + element),
-                      style: TextStyle(color: Colors.black),
+                      style: h6,
                     ),
                   ],
                 ),

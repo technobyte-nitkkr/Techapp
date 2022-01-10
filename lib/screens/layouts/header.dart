@@ -1,3 +1,4 @@
+import 'package:avatar_glow/avatar_glow.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:techapp/providers/fetch_data_provider.dart';
@@ -19,7 +20,7 @@ class Header extends StatelessWidget {
     return Container(
       color: Colors.transparent,
       child: Padding(
-        padding: const EdgeInsets.all(5.0),
+        padding: const EdgeInsets.all(2.0),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -63,17 +64,22 @@ class Header extends StatelessWidget {
                       color: white,
                     ),
                   ),
-                  IconButton(
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => ChatBotWidget()));
-                    },
-                    icon: FaIcon(
-                      FontAwesomeIcons.discord,
-                      size: 25,
-                      color: white,
+                  AvatarGlow(
+                    endRadius: 25,
+                    duration: Duration(seconds: 10),
+                    glowColor: Colors.white,
+                    child: IconButton(
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ChatBotWidget()));
+                      },
+                      icon: FaIcon(
+                        FontAwesomeIcons.discord,
+                        size: 25,
+                        color: white,
+                      ),
                     ),
                   )
                 ],

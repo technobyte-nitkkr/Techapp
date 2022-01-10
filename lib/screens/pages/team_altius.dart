@@ -114,7 +114,7 @@ class ContactCard extends StatelessWidget {
     return Card(
       color: Colors.transparent,
       elevation: 5,
-      shadowColor: Colors.grey,
+      shadowColor: glowColor,
       child: InkWell(
         onTap: () {
           Navigator.push(
@@ -129,7 +129,14 @@ class ContactCard extends StatelessWidget {
         child: Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20.0),
-            color: Colors.white,
+            color: white,
+            boxShadow: [
+              BoxShadow(
+                color: glowColor,
+                offset: Offset(0.0, 1.0),
+                blurRadius: 10.0,
+              ),
+            ],
           ),
           height: 100,
           padding: EdgeInsets.all(10.0),
@@ -154,7 +161,10 @@ class ContactCard extends StatelessWidget {
                   Expanded(
                     child: Text(
                       contact.section,
-                      style: h1,
+                      style: h2.copyWith(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 30,
+                          color: black.withOpacity(0.7)),
                     ),
                   ),
                 ],

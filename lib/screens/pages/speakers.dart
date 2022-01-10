@@ -1,7 +1,8 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:techapp/screens/components/style.dart';
 import 'package:techapp/screens/layouts/page_layout.dart';
+
+// ignore: import_of_legacy_library_into_null_safe
 import 'package:techapp/widgets/speakerList.dart';
 
 class Speakers extends StatelessWidget {

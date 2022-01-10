@@ -40,6 +40,7 @@ class EventsByCategory extends StatelessWidget {
                     bottomRight: Radius.circular(30),
                   ),
                   image: DecorationImage(
+                      opacity: 0.9,
                       image: AssetImage('assets/images/categories/' +
                           categoryName.toLowerCase() +
                           '.png'),

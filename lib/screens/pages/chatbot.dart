@@ -115,6 +115,7 @@ class _ChatBotWidget extends State<ChatBotWidget> {
     AIResponse response = await dialogflow.detectIntent(query);
     List<dynamic> messages = response.getListMessage();
 
+    // ignore: unnecessary_null_comparison
     if (messages != null && messages.length > 0) {
       int quickindex = -1;
       for (var i = 0; i < messages.length; i++) {

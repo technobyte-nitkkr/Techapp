@@ -2,29 +2,15 @@ import 'dart:ui';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:techapp/screens/components/style.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:techapp/models/event_by_categories.dart';
-import 'package:techapp/screens/components/style.dart';
+
 import 'package:techapp/widgets/SmartButton.dart';
 import 'package:techapp/widgets/event_poster.dart';
 import 'package:avatar_glow/avatar_glow.dart';
 
 DateFormat dateFormat = DateFormat("MMMM dd,yyyy HH:mm");
-
-class Style {
-  static final baseTextStyle = const TextStyle(fontFamily: 'Poppins');
-  static final smallTextStyle = commonTextStyle.copyWith(
-    fontSize: 11.0,
-  );
-  static final commonTextStyle = baseTextStyle.copyWith(
-      color: const Color(0xffb6b2df),
-      fontSize: 16.0,
-      fontWeight: FontWeight.w400);
-  static final titleTextStyle = baseTextStyle.copyWith(
-      color: Colors.white, fontSize: 30.0, fontWeight: FontWeight.w600);
-  static final headerTextStyle = baseTextStyle.copyWith(
-      color: Colors.white, fontSize: 25.0, fontWeight: FontWeight.w400);
-}
 
 class EventDetailWidget extends StatelessWidget {
   final Event item;
@@ -176,22 +162,21 @@ Container getContent(Event item, BuildContext context, bool isflagship) {
                       new Container(
                           child: AutoSizeText(
                         item.eventName,
-                        style: Style.titleTextStyle,
+                        style: titleTextStyle,
                         maxLines: 1,
                       )),
                       if (isflagship)
                         new Container(
                             child: AutoSizeText(
                           '( Flagship Event )',
-                          style: TextStyle(
-                              fontSize: 5,
-                              fontWeight: FontWeight.bold,
+                          style: h3.copyWith(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w300,
                               color: Colors.amber),
                           maxLines: 1,
                         )),
                       new Container(height: 10.0),
-                      new Text(item.eventCategory,
-                          style: Style.commonTextStyle),
+                      new Text(item.eventCategory, style: commonTextStyle),
                       Container(
                           margin: new EdgeInsets.symmetric(vertical: 8.0),
                           width: 18.0,
@@ -202,7 +187,7 @@ Container getContent(Event item, BuildContext context, bool isflagship) {
                                   DateTime.fromMicrosecondsSinceEpoch(
                                       item.startTime * 1000,
                                       isUtc: false)),
-                          style: Style.commonTextStyle),
+                          style: commonTextStyle),
                       SizedBox(
                         height: 10.0,
                       ),
@@ -211,7 +196,7 @@ Container getContent(Event item, BuildContext context, bool isflagship) {
                               dateFormat.format(
                                   DateTime.fromMicrosecondsSinceEpoch(
                                       item.endTime * 1000)),
-                          style: Style.commonTextStyle),
+                          style: commonTextStyle),
                     ],
                   ),
                 ),
@@ -221,12 +206,12 @@ Container getContent(Event item, BuildContext context, bool isflagship) {
                   color: new Color(0xFF333366),
                   shape: BoxShape.rectangle,
                   borderRadius: new BorderRadius.circular(8.0),
-                  boxShadow: <BoxShadow>[
-                    new BoxShadow(
-                      color: Colors.black12,
-                      blurRadius: 10.0,
-                      offset: new Offset(0.0, 10.0),
-                    ),
+                  boxShadow: [
+                    BoxShadow(
+                      color: glowColor.withOpacity(0.9),
+                      blurRadius: 5,
+                      spreadRadius: 1,
+                    )
                   ],
                 ),
               ),
@@ -239,11 +224,6 @@ Container getContent(Event item, BuildContext context, bool isflagship) {
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(10),
                       child: Container(
-                        decoration: BoxDecoration(
-                            border: Border.all(
-                          color: isflagship ? Colors.amber : Colors.transparent,
-                          width: 5,
-                        )),
                         width: 200.0,
                         height: 200.0,
                         child: FadeInImage.assetNetwork(
@@ -279,13 +259,13 @@ Container getContent(Event item, BuildContext context, bool isflagship) {
           child: new Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              new Text("Description", style: Style.headerTextStyle),
+              new Text("Description", style: headerTextStyle),
               Container(
                   margin: new EdgeInsets.symmetric(vertical: 5.0),
                   height: 2.0,
                   width: 18.0,
                   color: Colors.purple[800]),
-              new Text(item.description, style: Style.commonTextStyle),
+              new Text(item.description, style: commonTextStyle),
             ],
           ),
         ),
@@ -298,7 +278,7 @@ Container getContent(Event item, BuildContext context, bool isflagship) {
             child: new Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                new Text("Rules", style: Style.headerTextStyle),
+                new Text("Rules", style: headerTextStyle),
                 Container(
                     margin: new EdgeInsets.symmetric(vertical: 5.0),
                     height: 2.0,
@@ -318,13 +298,13 @@ Container getContent(Event item, BuildContext context, bool isflagship) {
           child: new Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              new Text("Venue", style: Style.headerTextStyle),
+              new Text("Venue", style: headerTextStyle),
               Container(
                   margin: new EdgeInsets.symmetric(vertical: 5.0),
                   height: 2.0,
                   width: 18.0,
                   color: Colors.purple[800]),
-              Container(child: Text(item.venue, style: Style.commonTextStyle))
+              Container(child: Text(item.venue, style: commonTextStyle))
             ],
           ),
         ),
@@ -335,7 +315,7 @@ Container getContent(Event item, BuildContext context, bool isflagship) {
             child: new Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                new Text("Coordinators", style: Style.headerTextStyle),
+                new Text("Coordinators", style: headerTextStyle),
                 Container(
                     margin: new EdgeInsets.symmetric(vertical: 5.0),
                     height: 2.0,
@@ -375,9 +355,9 @@ Container ruleItem(String rule) {
     child: Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        Text("• ", style: Style.commonTextStyle),
+        Text("• ", style: commonTextStyle),
         Expanded(
-          child: Text(rule, style: Style.commonTextStyle),
+          child: Text(rule, style: commonTextStyle),
         ),
       ],
     ),
@@ -392,9 +372,8 @@ Widget cordinatorItem(Cordinators cordinator) {
         height: 50,
         child: ElevatedButton(
             style: ElevatedButton.styleFrom(
-                primary: Colors.purple[200],
-                onPrimary: Colors.white,
-                shadowColor: Colors.black,
+                primary: glowColor.withOpacity(0.7),
+                shadowColor: glowColor,
                 elevation: 5,
                 shape: (RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10.0),
@@ -407,9 +386,7 @@ Widget cordinatorItem(Cordinators cordinator) {
             },
             child: AutoSizeText(
               cordinator.coordinator_name,
-              style: TextStyle(
-                fontSize: 18,
-              ),
+              style: h4s,
               maxLines: 1,
             )),
       ));

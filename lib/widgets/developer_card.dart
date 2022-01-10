@@ -24,79 +24,79 @@ class DeveloperCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(13),
-      ),
-      child: Column(
-        children: <Widget>[
-          Spacer(),
-          Image.network(
-            imageSrc,
-            height: 180,
-            width: 180,
-            fit: BoxFit.cover,
-          ),
-          Divider(),
-          AutoSizeText(
-            name,
-            style: h1,
-            maxLines: 1,
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          AutoSizeText(
-            year + ' Year',
-            style: h2,
-            maxLines: 1,
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          Divider(
-            thickness: 2,
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              IconButton(
-                icon: FaIcon(FontAwesomeIcons.github),
-                onPressed: () async {
-                  if (!await launch(linkedin)) {
-                    // show snackbar cannot show link
-                    ScaffoldMessenger.of(context).showSnackBar(CustomSnackbar(
-                        text: "couldnot process request", context: context));
-                  }
-                },
+    return ClipRRect(
+      clipBehavior: Clip.hardEdge,
+      borderRadius: BorderRadius.circular(10),
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.white,
+        ),
+        child: Column(
+          children: <Widget>[
+            Container(
+              child: Image.network(imageSrc,
+                  fit: BoxFit.cover,
+                  width: MediaQuery.of(context).size.width,
+                  height: MediaQuery.of(context).size.height * 0.2),
+            ),
+            AutoSizeText(
+              name,
+              style: h4,
+              maxLines: 1,
+            ),
+            AutoSizeText(
+              year + ' Year',
+              style: h4,
+              maxLines: 1,
+            ),
+            Divider(
+              thickness: 2,
+            ),
+            Flexible(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                  IconButton(
+                    icon: FaIcon(FontAwesomeIcons.github),
+                    onPressed: () async {
+                      if (!await launch(linkedin)) {
+                        // show snackbar cannot show link
+                        ScaffoldMessenger.of(context).showSnackBar(
+                            CustomSnackbar(
+                                text: "couldnot process request",
+                                context: context));
+                      }
+                    },
+                  ),
+                  IconButton(
+                    icon: FaIcon(FontAwesomeIcons.linkedin),
+                    onPressed: () async {
+                      if (!await launch(linkedin)) {
+                        // show snackbar cannot show link
+                        ScaffoldMessenger.of(context).showSnackBar(
+                            CustomSnackbar(
+                                text: "couldnot process request",
+                                context: context));
+                      }
+                    },
+                  ),
+                  IconButton(
+                    icon: FaIcon(FontAwesomeIcons.instagram),
+                    onPressed: () async {
+                      if (!await launch(insta)) {
+                        // show snackbar cannot show link
+                        ScaffoldMessenger.of(context).showSnackBar(
+                            CustomSnackbar(
+                                text: "couldnot process request",
+                                context: context));
+                      }
+                    },
+                  ),
+                ],
               ),
-              IconButton(
-                icon: FaIcon(FontAwesomeIcons.linkedin),
-                onPressed: () async {
-                  if (!await launch(linkedin)) {
-                    // show snackbar cannot show link
-                    ScaffoldMessenger.of(context).showSnackBar(CustomSnackbar(
-                        text: "couldnot process request", context: context));
-                  }
-                },
-              ),
-              IconButton(
-                icon: FaIcon(FontAwesomeIcons.instagram),
-                onPressed: () async {
-                  if (!await launch(insta)) {
-                    // show snackbar cannot show link
-                    ScaffoldMessenger.of(context).showSnackBar(CustomSnackbar(
-                        text: "couldnot process request", context: context));
-                  }
-                },
-              ),
-            ],
-          ),
-        ],
+            ),
+          ],
+        ),
       ),
     );
   }

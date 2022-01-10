@@ -44,6 +44,8 @@ class UserDetails {
     data['college'] = this.college;
     data['year'] = this.year;
     data['admin'] = this.admin;
+    data['role'] = this.role;
+
     return data;
   }
 }

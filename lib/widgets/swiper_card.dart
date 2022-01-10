@@ -33,11 +33,12 @@ class SwiperCard extends StatelessWidget {
               Stack(
                 children: [
                   Card(
-                    elevation: 8,
+                    elevation: 9,
+                    shadowColor: glowColor,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(32),
                     ),
-                    color: Colors.white,
+                    color: Colors.white.withOpacity(0.9),
                     child: Padding(
                       padding: const EdgeInsets.all(32.0),
                       child: Column(
@@ -59,12 +60,8 @@ class SwiperCard extends StatelessWidget {
                             children: <Widget>[
                               Text(
                                 'Know more',
-                                style: TextStyle(
-                                  fontFamily: 'Avenir',
-                                  fontSize: 18,
-                                  color: grey,
-                                  fontWeight: FontWeight.w500,
-                                ),
+                                style: h4.copyWith(
+                                    color: Colors.black.withOpacity(0.5)),
                                 textAlign: TextAlign.left,
                               ),
                               Icon(

@@ -65,7 +65,6 @@ flutter:
     - assets/
     - assets/images/
     - assets/images/categories/
-    - assets/images/developers/
     - assets/icons/
   
   fonts:

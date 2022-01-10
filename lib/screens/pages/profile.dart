@@ -24,8 +24,7 @@ class ProfilePage extends StatelessWidget {
                         ),
                         Container(
                             decoration: BoxDecoration(
-                                border:
-                                    Border.all(color: Colors.amber, width: 5),
+                                border: Border.all(color: glowColor),
                                 shape: BoxShape.circle),
                             child: CircleAvatar(
                               radius: 50,
@@ -74,7 +73,7 @@ class ProfilePage extends StatelessWidget {
                     alignment: Alignment.center,
                     child: Text(
                       'You cannot register for our events yet.\nClick on the button given below to signup for altius & start registering for our events.',
-                      style: h2s,
+                      style: h4s,
                       textAlign: TextAlign.center,
                     ),
                   ),
@@ -115,15 +114,16 @@ class DetailTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print(FetchDataProvider.user?.toJson());
     return Card(
       color: Colors.white24,
       elevation: 20,
-      shadowColor: Colors.black,
+      shadowColor: glowColor,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(20.0),
       ),
       child: ListTile(
-        iconColor: Colors.amber[700],
+        iconColor: glowColor,
         leading: Icon(this.icon),
         title: AutoSizeText(
           text,

@@ -159,7 +159,7 @@ class _SmartButtonWidgetState extends State<SmartButtonWidget> {
         child: !isLoading
             ? Text(
                 !isRegistered ? 'Register Now' : 'Unregister',
-                style: TextStyle(fontSize: 25, color: Colors.white),
+                style: h3,
               )
             : LoadingAnimationWidget.threeHorizontalDots(
                 color: white, size: 30),

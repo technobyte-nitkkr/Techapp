@@ -11,8 +11,7 @@ class ListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool isflagship = (item.flagship.toString() == 'true') ? true : false;
-    Color eventcolor = isflagship ? Colors.amber : Colors.white;
+    Color eventcolor = white;
 
     return Container(
       child: Card(
@@ -20,7 +19,7 @@ class ListItem extends StatelessWidget {
           margin: const EdgeInsets.only(top: 10),
           borderOnForeground: true,
           elevation: 5,
-          shadowColor: Colors.grey,
+          shadowColor: glowColor,
           child: GestureDetector(
             onTap: () => {
               Navigator.push(
@@ -34,9 +33,16 @@ class ListItem extends StatelessWidget {
             },
             child: Container(
                 decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(15),
-                    border: Border.all(color: eventcolor, width: 3)),
+                  color: Colors.white,
+                  boxShadow: [
+                    BoxShadow(
+                      color: glowColor.withOpacity(0.9),
+                      blurRadius: 5,
+                      spreadRadius: 1,
+                    )
+                  ],
+                  borderRadius: BorderRadius.circular(10),
+                ),
                 padding: const EdgeInsets.all(10),
                 child: Row(
                   children: <Widget>[

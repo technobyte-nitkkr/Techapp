@@ -6,6 +6,7 @@ import 'package:techapp/providers/fetch_data_provider.dart';
 import 'package:techapp/providers/local_storage_provider.dart';
 import 'package:techapp/retrofit/api_client.dart';
 import 'package:techapp/retrofit/response.dart';
+import 'package:techapp/screens/components/style.dart';
 
 class SignInModalWidget extends StatefulWidget {
   const SignInModalWidget({Key? key}) : super(key: key);
@@ -23,7 +24,7 @@ class _SignInModalWidgetState extends State<SignInModalWidget> {
 
   TextEditingController _college = TextEditingController();
   TextEditingController _phone = TextEditingController();
-  String _year = "First Year";
+  String _year = "Freshers";
 
   var _years = ["Freshers", "sophomores", "PreFinal year", "Final Year"];
   bool isloading = false;
@@ -63,7 +64,7 @@ class _SignInModalWidgetState extends State<SignInModalWidget> {
                 Container(
                   child: Text(
                     "Hi " + name! + " !",
-                    style: TextStyle(fontSize: 20),
+                    style: h4,
                   ),
                   margin: EdgeInsets.all(10),
                 ),
@@ -105,39 +106,44 @@ class _SignInModalWidgetState extends State<SignInModalWidget> {
                             border: OutlineInputBorder(),
                             contentPadding: EdgeInsets.all(10),
                             hintText: 'Enter your college',
-                            hintStyle: TextStyle(color: Colors.grey),
+                            hintStyle: h3.copyWith(
+                                color: Colors.blueGrey,
+                                fontWeight: FontWeight.w300),
                             labelText: 'College Name',
-                            labelStyle: TextStyle(color: Colors.black)))),
+                            labelStyle: h4))),
                 Container(
-                    margin: EdgeInsets.all(10),
-                    child: TextFormField(
-                        controller: _phone,
-                        validator: (value) {
-                          String patttern = r'(^(?:[+0]9)?[0-9]{10,12}$)';
-                          RegExp regExp = new RegExp(patttern);
-                          if (value == null || value.isEmpty) {
-                            return 'Required';
-                          } else if (!regExp.hasMatch(value)) {
-                            return 'Invalid Mobile Number';
-                          } else {
-                            return null;
-                          }
-                        },
-                        decoration: InputDecoration(
-                            border: OutlineInputBorder(),
-                            prefixIcon:
-                                Icon(Icons.phone, color: Colors.blueGrey),
-                            enabledBorder: OutlineInputBorder(
-                                borderSide: const BorderSide(
-                                    color: Colors.blueGrey, width: 1.0)),
-                            focusedBorder: OutlineInputBorder(
-                                borderSide: const BorderSide(
-                                    color: Colors.blueGrey, width: 2.0)),
-                            contentPadding: EdgeInsets.all(10),
-                            hintText: 'Mobile Number',
-                            hintStyle: TextStyle(color: Colors.grey),
-                            labelText: 'Mobile Number',
-                            labelStyle: TextStyle(color: Colors.black)))),
+                  margin: EdgeInsets.all(10),
+                  child: TextFormField(
+                    controller: _phone,
+                    validator: (value) {
+                      String patttern = r'(^(?:[+0]9)?[0-9]{10,12}$)';
+                      RegExp regExp = new RegExp(patttern);
+                      if (value == null || value.isEmpty) {
+                        return 'Required';
+                      } else if (!regExp.hasMatch(value)) {
+                        return 'Invalid Mobile Number';
+                      } else {
+                        return null;
+                      }
+                    },
+                    decoration: InputDecoration(
+                        border: OutlineInputBorder(),
+                        prefixIcon: Icon(Icons.phone, color: Colors.blueGrey),
+                        enabledBorder: OutlineInputBorder(
+                            borderSide: const BorderSide(
+                                color: Colors.blueGrey, width: 1.0)),
+                        focusedBorder: OutlineInputBorder(
+                            borderSide: const BorderSide(
+                                color: Colors.blueGrey, width: 2.0)),
+                        contentPadding: EdgeInsets.all(10),
+                        hintText: 'Mobile Number',
+                        hintStyle: h3.copyWith(
+                            color: Colors.blueGrey,
+                            fontWeight: FontWeight.w300),
+                        labelText: 'Mobile Number',
+                        labelStyle: h4),
+                  ),
+                ),
                 Container(
                     margin: EdgeInsets.all(10),
                     height: 50,

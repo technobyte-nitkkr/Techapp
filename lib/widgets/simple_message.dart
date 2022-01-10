@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:techapp/providers/fetch_data_provider.dart';
+import 'package:techapp/screens/components/style.dart';
 
 class SimpleMessage extends StatelessWidget {
   SimpleMessage({required this.text, required this.type});
@@ -32,7 +33,7 @@ class SimpleMessage extends StatelessWidget {
                     top: 10.0, bottom: 10.0, left: 10.0, right: 10.0),
                 child: new Text(
                   text,
-                  style: TextStyle(color: Colors.black),
+                  style: h5,
                 ),
               ),
             ),
@@ -58,7 +59,7 @@ class SimpleMessage extends StatelessWidget {
                     top: 10.0, bottom: 10.0, left: 10.0, right: 10.0),
                 child: new Text(
                   text,
-                  style: TextStyle(color: Colors.white),
+                  style: h5,
                 ),
               ),
             ),

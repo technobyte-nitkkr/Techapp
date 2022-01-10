@@ -60,14 +60,13 @@ class NotificatonItemWidget extends StatelessWidget {
                     children: <Widget>[
                       Text(
                         title,
-                        style: TextStyle(
-                            fontSize: 20, fontWeight: FontWeight.bold),
+                        style: h2,
                       ),
                       Text(
                         description.length > 100
                             ? description.substring(0, 100) + '...'
                             : description,
-                        style: TextStyle(fontSize: 15),
+                        style: h6,
                       ),
                       //  read more button
                       Row(
@@ -75,17 +74,13 @@ class NotificatonItemWidget extends StatelessWidget {
                         children: <Widget>[
                           Text(
                             'Know more',
-                            style: TextStyle(
-                              fontFamily: 'Avenir',
-                              fontSize: 18,
-                              color: grey,
-                              fontWeight: FontWeight.w500,
-                            ),
+                            style: h4.copyWith(color: grey.withOpacity(0.5)),
                             textAlign: TextAlign.left,
                           ),
                           Icon(
                             Icons.arrow_forward,
-                            color: grey,
+                            size: 15,
+                            color: grey.withOpacity(0.5),
                           ),
                         ],
                       ),
