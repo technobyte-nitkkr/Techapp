@@ -66,7 +66,7 @@ class Header extends StatelessWidget {
                   ),
                   AvatarGlow(
                     endRadius: 25,
-                    glowColor: Colors.white,
+                    glowColor: glowColor,
                     duration: Duration(milliseconds: 2000),
                     repeat: true,
                     showTwoGlows: true,
@@ -78,7 +78,7 @@ class Header extends StatelessWidget {
                                 builder: (context) => ChatBotWidget()));
                       },
                       icon: FaIcon(
-                        FontAwesomeIcons.discord,
+                        FontAwesomeIcons.robot,
                         size: 25,
                         color: white,
                       ),

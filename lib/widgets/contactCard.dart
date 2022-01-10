@@ -27,8 +27,7 @@ class ContactSwiperCard extends StatelessWidget {
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20),
               ),
-              shadowColor: glowColor,
-              color: Colors.white,
+              color: Colors.white70,
               child: Container(
                 width: MediaQuery.of(context).size.width * 0.9,
                 padding: const EdgeInsets.all(32.0),

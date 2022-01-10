@@ -160,7 +160,7 @@ class SplashAnimation extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        getGradient(),
+        getGradientLock(),
         Container(
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height,

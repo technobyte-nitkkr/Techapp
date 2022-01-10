@@ -69,11 +69,22 @@ class CardItem extends StatelessWidget {
     return Card(
       elevation: 8,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-      color: white,
+      color: Colors.transparent,
       child: InkWell(
         borderRadius: BorderRadius.circular(32),
         onTap: () => launch('${item.link}'),
         child: Container(
+          decoration: BoxDecoration(
+            color: Colors.white54,
+            boxShadow: [
+              BoxShadow(
+                color: glowColor.withOpacity(0.5),
+                blurRadius: 30,
+                offset: Offset(0, 2),
+              ),
+            ],
+            borderRadius: BorderRadius.circular(10),
+          ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,

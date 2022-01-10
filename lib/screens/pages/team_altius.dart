@@ -57,7 +57,7 @@ class _TeamAltiusState extends State<TeamAltius> {
                   contacts = contacts.reversed.toList();
                   return ListView.builder(
                     // reverse: true,
-                    physics: BouncingScrollPhysics(),
+                    physics: ClampingScrollPhysics(),
                     controller: _controller,
                     itemCount: contacts.length,
                     itemBuilder: (BuildContext ctx, int index) {
@@ -111,7 +111,6 @@ class ContactCard extends StatelessWidget {
     return Card(
       color: Colors.transparent,
       elevation: 5,
-      shadowColor: glowColor,
       child: InkWell(
         onTap: () {
           Navigator.push(
@@ -126,12 +125,12 @@ class ContactCard extends StatelessWidget {
         child: Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20.0),
-            color: white,
+            color: Colors.white38,
             boxShadow: [
               BoxShadow(
-                color: glowColor,
-                offset: Offset(0.0, 1.0),
-                blurRadius: 10.0,
+                color: glowColor.withOpacity(0.5),
+                blurRadius: 30,
+                offset: Offset(0, 2),
               ),
             ],
           ),

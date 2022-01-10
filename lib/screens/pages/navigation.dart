@@ -60,7 +60,7 @@ class _NavigationState extends State<Navigation> {
         if (cantExit) {
           //show snackbar
           final snack = SnackBar(
-            backgroundColor: gradientEndColor2,
+            backgroundColor: Colors.black26,
             content: Text('Press Back button again to Exit'),
             duration: Duration(seconds: 2),
           );

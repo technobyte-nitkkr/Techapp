@@ -38,9 +38,9 @@ class EventDetailWidget extends StatelessWidget {
         ),
         body: Container(
           constraints: new BoxConstraints.expand(),
-          color: gradientStartColor2,
           child: Stack(
             children: [
+              getGradient(),
               Container(
                 child: SingleChildScrollView(
                   child: new Stack(
@@ -162,7 +162,7 @@ Container getContent(Event item, BuildContext context, bool isflagship) {
                       new Container(
                           child: AutoSizeText(
                         item.eventName,
-                        style: titleTextStyle,
+                        style: titleTextStyle.copyWith(color: black),
                         maxLines: 1,
                       )),
                       if (isflagship)
@@ -170,13 +170,16 @@ Container getContent(Event item, BuildContext context, bool isflagship) {
                             child: AutoSizeText(
                           '( Flagship Event )',
                           style: h3.copyWith(
-                              fontSize: 12,
-                              fontWeight: FontWeight.w300,
-                              color: Colors.amber),
+                            fontSize: 12,
+                            fontWeight: FontWeight.w300,
+                          ),
                           maxLines: 1,
                         )),
                       new Container(height: 10.0),
-                      new Text(item.eventCategory, style: commonTextStyle),
+                      new Text(item.eventCategory,
+                          style: h2.copyWith(
+                              color: Colors.grey[600],
+                              fontWeight: FontWeight.w300)),
                       Container(
                           margin: new EdgeInsets.symmetric(vertical: 8.0),
                           width: 18.0,
@@ -187,7 +190,8 @@ Container getContent(Event item, BuildContext context, bool isflagship) {
                                   DateTime.fromMicrosecondsSinceEpoch(
                                       item.startTime * 1000,
                                       isUtc: false)),
-                          style: commonTextStyle),
+                          style: commonTextStyle.copyWith(
+                              color: black, fontWeight: FontWeight.w300)),
                       SizedBox(
                         height: 10.0,
                       ),
@@ -196,22 +200,23 @@ Container getContent(Event item, BuildContext context, bool isflagship) {
                               dateFormat.format(
                                   DateTime.fromMicrosecondsSinceEpoch(
                                       item.endTime * 1000)),
-                          style: commonTextStyle),
+                          style: commonTextStyle.copyWith(
+                              color: black, fontWeight: FontWeight.w300)),
                     ],
                   ),
                 ),
                 height: 300,
                 margin: new EdgeInsets.only(top: 72.0),
                 decoration: new BoxDecoration(
-                  color: new Color(0xFF333366),
+                  color: Colors.white70,
                   shape: BoxShape.rectangle,
                   borderRadius: new BorderRadius.circular(8.0),
                   boxShadow: [
                     BoxShadow(
-                      color: glowColor.withOpacity(0.9),
-                      blurRadius: 5,
-                      spreadRadius: 1,
-                    )
+                      color: glowColor.withOpacity(0.6),
+                      blurRadius: 30,
+                      offset: Offset(0, 2),
+                    ),
                   ],
                 ),
               ),
@@ -264,7 +269,7 @@ Container getContent(Event item, BuildContext context, bool isflagship) {
                   margin: new EdgeInsets.symmetric(vertical: 5.0),
                   height: 2.0,
                   width: 18.0,
-                  color: Colors.purple[800]),
+                  color: white),
               new Text(item.description, style: commonTextStyle),
             ],
           ),
@@ -283,7 +288,7 @@ Container getContent(Event item, BuildContext context, bool isflagship) {
                     margin: new EdgeInsets.symmetric(vertical: 5.0),
                     height: 2.0,
                     width: 18.0,
-                    color: Colors.purple[800]),
+                    color: white),
                 Column(
                     children: item.rules.map((rule) => ruleItem(rule)).toList())
               ],
@@ -303,7 +308,7 @@ Container getContent(Event item, BuildContext context, bool isflagship) {
                   margin: new EdgeInsets.symmetric(vertical: 5.0),
                   height: 2.0,
                   width: 18.0,
-                  color: Colors.purple[800]),
+                  color: white),
               Container(child: Text(item.venue, style: commonTextStyle))
             ],
           ),

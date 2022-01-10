@@ -12,7 +12,7 @@ class SideMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      backgroundColor: Colors.black.withOpacity(0.8),
+      backgroundColor: Colors.black54,
       elevation: 1,
       child: ListView(
         children: [
@@ -46,9 +46,11 @@ class SideMenu extends StatelessWidget {
                   const SizedBox(
                     height: 2,
                   ),
-                  Text(
-                      "${FirebaseAuth.instance.currentUser != null ? FirebaseAuth.instance.currentUser!.email : "Dummy Email"}",
-                      style: h4s),
+                  AutoSizeText(
+                    "${FirebaseAuth.instance.currentUser != null ? FirebaseAuth.instance.currentUser!.email : "Dummy Email"}",
+                    style: h4s,
+                    maxLines: 1,
+                  ),
                 ],
               ),
             ),

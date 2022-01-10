@@ -119,15 +119,34 @@ Container getGradient() {
   return new Container(
     decoration: BoxDecoration(
       image: DecorationImage(
+        image: AssetImage("assets/images/back3.png"),
+        fit: BoxFit.cover,
+      ),
+    ),
+    child: BackdropFilter(
+      filter: new ImageFilter.blur(sigmaX: 1, sigmaY: 1),
+      child: Container(
+        decoration: BoxDecoration(
+          color: black.withOpacity(0.4),
+        ),
+      ),
+    ),
+  );
+}
+
+Container getGradientLock() {
+  return new Container(
+    decoration: BoxDecoration(
+      image: DecorationImage(
         image: AssetImage("assets/images/back.jpg"),
         fit: BoxFit.cover,
       ),
     ),
     child: BackdropFilter(
-      filter: new ImageFilter.blur(sigmaX: 2, sigmaY: 2),
+      filter: new ImageFilter.blur(sigmaX: 1, sigmaY: 1),
       child: Container(
         decoration: BoxDecoration(
-          color: black.withOpacity(0.1),
+          color: black.withOpacity(0.4),
         ),
       ),
     ),

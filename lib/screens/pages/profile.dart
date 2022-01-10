@@ -80,10 +80,9 @@ class ProfilePage extends StatelessWidget {
                 if (FetchDataProvider.user!.onBoard == false)
                   ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                          primary: Colors.indigoAccent,
-                          onPrimary: Colors.white,
-                          shadowColor: Colors.black,
+                          primary: glowColor,
                           elevation: 25,
+                          padding: EdgeInsets.all(10),
                           shape: (RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10.0),
                           ))),

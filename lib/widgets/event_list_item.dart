@@ -11,15 +11,12 @@ class ListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Color eventcolor = white;
-
     return Container(
       child: Card(
           color: Colors.transparent,
           margin: const EdgeInsets.only(top: 10),
           borderOnForeground: true,
-          elevation: 5,
-          shadowColor: glowColor,
+          elevation: 0,
           child: GestureDetector(
             onTap: () => {
               Navigator.push(
@@ -32,68 +29,69 @@ class ListItem extends StatelessWidget {
               )
             },
             child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  boxShadow: [
-                    BoxShadow(
-                      color: glowColor.withOpacity(0.9),
-                      blurRadius: 5,
-                      spreadRadius: 1,
-                    )
-                  ],
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                padding: const EdgeInsets.all(10),
-                child: Row(
-                  children: <Widget>[
-                    Hero(
-                      tag: item.eventName,
-                      child: Container(
-                          width: 100,
-                          height: 100,
-                          child: FadeInImage.assetNetwork(
-                              placeholder: 'assets/images/altius.png',
-                              image: item.poster,
-                              fit: BoxFit.cover,
-                              imageErrorBuilder: (context, error, stackTrace) =>
-                                  Image.asset('assets/images/altius.png'))),
-                    ),
-                    Expanded(
-                      child: Container(
-                        padding: const EdgeInsets.only(left: 10),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Text(item.eventName, style: h2),
-                            Text(
-                              item.description.length > 100
-                                  ? item.description.substring(0, 100) + '...'
-                                  : item.description,
-                              style: h6,
-                            ),
-                            //  read more button
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: <Widget>[
-                                Text(
-                                  'Know more',
-                                  style: h4.copyWith(
-                                      color: Colors.grey.withOpacity(0.6),
-                                      fontWeight: FontWeight.bold),
-                                  textAlign: TextAlign.left,
-                                ),
-                                Icon(
-                                  Icons.arrow_forward,
-                                  color: grey,
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
+              decoration: BoxDecoration(
+                color: Colors.white54,
+                boxShadow: [
+                  BoxShadow(
+                    color: glowColor.withOpacity(0.5),
+                    blurRadius: 30,
+                    offset: Offset(0, 2),
+                  ),
+                ],
+                borderRadius: BorderRadius.circular(10),
+              ),
+              padding: const EdgeInsets.all(10),
+              child: Row(
+                children: <Widget>[
+                  Hero(
+                    tag: item.eventName,
+                    child: Container(
+                        width: 100,
+                        height: 100,
+                        child: FadeInImage.assetNetwork(
+                            placeholder: 'assets/images/altius.png',
+                            image: item.poster,
+                            fit: BoxFit.cover,
+                            imageErrorBuilder: (context, error, stackTrace) =>
+                                Image.asset('assets/images/altius.png'))),
+                  ),
+                  Expanded(
+                    child: Container(
+                      padding: const EdgeInsets.only(left: 10),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Text(item.eventName, style: h2),
+                          Text(
+                            item.description.length > 100
+                                ? item.description.substring(0, 100) + '...'
+                                : item.description,
+                            style: h6,
+                          ),
+                          //  read more button
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: <Widget>[
+                              Text(
+                                'Know more',
+                                style: h4.copyWith(
+                                    color: Colors.grey.withOpacity(0.6),
+                                    fontWeight: FontWeight.bold),
+                                textAlign: TextAlign.left,
+                              ),
+                              Icon(
+                                Icons.arrow_forward,
+                                color: grey,
+                              ),
+                            ],
+                          ),
+                        ],
                       ),
                     ),
-                  ],
-                )),
+                  ),
+                ],
+              ),
+            ),
           )),
     );
   }

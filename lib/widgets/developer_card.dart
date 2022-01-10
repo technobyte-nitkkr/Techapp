@@ -29,24 +29,35 @@ class DeveloperCard extends StatelessWidget {
       borderRadius: BorderRadius.circular(10),
       child: Container(
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: Colors.white30,
+          boxShadow: [
+            BoxShadow(
+              color: glowColor.withOpacity(0.5),
+              blurRadius: 30,
+              offset: Offset(0, 2),
+            ),
+          ],
         ),
         child: Column(
           children: <Widget>[
             Container(
-              child: Image.network(imageSrc,
-                  fit: BoxFit.cover,
-                  width: MediaQuery.of(context).size.width,
-                  height: MediaQuery.of(context).size.height * 0.2),
+              child: Image.network(
+                imageSrc,
+                fit: BoxFit.cover,
+                width: MediaQuery.of(context).size.width,
+                height: 150,
+              ),
             ),
             AutoSizeText(
               name,
-              style: h4,
+              style: h4s,
               maxLines: 1,
             ),
             AutoSizeText(
               year + ' Year',
-              style: h4,
+              style: h5.copyWith(
+                color: white.withOpacity(0.8),
+              ),
               maxLines: 1,
             ),
             Divider(
@@ -57,7 +68,10 @@ class DeveloperCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
                   IconButton(
-                    icon: FaIcon(FontAwesomeIcons.github),
+                    icon: FaIcon(
+                      FontAwesomeIcons.github,
+                      color: white,
+                    ),
                     onPressed: () async {
                       if (!await launch(linkedin)) {
                         // show snackbar cannot show link
@@ -69,7 +83,10 @@ class DeveloperCard extends StatelessWidget {
                     },
                   ),
                   IconButton(
-                    icon: FaIcon(FontAwesomeIcons.linkedin),
+                    icon: FaIcon(
+                      FontAwesomeIcons.linkedin,
+                      color: white,
+                    ),
                     onPressed: () async {
                       if (!await launch(linkedin)) {
                         // show snackbar cannot show link
@@ -81,7 +98,10 @@ class DeveloperCard extends StatelessWidget {
                     },
                   ),
                   IconButton(
-                    icon: FaIcon(FontAwesomeIcons.instagram),
+                    icon: FaIcon(
+                      FontAwesomeIcons.instagram,
+                      color: white,
+                    ),
                     onPressed: () async {
                       if (!await launch(insta)) {
                         // show snackbar cannot show link

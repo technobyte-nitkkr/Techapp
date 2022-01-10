@@ -48,8 +48,8 @@ class AnimatedDeveloper extends StatelessWidget {
                   );
                 },
                 gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                  mainAxisExtent: MediaQuery.of(context).size.width * 0.7,
-                  maxCrossAxisExtent: MediaQuery.of(context).size.width * 0.62,
+                  mainAxisExtent: 250,
+                  maxCrossAxisExtent: 200,
                   mainAxisSpacing: 10,
                   crossAxisSpacing: 10,
                 ),

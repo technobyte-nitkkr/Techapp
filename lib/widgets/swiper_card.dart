@@ -33,13 +33,21 @@ class SwiperCard extends StatelessWidget {
               Stack(
                 children: [
                   Card(
-                    elevation: 9,
-                    shadowColor: glowColor,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(32),
                     ),
-                    color: Colors.white.withOpacity(0.9),
-                    child: Padding(
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.white54,
+                        boxShadow: [
+                          BoxShadow(
+                            color: glowColor.withOpacity(0.5),
+                            blurRadius: 30,
+                            offset: Offset(0, 2),
+                          ),
+                        ],
+                        borderRadius: BorderRadius.circular(32),
+                      ),
                       padding: const EdgeInsets.all(32.0),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -82,7 +90,7 @@ class SwiperCard extends StatelessWidget {
                       style: TextStyle(
                         fontFamily: 'Avenir',
                         fontSize: MediaQuery.of(context).size.width * 0.2,
-                        color: black.withOpacity(0.09),
+                        color: black.withOpacity(0.3),
                         fontWeight: FontWeight.w900,
                       ),
                       textAlign: TextAlign.left,
@@ -105,6 +113,7 @@ class SwiperCard extends StatelessWidget {
               // margin: EdgeInsets.only(left: 30),
               decoration: BoxDecoration(
                 image: DecorationImage(
+                    opacity: 0.93,
                     image: AssetImage('assets/images/categories/' +
                         categoryName.toLowerCase() +
                         '.png'),
