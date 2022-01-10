@@ -73,11 +73,12 @@ class DeveloperCard extends StatelessWidget {
                       color: white,
                     ),
                     onPressed: () async {
-                      if (!await launch(linkedin)) {
-                        // show snackbar cannot show link
+                      if (await canLaunch(github)) {
+                        await launch(github);
+                      } else {
                         ScaffoldMessenger.of(context).showSnackBar(
                             CustomSnackbar(
-                                text: "couldnot process request",
+                                text: "could not process request",
                                 context: context));
                       }
                     },
@@ -88,11 +89,12 @@ class DeveloperCard extends StatelessWidget {
                       color: white,
                     ),
                     onPressed: () async {
-                      if (!await launch(linkedin)) {
-                        // show snackbar cannot show link
+                      if (await canLaunch(linkedin)) {
+                        await launch(linkedin);
+                      } else {
                         ScaffoldMessenger.of(context).showSnackBar(
                             CustomSnackbar(
-                                text: "couldnot process request",
+                                text: "could not process request",
                                 context: context));
                       }
                     },
@@ -103,11 +105,12 @@ class DeveloperCard extends StatelessWidget {
                       color: white,
                     ),
                     onPressed: () async {
-                      if (!await launch(insta)) {
-                        // show snackbar cannot show link
+                      if (await canLaunch(insta)) {
+                        await launch(insta);
+                      } else {
                         ScaffoldMessenger.of(context).showSnackBar(
                             CustomSnackbar(
-                                text: "couldnot process request",
+                                text: "Could not process request !",
                                 context: context));
                       }
                     },
@@ -126,7 +129,7 @@ class DeveloperCard extends StatelessWidget {
 SnackBar CustomSnackbar({required String text, required BuildContext context}) {
   return SnackBar(
     content: Text(text, textAlign: TextAlign.center),
-    backgroundColor: Colors.yellow,
+    backgroundColor: Colors.orange,
     behavior: SnackBarBehavior.floating,
     duration: const Duration(seconds: 3),
     shape: RoundedRectangleBorder(

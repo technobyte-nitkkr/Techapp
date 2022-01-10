@@ -44,13 +44,22 @@ class _NavigationState extends State<Navigation> {
             ? Colors.black.withOpacity(0.8)
             : Colors.black.withOpacity(0.5),
       ),
-      FaIcon(
-        FontAwesomeIcons.laptopCode,
-        size: 30,
+      Image.asset(
+        "assets/images/GL.png",
         color: (index == 2)
             ? Colors.black.withOpacity(0.8)
             : Colors.black.withOpacity(0.5),
-      ),
+        fit: BoxFit.fill,
+        height: 33,
+        width: 33,
+      )
+      // FaIcon(
+      //   FontAwesomeIcons.laptopCode,
+      //   size: 30,
+      //   color: (index == 2)
+      //       ? Colors.black.withOpacity(0.8)
+      //       : Colors.black.withOpacity(0.5),
+      // ),
     ];
     return WillPopScope(
       onWillPop: () async {

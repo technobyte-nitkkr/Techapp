@@ -235,7 +235,7 @@ class ListItem extends StatelessWidget {
                           AutoSizeText(
                             '${item.name}',
                             style: TextStyle(
-                              fontSize: 35.0,
+                              fontSize: 30.0,
                               //color:Colors.white,
                             ),
                             maxLines: 1,
