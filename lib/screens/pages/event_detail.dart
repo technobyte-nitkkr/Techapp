@@ -30,7 +30,7 @@ class EventDetailWidget extends StatelessWidget {
           elevation: 0,
           backgroundColor: Colors.transparent,
           leading: new IconButton(
-            icon: new Icon(Icons.arrow_back, color: black),
+            icon: new Icon(Icons.arrow_back, color: white),
             onPressed: () {
               Navigator.pop(context);
             },
@@ -45,7 +45,7 @@ class EventDetailWidget extends StatelessWidget {
                 child: SingleChildScrollView(
                   child: new Stack(
                     children: <Widget>[
-                      getBackground(this.item),
+                      // getBackground(this.item),
                       getContent(this.item, context, isflagship),
                     ],
                   ),

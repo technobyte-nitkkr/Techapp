@@ -2,12 +2,13 @@ import 'dart:math';
 
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:techapp/models/categories.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:techapp/screens/components/style.dart';
 import 'package:techapp/screens/pages/events_by_category.dart';
 
 class SwiperCard extends StatelessWidget {
-  final String categoryName;
+  final CategorySchema categoryName;
   final String fadeText;
 
   const SwiperCard(
@@ -57,8 +58,10 @@ class SwiperCard extends StatelessWidget {
                                   MediaQuery.of(context).size.width * 0.35,
                                   400)),
                           AutoSizeText(
-                            categoryName.substring(0, 1).toUpperCase() +
-                                categoryName.substring(1),
+                            categoryName.categoryName
+                                    .substring(0, 1)
+                                    .toUpperCase() +
+                                categoryName.categoryName.substring(1),
                             style: h1,
                             maxLines: 1,
                             textAlign: TextAlign.left,
@@ -113,10 +116,7 @@ class SwiperCard extends StatelessWidget {
               // margin: EdgeInsets.only(left: 30),
               decoration: BoxDecoration(
                 image: DecorationImage(
-                    image: AssetImage('assets/images/categories/' +
-                        categoryName.toLowerCase() +
-                        '.png'),
-                    fit: BoxFit.fill),
+                    image: NetworkImage(categoryName.imgUrl), fit: BoxFit.fill),
                 borderRadius: BorderRadius.circular(32),
               ),
             ),

@@ -125,11 +125,11 @@ class ContactCard extends StatelessWidget {
         child: Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20.0),
-            color: Colors.white70,
+            color: Colors.white24,
             boxShadow: [
               BoxShadow(
                 color: glowColor.withOpacity(0.2),
-                blurRadius: 10,
+                blurRadius: 30,
                 offset: Offset(0, 2),
               ),
             ],
@@ -152,7 +152,7 @@ class ContactCard extends StatelessWidget {
                     radius: 30,
                   ),
                   SizedBox(
-                    width: 50,
+                    width: 30,
                   ),
                   Expanded(
                     child: AutoSizeText(
@@ -160,7 +160,7 @@ class ContactCard extends StatelessWidget {
                       style: h2.copyWith(
                           fontWeight: FontWeight.bold,
                           fontSize: 30,
-                          color: black.withOpacity(0.7)),
+                          color: white.withOpacity(0.8)),
                       maxLines: 1,
                     ),
                   ),

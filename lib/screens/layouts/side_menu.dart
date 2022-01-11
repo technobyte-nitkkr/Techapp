@@ -67,6 +67,7 @@ class SideMenu extends StatelessWidget {
             leading: Icon(
               Icons.home,
               color: glowColor,
+              size: 25,
             ),
             onTap: () {
               Navigator.pop(context);
@@ -90,22 +91,6 @@ class SideMenu extends StatelessWidget {
               route: '/developers',
               icon: Icons.developer_mode),
           ListTile(
-            title: Text('Your Profile', style: h4s),
-            leading: Icon(
-              Icons.person,
-              color: glowColor,
-            ),
-            onTap: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => ProfilePage()));
-            },
-          ),
-          Divider(
-            height: 1,
-            thickness: 1,
-            color: glowColor.withOpacity(0.5),
-          ),
-          ListTile(
             title: Text('Website', style: h4s),
             leading: FaIcon(
               FontAwesomeIcons.desktop,
@@ -117,6 +102,22 @@ class SideMenu extends StatelessWidget {
                   'https://website-frontend20-2mkfatxre.vercel.app/')) {
                 print('invalid link');
               }
+            },
+          ),
+          Divider(
+            height: 1,
+            thickness: 1,
+            color: glowColor.withOpacity(0.5),
+          ),
+          ListTile(
+            title: Text('Your Profile', style: h4s),
+            leading: Icon(
+              Icons.person,
+              color: glowColor,
+            ),
+            onTap: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => ProfilePage()));
             },
           ),
           Divider(

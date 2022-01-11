@@ -53,30 +53,7 @@ class _SplashAnimationState extends State<SplashAnimation> {
                 height: MediaQuery.of(context).size.height * 0.4,
               ),
               SizedBox(
-                height: MediaQuery.of(context).size.height * 0.1,
-              ),
-              Container(
-                child:
-                    Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                  AutoSizeText(
-                    'Made with  ',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(color: white, fontSize: 22),
-                  ),
-                  FaIcon(
-                    FontAwesomeIcons.solidHeart,
-                    size: 22,
-                    color: white,
-                  ),
-                  AutoSizeText(
-                    ' by Technobyte ',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(color: white, fontSize: 22),
-                  )
-                ]),
-              ),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.1,
+                height: MediaQuery.of(context).size.height * 0.2,
               ),
               ElevatedButton(
                 onPressed: () async {

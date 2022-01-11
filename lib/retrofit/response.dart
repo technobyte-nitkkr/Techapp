@@ -1,5 +1,6 @@
 import 'package:techapp/models/Speaker.dart';
 import 'package:techapp/models/Sponsor.dart';
+import 'package:techapp/models/categories.dart';
 import 'package:techapp/models/developers.dart';
 import 'package:techapp/models/event_all.dart';
 import 'package:techapp/models/event_by_categories.dart';
@@ -95,10 +96,10 @@ class ResponseData {
     return datad;
   }
 
-  List<String> getCategories() {
-    List<String> datad = [];
+  List<CategorySchema> getCategories() {
+    List<CategorySchema> datad = [];
     for (var item in data["categories"]) {
-      datad.add(item);
+      datad.add(CategorySchema.fromJson(item));
       // print(item);
     }
     return datad;

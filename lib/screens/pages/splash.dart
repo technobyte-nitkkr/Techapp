@@ -185,7 +185,7 @@ class SplashAnimation extends StatelessWidget {
                     color: white, size: 50),
               ),
               SizedBox(
-                height: MediaQuery.of(context).size.height * 0.1,
+                height: MediaQuery.of(context).size.height * 0.17,
               ),
               Container(
                 child:
@@ -193,17 +193,17 @@ class SplashAnimation extends StatelessWidget {
                   AutoSizeText(
                     'Made with  ',
                     textAlign: TextAlign.center,
-                    style: TextStyle(color: white, fontSize: 22),
+                    style: TextStyle(color: white, fontSize: 15),
                   ),
                   FaIcon(
                     FontAwesomeIcons.solidHeart,
-                    size: 22,
+                    size: 15,
                     color: white,
                   ),
                   AutoSizeText(
                     ' by Technobyte ',
                     textAlign: TextAlign.center,
-                    style: TextStyle(color: white, fontSize: 22),
+                    style: TextStyle(color: white, fontSize: 15),
                   )
                 ]),
               ),

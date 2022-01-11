@@ -4,6 +4,7 @@ import 'package:card_swiper/card_swiper.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:techapp/models/categories.dart';
 import 'package:techapp/retrofit/api_client.dart';
 import 'package:techapp/screens/components/style.dart';
 import 'package:techapp/screens/layouts/page_layout.dart';
@@ -22,7 +23,7 @@ class Home extends StatelessWidget {
         future: client.getCategories(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            List<String> categories = snapshot.data.getCategories();
+            List<CategorySchema> categories = snapshot.data.getCategories();
             categories = categories.reversed.toList();
             return DataToLoad(
               categories: categories,
@@ -52,7 +53,7 @@ class Home extends StatelessWidget {
 }
 
 class DataToLoad extends StatelessWidget {
-  final List<String> categories;
+  final List<CategorySchema> categories;
   const DataToLoad({
     Key key,
     this.categories,

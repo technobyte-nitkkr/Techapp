@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:techapp/models/categories.dart';
 import 'package:techapp/screens/components/style.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:techapp/widgets/event_list.dart';
 
 class EventsByCategory extends StatelessWidget {
-  final String categoryName;
+  final CategorySchema categoryName;
 
   const EventsByCategory({Key? key, required this.categoryName})
       : super(key: key);
@@ -41,9 +42,7 @@ class EventsByCategory extends StatelessWidget {
                   ),
                   image: DecorationImage(
                       opacity: 0.9,
-                      image: AssetImage('assets/images/categories/' +
-                          categoryName.toLowerCase() +
-                          '.png'),
+                      image: NetworkImage(categoryName.imgUrl),
                       fit: BoxFit.cover),
                 ),
               ),
@@ -56,8 +55,8 @@ class EventsByCategory extends StatelessWidget {
                 ),
                 // text astronomy
                 Text(
-                  categoryName.substring(0, 1).toUpperCase() +
-                      categoryName.substring(1),
+                  categoryName.categoryName.substring(0, 1).toUpperCase() +
+                      categoryName.categoryName.substring(1),
                   style: h1s,
                   textAlign: TextAlign.left,
                 ),

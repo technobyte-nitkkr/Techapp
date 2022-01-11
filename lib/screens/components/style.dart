@@ -127,7 +127,7 @@ Container getGradient() {
       filter: new ImageFilter.blur(sigmaX: 1, sigmaY: 1),
       child: Container(
         decoration: BoxDecoration(
-          color: black.withOpacity(0.4),
+          color: black.withOpacity(0.2),
         ),
       ),
     ),

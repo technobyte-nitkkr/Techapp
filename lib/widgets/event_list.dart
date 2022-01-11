@@ -2,13 +2,14 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:techapp/models/categories.dart';
 import 'package:techapp/models/event_by_categories.dart';
 import 'package:techapp/retrofit/api_client.dart';
 import 'package:techapp/screens/components/style.dart';
 import 'package:techapp/widgets/event_list_item.dart';
 
 class EventsByCategoryWidget extends StatelessWidget {
-  final String categoryName;
+  final CategorySchema categoryName;
 
   const EventsByCategoryWidget({Key key, this.categoryName}) : super(key: key);
 
@@ -16,7 +17,7 @@ class EventsByCategoryWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final client = ApiClient.create();
     return FutureBuilder(
-      future: client.getEvents(categoryName),
+      future: client.getEvents(categoryName.categoryName),
       builder: (context, snapshot) {
         if (snapshot.hasError) {
           final errormessage = (snapshot.error as DioError).error.toString();

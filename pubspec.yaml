@@ -39,6 +39,7 @@ dependencies:
   avatar_glow: ^2.0.2
   font_awesome_flutter: ^9.0.0
   salomon_bottom_bar: ^3.2.0
+  cached_network_image: ^3.2.0
   
   
   
@@ -64,7 +65,6 @@ flutter:
   assets:
     - assets/
     - assets/images/
-    - assets/images/categories/
     - assets/icons/
   
   fonts:
