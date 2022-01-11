@@ -211,76 +211,85 @@ class ListItem extends StatelessWidget {
           color: Colors.white,
           alignment: Alignment.center,
           child: Stack(children: [
-            Padding(
-              padding: const EdgeInsets.fromLTRB(5, 10, 0, 0),
-              child: Column(children: [
-                Row(children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
+            Column(children: [
+              Row(children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: CircleAvatar(
+                    backgroundColor: Color(0xFF3F51B5),
+                    radius: 45.0,
                     child: CircleAvatar(
-                      backgroundColor: Colors.black,
-                      radius: 40.0,
-                      child: CircleAvatar(
-                        radius: 38.0,
-                        //backgroundColor: const Color(0xff47455f),
-                        backgroundImage: NetworkImage('${item.imageurl}'),
-                      ),
+                      radius: 42.0,
+                      backgroundImage: NetworkImage('${item.imageurl}'),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          AutoSizeText(
-                            '${item.name}',
-                            style: TextStyle(
-                              fontSize: 30.0,
-                              //color:Colors.white,
-                            ),
-                            maxLines: 1,
-                          ),
-                        ]),
-                  )
-                ]),
-                SizedBox(
-                  height: 10.0,
                 ),
-                Row(
+                SizedBox(
+                  width: 10.0,
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        AutoSizeText(
+                          '${item.name}',
+                          style: h1.copyWith(
+                            fontSize: 30.0,
+                            color: Color(0xFF3F51B5),
+                            fontWeight: FontWeight.bold,
+                          ),
+                          maxLines: 1,
+                        ),
+                      ]),
+                )
+              ]),
+              SizedBox(
+                height: 10.0,
+              ),
+              Container(
+                padding: EdgeInsets.all(15),
+                color: Color(0xFF3F51B5),
+                child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Row(
                       //mainAxisAlignment: MainAxisAlignment.end,
                       //crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
-                        Icon(Icons.calendar_today_outlined),
+                        Icon(Icons.calendar_today_outlined, color: white),
                         SizedBox(width: 8.0),
                         Text('${item.date}',
                             style: TextStyle(
                               fontSize: 20.0,
+                              color: white,
                               fontWeight: FontWeight.bold,
                               //color: Colors.white,
                             )),
                       ],
                     ),
                     Row(children: [
-                      Icon(Icons.alarm_on),
+                      Icon(Icons.alarm_on, color: white),
                       SizedBox(width: 8.0),
                       Text('${item.time}',
                           style: TextStyle(
                             fontSize: 20.0,
+                            color: white,
                             fontWeight: FontWeight.bold,
                             //color: Colors.white,
                           )),
                     ])
                   ],
-                )
-              ]),
-            ),
+                ),
+              )
+            ]),
             Align(
               alignment: Alignment.bottomRight,
               child: IconButton(
-                icon: const Icon(Icons.arrow_drop_down),
+                icon: const Icon(
+                  Icons.arrow_drop_down,
+                  color: white,
+                ),
                 onPressed: () {
                   final foldingCellState =
                       context.findAncestorStateOfType<SimpleFoldingCellState>();
@@ -298,26 +307,29 @@ class ListItem extends StatelessWidget {
     return Builder(
       builder: (context) {
         return Container(
-          color: Colors.white,
+          color: Color(0xFF3F51B5).withOpacity(0.7),
           padding: EdgeInsets.all(8.0),
           child: Stack(
             children: [
-              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
                 Text('${item.name}  ',
                     style: TextStyle(
                       fontSize: 25.0,
+                      color: white,
                       fontWeight: FontWeight.bold,
-                    )),
+                    ),
+                    textAlign: TextAlign.center),
                 SizedBox(
-                  height: 5.0,
+                  height: 8.0,
                 ),
                 Expanded(
                     flex: 1,
                     child: SingleChildScrollView(
-                      child: Text('${item.desc}',
-                          style: TextStyle(
-                            fontSize: 15.0,
-                          )),
+                      child: AutoSizeText(
+                        '${item.desc}',
+                        style: h4s,
+                        maxLines: 14,
+                      ),
                     )),
                 SizedBox(height: 5.0)
               ]),
@@ -325,7 +337,10 @@ class ListItem extends StatelessWidget {
                 right: 0,
                 bottom: 0,
                 child: IconButton(
-                  icon: Icon(Icons.arrow_upward_sharp),
+                  icon: Icon(
+                    Icons.arrow_upward_sharp,
+                    color: white,
+                  ),
                   onPressed: () {
                     final foldingCellState = context
                         .findAncestorStateOfType<SimpleFoldingCellState>();
