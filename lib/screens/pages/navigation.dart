@@ -69,8 +69,12 @@ class _NavigationState extends State<Navigation> {
         if (cantExit) {
           //show snackbar
           final snack = SnackBar(
-            backgroundColor: Colors.black26,
-            content: Text('Press Back button again to Exit'),
+            backgroundColor: Colors.white24,
+            content: Text(
+              'Press Back button again to Exit',
+              textAlign: TextAlign.center,
+              style: TextStyle(color: Colors.white),
+            ),
             duration: Duration(seconds: 2),
           );
           ScaffoldMessenger.of(context).showSnackBar(snack);
@@ -87,7 +91,7 @@ class _NavigationState extends State<Navigation> {
               .copyWith(iconTheme: const IconThemeData(color: black)),
           child: CurvedNavigationBar(
             backgroundColor: Colors.transparent,
-            color: white,
+            color: Colors.white.withOpacity(0.8),
             height: 45,
             index: index,
             animationDuration: const Duration(milliseconds: 450),

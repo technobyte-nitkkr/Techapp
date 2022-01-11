@@ -66,7 +66,7 @@ class CardItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      elevation: 8,
+      elevation: 0,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
       color: Colors.transparent,
       child: InkWell(
@@ -74,35 +74,40 @@ class CardItem extends StatelessWidget {
         onTap: () => launch('${item.link}'),
         child: Container(
           decoration: BoxDecoration(
-            color: Colors.white,
+            color: Colors.transparent,
             borderRadius: BorderRadius.circular(10),
           ),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               SizedBox(
                 height: 8,
               ),
-              Divider(
-                color: grey,
-                thickness: 2,
-              ),
+              // Divider(
+              //   color: grey,
+              //   thickness: 2,
+              // ),
               ClipRRect(
+                borderRadius: BorderRadius.circular(10),
                 child: Image.network(
                   '${item.imageurl}',
-                  height: 90,
+                  width: MediaQuery.of(context).size.width * 0.3,
                 ),
               ),
-              Divider(
-                color: grey,
-                thickness: 2,
-                height: 5,
-              ),
-              AutoSizeText(
-                '${item.name}',
-                style: h3,
-                maxLines: 1,
+              // Divider(
+              //   color: grey,
+              //   thickness: 2,
+              //   height: 5,
+              // ),
+              Container(
+                width: MediaQuery.of(context).size.width,
+                child: AutoSizeText(
+                  '${item.name}',
+                  style: h2s,
+                  maxLines: 1,
+                  textAlign: TextAlign.center,
+                ),
               ),
             ],
           ),

@@ -147,9 +147,19 @@ class ContactCard extends StatelessWidget {
                   SizedBox(
                     width: 10,
                   ),
-                  CircleAvatar(
-                    backgroundImage: AssetImage('assets/images/altius.png'),
-                    radius: 30,
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(50),
+                    child: FadeInImage.assetNetwork(
+                      placeholder: 'assets/images/altius.png',
+                      height: 60,
+                      width: 60,
+                      fit: BoxFit.cover,
+                      image: contact.logo,
+                      imageErrorBuilder: (context, error, stackTrace) {
+                        return Image.asset('assets/images/altius.png',
+                            height: 60, width: 60, fit: BoxFit.cover);
+                      },
+                    ),
                   ),
                   SizedBox(
                     width: 30,

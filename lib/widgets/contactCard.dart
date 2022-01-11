@@ -22,38 +22,41 @@ class ContactSwiperCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             SizedBox(height: MediaQuery.of(context).size.height * 0.1),
-            Card(
-              elevation: 8,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20),
-              ),
-              color: Colors.white70,
-              child: Container(
-                width: MediaQuery.of(context).size.width * 0.9,
-                padding: const EdgeInsets.all(32.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[
-                    SizedBox(
-                        height:
-                            min(MediaQuery.of(context).size.width * 0.35, 400)),
-                    AutoSizeText(
-                      people.name,
-                      style: h2.copyWith(
-                          fontWeight: FontWeight.bold, fontSize: 30),
-                      maxLines: 1,
-                      minFontSize: 20,
-                      textAlign: TextAlign.center,
-                    ),
-                    AutoSizeText(
-                      people.post,
-                      style: h3.copyWith(color: black.withOpacity(0.7)),
-                      textAlign: TextAlign.right,
-                      maxLines: 1,
-                      minFontSize: 20,
-                    ),
-                    SizedBox(height: 16),
-                  ],
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 20),
+              child: Card(
+                elevation: 8,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                color: Colors.white24,
+                child: Container(
+                  width: MediaQuery.of(context).size.width * 0.9,
+                  padding: const EdgeInsets.all(32.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      SizedBox(
+                          height: min(
+                              MediaQuery.of(context).size.width * 0.35, 400)),
+                      AutoSizeText(
+                        people.name,
+                        style: h2s.copyWith(
+                            fontWeight: FontWeight.bold, fontSize: 30),
+                        maxLines: 1,
+                        minFontSize: 20,
+                        textAlign: TextAlign.center,
+                      ),
+                      AutoSizeText(
+                        people.post,
+                        style: h3.copyWith(color: white.withOpacity(0.7)),
+                        textAlign: TextAlign.right,
+                        maxLines: 1,
+                        minFontSize: 20,
+                      ),
+                      SizedBox(height: 16),
+                    ],
+                  ),
                 ),
               ),
             ),

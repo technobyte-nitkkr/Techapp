@@ -43,7 +43,7 @@ class TeamDetail extends StatelessWidget {
                 child: Swiper(
                   itemCount: contacts.people.length,
                   itemHeight: MediaQuery.of(context).size.height * 0.6,
-                  itemWidth: MediaQuery.of(context).size.width * 0.9,
+                  itemWidth: MediaQuery.of(context).size.width * 0.5,
                   layout: SwiperLayout.DEFAULT,
                   autoplay: true,
                   autoplayDelay: 2000,

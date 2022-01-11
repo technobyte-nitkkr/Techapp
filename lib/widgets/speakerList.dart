@@ -195,7 +195,7 @@ class ListItem extends StatelessWidget {
     return SimpleFoldingCell.create(
       frontWidget: _buildFrontWidget(),
       innerWidget: _buildInnerWidget(),
-      cellSize: Size(MediaQuery.of(context).size.width, 200),
+      cellSize: Size(MediaQuery.of(context).size.width, 170),
       //padding: EdgeInsets.all(15),
       animationDuration: Duration(milliseconds: 200),
       borderRadius: 10,
@@ -258,6 +258,7 @@ class ListItem extends StatelessWidget {
                         Text('${item.date}',
                             style: TextStyle(
                               fontSize: 20.0,
+                              fontWeight: FontWeight.bold,
                               //color: Colors.white,
                             )),
                       ],
@@ -268,6 +269,7 @@ class ListItem extends StatelessWidget {
                       Text('${item.time}',
                           style: TextStyle(
                             fontSize: 20.0,
+                            fontWeight: FontWeight.bold,
                             //color: Colors.white,
                           )),
                     ])

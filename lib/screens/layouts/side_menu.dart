@@ -66,7 +66,7 @@ class SideMenu extends StatelessWidget {
             ),
             leading: Icon(
               Icons.home,
-              color: glowColor,
+              color: white,
               size: 25,
             ),
             onTap: () {
@@ -78,7 +78,7 @@ class SideMenu extends StatelessWidget {
           Divider(
             height: 1,
             thickness: 1,
-            color: glowColor.withOpacity(0.5),
+            color: white.withOpacity(0.5),
           ),
           DrawerItem(
               title: "My Events",
@@ -95,7 +95,7 @@ class SideMenu extends StatelessWidget {
             leading: FaIcon(
               FontAwesomeIcons.desktop,
               size: 25,
-              color: glowColor,
+              color: white,
             ),
             onTap: () async {
               if (!await launch(
@@ -107,13 +107,13 @@ class SideMenu extends StatelessWidget {
           Divider(
             height: 1,
             thickness: 1,
-            color: glowColor.withOpacity(0.5),
+            color: white.withOpacity(0.5),
           ),
           ListTile(
             title: Text('Your Profile', style: h4s),
             leading: Icon(
               Icons.person,
-              color: glowColor,
+              color: white,
             ),
             onTap: () {
               Navigator.push(context,
@@ -123,13 +123,13 @@ class SideMenu extends StatelessWidget {
           Divider(
             height: 1,
             thickness: 1,
-            color: glowColor.withOpacity(0.5),
+            color: white.withOpacity(0.5),
           ),
           ListTile(
             title: Text('Logout', style: h4s),
             leading: Icon(
               Icons.logout_outlined,
-              color: glowColor,
+              color: white,
             ),
             onTap: () async {
               await FirebaseServices().googleSignOut();
@@ -140,7 +140,7 @@ class SideMenu extends StatelessWidget {
                       builder: (context) => const GoogleLoginScreen()));
             },
           ),
-          Divider(height: 1, thickness: 1, color: glowColor.withOpacity(0.5)),
+          Divider(height: 1, thickness: 1, color: white.withOpacity(0.5)),
           Container(
             margin: EdgeInsets.all(10),
             alignment: Alignment.center,
@@ -189,14 +189,14 @@ class DrawerItem extends StatelessWidget {
           title: Text(title, style: h4s),
           leading: Icon(
             icon,
-            color: glowColor,
+            color: white,
           ),
           onTap: () {
             Navigator.pop(context);
             Navigator.pushNamed(context, route);
           },
         ),
-        Divider(height: 1, thickness: 1, color: glowColor.withOpacity(0.5)),
+        Divider(height: 1, thickness: 1, color: white.withOpacity(0.5)),
       ],
     );
   }

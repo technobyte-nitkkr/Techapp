@@ -1,12 +1,14 @@
 class Contacts {
   final String section;
+  final String logo;
   List<People> people = [];
 
-  Contacts({required this.section, required this.people});
+  Contacts({required this.section, required this.people, required this.logo});
 
   factory Contacts.fromJson(Map<String, dynamic> json) {
     return Contacts(
       section: json['section'],
+      logo: json['logo'] ?? '',
       people: (json['people'] as List<dynamic>)
           .map((e) => People.fromJson(e))
           .toList(),
@@ -16,6 +18,7 @@ class Contacts {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['section'] = this.section;
+    data['logo'] = this.logo;
 
     // ignore: unnecessary_null_comparison
     if (this.people != null) {
