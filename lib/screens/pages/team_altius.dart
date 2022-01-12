@@ -6,6 +6,7 @@ import 'package:techapp/models/section.dart';
 import 'package:techapp/retrofit/api_client.dart';
 import 'package:techapp/screens/components/style.dart';
 import 'package:techapp/screens/pages/team_details.dart';
+import 'package:techapp/widgets/shimmeritem.dart';
 
 class TeamAltius extends StatefulWidget {
   TeamAltius({
@@ -42,7 +43,7 @@ class _TeamAltiusState extends State<TeamAltius> {
         elevation: 0,
         title: Text("Team Altius"),
       ),
-      extendBodyBehindAppBar: true,
+      // extendBodyBehindAppBar: true,
       backgroundColor: black,
       body: Stack(
         children: [
@@ -81,13 +82,10 @@ class _TeamAltiusState extends State<TeamAltius> {
                     },
                   );
                 } else {
-                  return SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.6,
-                    width: MediaQuery.of(context).size.width,
-                    child: Center(
-                      child: LoadingAnimationWidget.staggeredDotWave(
-                          color: white, size: 100),
-                    ),
+                  return ShimmerBuilder(
+                    title: true,
+                    imageheight: 60,
+                    subtitle: false,
                   );
                 }
               },

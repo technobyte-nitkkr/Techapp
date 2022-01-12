@@ -7,6 +7,8 @@ import 'package:techapp/models/event_by_categories.dart';
 import 'package:techapp/retrofit/api_client.dart';
 import 'package:techapp/screens/components/style.dart';
 import 'package:techapp/widgets/event_list_item.dart';
+import 'package:shimmer/shimmer.dart';
+import 'package:techapp/widgets/shimmeritem.dart';
 
 class EventsByCategoryWidget extends StatelessWidget {
   final CategorySchema categoryName;
@@ -40,17 +42,15 @@ class EventsByCategoryWidget extends StatelessWidget {
                 return ListItem(
                   item: events[index],
                 );
+                // return ShimmerItem();
               },
             ),
           );
         } else {
-          return SizedBox(
-            height: MediaQuery.of(context).size.height * 0.6,
-            width: MediaQuery.of(context).size.width,
-            child: Center(
-              child: LoadingAnimationWidget.staggeredDotWave(
-                  color: white, size: 100),
-            ),
+          return ShimmerBuilder(
+            title: true,
+            subtitle: true,
+            imageheight: 100,
           );
         }
       },
