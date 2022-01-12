@@ -6,6 +6,7 @@ import 'package:techapp/models/developers.dart';
 import 'package:techapp/retrofit/api_client.dart';
 import 'package:techapp/screens/components/style.dart';
 import 'package:techapp/widgets/developer_card.dart';
+import 'package:techapp/widgets/developershimmer.dart';
 
 class AnimatedDeveloper extends StatelessWidget {
   @override
@@ -57,19 +58,7 @@ class AnimatedDeveloper extends StatelessWidget {
             ],
           );
         } else {
-          return Stack(
-            children: [
-              getGradient(),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.6,
-                width: MediaQuery.of(context).size.width,
-                child: Center(
-                  child: LoadingAnimationWidget.dotsTriangle(
-                      color: white, size: 100),
-                ),
-              )
-            ],
-          );
+          return DeveloperCardShimmer();
         }
       },
     );
