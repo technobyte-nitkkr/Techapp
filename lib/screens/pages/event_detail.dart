@@ -21,7 +21,7 @@ class EventDetailWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print("widget build");
+    debugPrint("widget build");
     bool isflagship = (item.flagship.toString() == "true") ? true : false;
     return new Scaffold(
         backgroundColor: Colors.transparent,
@@ -385,7 +385,7 @@ Widget cordinatorItem(Cordinators cordinator) {
             onPressed: () async {
               var number = cordinator.coordinator_number;
               if (!await launch('tel:$number')) {
-                print(cordinator.coordinator_name);
+                debugPrint(cordinator.coordinator_name);
               }
             },
             child: AutoSizeText(

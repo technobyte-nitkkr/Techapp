@@ -133,7 +133,7 @@ class _SmartButtonWidgetState extends State<SmartButtonWidget> {
 
   @override
   Widget build(BuildContext context) {
-    print("button build");
+    debugPrint("button build");
     return Container(
       height: 50,
       width: 250,

@@ -138,7 +138,7 @@ Container getGradientLock() {
   return new Container(
     decoration: BoxDecoration(
       image: DecorationImage(
-        image: AssetImage("assets/images/back.jpg"),
+        image: AssetImage("assets/images/back3.png"),
         fit: BoxFit.cover,
       ),
     ),

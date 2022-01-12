@@ -7,6 +7,7 @@ import 'package:techapp/screens/components/style.dart';
 import 'package:techapp/widgets/basicCard.dart';
 import 'package:techapp/widgets/carousel_select.dart';
 import 'package:techapp/widgets/chatbot_loading_reply.dart';
+import 'package:techapp/widgets/customPayloadDialog.dart';
 import 'package:techapp/widgets/dialog_card.dart';
 import 'package:techapp/widgets/quickReplies.dart';
 import 'package:techapp/widgets/simple_message.dart';
@@ -75,7 +76,7 @@ class _ChatBotWidget extends State<ChatBotWidget> {
       return CarouselSelectWidget(
           carouselSelect: CarouselSelect(message),
           clickItem: (info) {
-            print(info); // Item Click print List Keys
+            debugPrint(info); // Item Click print List Keys
           });
     }
     if (ms.type == "card") {
@@ -98,6 +99,9 @@ class _ChatBotWidget extends State<ChatBotWidget> {
         return SimpleMessage(text: text ?? "invalid", type: false);
 
       return null;
+    }
+    if (message.containsKey("payload")) {
+      return CustomPayloadDialog(payload: message as Map<String, dynamic>);
     }
 
     return null;
@@ -139,7 +143,7 @@ class _ChatBotWidget extends State<ChatBotWidget> {
         await Future.delayed(Duration(seconds: 1));
       }
       if (quickindex != -1) {
-        print(quickindex);
+        // debugPrint(quickindex);
         setState(() {
           _messages.insert(
               0, QuickReplyWidget(replies: QuickReplies(messages[quickindex])));

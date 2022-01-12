@@ -39,7 +39,7 @@ class _SplashScreenState extends State<SplashScreen> {
     // forground notification
     FirebaseMessaging.onMessage.listen(
       (RemoteMessage message) async {
-        print("message when app is in foreground");
+        debugPrint("message when app is in foreground");
         RemoteNotification? notification = message.notification;
         AndroidNotification? android = message.notification?.android;
 
@@ -87,7 +87,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
     // one message background open event
     FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) async {
-      print('A new onMessageOpenedApp event was published!');
+      debugPrint('A new onMessageOpenedApp event was published!');
       // ignore: unnecessary_null_comparison
       if (message != null && message.notification != null) {
         await NotificationsProvider.addItem(
@@ -104,6 +104,8 @@ class _SplashScreenState extends State<SplashScreen> {
     await FetchDataProvider.loadProfileOnline();
     var data = await client.getAllEvents();
     data.getAllEvents();
+    var data2 = await client.getCategories();
+    FetchDataProvider.categories = data2.getCategories();
 
     try {
       if (FetchDataProvider.user != null) {
@@ -114,7 +116,7 @@ class _SplashScreenState extends State<SplashScreen> {
             context, '/google_auth', (route) => false);
       }
     } catch (e) {
-      print(e);
+      debugPrint(e.toString());
       FetchDataProvider.myEvents = [];
     }
     FirebaseMessaging.instance.subscribeToTopic("allNoti");

@@ -20,7 +20,7 @@ class SpeakersWidget extends StatelessWidget {
       builder: (context, snapshot) {
         if (snapshot.hasError) {
           final errormessage = (snapshot.error as DioError).error.toString();
-          print(errormessage);
+          debugPrint(errormessage);
           return Center(
             child: Text(
               errormessage ?? "Error",
@@ -199,8 +199,8 @@ class ListItem extends StatelessWidget {
       //padding: EdgeInsets.all(15),
       animationDuration: Duration(milliseconds: 200),
       borderRadius: 10,
-      onOpen: () => print('cell opened'),
-      onClose: () => print('cell closed'),
+      onOpen: () => debugPrint('cell opened'),
+      onClose: () => debugPrint('cell closed'),
     );
   }
 
@@ -236,7 +236,7 @@ class ListItem extends StatelessWidget {
                           '${item.name}',
                           style: h1.copyWith(
                             fontSize: 30.0,
-                            color: Color(0xFF3F51B5),
+                            color: Color(0xFF2F55B5),
                             fontWeight: FontWeight.bold,
                           ),
                           maxLines: 1,
@@ -249,7 +249,7 @@ class ListItem extends StatelessWidget {
               ),
               Container(
                 padding: EdgeInsets.all(15),
-                color: Color(0xFF3F51B5),
+                color: Color(0xFF2F55B5).withOpacity(0.7),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
@@ -307,7 +307,7 @@ class ListItem extends StatelessWidget {
     return Builder(
       builder: (context) {
         return Container(
-          color: Color(0xFF3F51B5).withOpacity(0.7),
+          color: glowColor.withOpacity(0.3),
           padding: EdgeInsets.all(8.0),
           child: Stack(
             children: [

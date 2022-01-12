@@ -26,14 +26,16 @@ class SimpleMessage extends StatelessWidget {
             new Container(
               margin: const EdgeInsets.only(top: 5.0),
               decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: Colors.white30,
                   borderRadius: BorderRadius.all(Radius.circular(20.0))),
               child: Padding(
                 padding: EdgeInsets.only(
                     top: 10.0, bottom: 10.0, left: 10.0, right: 10.0),
                 child: new Text(
                   text,
-                  style: h5,
+                  style: h6.copyWith(
+                    color: white,
+                  ),
                 ),
               ),
             ),
@@ -52,14 +54,16 @@ class SimpleMessage extends StatelessWidget {
             new Container(
               margin: const EdgeInsets.only(top: 5.0),
               decoration: BoxDecoration(
-                  color: Colors.blue,
+                  color: glowColor.withOpacity(0.3),
                   borderRadius: BorderRadius.all(Radius.circular(20.0))),
               child: Padding(
                 padding: EdgeInsets.only(
                     top: 10.0, bottom: 10.0, left: 10.0, right: 10.0),
                 child: new Text(
                   text,
-                  style: h5,
+                  style: h6.copyWith(
+                    color: white,
+                  ),
                 ),
               ),
             ),

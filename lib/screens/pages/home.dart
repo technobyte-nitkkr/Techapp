@@ -5,6 +5,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:techapp/models/categories.dart';
+import 'package:techapp/providers/fetch_data_provider.dart';
 import 'package:techapp/retrofit/api_client.dart';
 import 'package:techapp/screens/components/style.dart';
 import 'package:techapp/screens/layouts/page_layout.dart';
@@ -17,36 +18,24 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final client = ApiClient.create();
+    List<CategorySchema> cate = FetchDataProvider.categories;
     return PageLayout(
-      child: FutureBuilder(
-        future: client.getCategories(),
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            List<CategorySchema> categories = snapshot.data.getCategories();
-            categories = categories.reversed.toList();
-            return DataToLoad(
-              categories: categories,
-            );
-          } else if (snapshot.hasError) {
-            final errormessage = (snapshot.error as DioError).error.toString();
-            print(errormessage);
-            return Center(
-              child: Text(
-                errormessage ?? "Error",
-                style: h1s,
-              ),
-            );
-          }
-          return SizedBox(
-            height: MediaQuery.of(context).size.height * 0.7,
-            width: MediaQuery.of(context).size.width,
-            child: Center(
-              child: LoadingAnimationWidget.staggeredDotWave(
-                  color: white, size: 100),
+      child: Column(
+        children: [
+          if (cate.length > 0)
+            DataToLoad(
+              categories: cate,
             ),
-          );
-        },
+          if (cate.length == 0)
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.7,
+              width: MediaQuery.of(context).size.width,
+              child: Center(
+                child: LoadingAnimationWidget.staggeredDotWave(
+                    color: white, size: 100),
+              ),
+            )
+        ],
       ),
     );
   }

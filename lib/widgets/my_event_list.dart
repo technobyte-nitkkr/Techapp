@@ -25,7 +25,7 @@ class MyEventList extends StatelessWidget {
       builder: (context, snapshot) {
         if (snapshot.hasError) {
           final errormessage = (snapshot.error as DioError).error.toString();
-          print(errormessage);
+          debugPrint(errormessage);
           return Container(
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.height * 0.8,

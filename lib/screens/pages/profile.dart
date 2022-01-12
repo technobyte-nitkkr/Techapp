@@ -113,7 +113,7 @@ class DetailTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(FetchDataProvider.user?.toJson());
+    debugPrint(FetchDataProvider.user?.toJson().toString());
     return Card(
       color: Colors.white24,
       elevation: 1,

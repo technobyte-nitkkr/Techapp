@@ -202,7 +202,8 @@ class _SignInModalWidgetState extends State<SignInModalWidget> {
   _handleSubmit(String college, String year, String phone) async {
     final client = ApiClient.create();
     if (_formKey.currentState!.validate() == true) {
-      print("college: " + college + "\n year: " + year + "\n phone: " + phone);
+      debugPrint(
+          "college: " + college + "\n year: " + year + "\n phone: " + phone);
 
       setState(() {
         isloading = true;
@@ -215,7 +216,7 @@ class _SignInModalWidgetState extends State<SignInModalWidget> {
         user = await client.signUp(await NotificationsProvider.getToken(),
             {"name": name, "college": college, "year": year, "phone": phone});
 
-        print(user.data.toString());
+        debugPrint(user.data.toString());
 
         if (user.success) {
           // let the user on profile
@@ -234,11 +235,11 @@ class _SignInModalWidgetState extends State<SignInModalWidget> {
           });
         }
       } catch (e) {
-        print(e);
+        debugPrint(e.toString());
       }
       Navigator.pop(context);
     } else {
-      print("Invalid Form Data");
+      debugPrint("Invalid Form Data");
     }
   }
 }

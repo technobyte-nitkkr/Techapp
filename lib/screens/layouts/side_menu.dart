@@ -100,7 +100,7 @@ class SideMenu extends StatelessWidget {
             onTap: () async {
               if (!await launch(
                   'https://website-frontend20-2mkfatxre.vercel.app/')) {
-                print('invalid link');
+                debugPrint('invalid link');
               }
             },
           ),

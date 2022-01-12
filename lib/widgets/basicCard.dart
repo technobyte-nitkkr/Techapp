@@ -15,9 +15,16 @@ class BasicCardWidget extends StatelessWidget {
     for (var i = 0; i < this.card.buttons.length; i++) {
       buttons.add(new SizedBox(
           child: new ElevatedButton(
+        style: ElevatedButton.styleFrom(
+            primary: glowColor.withOpacity(0.7),
+            shadowColor: glowColor,
+            elevation: 5,
+            shape: (RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10.0),
+            ))),
         onPressed: () async {
           if (!await canLaunch(this.card.buttons[i]['openUriAction']['uri'])) {
-            print("Invalid Link !!");
+            debugPrint("Invalid Link !!");
           } else {
             await launch(
                 this.card.buttons[i]['openUriAction']['uri'].toString());
@@ -48,7 +55,7 @@ class BasicCardWidget extends StatelessWidget {
               child: new Container(
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.all(Radius.circular(20.0)),
-                    color: Colors.white),
+                    color: Colors.white30),
                 child: new Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: <Widget>[
@@ -77,17 +84,24 @@ class BasicCardWidget extends StatelessWidget {
                           if (this.card.title != null)
                             new Text(
                               this.card.title,
-                              style: h2,
+                              style: h2s,
                             ),
                           if (this.card.subtitle != null)
                             new Text(
                               this.card.subtitle,
-                              style: h6,
+                              style: h6.copyWith(
+                                color: white,
+                              ),
                             ),
                           if (this.card.formattedText != null)
                             new Container(
                               margin: const EdgeInsets.only(top: 5.0),
-                              child: new Text(this.card.formattedText),
+                              child: new Text(
+                                this.card.formattedText,
+                                style: h6.copyWith(
+                                  color: white,
+                                ),
+                              ),
                             ),
                         ],
                       ),

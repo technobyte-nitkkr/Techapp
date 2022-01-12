@@ -25,11 +25,11 @@ class _ItemCarouselWidget extends State<ItemCarouselWidget> {
           child: new Container(
             margin: EdgeInsets.all(10.0),
             width: 300.0,
-            height: 350.0,
+            height: 300.0,
             decoration: BoxDecoration(
                 border: Border.all(color: Colors.black26),
                 borderRadius: BorderRadius.all(Radius.circular(20.0)),
-                color: Colors.white),
+                color: Colors.white30),
             child: new Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
@@ -54,12 +54,17 @@ class _ItemCarouselWidget extends State<ItemCarouselWidget> {
                       if (widget.item.title != null)
                         new Text(
                           widget.item.title,
-                          style: h1,
+                          style: h1s,
                         ),
                       if (widget.item.description != null)
                         new Container(
                           margin: const EdgeInsets.only(top: 5.0),
-                          child: new Text(widget.item.description),
+                          child: new Text(
+                            widget.item.description,
+                            style: h6.copyWith(
+                              color: white,
+                            ),
+                          ),
                         ),
                     ],
                   ),

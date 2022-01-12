@@ -35,7 +35,7 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
         link: message.notification.android.link);
   }
 
-  print('A bg message just showed up :  ${message.messageId}');
+  debugPrint('A bg message just showed up :  ${message.messageId}');
 }
 
 Future<void> main() async {
@@ -81,7 +81,6 @@ class MyApp extends StatelessWidget {
     if (FirebaseAuth.instance.currentUser == null) {
       return '/google_auth';
     }
-  
   }
 
   @override

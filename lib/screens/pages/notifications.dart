@@ -36,7 +36,7 @@ class _NotificationsWidgetState extends State<NotificationsWidget> {
 
   @override
   Widget build(BuildContext context) {
-    // print(FetchDataProvider.user?.toJson().toString());
+    // debugPrint(FetchDataProvider.user?.toJson().toString());
     return PageLayout(
       child: SafeArea(
         child: SingleChildScrollView(
@@ -73,8 +73,16 @@ class _NotificationsWidgetState extends State<NotificationsWidget> {
                       },
                       itemCount: _notificatinons.length,
                     ),
+              // NotificatonItemWidget(title: "hello", description: "hi"),
               if (_notificatinons.length != 0)
                 ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      primary: glowColor.withOpacity(0.7),
+                      shadowColor: glowColor,
+                      elevation: 5,
+                      shape: (RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ))),
                   onPressed: () {
                     _notificatinons.clear();
                     _storage.setItem('notifications', []);
@@ -93,7 +101,7 @@ class _NotificationsWidgetState extends State<NotificationsWidget> {
                         await FirebaseMessaging.instance
                             .subscribeToTopic('dev')
                             .then((value) {
-                          print("subscribed");
+                          debugPrint("subscribed");
                         });
                         //
                       },

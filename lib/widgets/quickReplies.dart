@@ -26,7 +26,7 @@ class QuickReplyWidget extends StatelessWidget {
             new Container(
               margin: const EdgeInsets.only(top: 5.0),
               decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: Colors.white30,
                   borderRadius: BorderRadius.all(Radius.circular(20.0))),
               child: Padding(
                 padding: EdgeInsets.only(
@@ -35,12 +35,14 @@ class QuickReplyWidget extends StatelessWidget {
                   children: [
                     new Text(
                       "Other Similar Comamnds",
-                      style: h6,
+                      style: h6.copyWith(
+                        color: white,
+                      ),
                     ),
                     new Text(
                       replies.quickReplies
                           .reduce((value, element) => value + "\n" + element),
-                      style: h6,
+                      style: h6.copyWith(color: white),
                     ),
                   ],
                 ),

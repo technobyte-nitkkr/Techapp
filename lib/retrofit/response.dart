@@ -116,7 +116,7 @@ class ResponseData {
   }
 
   UserDetails getProfile() {
-    print(data);
+    // print(data);
     return UserDetails.fromJson(data["user"]);
   }
 }

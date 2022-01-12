@@ -1,4 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:techapp/models/categories.dart';
 import 'package:techapp/models/event_by_categories.dart';
 import 'package:techapp/models/event_all.dart';
 import 'package:techapp/models/user.dart';
@@ -10,6 +12,7 @@ class FetchDataProvider {
   static int notification = 0;
   static List<AllEvents> allEvents = [];
   static List<Event> myEvents = [];
+  static List<CategorySchema> categories = [];
   // ignore: avoid_init_to_null
   static UserDetails? user = null;
   static String jwt = "";
@@ -22,33 +25,33 @@ class FetchDataProvider {
     if (_user != null) {
       user = UserDetails.fromJson(_user);
       jwt = await NotificationsProvider.getToken();
-      print("got the user form local storage");
+      debugPrint("got the user form local storage");
     } else {
       _token = await NotificationsProvider.getToken();
 
       if (_token != null) {
-        // print(_token.substring(0, 1000));
-        // print(_token.substring(1000));
-        print("got token form local storage");
+        // debugPrint(_token.substring(0, 1000));
+        // debugPrint(_token.substring(1000));
+        debugPrint("got token form local storage");
         try {
           final data = await client.login({"idToken": _token});
-          // print(data.toJson());
+          // debugPrint(data.toJson());
           if (data.success) {
-            // print(data);
+            // debugPrint(data);
             var token = data.data['token'];
             FetchDataProvider.jwt = token;
             await NotificationsProvider.saveToken(token);
             // set login time
 
             // got the profle form api
-            print("got the profile form api");
+            debugPrint("got the profile form api");
 
             user = data.getProfile();
             await NotificationsProvider.saveUser(user!);
           }
         } catch (e) {
-          // print((e as DioError).toString());
-          print(e);
+          // debugPrint((e as DioError).toString());
+          debugPrint(e.toString());
           await NotificationsProvider.clearStorage();
           await FirebaseAuth.instance.signOut();
         }

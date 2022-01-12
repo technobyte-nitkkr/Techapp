@@ -20,6 +20,7 @@ class NotificatonItemWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       elevation: 10,
+      color: Colors.transparent,
       // card with event image and name
       child: GestureDetector(
         onTap: () async => {
@@ -38,6 +39,10 @@ class NotificatonItemWidget extends StatelessWidget {
                     ))
         },
         child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            color: Colors.white30,
+          ),
           padding: const EdgeInsets.all(10),
           child: Row(
             children: <Widget>[
@@ -60,13 +65,15 @@ class NotificatonItemWidget extends StatelessWidget {
                     children: <Widget>[
                       Text(
                         title,
-                        style: h2,
+                        style: h2s,
                       ),
                       Text(
                         description.length > 100
                             ? description.substring(0, 100) + '...'
                             : description,
-                        style: h6,
+                        style: h6.copyWith(
+                          color: white,
+                        ),
                       ),
                       //  read more button
                       Row(
@@ -74,13 +81,13 @@ class NotificatonItemWidget extends StatelessWidget {
                         children: <Widget>[
                           Text(
                             'Know more',
-                            style: h4.copyWith(color: grey.withOpacity(0.5)),
+                            style: h4.copyWith(color: white.withOpacity(0.7)),
                             textAlign: TextAlign.left,
                           ),
                           Icon(
                             Icons.arrow_forward,
                             size: 15,
-                            color: grey.withOpacity(0.5),
+                            color: white.withOpacity(0.7),
                           ),
                         ],
                       ),

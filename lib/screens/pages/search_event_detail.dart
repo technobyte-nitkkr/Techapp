@@ -39,7 +39,7 @@ class SearchEventDetail extends StatelessWidget {
               if (snapshot.hasError) {
                 final errormessage =
                     (snapshot.error as DioError).error.toString();
-                print(errormessage);
+                debugPrint(errormessage);
                 return Center(
                   child: Text(
                     errormessage ?? "Error",

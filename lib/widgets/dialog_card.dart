@@ -15,10 +15,17 @@ class DialogCard extends StatelessWidget {
     for (var i = 0; i < this.card.buttons.length; i++) {
       buttons.add(new SizedBox(
           child: new ElevatedButton(
+        style: ElevatedButton.styleFrom(
+            primary: glowColor.withOpacity(0.7),
+            shadowColor: glowColor,
+            elevation: 5,
+            shape: (RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10.0),
+            ))),
         onPressed: () async {
-          print('dialog card');
+          debugPrint('dialog card');
           if (!await canLaunch(this.card.buttons[i].postback)) {
-            print("Invalid link !!");
+            debugPrint("Invalid link !!");
           } else {
             await launch(this.card.buttons[i].postback);
           }
@@ -48,7 +55,7 @@ class DialogCard extends StatelessWidget {
               child: new Container(
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.all(Radius.circular(20.0)),
-                    color: Colors.white),
+                    color: Colors.white30),
                 child: new Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -61,9 +68,9 @@ class DialogCard extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: <Widget>[
                           if (this.card.title != null)
-                            new Text(this.card.title, style: h1),
+                            new Text(this.card.title, style: h2s),
                           if (this.card.subtitle != null)
-                            new Text(this.card.subtitle, style: h3),
+                            new Text(this.card.subtitle, style: h4s),
                         ],
                       ),
                     ),
