@@ -31,7 +31,8 @@ class SpeakersWidget extends StatelessWidget {
         if (snapshot.hasData) {
           List<Speaker> speakers = snapshot.data.getLectures();
           return ListView.builder(
-            //shrinkWrap: true,
+            shrinkWrap: true,
+            physics: NeverScrollableScrollPhysics(),
             itemCount: speakers.length,
             scrollDirection: Axis.vertical,
             //padding: EdgeInsets.all(10),
@@ -208,7 +209,10 @@ class ListItem extends StatelessWidget {
     return Builder(
       builder: (BuildContext context) {
         return Container(
-          color: Colors.white,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            color: Colors.white,
+          ),
           alignment: Alignment.center,
           child: Stack(children: [
             Column(children: [
@@ -216,7 +220,7 @@ class ListItem extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: CircleAvatar(
-                    backgroundColor: Color(0xFF3F51B5),
+                    backgroundColor: grey,
                     radius: 45.0,
                     child: CircleAvatar(
                       radius: 42.0,
@@ -236,7 +240,7 @@ class ListItem extends StatelessWidget {
                           '${item.name}',
                           style: h1.copyWith(
                             fontSize: 30.0,
-                            color: Color(0xFF2F55B5),
+                            color: grey,
                             fontWeight: FontWeight.bold,
                           ),
                           maxLines: 1,
@@ -249,7 +253,7 @@ class ListItem extends StatelessWidget {
               ),
               Container(
                 padding: EdgeInsets.all(15),
-                color: Color(0xFF2F55B5).withOpacity(0.7),
+                color: grey.withOpacity(0.7),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
@@ -293,7 +297,7 @@ class ListItem extends StatelessWidget {
                 onPressed: () {
                   final foldingCellState =
                       context.findAncestorStateOfType<SimpleFoldingCellState>();
-                  foldingCellState?.toggleFold();
+                  foldingCellState.toggleFold();
                 },
               ),
             ),
@@ -307,7 +311,7 @@ class ListItem extends StatelessWidget {
     return Builder(
       builder: (context) {
         return Container(
-          color: glowColor.withOpacity(0.3),
+          color: Colors.white30,
           padding: EdgeInsets.all(8.0),
           child: Stack(
             children: [
@@ -344,7 +348,7 @@ class ListItem extends StatelessWidget {
                   onPressed: () {
                     final foldingCellState = context
                         .findAncestorStateOfType<SimpleFoldingCellState>();
-                    foldingCellState?.toggleFold();
+                    foldingCellState.toggleFold();
                   },
                 ),
               ),

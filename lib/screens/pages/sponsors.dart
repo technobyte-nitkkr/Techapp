@@ -29,9 +29,7 @@ class Sponsors extends StatelessWidget {
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.02,
             ),
-            Container(
-                height: MediaQuery.of(context).size.height * 0.65,
-                child: SponsorsWidget()),
+            SponsorsWidget(),
             SizedBox(
               height: 40,
             )

@@ -33,6 +33,7 @@ class SponsorsWidget extends StatelessWidget {
           List<Sponsor> sponsors = snapshot.data.getFoodSponsors();
           return GridView.builder(
             shrinkWrap: true,
+            physics: NeverScrollableScrollPhysics(),
             itemCount: sponsors.length,
             itemBuilder: (BuildContext ctx, int index) {
               return CardItem(item: sponsors[index]);

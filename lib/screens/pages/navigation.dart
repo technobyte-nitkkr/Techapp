@@ -32,14 +32,14 @@ class _NavigationState extends State<Navigation> {
     final items = <Widget>[
       FaIcon(
         FontAwesomeIcons.moneyBill,
-        size: 30,
+        size: 20,
         color: (index == 0)
             ? Colors.black.withOpacity(0.8)
             : Colors.black.withOpacity(0.5),
       ),
       FaIcon(
         FontAwesomeIcons.home,
-        size: 30,
+        size: 20,
         color: (index == 1)
             ? Colors.black.withOpacity(0.8)
             : Colors.black.withOpacity(0.5),
@@ -50,8 +50,8 @@ class _NavigationState extends State<Navigation> {
             ? Colors.black.withOpacity(0.8)
             : Colors.black.withOpacity(0.5),
         fit: BoxFit.fill,
-        height: 33,
-        width: 33,
+        height: 22,
+        width: 22,
       )
       // FaIcon(
       //   FontAwesomeIcons.laptopCode,
@@ -86,19 +86,14 @@ class _NavigationState extends State<Navigation> {
       child: Scaffold(
         extendBody: true,
         backgroundColor: Colors.transparent,
-        bottomNavigationBar: Theme(
-          data: Theme.of(context)
-              .copyWith(iconTheme: const IconThemeData(color: black)),
-          child: CurvedNavigationBar(
-            backgroundColor: Colors.transparent,
-            color: Colors.white.withOpacity(0.8),
-            height: 45,
-            index: index,
-            animationDuration: const Duration(milliseconds: 450),
-            items: items,
-            onTap: (index) => setState(() => this.index = index),
-            animationCurve: Curves.easeInOut,
-          ),
+        bottomNavigationBar: CurvedNavigationBar(
+          backgroundColor: Colors.transparent,
+          color: Colors.white.withOpacity(0.8),
+          height: 40,
+          index: index,
+          animationDuration: const Duration(milliseconds: 450),
+          items: items,
+          onTap: (index) => setState(() => this.index = index),
         ),
         body: Column(
           children: <Widget>[

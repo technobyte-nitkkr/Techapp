@@ -15,9 +15,8 @@ class Speakers extends StatelessWidget {
     return PageLayout(
       child: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.only(top: 16.0, right: 5.0, left: 5.0),
-          child: SizedBox(
-            height: MediaQuery.of(context).size.height * 0.76,
+          padding: const EdgeInsets.only(top: 16.0),
+          child: Container(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
@@ -29,9 +28,7 @@ class Speakers extends StatelessWidget {
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.02,
                 ),
-                Expanded(
-                  child: SpeakersWidget(),
-                ),
+                SpeakersWidget(),
               ],
             ),
           ),
