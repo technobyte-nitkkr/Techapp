@@ -7,7 +7,7 @@ import 'package:techapp/models/categories.dart';
 import 'package:techapp/providers/fetch_data_provider.dart';
 import 'package:techapp/screens/components/style.dart';
 import 'package:techapp/screens/layouts/page_layout.dart';
-import 'package:techapp/widgets/swiper_card.dart';
+import 'package:techapp/screens/widgets/swiper_card.dart';
 
 class Home extends StatelessWidget {
   Home({
@@ -29,7 +29,7 @@ class Home extends StatelessWidget {
               height: MediaQuery.of(context).size.height * 0.7,
               width: MediaQuery.of(context).size.width,
               child: Center(
-                child: LoadingAnimationWidget.staggeredDotWave(
+                child: LoadingAnimationWidget.staggeredDotsWave(
                     color: white, size: 100),
               ),
             )
@@ -65,7 +65,6 @@ class DataToLoad extends StatelessWidget {
               ),
               Container(
                 height: MediaQuery.of(context).size.height * 0.6,
-                // decoration: BoxDecoration(border: Border.all(color: grey)),
                 child: Swiper(
                   itemCount: categories.length,
                   itemWidth:

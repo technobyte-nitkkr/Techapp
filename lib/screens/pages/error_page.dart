@@ -30,17 +30,7 @@ class ErrorPagge extends StatelessWidget {
                   height: MediaQuery.of(context).size.height * 0.06,
                 ),
                 ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                      primary: glowColor.withOpacity(0.7),
-                      shadowColor: glowColor,
-                      elevation: 5,
-                      padding: EdgeInsets.symmetric(
-                        horizontal: MediaQuery.of(context).size.width * 0.1,
-                        vertical: MediaQuery.of(context).size.height * 0.02,
-                      ),
-                      shape: (RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.0),
-                      ))),
+                  style: elevatedButtonStyle,
                   onPressed: () {
                     Navigator.pushNamedAndRemoveUntil(
                         context, "/splash", (route) => false);

@@ -1,14 +1,12 @@
 // @dart=2.9
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:techapp/models/categories.dart';
 import 'package:techapp/models/event_by_categories.dart';
 import 'package:techapp/retrofit/api_client.dart';
 import 'package:techapp/screens/components/style.dart';
-import 'package:techapp/widgets/event_list_item.dart';
-import 'package:shimmer/shimmer.dart';
-import 'package:techapp/widgets/shimmeritem.dart';
+import 'package:techapp/screens/widgets/event_list_item.dart';
+import 'package:techapp/screens/widgets/shimmeritem.dart';
 
 class EventsByCategoryWidget extends StatelessWidget {
   final CategorySchema categoryName;

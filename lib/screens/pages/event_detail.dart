@@ -1,13 +1,11 @@
-import 'dart:ui';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:techapp/screens/components/style.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:techapp/models/event_by_categories.dart';
-
-import 'package:techapp/widgets/SmartButton.dart';
-import 'package:techapp/widgets/event_poster.dart';
+import 'package:techapp/screens/widgets/SmartButton.dart';
+import 'package:techapp/screens/widgets/event_poster.dart';
 import 'package:avatar_glow/avatar_glow.dart';
 
 DateFormat dateFormat = DateFormat("MMMM dd,yyyy HH:mm");
@@ -132,7 +130,7 @@ Container getContent(Event item, BuildContext context, bool isflagship) {
                       new Container(
                           child: AutoSizeText(
                         item.eventName,
-                        style: titleTextStyle.copyWith(color: black),
+                        style: h2s,
                         maxLines: 1,
                       )),
                       if (isflagship)
@@ -234,13 +232,13 @@ Container getContent(Event item, BuildContext context, bool isflagship) {
           child: new Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              new Text("Description", style: headerTextStyle),
+              new Text("Description", style: h2s),
               Container(
                   margin: new EdgeInsets.symmetric(vertical: 5.0),
                   height: 2.0,
                   width: 18.0,
                   color: white),
-              new Text(item.description, style: commonTextStyle),
+              new Text(item.description, style: h6s),
             ],
           ),
         ),
@@ -253,7 +251,7 @@ Container getContent(Event item, BuildContext context, bool isflagship) {
             child: new Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                new Text("Rules", style: headerTextStyle),
+                new Text("Rules", style: h2s),
                 Container(
                     margin: new EdgeInsets.symmetric(vertical: 5.0),
                     height: 2.0,
@@ -273,13 +271,13 @@ Container getContent(Event item, BuildContext context, bool isflagship) {
           child: new Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              new Text("Venue", style: headerTextStyle),
+              new Text("Venue", style: h2s),
               Container(
                   margin: new EdgeInsets.symmetric(vertical: 5.0),
                   height: 2.0,
                   width: 18.0,
                   color: white),
-              Container(child: Text(item.venue, style: commonTextStyle))
+              Container(child: Text(item.venue, style: h6s))
             ],
           ),
         ),
@@ -290,7 +288,7 @@ Container getContent(Event item, BuildContext context, bool isflagship) {
             child: new Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                new Text("Coordinators", style: headerTextStyle),
+                new Text("Coordinators", style: h2s),
                 Container(
                     margin: new EdgeInsets.symmetric(vertical: 5.0),
                     height: 2.0,
@@ -330,9 +328,9 @@ Container ruleItem(String rule) {
     child: Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        Text("• ", style: commonTextStyle),
+        Text("• ", style: h6s),
         Expanded(
-          child: Text(rule, style: commonTextStyle),
+          child: Text(rule, style: h6s),
         ),
       ],
     ),
@@ -346,13 +344,7 @@ Widget cordinatorItem(Cordinators cordinator) {
         width: 200,
         height: 50,
         child: ElevatedButton(
-            style: ElevatedButton.styleFrom(
-                primary: glowColor.withOpacity(0.7),
-                shadowColor: glowColor,
-                elevation: 5,
-                shape: (RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10.0),
-                ))),
+            style: elevatedButtonStyle,
             onPressed: () async {
               var number = cordinator.coordinator_number;
               if (!await launch('tel:$number')) {

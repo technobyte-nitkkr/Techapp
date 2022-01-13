@@ -2,7 +2,7 @@
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:techapp/screens/components/style.dart';
-import 'package:techapp/widgets/contactCard.dart';
+import 'package:techapp/screens/widgets/contactCard.dart';
 
 class TeamDetail extends StatelessWidget {
   final contacts;
@@ -39,7 +39,6 @@ class TeamDetail extends StatelessWidget {
               Container(
                 height: MediaQuery.of(context).size.height * 0.7,
                 padding: EdgeInsets.symmetric(horizontal: 20),
-                // decoration: BoxDecoration(border: Border.all(color: grey)),
                 child: Swiper(
                   itemCount: contacts.people.length,
                   itemHeight: MediaQuery.of(context).size.height * 0.6,

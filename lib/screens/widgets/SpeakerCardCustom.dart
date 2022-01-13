@@ -29,16 +29,7 @@ class GuestCardCustom extends StatelessWidget {
             clipBehavior: Clip.antiAlias,
             elevation: 5,
             child: Container(
-              decoration: BoxDecoration(
-                color: Colors.white24,
-                boxShadow: [
-                  BoxShadow(
-                    color: glowColor.withOpacity(0.2),
-                    blurRadius: 30,
-                    offset: Offset(0, 2),
-                  ),
-                ],
-              ),
+              decoration: boxDecoration,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -128,19 +119,7 @@ class GuestCardCustom extends StatelessWidget {
                           height: 15,
                         ),
                         ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                                primary: glowColor.withOpacity(0.7),
-                                shadowColor: glowColor,
-                                elevation: 5,
-                                padding: EdgeInsets.symmetric(
-                                  horizontal:
-                                      MediaQuery.of(context).size.width * 0.1,
-                                  vertical:
-                                      MediaQuery.of(context).size.height * 0.02,
-                                ),
-                                shape: (RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10.0),
-                                ))),
+                            style: elevatedButtonStyle,
                             onPressed: () {},
                             child: Text("Meet link")),
                         SizedBox(
@@ -157,11 +136,12 @@ class GuestCardCustom extends StatelessWidget {
             alignment: Alignment.center,
             child: Container(
               clipBehavior: Clip.antiAlias,
-              decoration: BoxDecoration(
+              decoration: boxDecoration.copyWith(
                 border: Border.all(
                   color: white,
                   width: 3,
                 ),
+                color: Colors.white24,
                 borderRadius: BorderRadius.circular(30),
               ),
               child: ClipRRect(

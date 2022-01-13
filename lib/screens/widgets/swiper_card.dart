@@ -34,20 +34,11 @@ class SwiperCard extends StatelessWidget {
               Stack(
                 children: [
                   Card(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(32),
-                    ),
+                    color: Colors.transparent,
                     child: Container(
-                      decoration: BoxDecoration(
-                        color: Colors.white54,
-                        boxShadow: [
-                          BoxShadow(
-                            color: glowColor.withOpacity(0.2),
-                            blurRadius: 30,
-                            offset: Offset(0, 2),
-                          ),
-                        ],
+                      decoration: boxDecoration.copyWith(
                         borderRadius: BorderRadius.circular(32),
+                        color: Colors.white.withOpacity(0.95),
                       ),
                       padding: const EdgeInsets.all(32.0),
                       child: Column(

@@ -4,7 +4,7 @@ import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:techapp/providers/fetch_data_provider.dart';
 import 'package:techapp/retrofit/api_client.dart';
 import 'package:techapp/screens/components/style.dart';
-import 'package:techapp/widgets/sign_in_modal.dart';
+import 'package:techapp/screens/widgets/sign_in_modal.dart';
 
 class SmartButtonWidget extends StatefulWidget {
   const SmartButtonWidget(
@@ -137,7 +137,6 @@ class _SmartButtonWidgetState extends State<SmartButtonWidget> {
     return Container(
       height: 50,
       width: 250,
-      // decoration: BoxDecoration(borderRadius: BorderRadius.circular(80)),
       child: ElevatedButton(
         style: !isRegistered
             ? ElevatedButton.styleFrom(
@@ -161,8 +160,7 @@ class _SmartButtonWidgetState extends State<SmartButtonWidget> {
                 !isRegistered ? 'Register Now' : 'Unregister',
                 style: h3,
               )
-            : LoadingAnimationWidget.threeHorizontalDots(
-                color: white, size: 30),
+            : LoadingAnimationWidget.threeRotatingDots(color: white, size: 30),
         onPressed: () async {
           if (!_user!.onBoard) {
             showDialog(

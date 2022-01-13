@@ -4,13 +4,13 @@ import 'package:dialogflow_flutter/googleAuth.dart';
 import 'package:dialogflow_flutter/message.dart';
 import 'package:flutter/material.dart';
 import 'package:techapp/screens/components/style.dart';
-import 'package:techapp/widgets/basicCard.dart';
-import 'package:techapp/widgets/carousel_select.dart';
-import 'package:techapp/widgets/chatbot_loading_reply.dart';
-import 'package:techapp/widgets/customPayloadDialog.dart';
-import 'package:techapp/widgets/dialog_card.dart';
-import 'package:techapp/widgets/quickReplies.dart';
-import 'package:techapp/widgets/simple_message.dart';
+import 'package:techapp/screens/widgets/basicCard.dart';
+import 'package:techapp/screens/widgets/carousel_select.dart';
+import 'package:techapp/screens/widgets/chatbot_loading_reply.dart';
+import 'package:techapp/screens/widgets/customPayloadDialog.dart';
+import 'package:techapp/screens/widgets/dialog_card.dart';
+import 'package:techapp/screens/widgets/quickReplies.dart';
+import 'package:techapp/screens/widgets/simple_message.dart';
 
 class ChatBotWidget extends StatefulWidget {
   ChatBotWidget({Key? key}) : super(key: key);

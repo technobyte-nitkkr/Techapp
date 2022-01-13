@@ -32,7 +32,6 @@ class SearchEventDetail extends StatelessWidget {
           ),
         ),
         body: Container(
-          color: gradientStartColor2,
           child: FutureBuilder(
             future: client.getEvent(this.eventCategory, this.eventName),
             builder: (context, snapshot) {
@@ -40,11 +39,18 @@ class SearchEventDetail extends StatelessWidget {
                 final errormessage =
                     (snapshot.error as DioError).error.toString();
                 debugPrint(errormessage);
-                return Center(
-                  child: Text(
-                    errormessage ?? "Error",
-                    style: h1s,
-                  ),
+                return Stack(
+                  children: [
+                    Center(
+                      child: Text(
+                        // ignore: unnecessary_null_comparison
+                        (errormessage.toString() == null)
+                            ? 'Error'
+                            : errormessage,
+                        style: h2s,
+                      ),
+                    )
+                  ],
                 );
               } else if (snapshot.hasData) {
                 Event event = snapshot.data.getEvent();
@@ -68,7 +74,7 @@ class SearchEventDetail extends StatelessWidget {
                 height: MediaQuery.of(context).size.height,
                 width: MediaQuery.of(context).size.width,
                 child: Center(
-                  child: LoadingAnimationWidget.staggeredDotWave(
+                  child: LoadingAnimationWidget.staggeredDotsWave(
                       color: white, size: 100),
                 ),
               );

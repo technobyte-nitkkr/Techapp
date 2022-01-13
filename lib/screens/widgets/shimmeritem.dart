@@ -41,15 +41,7 @@ Widget shimmerItem(double imageheight, bool title, bool subtitle) {
         margin: const EdgeInsets.only(top: 10),
         color: Colors.transparent,
         child: Container(
-          decoration: BoxDecoration(
-            color: Colors.white24,
-            boxShadow: [
-              BoxShadow(
-                color: glowColor.withOpacity(0.2),
-                blurRadius: 30,
-                offset: Offset(0, 2),
-              ),
-            ],
+          decoration: boxDecoration.copyWith(
             borderRadius: BorderRadius.circular(10),
           ),
           padding: const EdgeInsets.all(20),
@@ -63,8 +55,7 @@ Widget shimmerItem(double imageheight, bool title, bool subtitle) {
                     child: Container(
                       width: imageheight,
                       height: imageheight,
-                      decoration: BoxDecoration(
-                        color: Colors.white24,
+                      decoration: boxDecoration.copyWith(
                         borderRadius: BorderRadius.circular(10),
                       ),
                     ),
@@ -82,8 +73,7 @@ Widget shimmerItem(double imageheight, bool title, bool subtitle) {
                               child: Container(
                                 width: double.infinity,
                                 height: 20,
-                                decoration: BoxDecoration(
-                                  color: Colors.white24,
+                                decoration: boxDecoration.copyWith(
                                   borderRadius: BorderRadius.circular(10),
                                 ),
                               ),
@@ -98,8 +88,7 @@ Widget shimmerItem(double imageheight, bool title, bool subtitle) {
                               child: Container(
                                 width: double.infinity,
                                 height: 40,
-                                decoration: BoxDecoration(
-                                  color: Colors.white24,
+                                decoration: boxDecoration.copyWith(
                                   borderRadius: BorderRadius.circular(10),
                                 ),
                               ),

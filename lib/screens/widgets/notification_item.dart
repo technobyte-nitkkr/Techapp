@@ -39,9 +39,8 @@ class NotificatonItemWidget extends StatelessWidget {
                     ))
         },
         child: Container(
-          decoration: BoxDecoration(
+          decoration: boxDecoration.copyWith(
             borderRadius: BorderRadius.circular(10),
-            color: Colors.white30,
           ),
           padding: const EdgeInsets.all(10),
           child: Row(

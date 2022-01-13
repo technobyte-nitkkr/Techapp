@@ -25,8 +25,7 @@ class SimpleMessage extends StatelessWidget {
           children: <Widget>[
             new Container(
               margin: const EdgeInsets.only(top: 5.0),
-              decoration: BoxDecoration(
-                  color: Colors.white30,
+              decoration: boxDecoration.copyWith(
                   borderRadius: BorderRadius.all(Radius.circular(20.0))),
               child: Padding(
                 padding: EdgeInsets.only(
@@ -53,7 +52,7 @@ class SimpleMessage extends StatelessWidget {
           children: <Widget>[
             new Container(
               margin: const EdgeInsets.only(top: 5.0),
-              decoration: BoxDecoration(
+              decoration: boxDecoration.copyWith(
                   color: glowColor.withOpacity(0.3),
                   borderRadius: BorderRadius.all(Radius.circular(20.0))),
               child: Padding(

@@ -163,7 +163,7 @@ class SplashAnimation extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        getGradientLock(),
+        getGradient(),
         Container(
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height,
@@ -182,7 +182,7 @@ class SplashAnimation extends StatelessWidget {
                 height: MediaQuery.of(context).size.height * 0.1,
               ),
               Flexible(
-                child: LoadingAnimationWidget.staggeredDotWave(
+                child: LoadingAnimationWidget.staggeredDotsWave(
                     color: white, size: 50),
               ),
               SizedBox(

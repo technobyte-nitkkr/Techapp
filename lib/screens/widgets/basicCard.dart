@@ -15,13 +15,7 @@ class BasicCardWidget extends StatelessWidget {
     for (var i = 0; i < this.card.buttons.length; i++) {
       buttons.add(new SizedBox(
           child: new ElevatedButton(
-        style: ElevatedButton.styleFrom(
-            primary: glowColor.withOpacity(0.7),
-            shadowColor: glowColor,
-            elevation: 5,
-            shape: (RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10.0),
-            ))),
+        style: elevatedButtonStyle,
         onPressed: () async {
           if (!await canLaunch(this.card.buttons[i]['openUriAction']['uri'])) {
             debugPrint("Invalid Link !!");
@@ -53,9 +47,8 @@ class BasicCardWidget extends StatelessWidget {
             child: ClipRRect(
               borderRadius: BorderRadius.all(Radius.circular(20.0)),
               child: new Container(
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(20.0)),
-                    color: Colors.white30),
+                decoration: boxDecoration.copyWith(
+                    borderRadius: BorderRadius.all(Radius.circular(20.0))),
                 child: new Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: <Widget>[

@@ -25,11 +25,11 @@ class _ItemCarouselWidget extends State<ItemCarouselWidget> {
           child: new Container(
             margin: EdgeInsets.all(10.0),
             width: 300.0,
-            height: 300.0,
-            decoration: BoxDecoration(
-                border: Border.all(color: Colors.black26),
-                borderRadius: BorderRadius.all(Radius.circular(20.0)),
-                color: Colors.white30),
+            height: 320.0,
+            decoration: boxDecoration.copyWith(
+              border: Border.all(color: Colors.black26),
+              borderRadius: BorderRadius.all(Radius.circular(20.0)),
+            ),
             child: new Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[

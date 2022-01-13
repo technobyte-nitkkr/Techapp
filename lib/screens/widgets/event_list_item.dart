@@ -30,15 +30,7 @@ class ListItem extends StatelessWidget {
               )
             },
             child: Container(
-              decoration: BoxDecoration(
-                color: Colors.white24,
-                boxShadow: [
-                  BoxShadow(
-                    color: glowColor.withOpacity(0.2),
-                    blurRadius: 30,
-                    offset: Offset(0, 2),
-                  ),
-                ],
+              decoration: boxDecoration.copyWith(
                 borderRadius: BorderRadius.circular(10),
               ),
               padding: const EdgeInsets.all(10),

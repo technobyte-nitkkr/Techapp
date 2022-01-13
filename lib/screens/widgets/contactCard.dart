@@ -25,12 +25,11 @@ class ContactSwiperCard extends StatelessWidget {
             Container(
               padding: EdgeInsets.symmetric(horizontal: 20),
               child: Card(
-                elevation: 8,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                color: Colors.white24,
+                color: Colors.transparent,
                 child: Container(
+                  decoration: boxDecoration.copyWith(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
                   width: MediaQuery.of(context).size.width * 0.9,
                   padding: const EdgeInsets.all(32.0),
                   child: Column(

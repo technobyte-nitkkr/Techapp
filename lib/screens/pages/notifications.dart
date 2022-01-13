@@ -6,7 +6,7 @@ import 'package:techapp/models/notification_model.dart';
 import 'package:techapp/providers/fetch_data_provider.dart';
 import 'package:techapp/screens/components/style.dart';
 import 'package:techapp/screens/layouts/page_layout.dart';
-import 'package:techapp/widgets/notification_item.dart';
+import 'package:techapp/screens/widgets/notification_item.dart';
 
 class NotificationsWidget extends StatefulWidget {
   @override
@@ -76,13 +76,7 @@ class _NotificationsWidgetState extends State<NotificationsWidget> {
               // NotificatonItemWidget(title: "hello", description: "hi"),
               if (_notificatinons.length != 0)
                 ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                      primary: glowColor.withOpacity(0.7),
-                      shadowColor: glowColor,
-                      elevation: 5,
-                      shape: (RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.0),
-                      ))),
+                  style: elevatedButtonStyle,
                   onPressed: () {
                     _notificatinons.clear();
                     _storage.setItem('notifications', []);

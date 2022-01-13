@@ -28,16 +28,7 @@ class DeveloperCard extends StatelessWidget {
       clipBehavior: Clip.hardEdge,
       borderRadius: BorderRadius.circular(10),
       child: Container(
-        decoration: BoxDecoration(
-          color: Colors.white24,
-          boxShadow: [
-            BoxShadow(
-              color: glowColor.withOpacity(0.2),
-              blurRadius: 30,
-              offset: Offset(0, 2),
-            ),
-          ],
-        ),
+        decoration: boxDecoration,
         child: Column(
           children: <Widget>[
             Container(

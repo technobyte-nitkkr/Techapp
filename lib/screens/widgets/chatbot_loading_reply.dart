@@ -16,7 +16,7 @@ class ChatbotLoadingReply extends StatelessWidget {
           ),
         ),
         Container(
-          child: LoadingAnimationWidget.staggeredDotWave(
+          child: LoadingAnimationWidget.staggeredDotsWave(
               color: Colors.white, size: 30),
         )
       ],

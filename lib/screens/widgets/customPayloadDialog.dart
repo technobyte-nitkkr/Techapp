@@ -34,9 +34,8 @@ class CustomPayloadDialog extends StatelessWidget {
               borderRadius: BorderRadius.all(Radius.circular(20.0)),
               child: new Container(
                 padding: const EdgeInsets.all(16.0),
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(20.0)),
-                    color: Colors.white30),
+                decoration: boxDecoration.copyWith(
+                    borderRadius: BorderRadius.all(Radius.circular(20.0))),
                 child: new Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -51,13 +50,7 @@ class CustomPayloadDialog extends StatelessWidget {
                       ),
                     if (encodedPayload['route'] != null)
                       new ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            primary: glowColor.withOpacity(0.7),
-                            shadowColor: glowColor,
-                            elevation: 5,
-                            shape: (RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10.0),
-                            ))),
+                        style: elevatedButtonStyle,
                         onPressed: () {
                           Navigator.of(context)
                               .pushNamed(encodedPayload['route']);

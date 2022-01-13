@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:techapp/models/categories.dart';
 import 'package:techapp/screens/components/style.dart';
 // ignore: import_of_legacy_library_into_null_safe
-import 'package:techapp/widgets/event_list.dart';
+import 'package:techapp/screens/widgets/event_list.dart';
 
 class EventsByCategory extends StatelessWidget {
   final CategorySchema categoryName;

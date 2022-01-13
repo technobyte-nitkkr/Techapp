@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:techapp/providers/fetch_data_provider.dart';
 import 'package:techapp/screens/components/style.dart';
 import 'package:techapp/screens/layouts/page_layout.dart';
-import 'package:techapp/widgets/sign_in_modal.dart';
+import 'package:techapp/screens/widgets/sign_in_modal.dart';
 
 class ProfilePage extends StatelessWidget {
   @override

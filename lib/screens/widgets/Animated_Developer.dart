@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:techapp/models/developers.dart';
 import 'package:techapp/retrofit/api_client.dart';
 import 'package:techapp/screens/components/style.dart';
-import 'package:techapp/widgets/developer_card.dart';
-import 'package:techapp/widgets/developershimmer.dart';
+import 'package:techapp/screens/widgets/developer_card.dart';
+import 'package:techapp/screens/widgets/developershimmer.dart';
 
 class AnimatedDeveloper extends StatelessWidget {
   @override

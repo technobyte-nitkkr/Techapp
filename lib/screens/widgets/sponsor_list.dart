@@ -48,7 +48,7 @@ class SponsorsWidget extends StatelessWidget {
             height: MediaQuery.of(context).size.height * 0.6,
             width: MediaQuery.of(context).size.width,
             child: Center(
-              child: LoadingAnimationWidget.staggeredDotWave(
+              child: LoadingAnimationWidget.staggeredDotsWave(
                   color: glowColor.withOpacity(0.5), size: 150),
             ),
           );

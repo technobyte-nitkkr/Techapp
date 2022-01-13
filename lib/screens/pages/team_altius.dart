@@ -1,12 +1,11 @@
 // @dart=2.9
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:techapp/models/section.dart';
 import 'package:techapp/retrofit/api_client.dart';
 import 'package:techapp/screens/components/style.dart';
 import 'package:techapp/screens/pages/team_details.dart';
-import 'package:techapp/widgets/shimmeritem.dart';
+import 'package:techapp/screens/widgets/shimmeritem.dart';
 
 class TeamAltius extends StatefulWidget {
   TeamAltius({
@@ -121,16 +120,8 @@ class ContactCard extends StatelessWidget {
           );
         },
         child: Container(
-          decoration: BoxDecoration(
+          decoration: boxDecoration.copyWith(
             borderRadius: BorderRadius.circular(20.0),
-            color: Colors.white24,
-            boxShadow: [
-              BoxShadow(
-                color: glowColor.withOpacity(0.2),
-                blurRadius: 30,
-                offset: Offset(0, 2),
-              ),
-            ],
           ),
           height: 100,
           padding: EdgeInsets.all(10.0),

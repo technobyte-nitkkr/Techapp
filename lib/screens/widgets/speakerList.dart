@@ -7,8 +7,7 @@ import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:techapp/models/Speaker.dart';
 import 'package:techapp/retrofit/api_client.dart';
 import 'package:techapp/screens/components/style.dart';
-import 'package:techapp/widgets/SpeakerCardCustom.dart';
-// ignore: must_be_immutable
+import 'package:techapp/screens/widgets/SpeakerCardCustom.dart';
 
 class SpeakersWidget extends StatelessWidget {
   @override
@@ -44,7 +43,7 @@ class SpeakersWidget extends StatelessWidget {
             height: MediaQuery.of(context).size.height * 0.6,
             width: MediaQuery.of(context).size.width,
             child: Center(
-              child: LoadingAnimationWidget.staggeredDotWave(
+              child: LoadingAnimationWidget.staggeredDotsWave(
                   color: glowColor.withOpacity(0.5), size: 150),
             ),
           );

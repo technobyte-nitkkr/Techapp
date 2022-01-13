@@ -1,6 +1,4 @@
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:techapp/screens/auth/firebase_services.dart';
 import 'package:techapp/screens/components/style.dart';
@@ -37,7 +35,7 @@ class _SplashAnimationState extends State<SplashAnimation> {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        getGradientLock(),
+        getGradient(),
         Container(
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height,
@@ -90,9 +88,9 @@ class _SplashAnimationState extends State<SplashAnimation> {
                       const SizedBox(
                         width: 10,
                       ),
-                      const Text(
+                      Text(
                         "Login",
-                        style: mainTitle,
+                        style: h2,
                       ),
                     ],
                   ),
@@ -105,7 +103,7 @@ class _SplashAnimationState extends State<SplashAnimation> {
             ? Container(
                 color: Colors.black.withOpacity(0.5),
                 child: Center(
-                    child: LoadingAnimationWidget.staggeredDotWave(
+                    child: LoadingAnimationWidget.staggeredDotsWave(
                         color: white, size: 100)),
               )
             : Container(),

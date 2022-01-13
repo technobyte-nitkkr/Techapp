@@ -1,14 +1,12 @@
 // @dart=2.9
-import 'dart:convert';
-
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:techapp/models/event_by_categories.dart';
 import 'package:techapp/providers/fetch_data_provider.dart';
 import 'package:techapp/retrofit/api_client.dart';
 import 'package:techapp/screens/components/style.dart';
-import 'package:techapp/widgets/event_list_item.dart';
-import 'package:techapp/widgets/shimmeritem.dart';
+import 'package:techapp/screens/widgets/event_list_item.dart';
+import 'package:techapp/screens/widgets/shimmeritem.dart';
 
 class MyEventList extends StatelessWidget {
   const MyEventList({
@@ -32,6 +30,7 @@ class MyEventList extends StatelessWidget {
               child: Text(
                 errormessage ?? "Error",
                 style: h1s,
+                textAlign: TextAlign.center,
               ),
             ),
           );

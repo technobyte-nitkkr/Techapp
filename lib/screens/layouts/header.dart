@@ -6,7 +6,7 @@ import 'package:techapp/screens/pages/chatbot.dart';
 import 'package:techapp/screens/pages/notifications.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:techapp/screens/pages/search_event_detail.dart';
-import 'package:techapp/widgets/notification_icon.dart';
+import 'package:techapp/screens/widgets/notification_icon.dart';
 import '../components/style.dart';
 import '../../screens/components/style.dart';
 
@@ -110,7 +110,7 @@ class DataSearch extends SearchDelegate<String> {
           icon: Icon(
             Icons.clear,
             size: 30,
-            color: white,
+            color: grey,
           ))
     ];
   }
@@ -151,38 +151,46 @@ class DataSearch extends SearchDelegate<String> {
                 element!.toLowerCase().startsWith(query.toLowerCase()))
             .toList();
 
-    return ListView.builder(
-      itemBuilder: (context, index) => ListTile(
-        onTap: () {
-          final String eventName = suggestionList[index]!;
+    return Stack(
+      children: [
+        getGradient(),
+        Container(
+          color: Colors.transparent,
+          child: ListView.builder(
+            itemBuilder: (context, index) => ListTile(
+              onTap: () {
+                final String eventName = suggestionList[index]!;
 
-          final String eventCategory =
-              allEventCategories[allEventNames.indexOf(suggestionList[index])]!;
+                final String eventCategory = allEventCategories[
+                    allEventNames.indexOf(suggestionList[index])]!;
 
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => SearchEventDetail(
-                eventName: eventName,
-                eventCategory: eventCategory,
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => SearchEventDetail(
+                      eventName: eventName,
+                      eventCategory: eventCategory,
+                    ),
+                  ),
+                );
+              },
+              leading: Icon(Icons.category, color: white),
+              title: RichText(
+                text: TextSpan(
+                  text: suggestionList[index]!.substring(0, query.length),
+                  style: h3s,
+                  children: [
+                    TextSpan(
+                        text: suggestionList[index]!.substring(query.length),
+                        style: h3s)
+                  ],
+                ),
               ),
             ),
-          );
-        },
-        leading: Icon(Icons.category),
-        title: RichText(
-          text: TextSpan(
-            text: suggestionList[index]!.substring(0, query.length),
-            style: h3,
-            children: [
-              TextSpan(
-                  text: suggestionList[index]!.substring(query.length),
-                  style: h3)
-            ],
+            itemCount: suggestionList.length,
           ),
         ),
-      ),
-      itemCount: suggestionList.length,
+      ],
     );
   }
 }
