@@ -30,16 +30,25 @@ class _NavigationState extends State<Navigation> {
     ];
 
     final items = <Widget>[
-      FaIcon(
-        FontAwesomeIcons.moneyBill,
-        size: 20,
+      Image.asset(
+        "assets/images/sponsor.png",
         color: (index == 0)
             ? Colors.black.withOpacity(0.8)
             : Colors.black.withOpacity(0.5),
+        fit: BoxFit.fill,
+        height: 37,
+        width: 37,
       ),
+      // FaIcon(
+      //   FontAwesomeIcons.moneyBill,
+      //   size: 20,
+      //   color: (index == 0)
+      //       ? Colors.black.withOpacity(0.8)
+      //       : Colors.black.withOpacity(0.5),
+      // ),
       FaIcon(
         FontAwesomeIcons.home,
-        size: 20,
+        size: 23,
         color: (index == 1)
             ? Colors.black.withOpacity(0.8)
             : Colors.black.withOpacity(0.5),
@@ -50,8 +59,8 @@ class _NavigationState extends State<Navigation> {
             ? Colors.black.withOpacity(0.8)
             : Colors.black.withOpacity(0.5),
         fit: BoxFit.fill,
-        height: 22,
-        width: 22,
+        height: 25,
+        width: 25,
       )
       // FaIcon(
       //   FontAwesomeIcons.laptopCode,

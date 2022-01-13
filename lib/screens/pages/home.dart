@@ -1,12 +1,10 @@
 // @dart=2.9
 import 'dart:math';
 import 'package:card_swiper/card_swiper.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:techapp/models/categories.dart';
 import 'package:techapp/providers/fetch_data_provider.dart';
-import 'package:techapp/retrofit/api_client.dart';
 import 'package:techapp/screens/components/style.dart';
 import 'package:techapp/screens/layouts/page_layout.dart';
 import 'package:techapp/widgets/swiper_card.dart';

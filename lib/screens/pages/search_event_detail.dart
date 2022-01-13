@@ -25,7 +25,7 @@ class SearchEventDetail extends StatelessWidget {
           elevation: 0,
           backgroundColor: Colors.transparent,
           leading: new IconButton(
-            icon: new Icon(Icons.arrow_back, color: black),
+            icon: new Icon(Icons.arrow_back, color: white),
             onPressed: () {
               Navigator.pop(context);
             },
@@ -50,11 +50,10 @@ class SearchEventDetail extends StatelessWidget {
                 Event event = snapshot.data.getEvent();
                 return Stack(
                   children: [
+                    getGradient(),
                     SingleChildScrollView(
                       child: new Stack(
                         children: <Widget>[
-                          getBackground(event),
-                          getGradient3(),
                           getContent(event, context,
                               event.flagship.toString() == "true"),
                         ],

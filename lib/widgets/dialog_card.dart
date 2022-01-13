@@ -68,7 +68,8 @@ class DialogCard extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: <Widget>[
                           if (this.card.title != null)
-                            new Text(this.card.title, style: h2s),
+                            new Text(this.card.title,
+                                style: h3.copyWith(color: white)),
                           if (this.card.subtitle != null)
                             new Text(this.card.subtitle, style: h4s),
                         ],

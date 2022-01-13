@@ -73,13 +73,8 @@ class DeveloperCard extends StatelessWidget {
                       color: white,
                     ),
                     onPressed: () async {
-                      if (await canLaunch(github)) {
-                        await launch(github);
-                      } else {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                            CustomSnackbar(
-                                text: "could not process request",
-                                context: context));
+                      if (!await launch(github)) {
+                        debugPrint("Invalid Link !");
                       }
                     },
                   ),
@@ -89,13 +84,8 @@ class DeveloperCard extends StatelessWidget {
                       color: white,
                     ),
                     onPressed: () async {
-                      if (await canLaunch(linkedin)) {
-                        await launch(linkedin);
-                      } else {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                            CustomSnackbar(
-                                text: "could not process request",
-                                context: context));
+                      if (!await launch(github)) {
+                        debugPrint("Invalid Link !");
                       }
                     },
                   ),
@@ -105,13 +95,8 @@ class DeveloperCard extends StatelessWidget {
                       color: white,
                     ),
                     onPressed: () async {
-                      if (await canLaunch(insta)) {
-                        await launch(insta);
-                      } else {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                            CustomSnackbar(
-                                text: "Could not process request !",
-                                context: context));
+                      if (!await launch(github)) {
+                        debugPrint("Invalid Link !");
                       }
                     },
                   ),
@@ -123,18 +108,4 @@ class DeveloperCard extends StatelessWidget {
       ),
     );
   }
-}
-
-// ignore: non_constant_identifier_names
-SnackBar CustomSnackbar({required String text, required BuildContext context}) {
-  return SnackBar(
-    content: Text(text, textAlign: TextAlign.center),
-    backgroundColor: Colors.orange,
-    behavior: SnackBarBehavior.floating,
-    duration: const Duration(seconds: 3),
-    shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.all(Radius.circular(10))),
-    margin: EdgeInsets.only(
-        bottom: MediaQuery.of(context).size.height - 100, right: 20, left: 20),
-  );
 }

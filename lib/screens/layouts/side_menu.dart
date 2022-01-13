@@ -98,8 +98,7 @@ class SideMenu extends StatelessWidget {
               color: white,
             ),
             onTap: () async {
-              if (!await launch(
-                  'https://website-frontend20-2mkfatxre.vercel.app/')) {
+              if (!await launch('https://website-frontend21-22.vercel.app/')) {
                 debugPrint('invalid link');
               }
             },

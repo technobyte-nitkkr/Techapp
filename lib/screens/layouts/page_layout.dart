@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-
 import 'package:techapp/screens/components/style.dart';
-
 import '../../screens/layouts/header.dart';
 import 'side_menu.dart';
 

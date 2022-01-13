@@ -104,35 +104,6 @@ Container getRegisterButton(Event item, BuildContext context, bool isflagship) {
         );
 }
 
-Container getBackground(Event item) {
-  return new Container(
-    child: ImageFiltered(
-      imageFilter: ImageFilter.blur(sigmaX: 4, sigmaY: 4),
-      child: new Image.asset(
-        'assets/images/categories/' + item.eventCategory.toLowerCase() + '.png',
-        fit: BoxFit.cover,
-        height: 300.0,
-      ),
-    ),
-    constraints: new BoxConstraints.expand(height: 300.0),
-  );
-}
-
-Container getGradient3() {
-  return Container(
-    margin: new EdgeInsets.only(top: 190.0),
-    height: 130.0,
-    decoration: new BoxDecoration(
-      gradient: new LinearGradient(
-        colors: <Color>[gradientStartColor, gradientStartColor2],
-        stops: [0.0, 0.9],
-        begin: const FractionalOffset(0.0, 0.0),
-        end: const FractionalOffset(0.0, 1.0),
-      ),
-    ),
-  );
-}
-
 Container getContent(Event item, BuildContext context, bool isflagship) {
   return new Container(
     child: new ListView(
@@ -324,7 +295,7 @@ Container getContent(Event item, BuildContext context, bool isflagship) {
                     margin: new EdgeInsets.symmetric(vertical: 5.0),
                     height: 2.0,
                     width: 18.0,
-                    color: Colors.purple[800]),
+                    color: white),
               ],
             ),
           ),
