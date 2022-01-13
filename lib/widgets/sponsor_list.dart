@@ -10,7 +10,6 @@ import 'package:techapp/retrofit/api_client.dart';
 import 'package:techapp/screens/components/style.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-// ignore: must_be_immutable
 class SponsorsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -50,7 +49,7 @@ class SponsorsWidget extends StatelessWidget {
             width: MediaQuery.of(context).size.width,
             child: Center(
               child: LoadingAnimationWidget.staggeredDotWave(
-                  color: white, size: 150),
+                  color: glowColor.withOpacity(0.5), size: 150),
             ),
           );
         }

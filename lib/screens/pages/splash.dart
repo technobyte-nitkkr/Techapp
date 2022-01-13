@@ -17,7 +17,6 @@ import 'package:techapp/screens/pages/error_page.dart';
 import 'package:techapp/screens/pages/navigation.dart';
 import 'package:http/http.dart' as http;
 import 'package:loading_animation_widget/loading_animation_widget.dart';
-import 'package:techapp/services/apiBaseHelper.dart';
 
 Future<Uint8List> _getByteArrayFromUrl(String url) async {
   final http.Response response = await http.get(Uri.parse(url));

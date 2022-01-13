@@ -4,6 +4,9 @@ class Speaker {
   final String imageurl;
   final String name;
   final String time;
+  final String linkedin;
+  final String insta;
+  final String facebook;
 
   Speaker({
     required this.date,
@@ -11,6 +14,9 @@ class Speaker {
     required this.imageurl,
     required this.name,
     required this.time,
+    required this.linkedin,
+    required this.insta,
+    required this.facebook,
   });
 
   factory Speaker.fromJson(Map<String, dynamic> json) {
@@ -19,7 +25,10 @@ class Speaker {
       desc: json['desc'] as String,
       imageurl: json['imageUrl'] as String,
       name: json['name'] as String,
-      time:json['time'] as String,
+      time: json['time'] as String,
+      linkedin: json['linkedin'] as String,
+      insta: json['insta'] as String,
+      facebook: json['facebook'] as String,
     );
   }
 }
