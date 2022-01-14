@@ -46,7 +46,7 @@ class SwiperCard extends StatelessWidget {
                         children: <Widget>[
                           SizedBox(
                               height: min(
-                                  MediaQuery.of(context).size.width * 0.35,
+                                  MediaQuery.of(context).size.width * 0.32,
                                   400)),
                           AutoSizeText(
                             categoryName.categoryName
@@ -57,7 +57,7 @@ class SwiperCard extends StatelessWidget {
                             maxLines: 1,
                             textAlign: TextAlign.left,
                           ),
-                          SizedBox(height: 16),
+                          SizedBox(height: 24),
                           Row(
                             children: <Widget>[
                               Text(

@@ -130,7 +130,7 @@ Container getContent(Event item, BuildContext context, bool isflagship) {
                       new Container(
                           child: AutoSizeText(
                         item.eventName,
-                        style: h1s,
+                        style: h1s.copyWith(fontSize: 23),
                         maxLines: 1,
                       )),
                       if (isflagship)
@@ -139,11 +139,12 @@ Container getContent(Event item, BuildContext context, bool isflagship) {
                           '( Flagship Event )',
                           style: h3.copyWith(
                             fontSize: 12,
+                            color: glowColor,
                             fontWeight: FontWeight.w300,
                           ),
                           maxLines: 1,
                         )),
-                      new Container(height: 10.0),
+                      new Container(height: 7.0),
                       new Text(
                           item.eventCategory.substring(0, 1).toUpperCase() +
                               item.eventCategory.substring(1),

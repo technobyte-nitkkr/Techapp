@@ -71,13 +71,15 @@ class SearchEventDetail extends StatelessWidget {
                 );
               }
               return SizedBox(
-                height: MediaQuery.of(context).size.height,
-                width: MediaQuery.of(context).size.width,
-                child: Center(
-                  child: LoadingAnimationWidget.staggeredDotsWave(
-                      color: white, size: 100),
-                ),
-              );
+                  height: MediaQuery.of(context).size.height,
+                  width: MediaQuery.of(context).size.width,
+                  child: Stack(children: [
+                    getGradient(),
+                    Center(
+                      child: LoadingAnimationWidget.staggeredDotsWave(
+                          color: white, size: 100),
+                    ),
+                  ]));
             },
           ),
         ));

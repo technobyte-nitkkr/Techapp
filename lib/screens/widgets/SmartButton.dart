@@ -158,7 +158,7 @@ class _SmartButtonWidgetState extends State<SmartButtonWidget> {
         child: !isLoading
             ? Text(
                 !isRegistered ? 'Register Now' : 'Unregister',
-                style: h3,
+                style: h3.copyWith(color: white),
               )
             : LoadingAnimationWidget.threeRotatingDots(color: white, size: 30),
         onPressed: () async {
