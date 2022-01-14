@@ -35,9 +35,9 @@ class _NavigationState extends State<Navigation> {
         color: (index == 0)
             ? Colors.black.withOpacity(0.8)
             : Colors.black.withOpacity(0.5),
-        fit: BoxFit.fill,
-        height: 37,
-        width: 37,
+        fit: BoxFit.cover,
+        height: 25,
+        width: 25,
       ),
       // FaIcon(
       //   FontAwesomeIcons.moneyBill,

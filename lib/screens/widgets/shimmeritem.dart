@@ -17,20 +17,14 @@ class ShimmerBuilder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Flexible(
-          child: ListView.builder(
-            shrinkWrap: true,
-            itemCount: 10,
-            scrollDirection: Axis.vertical,
-            padding: EdgeInsets.all(10),
-            itemBuilder: (context, index) {
-              return shimmerItem(imageheight, title, subtitle);
-            },
-          ),
-        ),
-      ],
+    return ListView.builder(
+      shrinkWrap: true,
+      itemCount: 10,
+      scrollDirection: Axis.vertical,
+      padding: EdgeInsets.all(10),
+      itemBuilder: (context, index) {
+        return shimmerItem(imageheight, title, subtitle);
+      },
     );
   }
 }

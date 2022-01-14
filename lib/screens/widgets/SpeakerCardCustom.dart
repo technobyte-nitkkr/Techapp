@@ -120,7 +120,9 @@ class GuestCardCustom extends StatelessWidget {
                         ),
                         ElevatedButton(
                             style: elevatedButtonStyle,
-                            onPressed: () {},
+                            onPressed: () {
+                              launch(speaker.link);
+                            },
                             child: Text("Meet link")),
                         SizedBox(
                           height: 15,

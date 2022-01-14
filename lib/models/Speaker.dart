@@ -7,6 +7,7 @@ class Speaker {
   final String linkedin;
   final String insta;
   final String facebook;
+  final String link;
 
   Speaker({
     required this.date,
@@ -17,6 +18,7 @@ class Speaker {
     required this.linkedin,
     required this.insta,
     required this.facebook,
+    required this.link,
   });
 
   factory Speaker.fromJson(Map<String, dynamic> json) {
@@ -29,6 +31,7 @@ class Speaker {
       linkedin: json['linkedin'] as String,
       insta: json['insta'] as String,
       facebook: json['facebook'] as String,
+      link: json['link'] as String,
     );
   }
 }

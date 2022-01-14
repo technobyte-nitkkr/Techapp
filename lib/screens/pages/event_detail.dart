@@ -8,7 +8,7 @@ import 'package:techapp/screens/widgets/SmartButton.dart';
 import 'package:techapp/screens/widgets/event_poster.dart';
 import 'package:avatar_glow/avatar_glow.dart';
 
-DateFormat dateFormat = DateFormat("MMMM dd,yyyy HH:mm");
+DateFormat dateFormat = DateFormat("dd,MMMM,yyyy hh:mm a");
 
 class EventDetailWidget extends StatelessWidget {
   final Event item;
@@ -130,7 +130,7 @@ Container getContent(Event item, BuildContext context, bool isflagship) {
                       new Container(
                           child: AutoSizeText(
                         item.eventName,
-                        style: h2s,
+                        style: h1s,
                         maxLines: 1,
                       )),
                       if (isflagship)
@@ -147,9 +147,7 @@ Container getContent(Event item, BuildContext context, bool isflagship) {
                       new Text(
                           item.eventCategory.substring(0, 1).toUpperCase() +
                               item.eventCategory.substring(1),
-                          style: h2.copyWith(
-                              color: Colors.black,
-                              fontWeight: FontWeight.w300)),
+                          style: h2s.copyWith(fontWeight: FontWeight.w300)),
                       Container(
                           margin: new EdgeInsets.symmetric(vertical: 8.0),
                           width: 18.0,
@@ -160,7 +158,7 @@ Container getContent(Event item, BuildContext context, bool isflagship) {
                                   DateTime.fromMicrosecondsSinceEpoch(
                                       item.startTime * 1000,
                                       isUtc: false)),
-                          style: h5),
+                          style: h5s),
                       SizedBox(
                         height: 10.0,
                       ),
@@ -169,23 +167,14 @@ Container getContent(Event item, BuildContext context, bool isflagship) {
                               dateFormat.format(
                                   DateTime.fromMicrosecondsSinceEpoch(
                                       item.endTime * 1000)),
-                          style: h5),
+                          style: h5s),
                     ],
                   ),
                 ),
                 height: 300,
                 margin: new EdgeInsets.only(top: 72.0),
-                decoration: new BoxDecoration(
-                  color: white.withOpacity(0.8),
-                  shape: BoxShape.rectangle,
+                decoration: boxDecoration.copyWith(
                   borderRadius: new BorderRadius.circular(8.0),
-                  boxShadow: [
-                    BoxShadow(
-                      color: glowColor.withOpacity(0.3),
-                      blurRadius: 5,
-                      offset: Offset(0, 2),
-                    ),
-                  ],
                 ),
               ),
               Container(
@@ -199,13 +188,23 @@ Container getContent(Event item, BuildContext context, bool isflagship) {
                       child: Container(
                         width: 200.0,
                         height: 200.0,
-                        child: FadeInImage.assetNetwork(
-                          placeholder: 'assets/images/altius.png',
-                          image: item.poster,
-                          fit: BoxFit.cover,
-                          imageErrorBuilder: (context, error, stackTrace) =>
-                              Image.asset('assets/images/altius.png',
-                                  fit: BoxFit.cover),
+                        decoration: boxDecoration.copyWith(
+                          border: Border.all(
+                            color: Colors.white,
+                            width: 4.0,
+                          ),
+                          borderRadius: new BorderRadius.circular(10),
+                        ),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(6),
+                          child: FadeInImage.assetNetwork(
+                            placeholder: 'assets/images/altius.png',
+                            image: item.poster,
+                            fit: BoxFit.cover,
+                            imageErrorBuilder: (context, error, stackTrace) =>
+                                Image.asset('assets/images/altius.png',
+                                    fit: BoxFit.cover),
+                          ),
                         ),
                       ),
                     ),
@@ -238,7 +237,7 @@ Container getContent(Event item, BuildContext context, bool isflagship) {
                   height: 2.0,
                   width: 18.0,
                   color: white),
-              new Text(item.description, style: h6s),
+              new Text(item.description, style: h5s),
             ],
           ),
         ),

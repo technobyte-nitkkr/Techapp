@@ -81,10 +81,14 @@ class _TeamAltiusState extends State<TeamAltius> {
                     },
                   );
                 } else {
-                  return ShimmerBuilder(
-                    title: true,
-                    imageheight: 60,
-                    subtitle: false,
+                  return Column(
+                    children: [
+                      ShimmerBuilder(
+                        title: true,
+                        imageheight: 60,
+                        subtitle: false,
+                      ),
+                    ],
                   );
                 }
               },
