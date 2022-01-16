@@ -36,8 +36,8 @@ class _NavigationState extends State<Navigation> {
             ? Colors.black.withOpacity(0.8)
             : Colors.black.withOpacity(0.5),
         fit: BoxFit.cover,
-        height: 25,
-        width: 25,
+        height: 30,
+        width: 30,
       ),
       // FaIcon(
       //   FontAwesomeIcons.moneyBill,
@@ -48,7 +48,7 @@ class _NavigationState extends State<Navigation> {
       // ),
       FaIcon(
         FontAwesomeIcons.home,
-        size: 23,
+        size: 28,
         color: (index == 1)
             ? Colors.black.withOpacity(0.8)
             : Colors.black.withOpacity(0.5),
@@ -59,8 +59,8 @@ class _NavigationState extends State<Navigation> {
             ? Colors.black.withOpacity(0.8)
             : Colors.black.withOpacity(0.5),
         fit: BoxFit.fill,
-        height: 25,
-        width: 25,
+        height: 30,
+        width: 30,
       )
       // FaIcon(
       //   FontAwesomeIcons.laptopCode,
@@ -98,7 +98,7 @@ class _NavigationState extends State<Navigation> {
         bottomNavigationBar: CurvedNavigationBar(
           backgroundColor: Colors.transparent,
           color: Colors.white.withOpacity(0.8),
-          height: 40,
+          height: 45,
           index: index,
           animationDuration: const Duration(milliseconds: 450),
           items: items,

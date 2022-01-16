@@ -1,60 +1,41 @@
 // @dart=2.9
 
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:techapp/models/Sponsor.dart';
-
-import 'package:techapp/retrofit/api_client.dart';
+import 'package:techapp/providers/fetch_data_provider.dart';
 import 'package:techapp/screens/components/style.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class SponsorsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final client = ApiClient.create();
-
-    return FutureBuilder(
-      future: client.getSponsors(),
-      builder: (context, snapshot) {
-        if (snapshot.hasError) {
-          final errormessage = (snapshot.error as DioError).error.toString();
-          debugPrint(errormessage);
-          return Center(
-            child: Text(
-              errormessage ?? "Error",
-              style: h1s,
-            ),
-          );
-        }
-        if (snapshot.hasData) {
-          List<Sponsor> sponsors = snapshot.data.getFoodSponsors();
-          return GridView.builder(
-            shrinkWrap: true,
-            physics: NeverScrollableScrollPhysics(),
-            itemCount: sponsors.length,
-            itemBuilder: (BuildContext ctx, int index) {
-              return CardItem(item: sponsors[index]);
-            },
-            gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-              maxCrossAxisExtent: 200,
-              mainAxisSpacing: 10,
-              crossAxisSpacing: 10,
-            ),
-          );
-        } else {
-          return SizedBox(
-            height: MediaQuery.of(context).size.height * 0.6,
-            width: MediaQuery.of(context).size.width,
-            child: Center(
-              child: LoadingAnimationWidget.staggeredDotsWave(
-                  color: glowColor.withOpacity(0.5), size: 150),
-            ),
-          );
-        }
-      },
-    );
+    List<Sponsor> sponsors = FetchDataProvider.sponsors;
+    if (sponsors.length > 0) {
+      return GridView.builder(
+        shrinkWrap: true,
+        physics: NeverScrollableScrollPhysics(),
+        itemCount: sponsors.length,
+        itemBuilder: (BuildContext ctx, int index) {
+          return CardItem(item: sponsors[index]);
+        },
+        gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+          maxCrossAxisExtent: 200,
+          mainAxisSpacing: 10,
+          crossAxisSpacing: 10,
+        ),
+      );
+    } else {
+      return SizedBox(
+        height: MediaQuery.of(context).size.height * 0.6,
+        width: MediaQuery.of(context).size.width,
+        child: Center(
+          child:
+              LoadingAnimationWidget.staggeredDotsWave(color: white, size: 150),
+        ),
+      );
+    }
   }
 }
 

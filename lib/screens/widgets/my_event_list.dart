@@ -49,13 +49,10 @@ class MyEventList extends StatelessWidget {
             },
           );
         } else {
-          return SingleChildScrollView(
-            scrollDirection: Axis.vertical,
-            child: ShimmerBuilder(
-              title: true,
-              subtitle: true,
-              imageheight: 100,
-            ),
+          return ShimmerBuilder2(
+            title: true,
+            subtitle: true,
+            imageheight: 100,
           );
         }
       },

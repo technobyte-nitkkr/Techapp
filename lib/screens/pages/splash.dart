@@ -105,6 +105,10 @@ class _SplashScreenState extends State<SplashScreen> {
     data.getAllEvents();
     var data2 = await client.getCategories();
     FetchDataProvider.categories = data2.getCategories();
+    data = await client.getSponsors();
+    FetchDataProvider.sponsors = data.getFoodSponsors();
+    data = await client.getLectures();
+    FetchDataProvider.speakers = data.getLectures();
 
     try {
       if (FetchDataProvider.user != null) {

@@ -1,17 +1,16 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:techapp/models/event_by_categories.dart';
 import 'package:techapp/providers/fetch_data_provider.dart';
 import 'package:techapp/retrofit/api_client.dart';
 import 'package:techapp/screens/components/style.dart';
 import 'package:techapp/screens/widgets/sign_in_modal.dart';
 
 class SmartButtonWidget extends StatefulWidget {
-  const SmartButtonWidget(
-      {Key? key, required this.eventName, required this.eventCategory})
-      : super(key: key);
+  final Event event;
 
-  final eventName, eventCategory;
+  const SmartButtonWidget({Key? key, required this.event}) : super(key: key);
   @override
   _SmartButtonWidgetState createState() => _SmartButtonWidgetState();
 }
@@ -25,7 +24,7 @@ class _SmartButtonWidgetState extends State<SmartButtonWidget> {
   @override
   void initState() {
     for (int i = 0; i < FetchDataProvider.myEvents.length; i++) {
-      if (FetchDataProvider.myEvents[i].eventName == widget.eventName) {
+      if (FetchDataProvider.myEvents[i].eventName == widget.event.eventName) {
         isRegistered = true;
         break;
       }
@@ -162,16 +161,32 @@ class _SmartButtonWidgetState extends State<SmartButtonWidget> {
               )
             : LoadingAnimationWidget.threeRotatingDots(color: white, size: 30),
         onPressed: () async {
-          if (!_user!.onBoard) {
+          if (DateTime.fromMicrosecondsSinceEpoch(widget.event.endTime * 1000,
+                  isUtc: false)
+              .isBefore(DateTime.now())) {
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                content: Text("Event has ended", textAlign: TextAlign.center),
+                backgroundColor: Colors.red,
+                behavior: SnackBarBehavior.floating,
+                duration: const Duration(seconds: 3),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(10))),
+                margin: EdgeInsets.only(
+                    bottom: MediaQuery.of(context).size.height - 100,
+                    right: 20,
+                    left: 20)));
+          } else if (!_user!.onBoard) {
             showDialog(
                 context: context,
                 builder: (BuildContext context) {
                   return SignInModalWidget();
                 });
           } else if (!isRegistered) {
-            _registerEvent(widget.eventName, widget.eventCategory, context);
+            _registerEvent(
+                widget.event.eventName, widget.event.eventCategory, context);
           } else {
-            _unRegisterEvent(widget.eventName, widget.eventCategory, context);
+            _unRegisterEvent(
+                widget.event.eventName, widget.event.eventCategory, context);
           }
         },
       ),

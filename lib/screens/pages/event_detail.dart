@@ -62,8 +62,7 @@ Container getRegisterButton(Event item, BuildContext context, bool isflagship) {
           margin: EdgeInsets.fromLTRB(
               10, MediaQuery.of(context).size.height - 100, 10, 10),
           alignment: Alignment.center,
-          child: SmartButtonWidget(
-              eventName: item.eventName, eventCategory: item.eventCategory))
+          child: SmartButtonWidget(event: item))
       : Container(
           child: Column(
             children: [
@@ -95,8 +94,8 @@ Container getRegisterButton(Event item, BuildContext context, bool isflagship) {
                       10, MediaQuery.of(context).size.height - 180, 10, 10),
                   alignment: Alignment.center,
                   child: SmartButtonWidget(
-                      eventName: item.eventName,
-                      eventCategory: item.eventCategory))
+                    event: item,
+                  ))
             ],
           ),
         );

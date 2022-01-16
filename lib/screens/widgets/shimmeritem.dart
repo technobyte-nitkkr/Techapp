@@ -17,9 +17,38 @@ class ShimmerBuilder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return Flexible(
+      child: ListView.builder(
+        shrinkWrap: true,
+        itemCount: 10,
+        scrollDirection: Axis.vertical,
+        padding: EdgeInsets.all(10),
+        itemBuilder: (context, index) {
+          return shimmerItem(imageheight, title, subtitle);
+        },
+      ),
+    );
+  }
+}
+
+class ShimmerBuilder2 extends StatelessWidget {
+  final double imageheight;
+  final bool title;
+  final bool subtitle;
+
+  const ShimmerBuilder2(
+      {Key? key,
+      required this.imageheight,
+      required this.title,
+      required this.subtitle})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
     return ListView.builder(
       shrinkWrap: true,
       itemCount: 10,
+      physics: NeverScrollableScrollPhysics(),
       scrollDirection: Axis.vertical,
       padding: EdgeInsets.all(10),
       itemBuilder: (context, index) {

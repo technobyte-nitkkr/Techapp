@@ -1,5 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:techapp/models/Speaker.dart';
+import 'package:techapp/models/Sponsor.dart';
 import 'package:techapp/models/categories.dart';
 import 'package:techapp/models/event_by_categories.dart';
 import 'package:techapp/models/event_all.dart';
@@ -16,6 +18,8 @@ class FetchDataProvider {
   // ignore: avoid_init_to_null
   static UserDetails? user = null;
   static String jwt = "";
+  static List<Sponsor> sponsors = [];
+  static List<Speaker> speakers = [];
 
   static loadProfileOnline() async {
     final client = ApiClient.create();
