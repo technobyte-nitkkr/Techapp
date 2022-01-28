@@ -1,4 +1,4 @@
-import 'package:auto_size_text/auto_size_text.dart';
+techspardhatechspardhaimport 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:techapp/screens/components/style.dart';
@@ -198,11 +198,11 @@ Container getContent(Event item, BuildContext context, bool isflagship) {
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(6),
                           child: FadeInImage.assetNetwork(
-                            placeholder: 'assets/images/altius.png',
+                            placeholder: 'assets/images/techspardha.png',
                             image: item.poster,
                             fit: BoxFit.cover,
                             imageErrorBuilder: (context, error, stackTrace) =>
-                                Image.asset('assets/images/altius.png',
+                                Image.asset('assets/images/techspardha.png',
                                     fit: BoxFit.cover),
                           ),
                         ),
