@@ -1,4 +1,4 @@
-// @dart=2.9
+techspardhatechspardha// @dart=2.9
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:techapp/models/section.dart';
@@ -7,16 +7,16 @@ import 'package:techapp/screens/components/style.dart';
 import 'package:techapp/screens/pages/team_details.dart';
 import 'package:techapp/screens/widgets/shimmeritem.dart';
 
-class TeamAltius extends StatefulWidget {
-  TeamAltius({
+class Teamtechspardha extends StatefulWidget {
+  Teamtechspardha({
     Key key,
   }) : super(key: key);
 
   @override
-  State<TeamAltius> createState() => _TeamAltiusState();
+  State<Teamtechspardha> createState() => _TeamtechspardhaState();
 }
 
-class _TeamAltiusState extends State<TeamAltius> {
+class _TeamtechspardhaState extends State<Teamtechspardha> {
   double topContainer = 0;
 
   ScrollController _controller = ScrollController();
@@ -143,13 +143,13 @@ class ContactCard extends StatelessWidget {
                   ClipRRect(
                     borderRadius: BorderRadius.circular(50),
                     child: FadeInImage.assetNetwork(
-                      placeholder: 'assets/images/altius.png',
+                      placeholder: 'assets/images/techspardha.png',
                       height: 60,
                       width: 60,
                       fit: BoxFit.cover,
                       image: contact.logo,
                       imageErrorBuilder: (context, error, stackTrace) {
-                        return Image.asset('assets/images/altius.png',
+                        return Image.asset('assets/images/techspardha.png',
                             height: 60, width: 60, fit: BoxFit.cover);
                       },
                     ),
