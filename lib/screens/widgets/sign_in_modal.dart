@@ -23,9 +23,9 @@ class _SignInModalWidgetState extends State<SignInModalWidget> {
 
   TextEditingController _college = TextEditingController();
   TextEditingController _phone = TextEditingController();
-  String _year = "Freshers";
+  String _year = "Fresher";
 
-  var _years = ["Freshers", "sophomores", "PreFinal year", "Final Year"];
+  var _years = ["Fresher", "Sophomore", "Prefinal year", "Final Year"];
   bool isloading = false;
 
   @override

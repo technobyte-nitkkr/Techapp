@@ -50,7 +50,7 @@ class Header extends StatelessWidget {
                 ),
               ],
             ),
-            Text("  Altius", style: h2s),
+            Text("  Techspardha", style: h2s),
             Container(
               child: Row(
                 children: [

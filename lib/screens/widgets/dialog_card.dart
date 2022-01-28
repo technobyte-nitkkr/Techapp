@@ -1,4 +1,5 @@
 // ignore: import_of_legacy_library_into_null_safe
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:dialogflow_flutter/message.dart';
 import 'package:flutter/material.dart';
 import 'package:techapp/screens/components/style.dart';
@@ -15,17 +16,17 @@ class DialogCard extends StatelessWidget {
     for (var i = 0; i < this.card.buttons.length; i++) {
       buttons.add(new SizedBox(
           child: new ElevatedButton(
-        style: elevatedButtonStyle,
-        onPressed: () async {
-          debugPrint('dialog card');
-          if (!await canLaunch(this.card.buttons[i].postback)) {
-            debugPrint("Invalid link !!");
-          } else {
-            await launch(this.card.buttons[i].postback);
-          }
-        },
-        child: Text(this.card.buttons[i].text),
-      )));
+              style: elevatedButtonStyle,
+              onPressed: () async {
+                debugPrint('dialog card');
+                if (!await launch(this.card.buttons[i].postback)) {
+                  debugPrint("Invalid link !!");
+                }
+              },
+              child: AutoSizeText(
+                this.card.buttons[i].text,
+                maxLines: 1,
+              ))));
     }
     return buttons;
   }

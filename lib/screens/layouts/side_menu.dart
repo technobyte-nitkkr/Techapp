@@ -85,7 +85,9 @@ class SideMenu extends StatelessWidget {
               route: '/my_events',
               icon: Icons.calendar_today_rounded),
           DrawerItem(
-              title: "Team Altius", route: '/team_altius', icon: Icons.group),
+              title: "Team Techspardha",
+              route: '/team_altius',
+              icon: Icons.group),
           DrawerItem(
               title: "Developers ",
               route: '/developers',

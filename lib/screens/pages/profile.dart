@@ -72,7 +72,7 @@ class ProfilePage extends StatelessWidget {
                     ),
                     alignment: Alignment.center,
                     child: Text(
-                      'You cannot register for our events yet.\nClick on the button given below to signup for altius & start registering for our events.',
+                      'You cannot register for our events yet.\nClick on the button given below to signup for techspardha & start registering for our events.',
                       style: h4s,
                       textAlign: TextAlign.center,
                     ),
@@ -94,7 +94,7 @@ class ProfilePage extends StatelessWidget {
                             });
                       },
                       child: Text(
-                        "SignUp For Altius",
+                        "SignUp For Techspardha",
                         style: h2s,
                       ))
               ],

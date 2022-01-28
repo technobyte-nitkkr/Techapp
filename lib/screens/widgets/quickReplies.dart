@@ -31,12 +31,17 @@ class QuickReplyWidget extends StatelessWidget {
                 padding: EdgeInsets.only(
                     top: 10.0, bottom: 10.0, left: 10.0, right: 10.0),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     new Text(
-                      "Other Similar Comamnds",
+                      "Similar commands :",
                       style: h6.copyWith(
                         color: white,
+                        fontWeight: FontWeight.bold,
                       ),
+                    ),
+                    SizedBox(
+                      height: 2,
                     ),
                     new Text(
                       replies.quickReplies

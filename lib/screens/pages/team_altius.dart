@@ -40,7 +40,7 @@ class _TeamAltiusState extends State<TeamAltius> {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        title: Text("Team Altius"),
+        title: Text("Team Techspardha"),
       ),
       // extendBodyBehindAppBar: true,
       backgroundColor: black,

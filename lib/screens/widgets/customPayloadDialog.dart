@@ -40,9 +40,6 @@ class CustomPayloadDialog extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
-                    SizedBox(
-                      height: 10.0,
-                    ),
                     if (encodedPayload['text'] != null)
                       new Text(
                         encodedPayload['text'],
@@ -56,14 +53,11 @@ class CustomPayloadDialog extends StatelessWidget {
                               .pushNamed(encodedPayload['route']);
                         },
                         child: Text(
-                          "open",
+                          "Open",
                           style: const TextStyle(
                               color: Colors.white, fontWeight: FontWeight.w700),
                         ),
                       ),
-                    SizedBox(
-                      height: 10.0,
-                    ),
                   ],
                 ),
               ),

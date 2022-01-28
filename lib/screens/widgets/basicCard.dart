@@ -17,11 +17,8 @@ class BasicCardWidget extends StatelessWidget {
           child: new ElevatedButton(
         style: elevatedButtonStyle,
         onPressed: () async {
-          if (!await canLaunch(this.card.buttons[i]['openUriAction']['uri'])) {
+          if (!await launch(this.card.buttons[i]['openUriAction']['uri'])) {
             debugPrint("Invalid Link !!");
-          } else {
-            await launch(
-                this.card.buttons[i]['openUriAction']['uri'].toString());
           }
         },
         child: Text(this.card.buttons[i]['title'] ?? 'click here'),
