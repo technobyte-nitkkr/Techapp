@@ -153,6 +153,7 @@ class GuestCardCustom extends StatelessWidget {
                   width: 130,
                   height: 130,
                   fit: BoxFit.cover,
+                  cacheWidth: 1300,
                 ),
               ),
             ),

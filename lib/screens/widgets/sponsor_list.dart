@@ -74,6 +74,7 @@ class CardItem extends StatelessWidget {
                 child: Image.network(
                   '${item.imageurl}',
                   width: MediaQuery.of(context).size.width * 0.3,
+                  cacheWidth: 1300,
                 ),
               ),
               // Divider(

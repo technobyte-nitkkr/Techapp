@@ -53,6 +53,7 @@ class NotificatonItemWidget extends StatelessWidget {
                         placeholder: 'assets/images/techspardha.png',
                         image: imageUrl ?? '',
                         fit: BoxFit.cover,
+                        imageCacheWidth: 1000,
                         imageErrorBuilder: (context, error, stackTrace) =>
                             Image.asset('assets/images/techspardha.png'))),
               ),

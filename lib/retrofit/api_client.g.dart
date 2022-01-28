@@ -8,7 +8,8 @@ part of 'api_client.dart';
 
 class _ApiClient implements ApiClient {
   _ApiClient(this._dio, {this.baseUrl}) {
-    baseUrl ??= 'https://techspardhabackend.herokuapp.com/';
+    baseUrl ??=
+        'https://us-central1-techspardha-87928.cloudfunctions.net/api2/';
   }
 
   final Dio _dio;

@@ -56,7 +56,10 @@ class DialogCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: <Widget>[
                     if (this.card.imageUri != null)
-                      Image.network(this.card.imageUri),
+                      Image.network(
+                        this.card.imageUri,
+                        cacheWidth: 1300,
+                      ),
                     new Padding(
                       padding: EdgeInsets.all(10.0),
                       child: Column(

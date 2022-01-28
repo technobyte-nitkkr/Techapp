@@ -52,6 +52,7 @@ class BasicCardWidget extends StatelessWidget {
                     if (this.card.image?.imageUri != null)
                       new Image.network(
                         this.card.image.imageUri,
+                        cacheWidth: 1000,
                         fit: BoxFit.cover,
                         loadingBuilder: (BuildContext context, Widget child,
                             ImageChunkEvent? loadingProgress) {

@@ -5,7 +5,8 @@ import 'package:retrofit/http.dart';
 import 'package:techapp/retrofit/response.dart';
 part 'api_client.g.dart';
 
-@RestApi(baseUrl: "https://techspardhabackend.herokuapp.com/")
+@RestApi(
+    baseUrl: "https://us-central1-techspardha-87928.cloudfunctions.net/api2/")
 abstract class ApiClient {
   factory ApiClient(Dio dio, {String baseUrl}) = _ApiClient;
 
@@ -25,7 +26,8 @@ abstract class ApiClient {
           new DioError(
               requestOptions: RequestOptions(
                 method: "GET",
-                path: "https://techspardhabackend.herokuapp.com/",
+                path:
+                    "https://us-central1-techspardha-87928.cloudfunctions.net/api2/",
               ),
               error: "No internet"),
         );
@@ -39,7 +41,8 @@ abstract class ApiClient {
           new DioError(
               requestOptions: RequestOptions(
                 method: "GET",
-                path: "https://techspardhabackend.herokuapp.com/",
+                path:
+                    "https://us-central1-techspardha-87928.cloudfunctions.net/api2/",
               ),
               error: resp['message'] ?? resp['err'] ?? "internal server error"),
         );

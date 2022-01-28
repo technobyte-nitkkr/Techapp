@@ -201,6 +201,7 @@ Container getContent(Event item, BuildContext context, bool isflagship) {
                             placeholder: 'assets/images/techspardha.png',
                             image: item.poster,
                             fit: BoxFit.cover,
+                            imageCacheWidth: 1000,
                             imageErrorBuilder: (context, error, stackTrace) =>
                                 Image.asset('assets/images/techspardha.png',
                                     fit: BoxFit.cover),

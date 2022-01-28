@@ -74,6 +74,7 @@ class ContactSwiperCard extends StatelessWidget {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(32),
                 child: FadeInImage.assetNetwork(
+                  imageCacheWidth: 1000,
                   placeholder: 'assets/images/techspardha.png',
                   image: people.imageUrl,
                   fit: BoxFit.cover,
