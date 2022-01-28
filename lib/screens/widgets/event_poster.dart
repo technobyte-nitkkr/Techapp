@@ -1,4 +1,4 @@
-techspardhaimport 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:techapp/screens/components/style.dart';
 
 class EventPosterWidget extends StatelessWidget {

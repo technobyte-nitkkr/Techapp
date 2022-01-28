@@ -1,4 +1,4 @@
-techspardha// ignore_for_file: import_of_legacy_library_into_null_safe
+// ignore_for_file: import_of_legacy_library_into_null_safe
 
 import 'package:flutter/material.dart';
 import 'package:techapp/screens/auth/google_login.dart';
@@ -8,7 +8,7 @@ import 'package:techapp/screens/pages/my_events.dart';
 import 'package:techapp/screens/pages/navigation.dart';
 import 'package:techapp/screens/pages/notifications.dart';
 import 'package:techapp/screens/pages/splash.dart';
-import 'package:techapp/screens/pages/team_techspardha.dart';
+import 'package:techapp/screens/pages/team_altius.dart';
 
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
