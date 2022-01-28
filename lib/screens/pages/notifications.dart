@@ -31,6 +31,8 @@ class _NotificationsWidgetState extends State<NotificationsWidget> {
       _notificatinons = data.map<Noti>((i) => Noti.fromJson(i)).toList();
     }
 
+    FetchDataProvider.notification = _notificatinons.length;
+
     setState(() {});
   }
 

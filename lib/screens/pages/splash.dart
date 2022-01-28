@@ -100,6 +100,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   Future<dynamic> loadDataDuringSplash(BuildContext context) async {
     final client = ApiClient.create();
+    FetchDataProvider.notification = await NotificationsProvider.checkNoti();
     await FetchDataProvider.loadProfileOnline();
     var data = await client.getAllEvents();
     data.getAllEvents();
