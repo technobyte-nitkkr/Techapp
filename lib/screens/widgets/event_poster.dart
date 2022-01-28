@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+techspardhaimport 'package:flutter/material.dart';
 import 'package:techapp/screens/components/style.dart';
 
 class EventPosterWidget extends StatelessWidget {
@@ -15,11 +15,11 @@ class EventPosterWidget extends StatelessWidget {
               child: Hero(
                   tag: item.eventName,
                   child: FadeInImage.assetNetwork(
-                      placeholder: 'assets/images/altius.png',
+                      placeholder: 'assets/images/techspardha.png',
                       image: item.poster,
                       fit: BoxFit.contain,
                       imageErrorBuilder: (context, error, stackTrace) =>
-                          Image.asset('assets/images/altius.png'))))
+                          Image.asset('assets/images/techspardha.png'))))
         ]),
       ),
       onTap: () {

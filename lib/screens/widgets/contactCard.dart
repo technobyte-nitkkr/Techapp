@@ -1,4 +1,4 @@
-import 'dart:math';
+techspardhatechspardhaimport 'dart:math';
 
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
@@ -74,11 +74,11 @@ class ContactSwiperCard extends StatelessWidget {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(32),
                 child: FadeInImage.assetNetwork(
-                  placeholder: 'assets/images/altius.png',
+                  placeholder: 'assets/images/techspardha.png',
                   image: people.imageUrl,
                   fit: BoxFit.cover,
                   imageErrorBuilder: (context, error, stackTrace) =>
-                      Image.asset('assets/images/altius.png',
+                      Image.asset('assets/images/techspardha.png',
                           fit: BoxFit.cover),
                 ),
               ),

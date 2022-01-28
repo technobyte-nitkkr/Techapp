@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+techspardhatechspardhaimport 'package:flutter/material.dart';
 import 'package:techapp/models/event_by_categories.dart';
 import 'package:techapp/screens/components/style.dart';
 import 'package:techapp/screens/pages/event_detail.dart';
@@ -56,13 +56,13 @@ class ListItem extends StatelessWidget {
                             child: ClipRRect(
                                 borderRadius: BorderRadius.circular(10),
                                 child: FadeInImage.assetNetwork(
-                                    placeholder: 'assets/images/altius.png',
+                                    placeholder: 'assets/images/techspardha.png',
                                     image: item.poster,
                                     fit: BoxFit.cover,
                                     imageErrorBuilder:
                                         (context, error, stackTrace) =>
                                             Image.asset(
-                                                'assets/images/altius.png'))),
+                                                'assets/images/techspardha.png'))),
                           )),
                       Expanded(
                         child: Container(

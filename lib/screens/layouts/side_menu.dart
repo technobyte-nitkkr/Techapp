@@ -1,4 +1,4 @@
-import 'package:auto_size_text/auto_size_text.dart';
+techspardhatechspardhaimport 'package:auto_size_text/auto_size_text.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -32,7 +32,7 @@ class SideMenu extends StatelessWidget {
                         )
                       : CircleAvatar(
                           backgroundImage: AssetImage(
-                            'assets/images/altius.png',
+                            'assets/images/techspardha.png',
                           ),
                           radius: 40,
                         ),
@@ -86,7 +86,7 @@ class SideMenu extends StatelessWidget {
               icon: Icons.calendar_today_rounded),
           DrawerItem(
               title: "Team Techspardha",
-              route: '/team_altius',
+              route: '/team_techspardha',
               icon: Icons.group),
           DrawerItem(
               title: "Developers ",
