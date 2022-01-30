@@ -51,7 +51,14 @@ class _SplashAnimationState extends State<SplashAnimation> {
                 height: MediaQuery.of(context).size.height * 0.4,
               ),
               SizedBox(
-                height: MediaQuery.of(context).size.height * 0.2,
+                height: 20,
+              ),
+              Text(
+                "Techspardha  ",
+                style: h1s.copyWith(fontSize: 35),
+              ),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.15,
               ),
               ElevatedButton(
                 onPressed: () async {

@@ -184,14 +184,21 @@ class SplashAnimation extends StatelessWidget {
                 height: MediaQuery.of(context).size.height * 0.4,
               ),
               SizedBox(
-                height: MediaQuery.of(context).size.height * 0.1,
+                height: 20,
+              ),
+              Text(
+                "Techspardha  ",
+                style: h1s.copyWith(fontSize: 35),
+              ),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.075,
               ),
               Flexible(
                 child: LoadingAnimationWidget.staggeredDotsWave(
-                    color: white, size: 50),
+                    color: white, size: 40),
               ),
               SizedBox(
-                height: MediaQuery.of(context).size.height * 0.17,
+                height: MediaQuery.of(context).size.height * 0.12,
               ),
               Container(
                 child:
