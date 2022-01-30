@@ -66,7 +66,6 @@ class DataToLoad extends StatelessWidget {
               Container(
                 height: MediaQuery.of(context).size.height * 0.6,
                 child: Swiper(
-                  loop: false,
                   itemCount: categories.length,
                   itemWidth:
                       min(MediaQuery.of(context).size.width - 2 * 50, 600),
