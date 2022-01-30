@@ -44,3 +44,6 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+android/app/pepk.jar
+android/app/upload_certificate.pem
+android/app/output.zip
