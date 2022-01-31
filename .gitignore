@@ -47,3 +47,4 @@ app.*.map.json
 android/app/pepk.jar
 android/app/upload_certificate.pem
 android/app/output.zip
+assets/dialog_flow_auth.json
