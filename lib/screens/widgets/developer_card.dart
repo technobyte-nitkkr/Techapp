@@ -76,7 +76,7 @@ class DeveloperCard extends StatelessWidget {
                       color: white,
                     ),
                     onPressed: () async {
-                      if (!await launch(github)) {
+                      if (!await launch(linkedin)) {
                         debugPrint("Invalid Link !");
                       }
                     },
@@ -87,7 +87,7 @@ class DeveloperCard extends StatelessWidget {
                       color: white,
                     ),
                     onPressed: () async {
-                      if (!await launch(github)) {
+                      if (!await launch(insta)) {
                         debugPrint("Invalid Link !");
                       }
                     },

@@ -130,7 +130,7 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Tech App',
+      title: 'Techspardha',
       home: AnimatedSplashScreen.withScreenFunction(
         splashIconSize: MediaQuery.of(context).size.height,
         screenFunction: () async {
