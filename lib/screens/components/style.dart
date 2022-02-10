@@ -102,7 +102,7 @@ Container getGradient() {
   return new Container(
     decoration: BoxDecoration(
       image: DecorationImage(
-        image: AssetImage("assets/images/back3.png"),
+        image: AssetImage("assets/images/back.png"),
         fit: BoxFit.cover,
       ),
     ),

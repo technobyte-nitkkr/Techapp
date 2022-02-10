@@ -21,15 +21,17 @@ class GuestCardCustom extends StatelessWidget {
           Card(
             color: Colors.transparent,
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(30),
+              borderRadius: BorderRadius.circular(10),
             ),
             margin: EdgeInsets.only(
               top: 75,
             ),
-            clipBehavior: Clip.antiAlias,
             elevation: 5,
+            borderOnForeground: true,
             child: Container(
-              decoration: boxDecoration,
+              decoration: boxDecoration.copyWith(
+                borderRadius: BorderRadius.circular(20),
+              ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,

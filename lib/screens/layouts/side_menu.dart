@@ -12,7 +12,7 @@ class SideMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      backgroundColor: Colors.black.withOpacity(0.82),
+      backgroundColor: Color.fromRGBO(38, 38, 38, 0.9),
       elevation: 3,
       child: ListView(
         children: [
@@ -56,8 +56,9 @@ class SideMenu extends StatelessWidget {
             ),
           ),
           Divider(
-            height: 1,
+            height: 2,
             thickness: 1,
+            color: grey,
           ),
           ListTile(
             title: Text(
@@ -100,7 +101,7 @@ class SideMenu extends StatelessWidget {
               color: white,
             ),
             onTap: () async {
-              if (!await launch('https://website-frontend21-22.vercel.app/')) {
+              if (!await launch('https://techspardha.live/')) {
                 debugPrint('invalid link');
               }
             },

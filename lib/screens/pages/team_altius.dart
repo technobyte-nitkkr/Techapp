@@ -42,7 +42,7 @@ class _TeamtechspardhaState extends State<Teamtechspardha> {
         elevation: 0,
         title: Text("Team Techspardha"),
       ),
-      // extendBodyBehindAppBar: true,
+      extendBodyBehindAppBar: true,
       backgroundColor: black,
       body: Stack(
         children: [

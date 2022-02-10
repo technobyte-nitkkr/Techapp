@@ -66,3 +66,6 @@ flutter:
    - family: OpenSans SemiBold
      fonts:
      - asset: assets/fonts/OpenSans-SemiBold.ttf
+   - family: Poppins
+     fonts:
+     - asset: assets/fonts/Poppins-Black.ttf

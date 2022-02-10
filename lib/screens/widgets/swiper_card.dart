@@ -36,8 +36,9 @@ class SwiperCard extends StatelessWidget {
                   Card(
                     color: Colors.transparent,
                     child: Container(
-                      decoration: boxDecoration.copyWith(
+                      decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(32),
+                        gradient: null,
                         color: Colors.white.withOpacity(0.95),
                       ),
                       padding: const EdgeInsets.all(32.0),
