@@ -17,7 +17,7 @@ class PageLayout extends StatelessWidget {
       drawer: SideMenu(),
       body: Stack(
         children: [
-          getGradient(),
+          getGradient(context),
           SafeArea(
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,

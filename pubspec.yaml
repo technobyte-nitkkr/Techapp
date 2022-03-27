@@ -37,6 +37,7 @@ dependencies:
   avatar_glow: ^2.0.2
   font_awesome_flutter: ^9.0.0
   shimmer: ^2.0.0
+  particles_flutter: ^0.1.1
 
 flutter_icons:
   image_path_android: "assets/images/icon.png"
@@ -69,3 +70,6 @@ flutter:
    - family: Poppins
      fonts:
      - asset: assets/fonts/Poppins-Black.ttf
+   - family: glitch
+     fonts:
+     - asset: assets/fonts/glitch.otf

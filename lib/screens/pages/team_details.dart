@@ -22,7 +22,7 @@ class TeamDetail extends StatelessWidget {
       extendBodyBehindAppBar: true,
       body: Stack(
         children: [
-          getGradient(),
+          getGradient(context),
           Column(
             children: <Widget>[
               SizedBox(

@@ -56,7 +56,7 @@ class SearchEventDetail extends StatelessWidget {
                 Event event = snapshot.data.getEvent();
                 return Stack(
                   children: [
-                    getGradient(),
+                    getGradient(context),
                     SingleChildScrollView(
                       child: new Stack(
                         children: <Widget>[
@@ -74,7 +74,7 @@ class SearchEventDetail extends StatelessWidget {
                   height: MediaQuery.of(context).size.height,
                   width: MediaQuery.of(context).size.width,
                   child: Stack(children: [
-                    getGradient(),
+                    getGradient(context),
                     Center(
                       child: LoadingAnimationWidget.staggeredDotsWave(
                           color: white, size: 100),

@@ -2,9 +2,10 @@
 
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:particles_flutter/particles_flutter.dart';
 
 // colors
-const glowColor = Color(0xFF03bcf4);
+const glowColor = Color(0xFF4890FF);
 const grey = Color(0xFF888888);
 const black = Color(0xFF000000);
 const white = Color(0xFFFFFFFF);
@@ -24,11 +25,11 @@ final elevatedButtonStyle = ElevatedButton.styleFrom(
 
 // custom container decoration
 final boxDecoration = BoxDecoration(
-  color: Colors.white24,
+  color: Colors.grey.withOpacity(0.3),
   boxShadow: [
     BoxShadow(
-      color: glowColor.withOpacity(0.2),
-      blurRadius: 3,
+      color: glowColor.withOpacity(0.1),
+      blurRadius: 1,
       offset: Offset(0, 2),
     ),
   ],
@@ -98,21 +99,37 @@ final parawhite = baseTextStyle.copyWith(
 final parablack = parawhite.copyWith(color: black);
 
 // custom gradient
-Container getGradient() {
+Container getGradient(context) {
   return new Container(
-    decoration: BoxDecoration(
-      image: DecorationImage(
-        image: AssetImage("assets/images/back.png"),
-        fit: BoxFit.cover,
+      child: Stack(
+    children: [
+      Container(
+        decoration: new BoxDecoration(color: Colors.black),
       ),
-    ),
-    child: BackdropFilter(
-      filter: new ImageFilter.blur(sigmaX: 1, sigmaY: 1),
-      child: Container(
-        decoration: BoxDecoration(
-          color: black.withOpacity(0.3),
-        ),
+      CircularParticle(
+        key: UniqueKey(),
+        awayRadius: 1000,
+        numberOfParticles: 95,
+        speedOfParticles: 2,
+        height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width,
+        onTapAnimation: true,
+        particleColor: glowColor.withOpacity(0.5),
+        awayAnimationDuration: Duration(milliseconds: 1000),
+        awayAnimationCurve: Curves.decelerate,
+        maxParticleSize: 0,
+        isRandomColor: true,
+        randColorList: [
+          glowColor,
+        ],
+        enableHover: true,
+        hoverColor: glowColor,
+        hoverRadius: 100,
+        connectDots: true,
       ),
-    ),
-  );
+      Container(
+        decoration: new BoxDecoration(color: Colors.black.withOpacity(0.5)),
+      ),
+    ],
+  ));
 }

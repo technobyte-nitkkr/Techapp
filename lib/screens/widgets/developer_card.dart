@@ -25,10 +25,11 @@ class DeveloperCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
-      clipBehavior: Clip.hardEdge,
-      borderRadius: BorderRadius.circular(10),
+      clipBehavior: Clip.antiAlias,
+      borderRadius: BorderRadius.circular(13),
       child: Container(
-        decoration: boxDecoration,
+        decoration:
+            boxDecoration.copyWith(border: Border.all(width: 0, color: white)),
         child: Column(
           children: <Widget>[
             Container(

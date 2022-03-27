@@ -153,7 +153,7 @@ class DataSearch extends SearchDelegate<String> {
 
     return Stack(
       children: [
-        getGradient(),
+        getGradient(context),
         Container(
           color: Colors.transparent,
           child: ListView.builder(

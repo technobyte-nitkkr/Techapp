@@ -153,7 +153,7 @@ class _SplashScreenState extends State<SplashScreen> {
         curve: Curves.easeInOut,
         splash: SplashAnimation(),
         splashTransition: SplashTransition.fadeTransition,
-        duration: 1,
+        duration: 2,
       ),
     );
   }
@@ -168,10 +168,15 @@ class SplashAnimation extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        getGradient(),
         Container(
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height,
+          decoration: BoxDecoration(
+            color: Colors.black,
+            image: DecorationImage(
+                image: AssetImage("assets/images/video.gif"),
+                fit: BoxFit.cover),
+          ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
@@ -187,18 +192,25 @@ class SplashAnimation extends StatelessWidget {
                 height: 20,
               ),
               Text(
-                "Techspardha  ",
-                style: h1s.copyWith(fontSize: 35),
+                "TECHSPARDHA",
+                style: h1s.copyWith(
+                  fontSize: 50,
+                  fontWeight: FontWeight.w900,
+                ),
               ),
               SizedBox(
-                height: MediaQuery.of(context).size.height * 0.075,
+                height: 10,
               ),
-              Flexible(
-                child: LoadingAnimationWidget.staggeredDotsWave(
-                    color: white, size: 40),
+              Text(
+                "UNRAVELLING DIMENSIONS",
+                style: h1s.copyWith(
+                  fontSize: 21,
+                  fontFamily: 'glitch',
+                  fontWeight: FontWeight.normal,
+                ),
               ),
               SizedBox(
-                height: MediaQuery.of(context).size.height * 0.12,
+                height: MediaQuery.of(context).size.height * 0.1,
               ),
               Container(
                 child:

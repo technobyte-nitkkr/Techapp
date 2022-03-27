@@ -38,7 +38,7 @@ class EventDetailWidget extends StatelessWidget {
           constraints: new BoxConstraints.expand(),
           child: Stack(
             children: [
-              getGradient(),
+              getGradient(context),
               Container(
                 child: SingleChildScrollView(
                   child: new Stack(

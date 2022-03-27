@@ -13,7 +13,7 @@ class ErrorPagge extends StatelessWidget {
     return Scaffold(
       body: Stack(
         children: [
-          getGradient(),
+          getGradient(context),
           Container(
             width: MediaQuery.of(context).size.width,
             child: Column(

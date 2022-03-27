@@ -35,10 +35,15 @@ class _SplashAnimationState extends State<SplashAnimation> {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        getGradient(),
         Container(
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height,
+          decoration: BoxDecoration(
+            color: Colors.black,
+            image: DecorationImage(
+                image: AssetImage("assets/images/video.gif"),
+                fit: BoxFit.cover),
+          ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
@@ -47,18 +52,32 @@ class _SplashAnimationState extends State<SplashAnimation> {
               ),
               Image.asset(
                 'assets/images/logo.png',
-                width: MediaQuery.of(context).size.width * 0.6,
-                height: MediaQuery.of(context).size.height * 0.4,
+                width: MediaQuery.of(context).size.width * 0.5,
+                height: MediaQuery.of(context).size.height * 0.3,
               ),
               SizedBox(
                 height: 20,
               ),
               Text(
-                "Techspardha  ",
-                style: h1s.copyWith(fontSize: 35),
+                "TECHSPARDHA",
+                style: h1s.copyWith(
+                  fontSize: 50,
+                  fontWeight: FontWeight.w900,
+                ),
               ),
               SizedBox(
-                height: MediaQuery.of(context).size.height * 0.15,
+                height: 10,
+              ),
+              Text(
+                "UNRAVELLING DIMENSIONS",
+                style: h1s.copyWith(
+                  fontSize: 21,
+                  fontFamily: 'glitch',
+                  fontWeight: FontWeight.normal,
+                ),
+              ),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.1,
               ),
               ElevatedButton(
                 onPressed: () async {

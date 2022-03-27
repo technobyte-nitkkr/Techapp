@@ -10,7 +10,7 @@ class EventPosterWidget extends StatelessWidget {
     return GestureDetector(
       child: Scaffold(
         body: Stack(children: [
-          getGradient(),
+          getGradient(context),
           Center(
               child: Hero(
                   tag: item.eventName,

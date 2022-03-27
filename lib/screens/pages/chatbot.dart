@@ -175,7 +175,7 @@ class _ChatBotWidget extends State<ChatBotWidget> {
     this.buildContext = context;
     return Stack(
       children: [
-        getGradient(),
+        getGradient(context),
         new Scaffold(
           backgroundColor: Colors.transparent,
           appBar: new AppBar(

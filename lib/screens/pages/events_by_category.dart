@@ -29,7 +29,7 @@ class EventsByCategory extends StatelessWidget {
         ),
         body: Stack(
           children: [
-            getGradient(),
+            getGradient(context),
             Hero(
               tag: categoryName,
               child: Container(

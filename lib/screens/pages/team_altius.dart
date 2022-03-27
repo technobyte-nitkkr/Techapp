@@ -46,7 +46,7 @@ class _TeamtechspardhaState extends State<Teamtechspardha> {
       backgroundColor: black,
       body: Stack(
         children: [
-          getGradient(),
+          getGradient(context),
           Container(
             padding: const EdgeInsets.all(10),
             child: FutureBuilder(
