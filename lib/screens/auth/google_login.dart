@@ -41,8 +41,9 @@ class _SplashAnimationState extends State<SplashAnimation> {
           decoration: BoxDecoration(
             color: Colors.black,
             image: DecorationImage(
-                image: AssetImage("assets/images/video.gif"),
-                fit: BoxFit.cover),
+              image: AssetImage("assets/images/video.gif"),
+              fit: BoxFit.cover,
+            ),
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -61,7 +62,7 @@ class _SplashAnimationState extends State<SplashAnimation> {
               Text(
                 "TECHSPARDHA",
                 style: h1s.copyWith(
-                  fontSize: 50,
+                  fontSize: 40,
                   fontWeight: FontWeight.w900,
                 ),
               ),
@@ -71,7 +72,7 @@ class _SplashAnimationState extends State<SplashAnimation> {
               Text(
                 "UNRAVELLING DIMENSIONS",
                 style: h1s.copyWith(
-                  fontSize: 21,
+                  fontSize: 18,
                   fontFamily: 'glitch',
                   fontWeight: FontWeight.normal,
                 ),

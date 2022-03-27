@@ -153,7 +153,7 @@ class _SplashScreenState extends State<SplashScreen> {
         curve: Curves.easeInOut,
         splash: SplashAnimation(),
         splashTransition: SplashTransition.fadeTransition,
-        duration: 2,
+        duration: 4,
       ),
     );
   }
@@ -194,7 +194,7 @@ class SplashAnimation extends StatelessWidget {
               Text(
                 "TECHSPARDHA",
                 style: h1s.copyWith(
-                  fontSize: 50,
+                  fontSize: 40,
                   fontWeight: FontWeight.w900,
                 ),
               ),
@@ -204,7 +204,7 @@ class SplashAnimation extends StatelessWidget {
               Text(
                 "UNRAVELLING DIMENSIONS",
                 style: h1s.copyWith(
-                  fontSize: 21,
+                  fontSize: 18,
                   fontFamily: 'glitch',
                   fontWeight: FontWeight.normal,
                 ),

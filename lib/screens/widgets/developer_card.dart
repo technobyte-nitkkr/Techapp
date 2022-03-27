@@ -28,8 +28,7 @@ class DeveloperCard extends StatelessWidget {
       clipBehavior: Clip.antiAlias,
       borderRadius: BorderRadius.circular(13),
       child: Container(
-        decoration:
-            boxDecoration.copyWith(border: Border.all(width: 0, color: white)),
+        decoration: boxDecoration,
         child: Column(
           children: <Widget>[
             Container(
