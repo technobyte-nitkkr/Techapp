@@ -113,7 +113,8 @@ class _SplashScreenState extends State<SplashScreen> {
 
     try {
       if (FetchDataProvider.user != null) {
-        await client.getMyEvents(FetchDataProvider.jwt);
+        data = await client.getMyEvents(FetchDataProvider.jwt);
+        data.getMyEvents();
       }
       if (FirebaseAuth.instance.currentUser == null) {
         return await Navigator.pushNamedAndRemoveUntil(

@@ -45,8 +45,9 @@ class _SmartButtonWidgetState extends State<SmartButtonWidget> {
       });
 
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content:
-              Text("Registered Successfully !!", textAlign: TextAlign.center),
+          content: Text(
+              "Registered Successfully!! Check Your Email for Completion",
+              textAlign: TextAlign.center),
           backgroundColor: Colors.green,
           behavior: SnackBarBehavior.floating,
           duration: const Duration(seconds: 3),
