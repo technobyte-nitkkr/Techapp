@@ -150,12 +150,23 @@ class GuestCardCustom extends StatelessWidget {
               ),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(27),
-                child: Image.network(
-                  speaker.imageurl,
+                // child: Image.network(
+                //   speaker.imageurl,
+                //   width: 130,
+                //   height: 130,
+                //   fit: BoxFit.cover,
+                //   cacheWidth: 1300,
+                // ),
+                child: FadeInImage.assetNetwork(
+                  placeholder: 'assets/images/techspardha.png',
+                  image: speaker.imageurl,
+                  fit: BoxFit.cover,
                   width: 130,
                   height: 130,
-                  fit: BoxFit.cover,
-                  cacheWidth: 1300,
+                  imageCacheWidth: 1000,
+                  imageErrorBuilder: (context, error, stackTrace) =>
+                      Image.asset('assets/images/techspardha.png',
+                          fit: BoxFit.cover),
                 ),
               ),
             ),

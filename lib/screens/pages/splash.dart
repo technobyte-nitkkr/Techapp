@@ -249,6 +249,8 @@ class SplashAnimation extends StatelessWidget {
                   )
                 ]),
               ),
+              SizedBox(height: 10),
+              LoadingAnimationWidget.staggeredDotsWave(color: white, size: 40),
             ],
           ),
         ),

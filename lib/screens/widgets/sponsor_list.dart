@@ -74,10 +74,20 @@ class CardItem extends StatelessWidget {
                 Container(
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(3),
-                    child: Image.network(
-                      '${item.imageurl}',
+                    // child: Image.network(
+                    //   '${item.imageurl}',
+                    //   width: MediaQuery.of(context).size.width * 0.28,
+                    //   cacheWidth: 1300,
+                    // ),
+                    child: FadeInImage.assetNetwork(
+                      placeholder: 'assets/images/techspardha.png',
                       width: MediaQuery.of(context).size.width * 0.28,
-                      cacheWidth: 1300,
+                      image: item.imageurl,
+                      fit: BoxFit.cover,
+                      imageCacheWidth: 1000,
+                      imageErrorBuilder: (context, error, stackTrace) =>
+                          Image.asset('assets/images/techspardha.png',
+                              fit: BoxFit.cover),
                     ),
                   ),
                 ),

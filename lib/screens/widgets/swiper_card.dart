@@ -56,27 +56,62 @@ class SwiperCard extends StatelessWidget {
                             child: Hero(
                               tag: categoryName,
                               child: Container(
-                                width: MediaQuery.of(context).size.width * 0.8,
-                                height: MediaQuery.of(context).size.width * 0.5,
-                                margin: EdgeInsets.only(
-                                  left:
-                                      MediaQuery.of(context).size.width * 0.075,
-                                  right:
-                                      MediaQuery.of(context).size.width * 0.075,
-                                  top:
-                                      MediaQuery.of(context).size.width * 0.075,
-                                  bottom:
-                                      MediaQuery.of(context).size.width * 0.075,
-                                ),
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.8,
+                                  height:
+                                      MediaQuery.of(context).size.width * 0.5,
+                                  margin: EdgeInsets.only(
+                                    left: MediaQuery.of(context).size.width *
+                                        0.075,
+                                    right: MediaQuery.of(context).size.width *
+                                        0.075,
+                                    top: MediaQuery.of(context).size.width *
+                                        0.075,
+                                    bottom: MediaQuery.of(context).size.width *
+                                        0.075,
+                                  ),
 
-                                // margin: EdgeInsets.only(left: 30),
-                                decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                      image: NetworkImage(categoryName.imgUrl),
-                                      fit: BoxFit.fill),
-                                  borderRadius: BorderRadius.circular(16),
-                                ),
-                              ),
+                                  // margin: EdgeInsets.only(left: 30),
+                                  // decoration: BoxDecoration(
+                                  //   image: DecorationImage(
+                                  //       image: NetworkImage(categoryName.imgUrl),
+                                  //       fit: BoxFit.fill),
+                                  //   borderRadius: BorderRadius.circular(16),
+                                  //   boxShadow: [
+                                  //     BoxShadow(
+                                  //       color: Colors.black.withOpacity(0.2),
+                                  //       spreadRadius: 2,
+                                  //       blurRadius: 5,
+                                  //       offset: Offset(0, 3),
+                                  //     ),
+                                  //   ],
+                                  // ),
+
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10),
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: Colors.black.withOpacity(0.2),
+                                          spreadRadius: 2,
+                                          blurRadius: 5,
+                                          offset: Offset(0, 3),
+                                        ),
+                                      ],
+                                    ),
+                                    child: ClipRRect(
+                                        borderRadius: BorderRadius.circular(10),
+                                        child: FadeInImage.assetNetwork(
+                                            placeholder:
+                                                'assets/images/techspardha.png',
+                                            image: categoryName.imgUrl,
+                                            fit: BoxFit.cover,
+                                            imageCacheWidth: 1000,
+                                            imageErrorBuilder: (context, error,
+                                                    stackTrace) =>
+                                                Image.asset(
+                                                    'assets/images/techspardha.png'))),
+                                  )),
                             ),
                           ),
                           Container(
@@ -85,9 +120,9 @@ class SwiperCard extends StatelessWidget {
                               // padding: EdgeInsets.all(2),
                               child: Container(
                             padding:
-                                EdgeInsets.only(left: 20, right: 30, top: 1),
-                            width: MediaQuery.of(context).size.width * 0.68,
-                            height: MediaQuery.of(context).size.width * 0.12,
+                                EdgeInsets.only(left: 30, right: 30, top: 1),
+                            width: MediaQuery.of(context).size.width * 0.7,
+                            height: MediaQuery.of(context).size.width * 0.09,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.only(
                                 bottomLeft: Radius.circular(11),
@@ -99,16 +134,25 @@ class SwiperCard extends StatelessWidget {
                             child: Column(children: [
                               // SizedBox(height: 10),
 
-                              AutoSizeText(
+                              // AutoSizeText(
+                              //   categoryName.categoryName
+                              //           .substring(0, 1)
+                              //           .toUpperCase() +
+                              //       categoryName.categoryName.substring(1),
+                              //   style: h1.copyWith(fontFamily: 'sportsBall'),
+                              //   maxLines: 1,
+                              //   textAlign: TextAlign.center,
+                              // ),
+                              Text(
                                 categoryName.categoryName
                                         .substring(0, 1)
                                         .toUpperCase() +
                                     categoryName.categoryName.substring(1),
-                                style: h1.copyWith(fontFamily: 'sportsBall'),
-                                maxLines: 1,
+                                style: h2.copyWith(
+                                  fontWeight: FontWeight.bold,
+                                ),
                                 textAlign: TextAlign.center,
                               ),
-                              SizedBox(height: 10),
                             ]),
                           )),
                         ],
