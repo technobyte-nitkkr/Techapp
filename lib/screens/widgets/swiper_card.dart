@@ -36,82 +36,88 @@ class SwiperCard extends StatelessWidget {
                   Card(
                     color: Colors.transparent,
                     child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(32),
-                        gradient: null,
-                        color: Colors.white.withOpacity(0.95),
-                      ),
-                      padding: const EdgeInsets.all(32.0),
+                      width: MediaQuery.of(context).size.width * 0.9,
+
+                      // padding: const EdgeInsets.all(32.0),
                       child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                        // crossAxisAlignment: CrossAxisAlignment.center,
                         children: <Widget>[
-                          SizedBox(
-                              height: min(
-                                  MediaQuery.of(context).size.width * 0.32,
-                                  400)),
-                          AutoSizeText(
-                            categoryName.categoryName
-                                    .substring(0, 1)
-                                    .toUpperCase() +
-                                categoryName.categoryName.substring(1),
-                            style: h1,
-                            maxLines: 1,
-                            textAlign: TextAlign.left,
-                          ),
-                          SizedBox(height: 24),
-                          Row(
-                            children: <Widget>[
-                              Text(
-                                'Know more',
-                                style: h4.copyWith(
-                                    color: Colors.black.withOpacity(0.5)),
-                                textAlign: TextAlign.left,
+                          Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(32),
+                                topRight: Radius.circular(32),
+                                bottomLeft: Radius.circular(11),
+                                bottomRight: Radius.circular(11),
                               ),
-                              Icon(
-                                Icons.arrow_forward,
-                                color: grey,
+                              gradient: null,
+                              color: Colors.white.withOpacity(1),
+                            ),
+                            child: Hero(
+                              tag: categoryName,
+                              child: Container(
+                                width: MediaQuery.of(context).size.width * 0.8,
+                                height: MediaQuery.of(context).size.width * 0.5,
+                                margin: EdgeInsets.only(
+                                  left:
+                                      MediaQuery.of(context).size.width * 0.075,
+                                  right:
+                                      MediaQuery.of(context).size.width * 0.075,
+                                  top:
+                                      MediaQuery.of(context).size.width * 0.075,
+                                  bottom:
+                                      MediaQuery.of(context).size.width * 0.075,
+                                ),
+
+                                // margin: EdgeInsets.only(left: 30),
+                                decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                      image: NetworkImage(categoryName.imgUrl),
+                                      fit: BoxFit.fill),
+                                  borderRadius: BorderRadius.circular(16),
+                                ),
                               ),
-                            ],
+                            ),
                           ),
+                          Container(
+                              // bottom: -MediaQuery.of(context).size.width * 0.1,
+                              // margin: EdgeInsets.all(1),
+                              // padding: EdgeInsets.all(2),
+                              child: Container(
+                            padding:
+                                EdgeInsets.only(left: 20, right: 30, top: 1),
+                            width: MediaQuery.of(context).size.width * 0.68,
+                            height: MediaQuery.of(context).size.width * 0.12,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.only(
+                                bottomLeft: Radius.circular(11),
+                                bottomRight: Radius.circular(11),
+                              ),
+                              gradient: null,
+                              color: Colors.white.withOpacity(1),
+                            ),
+                            child: Column(children: [
+                              // SizedBox(height: 10),
+
+                              AutoSizeText(
+                                categoryName.categoryName
+                                        .substring(0, 1)
+                                        .toUpperCase() +
+                                    categoryName.categoryName.substring(1),
+                                style: h1.copyWith(fontFamily: 'sportsBall'),
+                                maxLines: 1,
+                                textAlign: TextAlign.center,
+                              ),
+                              SizedBox(height: 10),
+                            ]),
+                          )),
                         ],
                       ),
-                    ),
-                  ),
-                  Positioned(
-                    right: MediaQuery.of(context).size.width * 0.05,
-                    bottom: MediaQuery.of(context).size.width * 0.05,
-                    child: Text(
-                      fadeText,
-                      style: TextStyle(
-                        fontFamily: 'Avenir',
-                        fontSize: MediaQuery.of(context).size.width * 0.2,
-                        color: black.withOpacity(0.3),
-                        fontWeight: FontWeight.w900,
-                      ),
-                      textAlign: TextAlign.left,
                     ),
                   ),
                 ],
               ),
             ],
-          ),
-          Hero(
-            tag: categoryName,
-            child: Container(
-              width: MediaQuery.of(context).size.width * 0.5,
-              height: MediaQuery.of(context).size.width * 0.5,
-              margin: EdgeInsets.only(
-                left: MediaQuery.of(context).size.width * 0.125,
-                right: MediaQuery.of(context).size.width * 0.125,
-              ),
-
-              // margin: EdgeInsets.only(left: 30),
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                    image: NetworkImage(categoryName.imgUrl), fit: BoxFit.fill),
-                borderRadius: BorderRadius.circular(32),
-              ),
-            ),
           ),
         ],
       ),

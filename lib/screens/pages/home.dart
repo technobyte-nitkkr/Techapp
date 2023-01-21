@@ -69,7 +69,7 @@ class DataToLoad extends StatelessWidget {
                   itemCount: categories.length,
                   itemWidth:
                       min(MediaQuery.of(context).size.width - 2 * 50, 600),
-                  layout: SwiperLayout.STACK,
+                  layout: SwiperLayout.DEFAULT,
                   pagination: SwiperPagination(
                     builder: DotSwiperPaginationBuilder(
                         activeSize: 20,

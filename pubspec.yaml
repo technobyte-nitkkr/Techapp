@@ -73,3 +73,12 @@ flutter:
    - family: glitch
      fonts:
      - asset: assets/fonts/glitch.otf
+   - family: back
+     fonts:
+     - asset: assets/fonts/BACKTO1982.TTF
+   - family: segoe
+     fonts:
+     - asset: assets/fonts/segoeUI.ttf
+   - family: sportsBall
+     fonts:
+     - asset: assets/fonts/sportsball.ttf

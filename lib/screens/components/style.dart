@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:particles_flutter/particles_flutter.dart';
 
 // colors
-const glowColor = Color(0xFF4890FF);
+const glowColor = Color(0xFF4C5EFF);
 const grey = Color(0xFF888888);
 const black = Color(0xFF000000);
 const white = Color(0xFFFFFFFF);
@@ -36,7 +36,7 @@ final boxDecoration = BoxDecoration(
 );
 
 // custom text styles
-final baseTextStyle = const TextStyle(fontFamily: 'OpenSans SemiBold');
+final baseTextStyle = const TextStyle(fontFamily: 'segoe');
 
 final mainTitle = baseTextStyle.copyWith(
   fontSize: 26.0,
@@ -104,12 +104,20 @@ Container getGradient(context) {
       child: Stack(
     children: [
       Container(
-        decoration: new BoxDecoration(color: Colors.black),
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height,
+        decoration: BoxDecoration(
+          color: Colors.black,
+          image: DecorationImage(
+            image: AssetImage("assets/images/back.png"),
+            fit: BoxFit.cover,
+          ),
+        ),
       ),
       CircularParticle(
         key: UniqueKey(),
         awayRadius: 1000,
-        numberOfParticles: 95,
+        numberOfParticles: 100,
         speedOfParticles: 1,
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
@@ -126,9 +134,6 @@ Container getGradient(context) {
         hoverColor: glowColor,
         hoverRadius: 100,
         connectDots: true,
-      ),
-      Container(
-        decoration: new BoxDecoration(color: Colors.black.withOpacity(0.5)),
       ),
     ],
   ));

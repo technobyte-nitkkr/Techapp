@@ -175,19 +175,18 @@ class SplashAnimation extends StatelessWidget {
           decoration: BoxDecoration(
             color: Colors.black,
             image: DecorationImage(
-                image: AssetImage("assets/images/video.gif"),
-                fit: BoxFit.cover),
+                image: AssetImage("assets/images/back.png"), fit: BoxFit.cover),
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               SizedBox(
-                height: MediaQuery.of(context).size.height * 0.2,
+                height: MediaQuery.of(context).size.height * 0.13,
               ),
               Image.asset(
                 'assets/images/logo.png',
-                width: MediaQuery.of(context).size.width * 0.6,
-                height: MediaQuery.of(context).size.height * 0.4,
+                width: MediaQuery.of(context).size.width * 0.5,
+                height: MediaQuery.of(context).size.height * 0.3,
               ),
               SizedBox(
                 height: 20,
@@ -195,23 +194,40 @@ class SplashAnimation extends StatelessWidget {
               Text(
                 "TECHSPARDHA",
                 style: h1s.copyWith(
-                  fontSize: 40,
-                  fontWeight: FontWeight.w900,
-                ),
+                    fontSize: 35,
+                    fontWeight: FontWeight.w900,
+                    fontFamily: 'back',
+                    color: glowColor),
               ),
               SizedBox(
-                height: 10,
+                height: 20,
               ),
               Text(
-                "UNRAVELLING DIMENSIONS",
+                "Prism of Possibilities",
                 style: h1s.copyWith(
-                  fontSize: 18,
-                  fontFamily: 'glitch',
+                  fontSize: 12,
+                  fontFamily: 'sportsBall',
+                  // add shadows
+                  shadows: [
+                    Shadow(
+                      blurRadius: 1.0,
+                      color: Color(0xFFBFBFBF),
+                      offset: Offset(1.5, 1.5),
+                    ),
+                  ],
                   fontWeight: FontWeight.normal,
                 ),
               ),
               SizedBox(
-                height: MediaQuery.of(context).size.height * 0.1,
+                height: 20,
+              ),
+              Image.asset(
+                'assets/images/element.png',
+                width: MediaQuery.of(context).size.width * 0.4,
+                height: MediaQuery.of(context).size.height * 0.3,
+              ),
+              SizedBox(
+                height: 20,
               ),
               Container(
                 child:
