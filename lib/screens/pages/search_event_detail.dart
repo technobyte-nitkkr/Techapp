@@ -1,9 +1,9 @@
-// @dart=2.9
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:techapp/retrofit/api_client.dart';
+import 'package:techapp/retrofit/response.dart';
 import 'package:techapp/screens/pages/event_detail.dart';
 import 'package:techapp/models/event_by_categories.dart';
 import 'package:techapp/screens/components/style.dart';
@@ -13,7 +13,8 @@ DateFormat dateFormat = DateFormat("MMMM dd,yyyy HH:mm");
 class SearchEventDetail extends StatelessWidget {
   final String eventName;
   final String eventCategory;
-  SearchEventDetail({Key key, this.eventName, this.eventCategory})
+  SearchEventDetail(
+      {Key? key, required this.eventName, required this.eventCategory})
       : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -37,7 +38,7 @@ class SearchEventDetail extends StatelessWidget {
             builder: (context, snapshot) {
               if (snapshot.hasError) {
                 final errormessage =
-                    (snapshot.error as DioError).error.toString();
+                    (snapshot.error as DioException).error.toString();
                 debugPrint(errormessage);
                 return Stack(
                   children: [
@@ -53,7 +54,8 @@ class SearchEventDetail extends StatelessWidget {
                   ],
                 );
               } else if (snapshot.hasData) {
-                Event event = snapshot.data.getEvent();
+                final ResponseData response = snapshot.data as ResponseData;
+                Event event = response.getEvent();
                 return Stack(
                   children: [
                     getGradient(context),

@@ -1,9 +1,9 @@
-// @dart=2.9
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:techapp/models/categories.dart';
 import 'package:techapp/models/event_by_categories.dart';
 import 'package:techapp/retrofit/api_client.dart';
+import 'package:techapp/retrofit/response.dart';
 import 'package:techapp/screens/components/style.dart';
 import 'package:techapp/screens/widgets/event_list_item.dart';
 import 'package:techapp/screens/widgets/shimmeritem.dart';
@@ -11,7 +11,8 @@ import 'package:techapp/screens/widgets/shimmeritem.dart';
 class EventsByCategoryWidget extends StatelessWidget {
   final CategorySchema categoryName;
 
-  const EventsByCategoryWidget({Key key, this.categoryName}) : super(key: key);
+  const EventsByCategoryWidget({Key? key, required this.categoryName})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,16 +21,18 @@ class EventsByCategoryWidget extends StatelessWidget {
       future: client.getEvents(categoryName.categoryName),
       builder: (context, snapshot) {
         if (snapshot.hasError) {
-          final errormessage = (snapshot.error as DioError).error.toString();
+          final errormessage =
+              (snapshot.error as DioException).error.toString();
           debugPrint(errormessage);
           return Center(
             child: Text(
-              errormessage ?? "Error",
+              errormessage,
               style: h1s,
             ),
           );
         } else if (snapshot.hasData) {
-          List<Event> events = snapshot.data.getEventList();
+          final ResponseData response = snapshot.data as ResponseData;
+          List<Event> events = response.getEventList();
           return Flexible(
             child: ListView.builder(
               shrinkWrap: true,

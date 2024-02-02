@@ -19,7 +19,6 @@ class MyEvents extends StatelessWidget {
         children: [
           Scrollbar(
             controller: _trackingScrollController,
-            isAlwaysShown: true,
             child: SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               controller: _trackingScrollController,

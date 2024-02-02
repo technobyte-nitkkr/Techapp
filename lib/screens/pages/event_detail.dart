@@ -2,11 +2,11 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:techapp/screens/components/style.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:techapp/models/event_by_categories.dart';
 import 'package:techapp/screens/widgets/SmartButton.dart';
 import 'package:techapp/screens/widgets/event_poster.dart';
 import 'package:avatar_glow/avatar_glow.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 DateFormat dateFormat = DateFormat("dd,MMMM,yyyy hh:mm a");
 
@@ -347,7 +347,7 @@ Widget cordinatorItem(Cordinators cordinator) {
             style: elevatedButtonStyle,
             onPressed: () async {
               var number = cordinator.coordinator_number;
-              if (!await launch('tel:$number')) {
+              if (!await launchUrlString('tel:$number')) {
                 debugPrint(cordinator.coordinator_name);
               }
             },

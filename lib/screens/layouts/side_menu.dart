@@ -6,7 +6,7 @@ import 'package:techapp/screens/auth/firebase_services.dart';
 import 'package:techapp/screens/auth/google_login.dart';
 import 'package:techapp/screens/components/style.dart';
 import 'package:techapp/screens/pages/profile.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 class SideMenu extends StatelessWidget {
   @override
@@ -101,7 +101,7 @@ class SideMenu extends StatelessWidget {
               color: white,
             ),
             onTap: () async {
-              if (!await launch('https://techspardha.live/')) {
+              if (!await launchUrlString('https://techspardha.live/')) {
                 debugPrint('invalid link');
               }
             },

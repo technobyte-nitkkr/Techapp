@@ -37,7 +37,7 @@ class _ItemCarouselWidget extends State<ItemCarouselWidget> {
                   Container(
                     decoration: new BoxDecoration(
                         image: new DecorationImage(
-                          image: new NetworkImage(widget.item.image.imageUri),
+                          image: new NetworkImage(widget.item.image!.imageUri!),
                           fit: BoxFit.cover,
                         ),
                         borderRadius: BorderRadius.only(
@@ -53,14 +53,14 @@ class _ItemCarouselWidget extends State<ItemCarouselWidget> {
                     children: <Widget>[
                       if (widget.item.title != null)
                         new Text(
-                          widget.item.title,
+                          widget.item.title!,
                           style: h1s,
                         ),
                       if (widget.item.description != null)
                         new Container(
                           margin: const EdgeInsets.only(top: 5.0),
                           child: new Text(
-                            widget.item.description,
+                            widget.item.description!,
                             style: h6.copyWith(
                               color: white,
                             ),

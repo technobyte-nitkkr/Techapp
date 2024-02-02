@@ -63,7 +63,7 @@ class _SmartButtonWidgetState extends State<SmartButtonWidget> {
         isLoading = false;
         isRegistered = true;
       });
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       final errormessage = e.error.toString();
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
           content: Text(errormessage, textAlign: TextAlign.center),
@@ -111,7 +111,7 @@ class _SmartButtonWidgetState extends State<SmartButtonWidget> {
         isRegistered = false;
       });
       await client.getMyEvents(FetchDataProvider.jwt);
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       final errormessage = e.error.toString();
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
           content: Text(errormessage, textAlign: TextAlign.center),
@@ -140,16 +140,16 @@ class _SmartButtonWidgetState extends State<SmartButtonWidget> {
       child: ElevatedButton(
         style: !isRegistered
             ? ElevatedButton.styleFrom(
-                primary: Colors.blueAccent[100],
-                onPrimary: Colors.white,
+                foregroundColor: Colors.white,
+                backgroundColor: Colors.blueAccent[100],
                 shadowColor: Colors.blue,
                 elevation: 15,
                 shape: (RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(25.0),
                 )))
             : ElevatedButton.styleFrom(
-                primary: Colors.redAccent[100],
-                onPrimary: Colors.white,
+                foregroundColor: Colors.white,
+                backgroundColor: Colors.redAccent[100],
                 shadowColor: Colors.red,
                 elevation: 15,
                 shape: (RoundedRectangleBorder(

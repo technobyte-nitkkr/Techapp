@@ -1,4 +1,3 @@
-// @dart=2.9
 import 'dart:math';
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +10,7 @@ import 'package:techapp/screens/widgets/swiper_card.dart';
 
 class Home extends StatelessWidget {
   Home({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -41,9 +40,9 @@ class Home extends StatelessWidget {
 
 class DataToLoad extends StatelessWidget {
   final List<CategorySchema> categories;
-  const DataToLoad({
-    Key key,
-    this.categories,
+  DataToLoad({
+    Key? key,
+    required this.categories,
   }) : super(key: key);
 
   @override

@@ -4,11 +4,9 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:techapp/providers/fetch_data_provider.dart';
 import 'package:techapp/screens/pages/chatbot.dart';
 import 'package:techapp/screens/pages/notifications.dart';
-// ignore: import_of_legacy_library_into_null_safe
 import 'package:techapp/screens/pages/search_event_detail.dart';
 import 'package:techapp/screens/widgets/notification_icon.dart';
 import '../components/style.dart';
-import '../../screens/components/style.dart';
 
 class Header extends StatelessWidget {
   const Header({
@@ -69,7 +67,7 @@ class Header extends StatelessWidget {
                     glowColor: glowColor,
                     duration: Duration(milliseconds: 2000),
                     repeat: true,
-                    showTwoGlows: true,
+                    // showTwoGlows: true,
                     child: IconButton(
                       onPressed: () {
                         Navigator.push(

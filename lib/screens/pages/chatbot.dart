@@ -1,4 +1,3 @@
-// ignore_for_file: import_of_legacy_library_into_null_safe
 import 'package:dialogflow_flutter/dialogflowFlutter.dart';
 import 'package:dialogflow_flutter/googleAuth.dart';
 import 'package:dialogflow_flutter/message.dart';
@@ -34,7 +33,7 @@ class _ChatBotWidget extends State<ChatBotWidget> {
       });
 
     return new IconTheme(
-      data: new IconThemeData(color: Theme.of(context).backgroundColor),
+      data: new IconThemeData(color: Theme.of(context).colorScheme.background),
       child: new Container(
         margin: const EdgeInsets.symmetric(horizontal: 8.0),
         child: new Row(
@@ -108,7 +107,6 @@ class _ChatBotWidget extends State<ChatBotWidget> {
   }
 
   void response(query) async {
-    int index = _messages.length;
     setState(() {
       _messages.insert(0, ChatbotLoadingReply());
     });
@@ -117,7 +115,7 @@ class _ChatBotWidget extends State<ChatBotWidget> {
         await AuthGoogle(fileJson: "assets/dialog_flow_auth.json").build();
     DialogFlow dialogflow = DialogFlow(authGoogle: authGoogle, language: "en");
     AIResponse response = await dialogflow.detectIntent(query);
-    List<dynamic> messages = response.getListMessage();
+    List<dynamic>? messages = response.getListMessage();
 
     // ignore: unnecessary_null_comparison
     if (messages != null && messages.length > 0) {

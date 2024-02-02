@@ -1,4 +1,3 @@
-// @dart=2.9
 // ignore: unused_import
 import 'dart:convert';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -30,9 +29,9 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   // save notication to local storage
   if (message.notification != null) {
     await NotificationsProvider.addItem(
-        message.notification.title, message.notification.body,
-        image: message.notification.android.imageUrl,
-        link: message.notification.android.link);
+        message.notification!.title!, message.notification!.body!,
+        image: message.notification!.android!.imageUrl!,
+        link: message.notification!.android!.link!);
   }
 
   debugPrint('A bg message just showed up :  ${message.messageId}');

@@ -25,7 +25,7 @@ class ResponseData {
       success: json["success"],
       data: Map.from(json["data"] ?? {})
           .map((k, v) => MapEntry<String, dynamic>(k, v)),
-      message: json["message"],
+      message: json["message"] ?? "",
     );
   }
 

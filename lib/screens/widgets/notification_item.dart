@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:techapp/screens/components/style.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 class NotificatonItemWidget extends StatelessWidget {
   final String? imageUrl;
@@ -24,7 +24,7 @@ class NotificatonItemWidget extends StatelessWidget {
       // card with event image and name
       child: GestureDetector(
         onTap: () async => {
-          if (link == null || !await launch('$link'))
+          if (link == null || !await launchUrlString('$link'))
             showDialog(
                 context: context,
                 builder: (context) => AlertDialog(

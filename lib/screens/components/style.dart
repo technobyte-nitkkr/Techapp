@@ -1,6 +1,5 @@
 // ignore_for_file: non_constant_identifier_names
 
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:particles_flutter/particles_flutter.dart';
 
@@ -12,7 +11,7 @@ const white = Color(0xFFFFFFFF);
 
 // custom styles buton
 final elevatedButtonStyle = ElevatedButton.styleFrom(
-    primary: glowColor.withOpacity(0.7),
+    backgroundColor: glowColor.withOpacity(0.7),
     shadowColor: glowColor,
     elevation: 5,
     padding: EdgeInsets.symmetric(

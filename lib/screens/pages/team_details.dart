@@ -1,4 +1,3 @@
-// @dart=2.9
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:techapp/screens/components/style.dart';
@@ -7,7 +6,7 @@ import 'package:techapp/screens/widgets/contactCard.dart';
 class TeamDetail extends StatelessWidget {
   final contacts;
   TeamDetail({
-    Key key,
+    Key? key,
     this.contacts,
   }) : super(key: key);
 

@@ -3,7 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:techapp/models/Speaker.dart';
 import 'package:techapp/screens/components/style.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 class GuestCardCustom extends StatelessWidget {
   final Speaker speaker;
@@ -89,7 +89,7 @@ class GuestCardCustom extends StatelessWidget {
                               color: white,
                             ),
                             onPressed: () async {
-                              await launch(speaker.facebook);
+                              await launchUrlString(speaker.facebook);
                             },
                           ),
                           IconButton(
@@ -98,7 +98,7 @@ class GuestCardCustom extends StatelessWidget {
                               color: white,
                             ),
                             onPressed: () async {
-                              await launch(speaker.linkedin);
+                              await launchUrlString(speaker.linkedin);
                             },
                           ),
                           IconButton(
@@ -107,7 +107,7 @@ class GuestCardCustom extends StatelessWidget {
                               color: white,
                             ),
                             onPressed: () async {
-                              await launch(speaker.insta);
+                              await launchUrlString(speaker.insta);
                             },
                           ),
                         ],
@@ -123,7 +123,7 @@ class GuestCardCustom extends StatelessWidget {
                         ElevatedButton(
                             style: elevatedButtonStyle,
                             onPressed: () {
-                              launch(speaker.link);
+                              launchUrlString(speaker.link);
                             },
                             child: Text("Meet link")),
                         SizedBox(

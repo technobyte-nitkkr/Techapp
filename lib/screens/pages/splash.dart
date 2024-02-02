@@ -7,6 +7,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:logger/logger.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:techapp/main.dart';
 import 'package:techapp/providers/fetch_data_provider.dart';
@@ -103,6 +104,7 @@ class _SplashScreenState extends State<SplashScreen> {
     FetchDataProvider.notification = await NotificationsProvider.checkNoti();
     await FetchDataProvider.loadProfileOnline();
     var data = await client.getAllEvents();
+    Logger().i(data);
     data.getAllEvents();
     var data2 = await client.getCategories();
     FetchDataProvider.categories = data2.getCategories();
@@ -137,7 +139,7 @@ class _SplashScreenState extends State<SplashScreen> {
         screenFunction: () async {
           try {
             await loadDataDuringSplash(context);
-          } on DioError catch (e) {
+          } on DioException catch (e) {
             final errormessage = e.error.toString();
             return await Navigator.pushAndRemoveUntil(
                 context,

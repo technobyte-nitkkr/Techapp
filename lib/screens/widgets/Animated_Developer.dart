@@ -1,8 +1,8 @@
-// @dart=2.9
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:techapp/models/developers.dart';
 import 'package:techapp/retrofit/api_client.dart';
+import 'package:techapp/retrofit/response.dart';
 import 'package:techapp/screens/components/style.dart';
 import 'package:techapp/screens/widgets/developer_card.dart';
 import 'package:techapp/screens/widgets/developershimmer.dart';
@@ -15,7 +15,8 @@ class AnimatedDeveloper extends StatelessWidget {
       future: client.getAboutDev(),
       builder: (context, snapshot) {
         if (snapshot.hasError) {
-          final errormessage = (snapshot.error as DioError).error.toString();
+          final errormessage =
+              (snapshot.error as DioException).error.toString();
           debugPrint(errormessage);
           return Stack(
             children: [
@@ -29,8 +30,8 @@ class AnimatedDeveloper extends StatelessWidget {
             ],
           );
         } else if (snapshot.hasData) {
-          // ignore: unused_local_variable
-          List<Developer> developers = snapshot.data.getDevelopers();
+          final ResponseData response = snapshot.data as ResponseData;
+          List<Developer> developers = response.getDevelopers();
 
           return Column(
             children: [
@@ -67,8 +68,8 @@ class AnimatedDeveloper extends StatelessWidget {
 class DeveloperWidget extends StatelessWidget {
   final Developer developer;
   const DeveloperWidget({
-    Key key,
-    this.developer,
+    Key? key,
+    required this.developer,
   }) : super(key: key);
 
   @override

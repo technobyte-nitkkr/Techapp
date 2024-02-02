@@ -1,12 +1,9 @@
-// @dart=2.9
-
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:techapp/models/Sponsor.dart';
 import 'package:techapp/providers/fetch_data_provider.dart';
 import 'package:techapp/screens/components/style.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 class SponsorsWidget extends StatelessWidget {
   @override
@@ -42,7 +39,7 @@ class SponsorsWidget extends StatelessWidget {
 class CardItem extends StatelessWidget {
   final Sponsor item;
 
-  const CardItem({Key key, this.item}) : super(key: key);
+  const CardItem({Key? key, required this.item}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +51,7 @@ class CardItem extends StatelessWidget {
         color: Colors.transparent,
         child: InkWell(
           borderRadius: BorderRadius.circular(32),
-          onTap: () => launch('${item.link}'),
+          onTap: () => launchUrlString('${item.link}'),
           child: Container(
             decoration: BoxDecoration(
               color: Colors.white,

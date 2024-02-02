@@ -13,17 +13,18 @@ abstract class ApiClient {
   static ApiClient create() {
     final dio = Dio();
     dio.options.headers['Content-Type'] = 'application/json';
-    dio.options.receiveTimeout = 60000;
-    dio.options.connectTimeout = 120000;
-    dio.interceptors.add(InterceptorsWrapper(onError: (DioError e, handler) {
+    dio.options.receiveTimeout = Duration(minutes: 1);
+    dio.options.connectTimeout = Duration(minutes: 2);
+    dio.interceptors
+        .add(InterceptorsWrapper(onError: (DioException e, handler) {
       // debugPrint("dioerrr  ");
 
-      if (e.type == DioErrorType.other) {
+      if (e.type == DioExceptionType.connectionError) {
         // debugPrint("socket exception");
         // debugPrint(e.toString());
 
         return handler.next(
-          new DioError(
+          new DioException(
               requestOptions: RequestOptions(
                 method: "GET",
                 path:
@@ -33,12 +34,12 @@ abstract class ApiClient {
         );
       }
 
-      if (e.type == DioErrorType.response) {
+      if (e.type == DioExceptionType.unknown) {
         var resp = json.decode(e.response.toString());
         // debugPrint("response exception");
         // debugPrint(e.toString());
         return handler.next(
-          new DioError(
+          new DioException(
               requestOptions: RequestOptions(
                 method: "GET",
                 path:

@@ -47,7 +47,7 @@ class _NavigationState extends State<Navigation> {
       //       : Colors.black.withOpacity(0.5),
       // ),
       FaIcon(
-        FontAwesomeIcons.home,
+        FontAwesomeIcons.house,
         size: 28,
         color: (index == 1)
             ? Colors.black.withOpacity(0.8)

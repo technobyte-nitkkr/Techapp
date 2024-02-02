@@ -1,8 +1,8 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:techapp/screens/components/style.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 class DeveloperCard extends StatelessWidget {
   final String imageSrc;
@@ -65,7 +65,7 @@ class DeveloperCard extends StatelessWidget {
                       color: white,
                     ),
                     onPressed: () async {
-                      if (!await launch(github)) {
+                      if (!await launchUrlString(github)) {
                         debugPrint("Invalid Link !");
                       }
                     },
@@ -76,7 +76,7 @@ class DeveloperCard extends StatelessWidget {
                       color: white,
                     ),
                     onPressed: () async {
-                      if (!await launch(linkedin)) {
+                      if (!await launchUrlString(linkedin)) {
                         debugPrint("Invalid Link !");
                       }
                     },
@@ -87,7 +87,7 @@ class DeveloperCard extends StatelessWidget {
                       color: white,
                     ),
                     onPressed: () async {
-                      if (!await launch(insta)) {
+                      if (!await launchUrlString(insta)) {
                         debugPrint("Invalid Link !");
                       }
                     },

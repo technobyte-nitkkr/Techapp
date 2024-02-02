@@ -1,10 +1,8 @@
-// ignore: import_of_legacy_library_into_null_safe
 import 'package:auto_size_text/auto_size_text.dart';
-// ignore: import_of_legacy_library_into_null_safe
 import 'package:dialogflow_flutter/message.dart';
 import 'package:flutter/material.dart';
 import 'package:techapp/screens/components/style.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 class DialogCard extends StatelessWidget {
   DialogCard({required this.card});
@@ -20,12 +18,12 @@ class DialogCard extends StatelessWidget {
               style: elevatedButtonStyle,
               onPressed: () async {
                 debugPrint('dialog card');
-                if (!await launch(this.card.buttons[i].postback)) {
+                if (!await launchUrlString(this.card.buttons[i].postback!)) {
                   debugPrint("Invalid link !!");
                 }
               },
               child: AutoSizeText(
-                this.card.buttons[i].text,
+                this.card.buttons[i].text!,
                 maxLines: 1,
               ))));
     }
@@ -57,7 +55,7 @@ class DialogCard extends StatelessWidget {
                   children: <Widget>[
                     if (this.card.imageUri != null)
                       Image.network(
-                        this.card.imageUri,
+                        this.card.imageUri!,
                         cacheWidth: 1300,
                       ),
                     new Padding(
@@ -66,29 +64,28 @@ class DialogCard extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: <Widget>[
                           if (this.card.title != null)
-                            new Text(this.card.title,
+                            new Text(this.card.title!,
                                 style: h3.copyWith(color: white)),
                           if (this.card.subtitle != null)
-                            new Text(this.card.subtitle, style: h4s),
+                            new Text(this.card.subtitle!, style: h4s),
                         ],
                       ),
                     ),
-                    if (this.card.buttons != null)
-                      GridView.builder(
-                        shrinkWrap: true,
-                        physics: NeverScrollableScrollPhysics(),
-                        itemCount: this.card.buttons.length,
-                        padding: EdgeInsets.all(20),
-                        itemBuilder: (BuildContext ctx, int index) {
-                          return this.generateButton()[index];
-                        },
-                        gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                          mainAxisExtent: 40,
-                          maxCrossAxisExtent: 140,
-                          mainAxisSpacing: 10,
-                          crossAxisSpacing: 10,
-                        ),
+                    GridView.builder(
+                      shrinkWrap: true,
+                      physics: NeverScrollableScrollPhysics(),
+                      itemCount: this.card.buttons.length,
+                      padding: EdgeInsets.all(20),
+                      itemBuilder: (BuildContext ctx, int index) {
+                        return this.generateButton()[index];
+                      },
+                      gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                        mainAxisExtent: 40,
+                        maxCrossAxisExtent: 140,
+                        mainAxisSpacing: 10,
+                        crossAxisSpacing: 10,
                       ),
+                    ),
                   ],
                 ),
               ),

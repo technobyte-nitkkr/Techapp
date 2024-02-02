@@ -1,8 +1,7 @@
-// ignore: import_of_legacy_library_into_null_safe
 import 'package:dialogflow_flutter/message.dart';
 import 'package:flutter/material.dart';
 import 'package:techapp/screens/components/style.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 class BasicCardWidget extends StatelessWidget {
   BasicCardWidget({required this.card});
@@ -12,16 +11,17 @@ class BasicCardWidget extends StatelessWidget {
   List<Widget> generateButton() {
     List<Widget> buttons = [];
 
-    for (var i = 0; i < this.card.buttons.length; i++) {
+    for (var i = 0; i < this.card.buttons!.length; i++) {
       buttons.add(new SizedBox(
           child: new ElevatedButton(
         style: elevatedButtonStyle,
         onPressed: () async {
-          if (!await launch(this.card.buttons[i]['openUriAction']['uri'])) {
+          if (!await launchUrlString(
+              this.card.buttons![i]['openUriAction']['uri'])) {
             debugPrint("Invalid Link !!");
           }
         },
-        child: Text(this.card.buttons[i]['title'] ?? 'click here'),
+        child: Text(this.card.buttons![i]['title'] ?? 'click here'),
       )));
     }
     return buttons;
@@ -51,7 +51,7 @@ class BasicCardWidget extends StatelessWidget {
                   children: <Widget>[
                     if (this.card.image?.imageUri != null)
                       new Image.network(
-                        this.card.image.imageUri,
+                        this.card.image!.imageUri!,
                         cacheWidth: 1000,
                         fit: BoxFit.cover,
                         loadingBuilder: (BuildContext context, Widget child,
@@ -74,12 +74,12 @@ class BasicCardWidget extends StatelessWidget {
                         children: <Widget>[
                           if (this.card.title != null)
                             new Text(
-                              this.card.title,
+                              this.card.title!,
                               style: h2s,
                             ),
                           if (this.card.subtitle != null)
                             new Text(
-                              this.card.subtitle,
+                              this.card.subtitle!,
                               style: h6.copyWith(
                                 color: white,
                               ),
@@ -88,7 +88,7 @@ class BasicCardWidget extends StatelessWidget {
                             new Container(
                               margin: const EdgeInsets.only(top: 5.0),
                               child: new Text(
-                                this.card.formattedText,
+                                this.card.formattedText!,
                                 style: h6.copyWith(
                                   color: white,
                                 ),
