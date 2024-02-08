@@ -40,6 +40,8 @@ dependencies:
   font_awesome_flutter: ^10.7.0
   shimmer: ^3.0.0
   particles_flutter: ^0.1.1
+  imageview360: ^1.3.0
+  widget_mask: ^1.0.0+0
 
 flutter_icons:
   image_path_android: "assets/images/icon.png"

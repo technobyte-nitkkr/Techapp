@@ -23,7 +23,7 @@ class ContactSwiperCard extends StatelessWidget {
           children: <Widget>[
             SizedBox(height: MediaQuery.of(context).size.height * 0.1),
             Container(
-              padding: EdgeInsets.symmetric(horizontal: 20),
+              padding: EdgeInsets.symmetric(horizontal: 25),
               child: Card(
                 color: Colors.transparent,
                 child: Container(
@@ -31,13 +31,13 @@ class ContactSwiperCard extends StatelessWidget {
                     borderRadius: BorderRadius.circular(20),
                   ),
                   width: MediaQuery.of(context).size.width * 0.9,
-                  padding: const EdgeInsets.all(32.0),
+                  padding: const EdgeInsets.all(15.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
                       SizedBox(
                           height: min(
-                              MediaQuery.of(context).size.width * 0.35, 400)),
+                              MediaQuery.of(context).size.width * 0.55, 400)),
                       AutoSizeText(
                         people.name,
                         style: h2s.copyWith(
@@ -53,7 +53,7 @@ class ContactSwiperCard extends StatelessWidget {
                         maxLines: 1,
                         minFontSize: 20,
                       ),
-                      SizedBox(height: 16),
+                      //SizedBox(height: 16),
                     ],
                   ),
                 ),
@@ -62,7 +62,7 @@ class ContactSwiperCard extends StatelessWidget {
           ],
         ),
         Positioned(
-          top: 0,
+          top: 105,
           left: MediaQuery.of(context).size.width * 0.2,
           child: Center(
             child: Container(

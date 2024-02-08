@@ -77,7 +77,15 @@ class _NotificationsWidgetState extends State<NotificationsWidget> {
               // NotificatonItemWidget(title: "hello", description: "hi"),
               if (_notificatinons.length != 0)
                 ElevatedButton(
-                  style: elevatedButtonStyle,
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.white, // Background color
+                    onPrimary: Colors.black, // Text color
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(
+                          10.0), // Adjust the border radius as needed
+                    ),
+                    // You can customize other style properties as needed
+                  ),
                   onPressed: () {
                     _notificatinons.clear();
                     _storage.setItem('notifications', []);

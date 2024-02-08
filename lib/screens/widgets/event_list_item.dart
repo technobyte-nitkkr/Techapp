@@ -81,22 +81,22 @@ class ListItem extends StatelessWidget {
                                   style: h6.copyWith(
                                       color: white.withOpacity(0.8))),
                               //  read more button
-                              // Row(
-                              //   mainAxisAlignment: MainAxisAlignment.end,
-                              //   children: <Widget>[
-                              //     Text(
-                              //       'Know more',
-                              //       style: h4.copyWith(
-                              //           color: Colors.grey.withOpacity(0.9),
-                              //           fontWeight: FontWeight.bold),
-                              //       textAlign: TextAlign.left,
-                              //     ),
-                              //     Icon(
-                              //       Icons.arrow_forward,
-                              //       color: Colors.grey.withOpacity(0.9),
-                              //     ),
-                              //   ],
-                              // ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: <Widget>[
+                                  Text(
+                                    'Know more',
+                                    style: h4.copyWith(
+                                        color: const Color.fromARGB(255, 176, 175, 175).withOpacity(0.9),
+                                        fontWeight: FontWeight.bold),
+                                    textAlign: TextAlign.left,
+                                  ),
+                                  Icon(
+                                    Icons.arrow_forward,
+                                    color: const Color.fromARGB(255, 171, 170, 170).withOpacity(0.9),
+                                  ),
+                                ],
+                              ),
                             ],
                           ),
                         ),

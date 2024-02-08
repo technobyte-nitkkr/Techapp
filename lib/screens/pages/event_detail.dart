@@ -138,7 +138,7 @@ Container getContent(Event item, BuildContext context, bool isflagship) {
                           '( Flagship Event )',
                           style: h3.copyWith(
                             fontSize: 12,
-                            color: glowColor,
+                            color: Color.fromARGB(255, 249, 53, 105),
                             fontWeight: FontWeight.w300,
                           ),
                           maxLines: 1,
@@ -347,7 +347,7 @@ Widget cordinatorItem(Cordinators cordinator) {
             style: elevatedButtonStyle,
             onPressed: () async {
               var number = cordinator.coordinator_number;
-              if (!await launchUrlString('tel:$number')) {
+              if (!await launchUrlString('https://wa.me/+91$number')) {
                 debugPrint(cordinator.coordinator_name);
               }
             },

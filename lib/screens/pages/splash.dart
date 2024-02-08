@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'dart:typed_data';
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:auto_size_text/auto_size_text.dart';
@@ -115,8 +116,8 @@ class _SplashScreenState extends State<SplashScreen> {
 
     try {
       if (FetchDataProvider.user != null) {
-        data = await client.getMyEvents(FetchDataProvider.jwt);
-        data.getMyEvents();
+        // data = await client.getMyEvents(FetchDataProvider.jwt);
+        // data.getMyEvents();
       }
       if (FirebaseAuth.instance.currentUser == null) {
         return await Navigator.pushNamedAndRemoveUntil(
@@ -162,10 +163,25 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 }
 
-class SplashAnimation extends StatelessWidget {
-  const SplashAnimation({
-    Key? key,
-  }) : super(key: key);
+class SplashAnimation extends StatefulWidget {
+  const SplashAnimation({Key? key}) : super(key: key);
+
+  @override
+  _SplashAnimationState createState() => _SplashAnimationState();
+}
+
+class _SplashAnimationState extends State<SplashAnimation>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      duration: Duration(seconds: 5), // Adjust the duration as needed
+      vsync: this,
+    )..repeat();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -175,88 +191,113 @@ class SplashAnimation extends StatelessWidget {
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height,
           decoration: BoxDecoration(
-            color: Colors.black,
+            color: Color.fromARGB(255, 0, 0, 0),
             image: DecorationImage(
-                image: AssetImage("assets/images/back.png"), fit: BoxFit.cover),
+              image: AssetImage("assets/images/background2.jpg"),
+              fit: BoxFit.cover,
+            ),
           ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.13,
-              ),
-              Image.asset(
-                'assets/images/logo.png',
-                width: MediaQuery.of(context).size.width * 0.5,
-                height: MediaQuery.of(context).size.height * 0.3,
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              Text(
-                "TECHSPARDHA",
-                style: h1s.copyWith(
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.13,
+                ),
+                Image.asset(
+                  'assets/images/logo.png',
+                  width: MediaQuery.of(context).size.width * 0.5,
+                  height: MediaQuery.of(context).size.height * 0.3,
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Text(
+                  "TECHSPARDHA",
+                  style: h1s.copyWith(
                     fontSize: 35,
                     fontWeight: FontWeight.w900,
                     fontFamily: 'back',
-                    color: glowColor),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              Text(
-                "Prism of Possibilities",
-                style: h1s.copyWith(
-                  fontSize: 12,
-                  fontFamily: 'sportsBall',
-                  // add shadows
-                  shadows: [
-                    Shadow(
-                      blurRadius: 1.0,
-                      color: Color(0xFFBFBFBF),
-                      offset: Offset(1.5, 1.5),
-                    ),
-                  ],
-                  fontWeight: FontWeight.normal,
+                    color: glowColor,
+                  ),
                 ),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              Image.asset(
-                'assets/images/element.png',
-                width: MediaQuery.of(context).size.width * 0.4,
-                height: MediaQuery.of(context).size.height * 0.3,
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              Container(
-                child:
-                    Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                  AutoSizeText(
-                    'Made with  ',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(color: white, fontSize: 15),
+                SizedBox(
+                  height: 20,
+                ),
+                Text(
+                  "Prism of Possibilities",
+                  style: h1s.copyWith(
+                    fontSize: 12,
+                    fontFamily: 'sportsBall',
+                    // add shadows
+                    shadows: [
+                      Shadow(
+                        blurRadius: 1.0,
+                        color: Color.fromARGB(255, 27, 19, 19),
+                        offset: Offset(1.5, 1.5),
+                      ),
+                    ],
+                    fontWeight: FontWeight.normal,
                   ),
-                  FaIcon(
-                    FontAwesomeIcons.solidHeart,
-                    size: 15,
-                    color: white,
+                ),
+                SizedBox(
+                  height: 5,
+                ),
+                // Wrap the image with AnimatedBuilder for continuous rotation
+                AnimatedBuilder(
+                  animation: _controller,
+                  builder: (context, child) {
+                    return Transform.rotate(
+                      angle: _controller.value * 2.0 * pi,
+                      child: Image.asset(
+                        'assets/images/moon1.png',
+                        width: MediaQuery.of(context).size.width * 0.8,
+                        height: MediaQuery.of(context).size.height * 0.3,
+                      ),
+                    );
+                  },
+                ),
+                SizedBox(
+                  height: 5,
+                ),
+                Container(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      AutoSizeText(
+                        'Made with  ',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(color: white, fontSize: 15),
+                      ),
+                      FaIcon(
+                        FontAwesomeIcons.solidHeart,
+                        size: 15,
+                        color: white,
+                      ),
+                      AutoSizeText(
+                        ' by Technobyte ',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(color: white, fontSize: 15),
+                      )
+                    ],
                   ),
-                  AutoSizeText(
-                    ' by Technobyte ',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(color: white, fontSize: 15),
-                  )
-                ]),
-              ),
-              SizedBox(height: 10),
-              LoadingAnimationWidget.staggeredDotsWave(color: white, size: 40),
-            ],
+                ),
+                SizedBox(height: 10),
+                LoadingAnimationWidget.staggeredDotsWave(
+                  color: white,
+                  size: 40,
+                ),
+              ],
+            ),
           ),
         ),
       ],
     );
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 }

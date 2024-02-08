@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:particles_flutter/particles_flutter.dart';
 
 // colors
-const glowColor = Color(0xFF4C5EFF);
+const glowColor = Color(0xFF367CFF);
 const grey = Color(0xFF888888);
 const black = Color(0xFF000000);
 const white = Color(0xFFFFFFFF);
@@ -24,10 +24,10 @@ final elevatedButtonStyle = ElevatedButton.styleFrom(
 
 // custom container decoration
 final boxDecoration = BoxDecoration(
-  color: Colors.grey.withOpacity(0.3),
+  color: Color.fromARGB(255, 64, 112, 102).withOpacity(0.3),
   boxShadow: [
     BoxShadow(
-      color: glowColor.withOpacity(0.1),
+      color: glowColor.withOpacity(0.3),
       blurRadius: 1,
       offset: Offset(0, 2),
     ),
@@ -106,34 +106,81 @@ Container getGradient(context) {
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
         decoration: BoxDecoration(
-          color: Colors.black,
+          color: Color.fromARGB(255, 0, 0, 0).withOpacity(.9),
           image: DecorationImage(
-            image: AssetImage("assets/images/back.png"),
+            //image: AssetImage("assets/images/back.png"),
+            image: AssetImage("assets/images/background2.jpg"),
             fit: BoxFit.cover,
           ),
         ),
       ),
-      CircularParticle(
-        key: UniqueKey(),
-        awayRadius: 1000,
-        numberOfParticles: 100,
-        speedOfParticles: 1,
-        height: MediaQuery.of(context).size.height,
-        width: MediaQuery.of(context).size.width,
-        onTapAnimation: true,
-        particleColor: grey.withOpacity(0.7),
-        awayAnimationDuration: Duration(milliseconds: 500),
-        awayAnimationCurve: Curves.decelerate,
-        maxParticleSize: 0,
-        isRandomColor: true,
-        randColorList: [
-          grey,
-        ],
-        enableHover: true,
-        hoverColor: grey,
-        hoverRadius: 100,
-        connectDots: true,
-      ),
+      // CircularParticle(
+      //   key: UniqueKey(),
+
+      //   awayRadius: 1000,
+      //   numberOfParticles: 100,
+      //   speedOfParticles: 1,
+      //   height: MediaQuery.of(context).size.height,
+      //   width: MediaQuery.of(context).size.width,
+      //   onTapAnimation: true,
+      //   particleColor: grey.withOpacity(0.5),
+      //   awayAnimationDuration: Duration(milliseconds: 500),
+      //   awayAnimationCurve: Curves.linear,
+      //   maxParticleSize: 0,
+      //   isRandomColor: true,
+      //   randColorList: [
+      //     grey,
+      //     Color.fromARGB(255, 8, 70, 121),
+      //   ],
+      //   enableHover: true,
+      //   hoverColor: grey,
+      //   hoverRadius: 100,
+      //   connectDots: true,
+      // ),
     ],
   ));
 }
+
+
+/*
+Container getGradient(context) {
+  return Container(
+    child: Stack(
+      children: [
+        Container(
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height,
+          decoration: BoxDecoration(
+            color: Color.fromARGB(255, 28, 15, 32),
+            image: DecorationImage(
+            image: AssetImage("assets/images/back.png"),
+            fit: BoxFit.cover,
+          ),
+          ),
+        ),
+        CircularParticle(
+          key: UniqueKey(),
+          awayRadius: 1000,
+          numberOfParticles: 1000,
+          speedOfParticles: 1,
+          height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
+          onTapAnimation: true,
+          particleColor: grey.withOpacity(0.7),
+          awayAnimationDuration: Duration(milliseconds: 500),
+          awayAnimationCurve: Curves.decelerate,
+          maxParticleSize: 1, // Adjust the size of the dots
+          isRandomColor: true,
+          randColorList: [
+            grey,
+          ],
+          enableHover: true,
+          hoverColor: grey,
+          hoverRadius: 100,
+          connectDots: false, // Set to false to use dot particles
+        ),
+      ],
+    ),
+  );
+} 
+*/

@@ -44,7 +44,7 @@ class TeamDetail extends StatelessWidget {
                   itemWidth: MediaQuery.of(context).size.width * 0.5,
                   layout: SwiperLayout.DEFAULT,
                   autoplay: true,
-                  autoplayDelay: 2000,
+                  autoplayDelay: 3000,
                   pagination: SwiperPagination(
                     builder: DotSwiperPaginationBuilder(
                         activeSize: 20,

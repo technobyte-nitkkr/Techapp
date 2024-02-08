@@ -70,6 +70,7 @@ class _NavigationState extends State<Navigation> {
       //       : Colors.black.withOpacity(0.5),
       // ),
     ];
+    // ignore: deprecated_member_use
     return WillPopScope(
       onWillPop: () async {
         final timegap = DateTime.now().difference(pre_backpress);
@@ -78,7 +79,7 @@ class _NavigationState extends State<Navigation> {
         if (cantExit) {
           //show snackbar
           final snack = SnackBar(
-            backgroundColor: Colors.white24,
+            backgroundColor: Color.fromARGB(59, 0, 0, 0),
             content: Text(
               'Press Back button again to Exit',
               textAlign: TextAlign.center,
@@ -93,11 +94,11 @@ class _NavigationState extends State<Navigation> {
         }
       },
       child: Scaffold(
-        extendBody: true,
+        //extendBody: true,
         backgroundColor: Colors.transparent,
         bottomNavigationBar: CurvedNavigationBar(
           backgroundColor: Colors.transparent,
-          color: Colors.white.withOpacity(0.8),
+          color: Colors.white.withOpacity(0.9),
           height: 45,
           index: index,
           animationDuration: const Duration(milliseconds: 450),

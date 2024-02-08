@@ -65,6 +65,8 @@ class DataToLoad extends StatelessWidget {
               Container(
                 height: MediaQuery.of(context).size.height * 0.6,
                 child: Swiper(
+                  autoplay: true, // Set autoplay to true
+                  autoplayDelay: 3000,
                   itemCount: categories.length,
                   itemWidth:
                       min(MediaQuery.of(context).size.width - 2 * 50, 650),
@@ -73,7 +75,7 @@ class DataToLoad extends StatelessWidget {
                     builder: DotSwiperPaginationBuilder(
                         activeSize: 20,
                         space: 8,
-                        color: Colors.grey,
+                        color: const Color.fromARGB(255, 158, 158, 158),
                         activeColor: white),
                   ),
                   itemBuilder: (context, index) {

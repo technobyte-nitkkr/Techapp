@@ -37,7 +37,7 @@ class ProfilePage extends StatelessWidget {
                         Container(
                             alignment: Alignment.center,
                             child:
-                                Text(FetchDataProvider.user!.name, style: h2s)),
+                                Text(FetchDataProvider.user?.name?? "name", style: h2s)),
                         Divider(
                           color: Colors.white,
                         ),
@@ -50,15 +50,15 @@ class ProfilePage extends StatelessWidget {
                         if (FetchDataProvider.user!.onBoard)
                           DetailTile(
                               icon: Icons.school,
-                              text: FetchDataProvider.user!.college!),
+                              text: FetchDataProvider.user?.college??"Collage"),
                         if (FetchDataProvider.user!.onBoard)
                           DetailTile(
                               icon: Icons.calendar_today,
-                              text: FetchDataProvider.user!.year!),
+                              text: FetchDataProvider.user?.year??"Year"),
                         if (FetchDataProvider.user!.onBoard)
                           DetailTile(
                               icon: Icons.phone,
-                              text: FetchDataProvider.user!.phone!),
+                              text: FetchDataProvider.user?.phone??"Phone"),
                       ],
                     ),
                   ),
@@ -115,11 +115,11 @@ class DetailTile extends StatelessWidget {
   Widget build(BuildContext context) {
     debugPrint(FetchDataProvider.user?.toJson().toString());
     return Card(
-      color: Colors.white24,
+      color: Colors.grey.withOpacity(0.3),
       elevation: 1,
       shadowColor: glowColor,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(20.0),
+        borderRadius: BorderRadius.circular(10.0),
       ),
       child: ListTile(
         iconColor: white,

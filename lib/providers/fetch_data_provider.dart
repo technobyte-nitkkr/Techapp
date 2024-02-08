@@ -8,6 +8,7 @@ import 'package:techapp/models/event_all.dart';
 import 'package:techapp/models/user.dart';
 import 'package:techapp/providers/local_storage_provider.dart';
 import 'package:techapp/retrofit/api_client.dart';
+import 'package:logger/logger.dart';
 
 class FetchDataProvider {
   static bool loading = false;
@@ -29,6 +30,7 @@ class FetchDataProvider {
     if (_user != null) {
       user = UserDetails.fromJson(_user);
       jwt = await NotificationsProvider.getToken();
+      Logger().d(jwt);
       debugPrint("got the user form local storage");
     } else {
       _token = await NotificationsProvider.getToken();
