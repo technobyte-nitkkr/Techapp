@@ -34,7 +34,7 @@ abstract class ApiClient {
         );
       }
 
-      if (e.type == DioExceptionType.unknown) {
+      if (e.type == DioExceptionType.connectionError) {
         var resp = json.decode(e.response.toString());
         // debugPrint("response exception");
         // debugPrint(e.toString());

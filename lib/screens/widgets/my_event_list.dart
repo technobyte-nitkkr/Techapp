@@ -38,18 +38,32 @@ class MyEventList extends StatelessWidget {
         } else if (snapshot.hasData) {
           final ResponseData response = snapshot.data as ResponseData;
           List<Event> events = response.getMyEvents();
-          return ListView.builder(
-            shrinkWrap: true,
-            physics: NeverScrollableScrollPhysics(),
-            itemCount: events.length,
-            scrollDirection: Axis.vertical,
-            padding: EdgeInsets.all(10),
-            itemBuilder: (context, index) {
-              return ListItem(
-                item: events[index],
-              );
-            },
-          );
+          if (events.isNotEmpty) {
+            return ListView.builder(
+              shrinkWrap: true,
+              physics: NeverScrollableScrollPhysics(),
+              itemCount: events.length,
+              scrollDirection: Axis.vertical,
+              padding: EdgeInsets.all(10),
+              itemBuilder: (context, index) {
+                return ListItem(
+                  item: events[index],
+                );
+              },
+            );
+          } else {
+            return Container(
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height * 0.8,
+              child: Center(
+                child: Text(
+                  "No Events Registered Yet!",
+                  style: h1s,
+                  textAlign: TextAlign.center,
+                ),
+              ),
+            );
+          }
         } else {
           return ShimmerBuilder2(
             title: true,

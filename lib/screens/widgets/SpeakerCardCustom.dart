@@ -125,7 +125,7 @@ class GuestCardCustom extends StatelessWidget {
                             onPressed: () {
                               launchUrlString(speaker.link);
                             },
-                            child: Text("Meet link")),
+                            child: Text("See More")),
                         SizedBox(
                           height: 15,
                         ),

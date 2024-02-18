@@ -40,6 +40,7 @@ class _TeamtechspardhaState extends State<Teamtechspardha> {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
+        foregroundColor: white,
         title: Text("Team Techspardha"),
       ),
       extendBodyBehindAppBar: true,
@@ -163,7 +164,7 @@ class ContactCard extends StatelessWidget {
                     child: AutoSizeText(
                       contact.section,
                       style: h2.copyWith(
-                          fontWeight: FontWeight.bold,
+                          // fontWeight: FontWeight.bold,
                           fontSize: 30,
                           color: white.withOpacity(0.8)),
                       maxLines: 1,

@@ -1,5 +1,8 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
-import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:galaxy_animation/galaxy_animation.dart';
+
 import 'package:techapp/screens/auth/firebase_services.dart';
 import 'package:techapp/screens/components/style.dart';
 
@@ -29,8 +32,20 @@ class SplashAnimation extends StatefulWidget {
   State<SplashAnimation> createState() => _SplashAnimationState();
 }
 
-class _SplashAnimationState extends State<SplashAnimation> {
+class _SplashAnimationState extends State<SplashAnimation>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+
   bool _loading = false;
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      duration: Duration(seconds: 5), // Adjust the duration as needed
+      vsync: this,
+    )..repeat();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -41,7 +56,7 @@ class _SplashAnimationState extends State<SplashAnimation> {
           decoration: BoxDecoration(
             color: Colors.black,
             image: DecorationImage(
-              image: AssetImage("assets/images/back.png"),
+              image: AssetImage("assets/images/back.jpg"),
               fit: BoxFit.cover,
             ),
           ),
@@ -62,40 +77,50 @@ class _SplashAnimationState extends State<SplashAnimation> {
               Text(
                 "TECHSPARDHA",
                 style: h1s.copyWith(
-                    fontSize: 35,
-                    fontWeight: FontWeight.w900,
-                    fontFamily: 'back',
-                    color: glowColor),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              Text(
-                "Prism of Possibilities",
-                style: h1s.copyWith(
-                  fontSize: 12,
-                  fontFamily: 'sportsBall',
-                  // add shadows
+                  fontSize: 45,
+                  fontWeight: FontWeight.w900,
+                  fontFamily: 'Starlord',
+                  color: white,
                   shadows: [
                     Shadow(
                       blurRadius: 1.0,
-                      color: Color(0xFFBFBFBF),
-                      offset: Offset(1.5, 1.5),
+                      color: Color(0xFF367cff),
+                      offset: Offset(2, 1),
                     ),
                   ],
-                  fontWeight: FontWeight.normal,
                 ),
               ),
               SizedBox(
                 height: 20,
               ),
-              Image.asset(
-                'assets/images/element.png',
-                width: MediaQuery.of(context).size.width * 0.4,
-                height: MediaQuery.of(context).size.height * 0.3,
+              Text(
+                "Infinite Imagination",
+                style: h1s.copyWith(
+                  fontSize: 24,
+                  fontFamily: 'Orbitron',
+                  // add shadows
+
+                  fontWeight: FontWeight.bold,
+                ),
               ),
               SizedBox(
-                height: 20,
+                height: 10,
+              ),
+              AnimatedBuilder(
+                animation: _controller,
+                builder: (context, child) {
+                  return Transform.rotate(
+                    angle: _controller.value * 2.0 * pi,
+                    child: Image.asset(
+                      'assets/images/moon1.png',
+                      width: MediaQuery.of(context).size.width * 0.8,
+                      height: MediaQuery.of(context).size.height * 0.3,
+                    ),
+                  );
+                },
+              ),
+              SizedBox(
+                height: 10,
               ),
               ElevatedButton(
                 onPressed: () async {
@@ -147,8 +172,10 @@ class _SplashAnimationState extends State<SplashAnimation> {
             ? Container(
                 color: Colors.black.withOpacity(0.5),
                 child: Center(
-                    child: LoadingAnimationWidget.staggeredDotsWave(
-                        color: white, size: 100)),
+                    child: GalaxyAnimation(
+                  lineColor: white,
+                  planetColor: glowColor,
+                )),
               )
             : Container(),
       ],

@@ -51,7 +51,7 @@ class DataToLoad extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Padding(
-          padding: const EdgeInsets.only(top: 16.0, right: 20.0, left: 20.0),
+          padding: const EdgeInsets.only(top: 16.0, right: 16.0, left: 16.0),
           child: Column(
             children: <Widget>[
               Text(
@@ -60,7 +60,7 @@ class DataToLoad extends StatelessWidget {
                 textAlign: TextAlign.left,
               ),
               SizedBox(
-                height: MediaQuery.of(context).size.height * 0.06,
+                height: MediaQuery.of(context).size.height * 0.01,
               ),
               Container(
                 height: MediaQuery.of(context).size.height * 0.6,
@@ -68,8 +68,9 @@ class DataToLoad extends StatelessWidget {
                   autoplay: true, // Set autoplay to true
                   autoplayDelay: 3000,
                   itemCount: categories.length,
+                  axisDirection: AxisDirection.right,
                   itemWidth:
-                      min(MediaQuery.of(context).size.width - 2 * 50, 650),
+                      min(MediaQuery.of(context).size.width - 2 * 11, 650),
                   layout: SwiperLayout.DEFAULT,
                   pagination: SwiperPagination(
                     builder: DotSwiperPaginationBuilder(

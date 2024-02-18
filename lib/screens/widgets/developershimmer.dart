@@ -32,7 +32,7 @@ class DeveloperCardShimmer extends StatelessWidget {
       borderRadius: BorderRadius.circular(10),
       child: Shimmer.fromColors(
         baseColor: white,
-        highlightColor: Colors.white24,
+        highlightColor: Colors.white,
         child: Container(
           decoration: boxDecoration,
           child: Column(

@@ -32,6 +32,14 @@ class ListItem extends StatelessWidget {
             child: Container(
               decoration: boxDecoration.copyWith(
                 borderRadius: BorderRadius.circular(10),
+                color: white.withOpacity(0.1),
+                boxShadow: [
+                  BoxShadow(
+                    color: glowColor.withOpacity(0.4),
+                    blurRadius: 1,
+                    offset: Offset(0, 2),
+                  ),
+                ],
               ),
               padding: const EdgeInsets.all(10),
               child: Stack(
@@ -87,13 +95,17 @@ class ListItem extends StatelessWidget {
                                   Text(
                                     'Know more',
                                     style: h4.copyWith(
-                                        color: const Color.fromARGB(255, 176, 175, 175).withOpacity(0.9),
-                                        fontWeight: FontWeight.bold),
+                                      color: const Color.fromARGB(
+                                              255, 176, 175, 175)
+                                          .withOpacity(0.9),
+                                    ),
                                     textAlign: TextAlign.left,
                                   ),
                                   Icon(
                                     Icons.arrow_forward,
-                                    color: const Color.fromARGB(255, 171, 170, 170).withOpacity(0.9),
+                                    color:
+                                        const Color.fromARGB(255, 171, 170, 170)
+                                            .withOpacity(0.9),
                                   ),
                                 ],
                               ),

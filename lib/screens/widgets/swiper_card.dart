@@ -30,10 +30,11 @@ class SwiperCard extends StatelessWidget {
           children: [
             Center(
               child: Container(
-                width: MediaQuery.of(context).size.height * 0.4,
-                height: MediaQuery.of(context).size.height * 0.3,
+                width: MediaQuery.of(context).size.height * 0.44,
+                height: MediaQuery.of(context).size.height * 0.33,
                 decoration: BoxDecoration(
                   image: DecorationImage(
+                    // opacity: 0.,
                     image: AssetImage('assets/images/PANEL1.png'),
                     fit: BoxFit.fill,
                   ),
@@ -42,7 +43,7 @@ class SwiperCard extends StatelessWidget {
             ),
             Positioned(
               left: 13,
-              top: 310,
+              top: 320,
               child: Container(
                 padding: EdgeInsets.all(8),
                 child: Text(
@@ -57,24 +58,23 @@ class SwiperCard extends StatelessWidget {
             ),
             Center(
               child: Container(
-                width: MediaQuery.of(context).size.height * 0.334,
-                height: MediaQuery.of(context).size.height * 0.218,
-                margin: EdgeInsets.only(left: 23, top: 0, right: 18, bottom: 8),
+                width: MediaQuery.of(context).size.height * 0.354,
+                height: MediaQuery.of(context).size.height * 0.228,
+                margin: EdgeInsets.only(left: 18, top: 0, right: 10, bottom: 8),
                 child: PhysicalModel(
-                  elevation: 20, // Adjust the elevation as needed
+                  elevation: 50, // Adjust the elevation as needed
                   color: Colors.transparent,
-                  shadowColor: Color.fromARGB(255, 169, 176, 239).withOpacity(.6),
+                  shadowColor:
+                      Color.fromARGB(255, 169, 176, 239).withOpacity(.6),
                   //borderRadius: BorderRadius.circular(10),
                   clipBehavior: Clip.antiAlias,
                   child: WidgetMask(
                     blendMode: BlendMode.srcATop,
                     childSaveLayer: true,
-                    mask: FadeInImage.assetNetwork(
-                      placeholder: 'assets/images/techspardha.png',
-                      image: categoryName.imgUrl,
+                    mask: Image.network(
+                      categoryName.imgUrl,
                       fit: BoxFit.cover,
-                      imageCacheWidth: 1000,
-                      imageErrorBuilder: (context, error, stackTrace) =>
+                      errorBuilder: (context, error, stackTrace) =>
                           Image.asset('assets/images/techspardha.png'),
                     ),
                     child: Image.asset(

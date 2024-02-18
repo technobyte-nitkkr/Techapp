@@ -1,6 +1,9 @@
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
+import 'package:techapp/models/developers.dart';
+import 'package:techapp/models/section.dart';
 import 'package:techapp/screens/components/style.dart';
+import 'package:techapp/screens/pages/team_altius.dart';
 import 'package:techapp/screens/widgets/contactCard.dart';
 
 class TeamDetail extends StatelessWidget {
@@ -16,51 +19,42 @@ class TeamDetail extends StatelessWidget {
       backgroundColor: Colors.transparent,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
+        foregroundColor: white,
         elevation: 0,
       ),
       extendBodyBehindAppBar: true,
       body: Stack(
         children: [
           getGradient(context),
-          Column(
-            children: <Widget>[
-              SizedBox(
-                height: 100,
-              ),
-              Text(
-                contacts.section,
-                style: Pagelabel,
-                textAlign: TextAlign.center,
-              ),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.06,
-              ),
-              Container(
-                height: MediaQuery.of(context).size.height * 0.7,
-                padding: EdgeInsets.symmetric(horizontal: 20),
-                child: Swiper(
-                  itemCount: contacts.people.length,
-                  itemHeight: MediaQuery.of(context).size.height * 0.6,
-                  itemWidth: MediaQuery.of(context).size.width * 0.5,
-                  layout: SwiperLayout.DEFAULT,
-                  autoplay: true,
-                  autoplayDelay: 3000,
-                  pagination: SwiperPagination(
-                    builder: DotSwiperPaginationBuilder(
-                        activeSize: 20,
-                        space: 8,
-                        color: Colors.grey,
-                        activeColor: white),
-                  ),
-                  itemBuilder: (context, index) {
-                    return ContactSwiperCard(
-                      people: contacts.people[index],
-                    );
-                  },
+          SingleChildScrollView(
+            child: Column(
+              children: <Widget>[
+                SizedBox(
+                  height: 100,
                 ),
-              ),
-            ],
-          ),
+                Text(
+                  contacts.section,
+                  style: Pagelabel,
+                  textAlign: TextAlign.center,
+                ),
+                GridView.builder(
+                  shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
+                  itemCount: contacts.people.length,
+                  padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                  itemBuilder: (BuildContext ctx, int index) {
+                    return ContactSwiperCard(people: contacts.people[index]);
+                  },
+                  gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                    mainAxisExtent: 250,
+                    maxCrossAxisExtent: 200,
+                    mainAxisSpacing: 10,
+                    crossAxisSpacing: 10,
+                  ),
+                )
+              ],
+            ),
+          )
         ],
       ),
     );

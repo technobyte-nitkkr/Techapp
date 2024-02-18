@@ -177,6 +177,7 @@ class _ChatBotWidget extends State<ChatBotWidget> {
         new Scaffold(
           backgroundColor: Colors.transparent,
           appBar: new AppBar(
+            foregroundColor: white,
             title: new Text("TechBot"),
             backgroundColor: Colors.transparent,
           ),

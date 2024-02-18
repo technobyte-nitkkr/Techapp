@@ -48,7 +48,7 @@ class Header extends StatelessWidget {
                 ),
               ],
             ),
-            Text("  Techspardha", style: h2s),
+            Text("  Techspardha", style: h2s.copyWith(fontFamily: 'Starlord')),
             Container(
               child: Row(
                 children: [

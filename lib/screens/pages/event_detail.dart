@@ -25,6 +25,7 @@ class EventDetailWidget extends StatelessWidget {
         backgroundColor: Colors.transparent,
         extendBodyBehindAppBar: true,
         appBar: new AppBar(
+          foregroundColor: white,
           elevation: 0,
           backgroundColor: Colors.transparent,
           leading: new IconButton(

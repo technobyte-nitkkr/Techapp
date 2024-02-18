@@ -1,7 +1,6 @@
 // ignore_for_file: non_constant_identifier_names
 
 import 'package:flutter/material.dart';
-import 'package:particles_flutter/particles_flutter.dart';
 
 // colors
 const glowColor = Color(0xFF367CFF);
@@ -12,7 +11,7 @@ const white = Color(0xFFFFFFFF);
 // custom styles buton
 final elevatedButtonStyle = ElevatedButton.styleFrom(
     backgroundColor: glowColor.withOpacity(0.7),
-    shadowColor: glowColor,
+    // shadowColor: glowColor,
     elevation: 5,
     padding: EdgeInsets.symmetric(
       horizontal: 15.0,
@@ -24,10 +23,10 @@ final elevatedButtonStyle = ElevatedButton.styleFrom(
 
 // custom container decoration
 final boxDecoration = BoxDecoration(
-  color: Color.fromARGB(255, 64, 112, 102).withOpacity(0.3),
+  color: white.withOpacity(0.1),
   boxShadow: [
     BoxShadow(
-      color: glowColor.withOpacity(0.3),
+      color: glowColor.withOpacity(0.4),
       blurRadius: 1,
       offset: Offset(0, 2),
     ),
@@ -45,20 +44,21 @@ final mainTitle = baseTextStyle.copyWith(
 final Pagelabel = baseTextStyle.copyWith(
   fontSize: 35,
   fontWeight: FontWeight.w900,
+  fontFamily: 'Orbitron',
   color: white,
 );
 final h1 = baseTextStyle.copyWith(
-  fontSize: 28,
-  fontWeight: FontWeight.w900,
-  color: black,
-);
+    fontSize: 28,
+    fontWeight: FontWeight.w200,
+    color: black,
+    fontFamily: 'Starlord');
 final h1s = h1.copyWith(color: white);
 
 final h2 = baseTextStyle.copyWith(
-  fontSize: 20,
-  fontWeight: FontWeight.w500,
-  color: black,
-);
+    fontSize: 20,
+    fontWeight: FontWeight.w100,
+    color: black,
+    fontFamily: 'Starlord');
 final h2s = h2.copyWith(color: white);
 
 final h3 = baseTextStyle.copyWith(
@@ -69,10 +69,10 @@ final h3 = baseTextStyle.copyWith(
 final h3s = h3.copyWith(color: white);
 
 final h4 = baseTextStyle.copyWith(
-  fontSize: 16,
-  fontWeight: FontWeight.w500,
-  color: black,
-);
+    fontSize: 16,
+    fontWeight: FontWeight.w100,
+    color: black,
+    fontFamily: 'Starlord');
 final h4s = h4.copyWith(color: white);
 
 final h5 = baseTextStyle.copyWith(
@@ -108,79 +108,11 @@ Container getGradient(context) {
         decoration: BoxDecoration(
           color: Color.fromARGB(255, 0, 0, 0).withOpacity(.9),
           image: DecorationImage(
-            //image: AssetImage("assets/images/back.png"),
-            image: AssetImage("assets/images/background2.jpg"),
+            image: AssetImage("assets/images/back.jpg"),
             fit: BoxFit.cover,
           ),
         ),
       ),
-      // CircularParticle(
-      //   key: UniqueKey(),
-
-      //   awayRadius: 1000,
-      //   numberOfParticles: 100,
-      //   speedOfParticles: 1,
-      //   height: MediaQuery.of(context).size.height,
-      //   width: MediaQuery.of(context).size.width,
-      //   onTapAnimation: true,
-      //   particleColor: grey.withOpacity(0.5),
-      //   awayAnimationDuration: Duration(milliseconds: 500),
-      //   awayAnimationCurve: Curves.linear,
-      //   maxParticleSize: 0,
-      //   isRandomColor: true,
-      //   randColorList: [
-      //     grey,
-      //     Color.fromARGB(255, 8, 70, 121),
-      //   ],
-      //   enableHover: true,
-      //   hoverColor: grey,
-      //   hoverRadius: 100,
-      //   connectDots: true,
-      // ),
     ],
   ));
 }
-
-
-/*
-Container getGradient(context) {
-  return Container(
-    child: Stack(
-      children: [
-        Container(
-          width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height,
-          decoration: BoxDecoration(
-            color: Color.fromARGB(255, 28, 15, 32),
-            image: DecorationImage(
-            image: AssetImage("assets/images/back.png"),
-            fit: BoxFit.cover,
-          ),
-          ),
-        ),
-        CircularParticle(
-          key: UniqueKey(),
-          awayRadius: 1000,
-          numberOfParticles: 1000,
-          speedOfParticles: 1,
-          height: MediaQuery.of(context).size.height,
-          width: MediaQuery.of(context).size.width,
-          onTapAnimation: true,
-          particleColor: grey.withOpacity(0.7),
-          awayAnimationDuration: Duration(milliseconds: 500),
-          awayAnimationCurve: Curves.decelerate,
-          maxParticleSize: 1, // Adjust the size of the dots
-          isRandomColor: true,
-          randColorList: [
-            grey,
-          ],
-          enableHover: true,
-          hoverColor: grey,
-          hoverRadius: 100,
-          connectDots: false, // Set to false to use dot particles
-        ),
-      ],
-    ),
-  );
-} 
-*/

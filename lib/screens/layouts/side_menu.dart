@@ -12,7 +12,8 @@ class SideMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      backgroundColor: Color.fromRGBO(0, 0, 0, 0.898),
+      backgroundColor: Color.fromRGBO(0, 0, 0, 0.698),
+      shadowColor: glowColor.withOpacity(0.4),
       elevation: 3,
       child: ListView(
         children: [
@@ -41,14 +42,14 @@ class SideMenu extends StatelessWidget {
                   ),
                   Text(
                     "${FirebaseAuth.instance.currentUser != null ? FirebaseAuth.instance.currentUser!.displayName : "Dummy Name"}",
-                    style: h4s,
+                    style: h5s,
                   ),
                   const SizedBox(
                     height: 2,
                   ),
                   AutoSizeText(
                     "${FirebaseAuth.instance.currentUser != null ? FirebaseAuth.instance.currentUser!.email : "Dummy Email"}",
-                    style: h4s,
+                    style: h5s,
                     maxLines: 1,
                   ),
                 ],
@@ -101,7 +102,7 @@ class SideMenu extends StatelessWidget {
               color: white,
             ),
             onTap: () async {
-              if (!await launchUrlString('https://techspardha.live/')) {
+              if (!await launchUrlString('https://techspardha.in/')) {
                 debugPrint('invalid link');
               }
             },

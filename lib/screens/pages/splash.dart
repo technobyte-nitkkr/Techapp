@@ -8,8 +8,6 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:logger/logger.dart';
-// ignore: import_of_legacy_library_into_null_safe
 import 'package:techapp/main.dart';
 import 'package:techapp/providers/fetch_data_provider.dart';
 import 'package:techapp/providers/local_storage_provider.dart';
@@ -105,7 +103,7 @@ class _SplashScreenState extends State<SplashScreen> {
     FetchDataProvider.notification = await NotificationsProvider.checkNoti();
     await FetchDataProvider.loadProfileOnline();
     var data = await client.getAllEvents();
-    Logger().i(data);
+    // Logger().i(data);
     data.getAllEvents();
     var data2 = await client.getCategories();
     FetchDataProvider.categories = data2.getCategories();
@@ -116,8 +114,8 @@ class _SplashScreenState extends State<SplashScreen> {
 
     try {
       if (FetchDataProvider.user != null) {
-        // data = await client.getMyEvents(FetchDataProvider.jwt);
-        // data.getMyEvents();
+        data = await client.getMyEvents(FetchDataProvider.jwt);
+        data.getMyEvents();
       }
       if (FirebaseAuth.instance.currentUser == null) {
         return await Navigator.pushNamedAndRemoveUntil(
@@ -193,7 +191,7 @@ class _SplashAnimationState extends State<SplashAnimation>
           decoration: BoxDecoration(
             color: Color.fromARGB(255, 0, 0, 0),
             image: DecorationImage(
-              image: AssetImage("assets/images/background2.jpg"),
+              image: AssetImage("assets/images/back.jpg"),
               fit: BoxFit.cover,
             ),
           ),
@@ -215,29 +213,30 @@ class _SplashAnimationState extends State<SplashAnimation>
                 Text(
                   "TECHSPARDHA",
                   style: h1s.copyWith(
-                    fontSize: 35,
+                    fontSize: 45,
                     fontWeight: FontWeight.w900,
-                    fontFamily: 'back',
-                    color: glowColor,
+                    fontFamily: 'Starlord',
+                    color: white,
+                    shadows: [
+                      Shadow(
+                        blurRadius: 1.0,
+                        color: Color(0xFF367cff),
+                        offset: Offset(2, 1),
+                      ),
+                    ],
                   ),
                 ),
                 SizedBox(
                   height: 20,
                 ),
                 Text(
-                  "Prism of Possibilities",
+                  "Infinite Imagination",
                   style: h1s.copyWith(
-                    fontSize: 12,
-                    fontFamily: 'sportsBall',
+                    fontSize: 24,
+                    fontFamily: 'Orbitron',
                     // add shadows
-                    shadows: [
-                      Shadow(
-                        blurRadius: 1.0,
-                        color: Color.fromARGB(255, 27, 19, 19),
-                        offset: Offset(1.5, 1.5),
-                      ),
-                    ],
-                    fontWeight: FontWeight.normal,
+
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
                 SizedBox(
