@@ -24,7 +24,7 @@ class GuestCardCustom extends StatelessWidget {
               borderRadius: BorderRadius.circular(10),
             ),
             margin: EdgeInsets.only(
-              top: 75,
+              top: 120,
             ),
             elevation: 5,
             borderOnForeground: true,
@@ -161,9 +161,9 @@ class GuestCardCustom extends StatelessWidget {
                   placeholder: 'assets/images/techspardha.png',
                   image: speaker.imageurl,
                   fit: BoxFit.cover,
-                  width: 130,
-                  height: 130,
-                  imageCacheWidth: 1000,
+                  width: 180,
+                  height: 180,
+                  imageCacheWidth: 10000,
                   imageErrorBuilder: (context, error, stackTrace) =>
                       Image.asset('assets/images/techspardha.png',
                           fit: BoxFit.cover),

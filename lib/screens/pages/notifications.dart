@@ -2,11 +2,53 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:localstorage/localstorage.dart';
+import 'package:logger/logger.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:techapp/models/notification_model.dart';
 import 'package:techapp/providers/fetch_data_provider.dart';
 import 'package:techapp/screens/components/style.dart';
 import 'package:techapp/screens/layouts/page_layout.dart';
 import 'package:techapp/screens/widgets/notification_item.dart';
+
+void _askPermission(context) async {
+  await Permission.notification.isDenied.then((value) {
+    Logger().d("permission denied");
+    Logger().d(value);
+    if (value) {
+      Permission.notification.request();
+    }
+    Permission.notification.isPermanentlyDenied.then((value) {
+      Logger().d("permission permanently denied");
+      Logger().d(value);
+      if (value) {
+        showDialog(
+            context: context,
+            builder: (context) {
+              return AlertDialog(
+                title: Text("Permission Required"),
+                content: Text(
+                    "Please allow notification permission to get the latest updates"),
+                actions: [
+                  TextButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                      openAppSettings();
+                    },
+                    child: Text("Open Settings"),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: Text("Cancel"),
+                  ),
+                ],
+              );
+            });
+      }
+    });
+  });
+}
 
 class NotificationsWidget extends StatefulWidget {
   @override
@@ -15,7 +57,7 @@ class NotificationsWidget extends StatefulWidget {
 
 class _NotificationsWidgetState extends State<NotificationsWidget> {
   List<Noti> _notificatinons = [];
-  LocalStorage _storage = new LocalStorage('techapp.json');
+
   final _trackingScrollController = TrackingScrollController();
 
   @override
@@ -25,6 +67,7 @@ class _NotificationsWidgetState extends State<NotificationsWidget> {
   }
 
   loadNotificaitons() async {
+    LocalStorage _storage = new LocalStorage('techapp.json');
     await _storage.ready;
     var data = await _storage.getItem('notifications');
     if (data != null) {
@@ -39,6 +82,7 @@ class _NotificationsWidgetState extends State<NotificationsWidget> {
   @override
   Widget build(BuildContext context) {
     // debugPrint(FetchDataProvider.user?.toJson().toString());
+    _askPermission(context);
     return PageLayout(
       child: SafeArea(
         child: SingleChildScrollView(
@@ -78,8 +122,8 @@ class _NotificationsWidgetState extends State<NotificationsWidget> {
               if (_notificatinons.length != 0)
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.white, // Background color
-                    onPrimary: Colors.black, // Text color
+                    backgroundColor: Colors.white, // Background color
+                    foregroundColor: Colors.black, // Text color
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(
                           10.0), // Adjust the border radius as needed
@@ -87,6 +131,7 @@ class _NotificationsWidgetState extends State<NotificationsWidget> {
                     // You can customize other style properties as needed
                   ),
                   onPressed: () {
+                    LocalStorage _storage = new LocalStorage('techapp.json');
                     _notificatinons.clear();
                     _storage.setItem('notifications', []);
                     FetchDataProvider.notification = 0;

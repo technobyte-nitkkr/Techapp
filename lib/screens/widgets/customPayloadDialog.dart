@@ -54,8 +54,7 @@ class CustomPayloadDialog extends StatelessWidget {
                         },
                         child: Text(
                           "Open",
-                          style: const TextStyle(
-                              color: Colors.white, fontWeight: FontWeight.w700),
+                          style: const TextStyle(fontWeight: FontWeight.w700),
                         ),
                       ),
                   ],

@@ -12,6 +12,7 @@ class Sponsors extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PageLayout(
+      isHome: true,
       child: Container(
           child: Padding(
         padding: const EdgeInsets.only(top: 16.0, right: 20.0, left: 20.0),

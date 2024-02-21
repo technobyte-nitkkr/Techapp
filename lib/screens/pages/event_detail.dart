@@ -202,7 +202,7 @@ Container getContent(Event item, BuildContext context, bool isflagship) {
                             placeholder: 'assets/images/techspardha.png',
                             image: item.poster,
                             fit: BoxFit.cover,
-                            imageCacheWidth: 1000,
+                            imageCacheWidth: 10000,
                             imageErrorBuilder: (context, error, stackTrace) =>
                                 Image.asset('assets/images/techspardha.png',
                                     fit: BoxFit.cover),
@@ -347,14 +347,16 @@ Widget cordinatorItem(Cordinators cordinator) {
         child: ElevatedButton(
             style: elevatedButtonStyle,
             onPressed: () async {
-              var number = cordinator.coordinator_number;
+              var number = cordinator.coordinator_number.contains('+91')
+                  ? cordinator.coordinator_number.substring(3)
+                  : cordinator.coordinator_number;
               if (!await launchUrlString('https://wa.me/+91$number')) {
                 debugPrint(cordinator.coordinator_name);
               }
             },
             child: AutoSizeText(
               cordinator.coordinator_name,
-              style: h4s,
+              style: h4,
               maxLines: 1,
             )),
       ));

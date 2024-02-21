@@ -6,10 +6,10 @@ import 'package:techapp/providers/fetch_data_provider.dart';
 class NotificationsProvider {
   // data
   static List<Noti> list = [];
-  static LocalStorage storage = new LocalStorage('techapp.json');
 
   // function to save to storage
   static _saveToStorage() async {
+    LocalStorage storage = new LocalStorage('techapp.json');
     await storage.ready;
     await storage.setItem(
         'notifications', list.map((i) => i.toJson()).toList());
@@ -17,6 +17,7 @@ class NotificationsProvider {
 
   // check the notification list if present
   static Future<int> checkNoti() async {
+    LocalStorage storage = new LocalStorage('techapp.json');
     await storage.ready;
     var notiList = await storage.getItem('notifications');
     if (notiList != null && notiList.length > 0) {
@@ -30,6 +31,7 @@ class NotificationsProvider {
   static addItem(String title, String body,
       {String? link, String? image}) async {
     // load previous data
+    LocalStorage storage = new LocalStorage('techapp.json');
     await storage.ready;
     var items = await storage.getItem('notifications');
     if (items != null) {
@@ -43,30 +45,35 @@ class NotificationsProvider {
 
   // clear storage;
   static clearStorage() async {
+    LocalStorage storage = new LocalStorage('techapp.json');
     await storage.ready;
     await storage.clear();
   }
 
   // save the jwt token in the storage
   static saveToken(String token) async {
+    LocalStorage storage = new LocalStorage('techapp.json');
     await storage.ready;
     await storage.setItem('token', token);
   }
 
   // get the jwt token from the storage
-  static Future<String> getToken() async {
+  static Future<String?> getToken() async {
+    LocalStorage storage = new LocalStorage('techapp.json');
     await storage.ready;
     return await storage.getItem('token');
   }
 
   // save the user to local storage
   static saveUser(UserDetails user) async {
+    LocalStorage storage = new LocalStorage('techapp.json');
     await storage.ready;
     await storage.setItem('user', user.toJson());
   }
 
   // get the user from the storage
   static Future<dynamic> getUser() async {
+    LocalStorage storage = new LocalStorage('techapp.json');
     await storage.ready;
     return await storage.getItem('user');
   }

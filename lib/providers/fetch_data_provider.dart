@@ -18,7 +18,7 @@ class FetchDataProvider {
   static List<CategorySchema> categories = [];
   // ignore: avoid_init_to_null
   static UserDetails? user = null;
-  static String jwt = "";
+  static String? jwt;
   static List<Sponsor> sponsors = [];
   static List<Speaker> speakers = [];
 
@@ -61,6 +61,8 @@ class FetchDataProvider {
           await NotificationsProvider.clearStorage();
           await FirebaseAuth.instance.signOut();
         }
+      } else {
+        FirebaseAuth.instance.signOut();
       }
     }
   }

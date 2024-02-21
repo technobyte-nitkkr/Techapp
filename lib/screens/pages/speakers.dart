@@ -13,6 +13,7 @@ class Speakers extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PageLayout(
+      isHome: true,
       child: SafeArea(
         child: Padding(
           padding: const EdgeInsets.only(top: 16.0),

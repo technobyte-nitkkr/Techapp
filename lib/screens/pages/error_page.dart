@@ -37,7 +37,7 @@ class ErrorPagge extends StatelessWidget {
                   },
                   child: Text(
                     'Retry',
-                    style: h1s,
+                    style: h1,
                   ),
                 ),
               ],

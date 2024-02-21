@@ -39,7 +39,7 @@ class _SmartButtonWidgetState extends State<SmartButtonWidget> {
     });
 
     try {
-      await client.addEvent(FetchDataProvider.jwt, {
+      await client.addEvent(FetchDataProvider.jwt!, {
         "eventName": name,
         "eventCategory": category,
       });
@@ -57,7 +57,7 @@ class _SmartButtonWidgetState extends State<SmartButtonWidget> {
               bottom: MediaQuery.of(context).size.height - 100,
               right: 20,
               left: 20)));
-      var data = await client.getMyEvents(FetchDataProvider.jwt);
+      var data = await client.getMyEvents(FetchDataProvider.jwt!);
       data.getMyEvents();
       setState(() {
         isLoading = false;
@@ -89,7 +89,7 @@ class _SmartButtonWidgetState extends State<SmartButtonWidget> {
     });
 
     try {
-      await client.delEvent(FetchDataProvider.jwt, {
+      await client.delEvent(FetchDataProvider.jwt!, {
         "eventName": name,
         "eventCategory": category,
       });
@@ -110,7 +110,7 @@ class _SmartButtonWidgetState extends State<SmartButtonWidget> {
         isLoading = false;
         isRegistered = false;
       });
-      await client.getMyEvents(FetchDataProvider.jwt);
+      await client.getMyEvents(FetchDataProvider.jwt!);
     } on DioException catch (e) {
       final errormessage = e.error.toString();
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(

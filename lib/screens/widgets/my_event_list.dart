@@ -18,7 +18,7 @@ class MyEventList extends StatelessWidget {
     final client = ApiClient.create();
 
     return FutureBuilder(
-      future: client.getMyEvents(FetchDataProvider.jwt),
+      future: client.getMyEvents(FetchDataProvider.jwt!),
       builder: (context, snapshot) {
         if (snapshot.hasError) {
           final errormessage =

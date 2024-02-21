@@ -148,7 +148,7 @@ class ContactCard extends StatelessWidget {
                       placeholder: 'assets/images/techspardha.png',
                       height: 60,
                       width: 60,
-                      imageCacheWidth: 1000,
+                      imageCacheWidth: 10000,
                       fit: BoxFit.cover,
                       image: contact.logo,
                       imageErrorBuilder: (context, error, stackTrace) {

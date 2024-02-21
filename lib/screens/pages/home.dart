@@ -17,6 +17,7 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     List<CategorySchema> cate = FetchDataProvider.categories;
     return PageLayout(
+      isHome: true,
       child: Column(
         children: [
           if (cate.length > 0)

@@ -25,7 +25,13 @@ class _SignInModalWidgetState extends State<SignInModalWidget> {
   TextEditingController _phone = TextEditingController();
   String _year = "Fresher";
 
-  var _years = ["Fresher", "Sophomore", "Prefinal year", "Final Year"];
+  var _years = [
+    "Fresher",
+    "Sophomore",
+    "Prefinal year",
+    "Final Year",
+    "Graduated"
+  ];
   bool isloading = false;
 
   @override
@@ -183,7 +189,10 @@ class _SignInModalWidgetState extends State<SignInModalWidget> {
                 Container(
                   child: ElevatedButton(
                     child: (!isloading)
-                        ? Text("Submit")
+                        ? Text(
+                            "Submit",
+                            style: TextStyle(color: black),
+                          )
                         : CircularProgressIndicator(),
                     style: ButtonStyle(
                         backgroundColor:
@@ -212,7 +221,8 @@ class _SignInModalWidgetState extends State<SignInModalWidget> {
       // deal with data and all
       ResponseData user;
       try {
-        user = await client.signUp(await NotificationsProvider.getToken(),
+        String? jwt = await NotificationsProvider.getToken();
+        user = await client.signUp(jwt!,
             {"name": name, "college": college, "year": year, "phone": phone});
 
         debugPrint(user.data.toString());

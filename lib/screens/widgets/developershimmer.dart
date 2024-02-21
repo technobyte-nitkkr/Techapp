@@ -31,23 +31,26 @@ class DeveloperCardShimmer extends StatelessWidget {
     return ClipRRect(
       borderRadius: BorderRadius.circular(10),
       child: Shimmer.fromColors(
-        baseColor: white,
-        highlightColor: Colors.white,
+        baseColor: glowColor,
+        highlightColor: Colors.white24,
         child: Container(
           decoration: boxDecoration,
           child: Column(
             children: <Widget>[
               Shimmer.fromColors(
-                baseColor: white,
-                highlightColor: Colors.white24,
+                baseColor: Colors.white24,
+                highlightColor: Colors.white,
                 child: Container(
                   height: 140,
                   width: double.infinity,
                 ),
               ),
+              SizedBox(
+                height: 10,
+              ),
               Shimmer.fromColors(
-                baseColor: white,
-                highlightColor: Colors.white24,
+                baseColor: Colors.white24,
+                highlightColor: Colors.white,
                 child: Container(
                   height: 15,
                   width: double.infinity,

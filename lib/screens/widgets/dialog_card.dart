@@ -56,7 +56,7 @@ class DialogCard extends StatelessWidget {
                     if (this.card.imageUri != null)
                       Image.network(
                         this.card.imageUri!,
-                        cacheWidth: 1300,
+                        cacheWidth: 13000,
                       ),
                     new Padding(
                       padding: EdgeInsets.all(10.0),

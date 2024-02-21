@@ -13,8 +13,8 @@ abstract class ApiClient {
   static ApiClient create() {
     final dio = Dio();
     dio.options.headers['Content-Type'] = 'application/json';
-    dio.options.receiveTimeout = Duration(minutes: 5);
-    dio.options.connectTimeout = Duration(minutes: 5);
+    dio.options.receiveTimeout = Duration(seconds: 60);
+    dio.options.connectTimeout = Duration(seconds: 120);
     dio.interceptors
         .add(InterceptorsWrapper(onError: (DioException e, handler) {
       // debugPrint("dioerrr  ");

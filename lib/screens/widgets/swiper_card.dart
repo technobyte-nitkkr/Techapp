@@ -42,7 +42,7 @@ class SwiperCard extends StatelessWidget {
               ),
             ),
             Positioned(
-              left: 13,
+              left: 2,
               top: 320,
               child: Container(
                 padding: EdgeInsets.all(8),

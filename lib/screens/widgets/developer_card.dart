@@ -37,7 +37,7 @@ class DeveloperCard extends StatelessWidget {
                 fit: BoxFit.cover,
                 width: MediaQuery.of(context).size.width,
                 height: 150,
-                cacheWidth: 1300,
+                cacheWidth: 13000,
               ),
             ),
             AutoSizeText(

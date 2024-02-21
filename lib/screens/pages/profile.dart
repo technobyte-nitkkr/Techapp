@@ -36,8 +36,8 @@ class ProfilePage extends StatelessWidget {
                         ),
                         Container(
                             alignment: Alignment.center,
-                            child:
-                                Text(FetchDataProvider.user?.name?? "name", style: h2s)),
+                            child: Text(FetchDataProvider.user?.name ?? "name",
+                                style: h2s)),
                         Divider(
                           color: Colors.white,
                         ),
@@ -50,15 +50,16 @@ class ProfilePage extends StatelessWidget {
                         if (FetchDataProvider.user!.onBoard)
                           DetailTile(
                               icon: Icons.school,
-                              text: FetchDataProvider.user?.college??"Collage"),
+                              text:
+                                  FetchDataProvider.user?.college ?? "Collage"),
                         if (FetchDataProvider.user!.onBoard)
                           DetailTile(
                               icon: Icons.calendar_today,
-                              text: FetchDataProvider.user?.year??"Year"),
+                              text: FetchDataProvider.user?.year ?? "Year"),
                         if (FetchDataProvider.user!.onBoard)
                           DetailTile(
                               icon: Icons.phone,
-                              text: FetchDataProvider.user?.phone??"Phone"),
+                              text: FetchDataProvider.user?.phone ?? "Phone"),
                       ],
                     ),
                   ),
@@ -80,7 +81,6 @@ class ProfilePage extends StatelessWidget {
                 if (FetchDataProvider.user!.onBoard == false)
                   ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                          backgroundColor: glowColor,
                           elevation: 25,
                           padding: EdgeInsets.all(10),
                           shape: (RoundedRectangleBorder(
@@ -95,7 +95,7 @@ class ProfilePage extends StatelessWidget {
                       },
                       child: Text(
                         "SignUp For Techspardha",
-                        style: h2s,
+                        style: h2,
                       ))
               ],
             )));

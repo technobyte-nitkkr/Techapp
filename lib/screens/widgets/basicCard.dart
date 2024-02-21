@@ -1,7 +1,10 @@
 import 'package:dialogflow_flutter/message.dart';
 import 'package:flutter/material.dart';
+import 'package:logger/logger.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:techapp/screens/components/style.dart';
 import 'package:url_launcher/url_launcher_string.dart';
+import 'package:http/http.dart' as http;
 
 class BasicCardWidget extends StatelessWidget {
   BasicCardWidget({required this.card});
@@ -16,7 +19,25 @@ class BasicCardWidget extends StatelessWidget {
           child: new ElevatedButton(
         style: elevatedButtonStyle,
         onPressed: () async {
-          if (!await launchUrlString(
+          Logger().d(this.card.buttons![i]['title']);
+          if (this.card.buttons![i]['title'] == 'Share') {
+            Logger().d(this.card.buttons![i]['title']);
+            final uri =
+                Uri.parse(this.card.buttons![i]['openUriAction']['uri']);
+            final response = await http.get(uri);
+            Share.shareXFiles([
+              XFile.fromData(
+                response.bodyBytes,
+                name: 'Flutter 3',
+                mimeType: 'image/png',
+              ),
+            ],
+                subject: 'Techspardha',
+                text:
+                    'Stay updated with TechSpardha! Download our app for more related content:\nhttps://bit.ly/techspardhaapp\n\nFor more details, visit our website: http://techspardha.in');
+
+            return;
+          } else if (!await launchUrlString(
               this.card.buttons![i]['openUriAction']['uri'])) {
             debugPrint("Invalid Link !!");
           }
@@ -52,7 +73,7 @@ class BasicCardWidget extends StatelessWidget {
                     if (this.card.image?.imageUri != null)
                       new Image.network(
                         this.card.image!.imageUri!,
-                        cacheWidth: 1000,
+                        cacheWidth: 10000,
                         fit: BoxFit.cover,
                         loadingBuilder: (BuildContext context, Widget child,
                             ImageChunkEvent? loadingProgress) {
@@ -103,6 +124,7 @@ class BasicCardWidget extends StatelessWidget {
                           children: generateButton(),
                         ),
                       ),
+                    SizedBox(height: 10.0)
                   ],
                 ),
               ),

@@ -32,6 +32,7 @@ class MyEvents extends StatelessWidget {
           ),
         ],
       ),
+      isHome: false,
     );
   }
 }

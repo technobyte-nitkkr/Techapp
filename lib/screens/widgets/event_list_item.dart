@@ -68,7 +68,7 @@ class ListItem extends StatelessWidget {
                                         'assets/images/techspardha.png',
                                     image: item.poster,
                                     fit: BoxFit.cover,
-                                    imageCacheWidth: 1000,
+                                    imageCacheWidth: 10000,
                                     imageErrorBuilder: (context, error,
                                             stackTrace) =>
                                         Image.asset(

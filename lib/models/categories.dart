@@ -9,8 +9,8 @@ class CategorySchema {
   factory CategorySchema.fromJson(Map<String, dynamic> json) {
     return CategorySchema(
         categoryName: json['categoryName'],
-        imgUrl: json['imgUrl'],
-        icon: json['icon']);
+        imgUrl: json['imgUrl'] ?? '',
+        icon: json['icon'] ?? '');
   }
 
   Map<String, dynamic> toJson() {

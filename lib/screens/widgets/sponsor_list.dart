@@ -55,7 +55,8 @@ class CardItem extends StatelessWidget {
         ),
         child: Card(
           elevation: 0,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
           color: Color.fromARGB(255, 255, 255, 255).withOpacity(0.8),
           child: InkWell(
             borderRadius: BorderRadius.circular(32),
@@ -80,7 +81,7 @@ class CardItem extends StatelessWidget {
                         width: MediaQuery.of(context).size.width * 0.28,
                         image: item.imageurl,
                         fit: BoxFit.cover,
-                        imageCacheWidth: 1000,
+                        imageCacheWidth: 10000,
                         imageErrorBuilder: (context, error, stackTrace) =>
                             Image.asset('assets/images/techspardha.png',
                                 fit: BoxFit.cover),

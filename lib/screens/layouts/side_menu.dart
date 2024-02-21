@@ -2,6 +2,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:techapp/screens/auth/firebase_services.dart';
 import 'package:techapp/screens/auth/google_login.dart';
 import 'package:techapp/screens/components/style.dart';
@@ -19,6 +20,7 @@ class SideMenu extends StatelessWidget {
         children: [
           GestureDetector(
             onTap: () {
+              Navigator.pop(context);
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => ProfilePage()));
             },
@@ -56,11 +58,11 @@ class SideMenu extends StatelessWidget {
               ),
             ),
           ),
-          Divider(
-            height: 2,
-            thickness: 1,
-            color: grey,
-          ),
+          // Divider(
+          //   height: 2,
+          //   thickness: 1,
+          //   color: grey,
+          // ),
           ListTile(
             title: Text(
               'Home',
@@ -113,12 +115,30 @@ class SideMenu extends StatelessWidget {
             color: white.withOpacity(0.5),
           ),
           ListTile(
+            title: Text('Share App', style: h4s),
+            leading: FaIcon(
+              FontAwesomeIcons.shareNodes,
+              size: 25,
+              color: white,
+            ),
+            onTap: () async {
+              Share.share(
+                  'Hey! Check out Techspardha App. Download it from Play Store now. \n https://bit.ly/techspardhaapp');
+            },
+          ),
+          Divider(
+            height: 1,
+            thickness: 1,
+            color: white.withOpacity(0.5),
+          ),
+          ListTile(
             title: Text('Your Profile', style: h4s),
             leading: Icon(
               Icons.person,
               color: white,
             ),
             onTap: () {
+              Navigator.pop(context);
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => ProfilePage()));
             },

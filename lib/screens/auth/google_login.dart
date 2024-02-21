@@ -184,10 +184,4 @@ class _SplashAnimationState extends State<SplashAnimation> {
       ],
     );
   }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
 }

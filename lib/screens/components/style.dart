@@ -10,8 +10,9 @@ const white = Color(0xFFFFFFFF);
 
 // custom styles buton
 final elevatedButtonStyle = ElevatedButton.styleFrom(
-    backgroundColor: glowColor.withOpacity(0.7),
+    backgroundColor: white,
     // shadowColor: glowColor,
+    textStyle: TextStyle(color: black),
     elevation: 5,
     padding: EdgeInsets.symmetric(
       horizontal: 15.0,
@@ -42,7 +43,7 @@ final mainTitle = baseTextStyle.copyWith(
 );
 
 final Pagelabel = baseTextStyle.copyWith(
-  fontSize: 35,
+  fontSize: 30,
   fontWeight: FontWeight.w900,
   fontFamily: 'Orbitron',
   color: white,
