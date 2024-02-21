@@ -21,7 +21,7 @@ dependencies:
   flutter_lints: ^3.0.1
   curved_navigation_bar: ^1.0.1
   card_swiper : ^3.0.1
-  http: ^0.13.4
+  http: ^1.2.0
   url_launcher: ^6.0.17
   animated_splash_screen: ^1.1.0
   flutter_local_notifications: ^16.3.2
@@ -41,6 +41,10 @@ dependencies:
   shimmer: ^3.0.0
   widget_mask: ^1.0.0+0
   galaxy_animation: ^0.0.2
+  flutter_earth_globe: ^1.0.2
+
+dependency_overrides:
+  http: ^1.2.0 
 
 
 flutter_icons:

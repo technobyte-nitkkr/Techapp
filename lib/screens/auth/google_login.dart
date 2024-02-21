@@ -1,7 +1,8 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
+import 'package:flutter_earth_globe/sphere_style.dart';
 import 'package:galaxy_animation/galaxy_animation.dart';
+import 'package:flutter_earth_globe/flutter_earth_globe.dart';
+import 'package:flutter_earth_globe/flutter_earth_globe_controller.dart';
 
 import 'package:techapp/screens/auth/firebase_services.dart';
 import 'package:techapp/screens/components/style.dart';
@@ -32,34 +33,44 @@ class SplashAnimation extends StatefulWidget {
   State<SplashAnimation> createState() => _SplashAnimationState();
 }
 
-class _SplashAnimationState extends State<SplashAnimation>
-    with SingleTickerProviderStateMixin {
-  late AnimationController _controller;
-
+class _SplashAnimationState extends State<SplashAnimation> {
+  final FlutterEarthGlobeController _controller = FlutterEarthGlobeController(
+      rotationSpeed: 0.1,
+      // isRotating: true,
+      sphereStyle: (SphereStyle(
+          shadowColor: Colors.orange.withOpacity(0.8), shadowBlurSigma: 20)),
+      isBackgroundFollowingSphereRotation: true,
+      background: Image.asset('assets/images/background.jpg').image,
+      surface: Image.asset('assets/images/Planet_2.png').image);
   bool _loading = false;
   @override
   void initState() {
+    _controller.onLoaded = () {
+      _controller.startRotation();
+    };
     super.initState();
-    _controller = AnimationController(
-      duration: Duration(seconds: 5), // Adjust the duration as needed
-      vsync: this,
-    )..repeat();
   }
 
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
+        SafeArea(
+            child: FlutterEarthGlobe(
+          controller: _controller,
+          // alignment: Alignment.bottomCenter,
+          radius: 80,
+        )),
         Container(
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height,
-          decoration: BoxDecoration(
-            color: Colors.black,
-            image: DecorationImage(
-              image: AssetImage("assets/images/back.jpg"),
-              fit: BoxFit.cover,
-            ),
-          ),
+          // decoration: BoxDecoration(
+          //   color: Colors.black,
+          //   image: DecorationImage(
+          //     image: AssetImage("assets/images/back.jpg"),
+          //     fit: BoxFit.cover,
+          //   ),
+          // ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
@@ -106,27 +117,19 @@ class _SplashAnimationState extends State<SplashAnimation>
               SizedBox(
                 height: 10,
               ),
-              AnimatedBuilder(
-                animation: _controller,
-                builder: (context, child) {
-                  return Transform.rotate(
-                    angle: _controller.value * 2.0 * pi,
-                    child: Image.asset(
-                      'assets/images/moon1.png',
-                      width: MediaQuery.of(context).size.width * 0.8,
-                      height: MediaQuery.of(context).size.height * 0.3,
-                    ),
-                  );
-                },
-              ),
+              // FlutterEarthGlobe(
+              //   controller: _controller,
+              //   radius: 1,
+              // ),
               SizedBox(
-                height: 10,
+                height: 100,
               ),
               ElevatedButton(
                 onPressed: () async {
                   setState(() {
                     _loading = true;
                   });
+                  _controller.startRotation();
                   await FirebaseServices().signInWithGoogle();
 
                   Navigator.popUntil(context, (route) => false);
@@ -180,5 +183,11 @@ class _SplashAnimationState extends State<SplashAnimation>
             : Container(),
       ],
     );
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 }

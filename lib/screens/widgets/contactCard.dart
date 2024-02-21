@@ -1,13 +1,8 @@
-import 'dart:math';
-
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:techapp/models/section.dart';
 import 'package:techapp/screens/components/style.dart';
-import 'package:url_launcher/url_launcher_string.dart';
-// ignore: import_of_legacy_library_into_null_safe
 
 class ContactSwiperCard extends StatelessWidget {
   final People people;

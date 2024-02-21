@@ -1,4 +1,3 @@
-import 'dart:math';
 import 'dart:typed_data';
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:auto_size_text/auto_size_text.dart';
@@ -6,6 +5,9 @@ import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_earth_globe/flutter_earth_globe.dart';
+import 'package:flutter_earth_globe/flutter_earth_globe_controller.dart';
+import 'package:flutter_earth_globe/sphere_style.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:techapp/main.dart';
@@ -168,33 +170,41 @@ class SplashAnimation extends StatefulWidget {
   _SplashAnimationState createState() => _SplashAnimationState();
 }
 
-class _SplashAnimationState extends State<SplashAnimation>
-    with SingleTickerProviderStateMixin {
-  late AnimationController _controller;
+class _SplashAnimationState extends State<SplashAnimation> {
+  final FlutterEarthGlobeController _controller = FlutterEarthGlobeController(
+      rotationSpeed: 0.1,
+      // isRotating: true,
+      sphereStyle: (SphereStyle(
+          shadowColor: Colors.orange.withOpacity(0.8), shadowBlurSigma: 20)),
+      isBackgroundFollowingSphereRotation: true,
+      background: Image.asset('assets/images/background.jpg').image,
+      surface: Image.asset('assets/images/Planet_2.png').image);
 
   @override
   void initState() {
+    _controller.onLoaded = () {
+      _controller.startRotation();
+    };
     super.initState();
-    _controller = AnimationController(
-      duration: Duration(seconds: 5), // Adjust the duration as needed
-      vsync: this,
-    )..repeat();
   }
 
   @override
   Widget build(BuildContext context) {
+    // if (_controller.isRotating == false) {
+    //   _controller.startRotation();
+    // }
     return Stack(
       children: [
+        SafeArea(
+            child: FlutterEarthGlobe(
+          controller: _controller,
+
+          // alignment: Alignment.bottomCenter,
+          radius: 80,
+        )),
         Container(
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height,
-          decoration: BoxDecoration(
-            color: Color.fromARGB(255, 0, 0, 0),
-            image: DecorationImage(
-              image: AssetImage("assets/images/back.jpg"),
-              fit: BoxFit.cover,
-            ),
-          ),
           child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -243,21 +253,9 @@ class _SplashAnimationState extends State<SplashAnimation>
                   height: 5,
                 ),
                 // Wrap the image with AnimatedBuilder for continuous rotation
-                AnimatedBuilder(
-                  animation: _controller,
-                  builder: (context, child) {
-                    return Transform.rotate(
-                      angle: _controller.value * 2.0 * pi,
-                      child: Image.asset(
-                        'assets/images/moon1.png',
-                        width: MediaQuery.of(context).size.width * 0.8,
-                        height: MediaQuery.of(context).size.height * 0.3,
-                      ),
-                    );
-                  },
-                ),
+
                 SizedBox(
-                  height: 5,
+                  height: 200,
                 ),
                 Container(
                   child: Row(

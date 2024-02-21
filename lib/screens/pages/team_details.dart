@@ -1,9 +1,5 @@
-import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
-import 'package:techapp/models/developers.dart';
-import 'package:techapp/models/section.dart';
 import 'package:techapp/screens/components/style.dart';
-import 'package:techapp/screens/pages/team_altius.dart';
 import 'package:techapp/screens/widgets/contactCard.dart';
 
 class TeamDetail extends StatelessWidget {
