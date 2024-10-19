@@ -3,7 +3,7 @@ description: made by technobyte
 
 publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
-version: 2.0.0+9
+version: 2.0.0+10
 
 environment:
   sdk: '>=2.12.0 <4.0.0'
@@ -14,9 +14,9 @@ dependencies:
 
   cupertino_icons: ^1.0.3
   flutter_svg: ^2.0.9
-  firebase_core: ^2.25.2
+  firebase_core: ^2.32.0
   firebase_messaging: ^14.7.13
-  firebase_auth: ^4.17.2
+  firebase_auth: ^4.20.0
   google_sign_in: ^6.2.1
   flutter_lints: ^3.0.1
   curved_navigation_bar: ^1.0.1
@@ -24,7 +24,7 @@ dependencies:
   http: ^1.2.0
   url_launcher: ^6.0.17
   animated_splash_screen: ^1.1.0
-  flutter_local_notifications: ^16.3.2
+  flutter_local_notifications: ^17.2.3
   localstorage: ^4.0.0+1
   dialogflow_flutter: ^1.0.0
   auto_size_text: ^3.0.0

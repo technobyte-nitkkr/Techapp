@@ -34,10 +34,10 @@ class FetchDataProvider {
       debugPrint("got the user form local storage");
     } else {
       _token = await NotificationsProvider.getToken();
+      // FirebaseAuth.instance.signOut();
+      // await NotificationsProvider.clearStorage();
 
       if (_token != null) {
-        // debugPrint(_token.substring(0, 1000));
-        // debugPrint(_token.substring(1000));
         debugPrint("got token form local storage");
         try {
           final data = await client.login({"idToken": _token});
@@ -54,6 +54,10 @@ class FetchDataProvider {
 
             user = data.getProfile();
             await NotificationsProvider.saveUser(user!);
+          } else {
+            debugPrint("error in login");
+            await NotificationsProvider.clearStorage();
+            await FirebaseAuth.instance.signOut();
           }
         } catch (e) {
           // debugPrint((e as DioError).toString());

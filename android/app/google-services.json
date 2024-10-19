@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "14707849805-0fph57a1jvtvno6ftuclj28bbc4kqpon.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.nitkkr.altius",
+            "certificate_hash": "54dc985b0f8ded635a210424edddd333c642eef9"
+          }
+        },
+        {
           "client_id": "14707849805-2jkg33huumh3cpr624i2j16tksi47v2h.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
@@ -47,7 +55,15 @@
           }
         },
         {
-          "client_id": "14707849805-6nnqvvf2hfilg8fdgs9ep9bbpfbtiss9.apps.googleusercontent.com",
+          "client_id": "14707849805-kgldbl2ieief8iko9abpf6ejtaavprdt.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.nitkkr.altius",
+            "certificate_hash": "8767e9dc807d7eb61bebbe7d0af0b5210e55e1ac"
+          }
+        },
+        {
+          "client_id": "14707849805-rpl78stmauli1jrsoek03r1qnr5j19ui.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
@@ -62,6 +78,13 @@
             {
               "client_id": "14707849805-6nnqvvf2hfilg8fdgs9ep9bbpfbtiss9.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "14707849805-sachf8o3rs9memcjlq05i0gfo1vqmcc5.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.nitkkr.altius"
+              }
             }
           ]
         }
@@ -124,7 +147,7 @@
           }
         },
         {
-          "client_id": "14707849805-6nnqvvf2hfilg8fdgs9ep9bbpfbtiss9.apps.googleusercontent.com",
+          "client_id": "14707849805-rpl78stmauli1jrsoek03r1qnr5j19ui.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
@@ -139,6 +162,13 @@
             {
               "client_id": "14707849805-6nnqvvf2hfilg8fdgs9ep9bbpfbtiss9.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "14707849805-sachf8o3rs9memcjlq05i0gfo1vqmcc5.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.nitkkr.altius"
+              }
             }
           ]
         }
