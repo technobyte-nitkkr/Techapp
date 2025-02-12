@@ -173,7 +173,7 @@ class _SplashAnimationState extends State<SplashAnimation> {
                   style: h1s.copyWith(
                     fontSize: 45,
                     fontWeight: FontWeight.w900,
-                    fontFamily: 'Starlord',
+                    fontFamily: 'Poppins',
                     color: white,
                     shadows: [
                       Shadow(
@@ -188,10 +188,10 @@ class _SplashAnimationState extends State<SplashAnimation> {
                   height: 20,
                 ),
                 Text(
-                  "Infinite Imagination",
+                  "Frontier Reimagination",
                   style: h1s.copyWith(
                     fontSize: 24,
-                    fontFamily: 'Orbitron',
+                    fontFamily: 'Poppins',
                     // add shadows
 
                     fontWeight: FontWeight.bold,

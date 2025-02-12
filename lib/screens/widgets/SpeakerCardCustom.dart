@@ -3,13 +3,16 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:techapp/models/Speaker.dart';
 import 'package:techapp/screens/components/style.dart';
+import 'package:techapp/screens/widgets/DottedBackgroundPainter.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 class GuestCardCustom extends StatelessWidget {
   final Speaker speaker;
+  final int index;
   const GuestCardCustom({
     Key? key,
     required this.speaker,
+    required this.index,
   }) : super(key: key);
 
   @override
@@ -29,112 +32,133 @@ class GuestCardCustom extends StatelessWidget {
             elevation: 5,
             borderOnForeground: true,
             child: Container(
-              decoration: boxDecoration.copyWith(
-                borderRadius: BorderRadius.circular(20),
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SizedBox(
-                    height: 70,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  gradient: LinearGradient(
+                    begin: Alignment.centerLeft,
+                    end: Alignment.centerRight,
+                    colors: index % 2 == 1
+                        ? [
+                            Color.fromARGB(255, 12, 78, 115),
+                            Color.fromARGB(255, 13, 68, 107)
+                          ]
+                        : [
+                            Color.fromARGB(255, 254, 199, 111),
+                            Color.fromARGB(255, 68, 80, 40)
+                          ],
                   ),
-                  Text(speaker.name, style: h1s),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Row(
-                        children: [
-                          Icon(Icons.calendar_today_outlined, color: white),
-                          SizedBox(width: 8.0),
-                          Text(speaker.date,
-                              style: TextStyle(
-                                fontSize: 20.0,
-                                color: white,
-                                fontWeight: FontWeight.bold,
-                                //color: Colors.white,
-                              )),
-                        ],
-                      ),
-                      Row(children: [
-                        Icon(Icons.alarm_on, color: white),
-                        SizedBox(width: 8.0),
-                        Text(speaker.time,
-                            style: TextStyle(
-                              fontSize: 20.0,
-                              color: white,
-                              fontWeight: FontWeight.bold,
-                              //color: Colors.white,
-                            )),
-                      ])
-                    ],
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: ExpansionTile(
-                      collapsedTextColor: white,
-                      backgroundColor: Colors.transparent,
-                      controlAffinity: ListTileControlAffinity.platform,
-                      collapsedIconColor: white,
-                      iconColor: Colors.white,
-                      title: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: <Widget>[
-                          IconButton(
-                            icon: FaIcon(
-                              FontAwesomeIcons.facebook,
-                              color: white,
-                            ),
-                            onPressed: () async {
-                              await launchUrlString(speaker.facebook);
-                            },
-                          ),
-                          IconButton(
-                            icon: FaIcon(
-                              FontAwesomeIcons.linkedin,
-                              color: white,
-                            ),
-                            onPressed: () async {
-                              await launchUrlString(speaker.linkedin);
-                            },
-                          ),
-                          IconButton(
-                            icon: FaIcon(
-                              FontAwesomeIcons.instagram,
-                              color: white,
-                            ),
-                            onPressed: () async {
-                              await launchUrlString(speaker.insta);
-                            },
-                          ),
-                        ],
-                      ),
+                ),
+                child: Stack(
+                  children: [
+                    Positioned.fill(
+                        child: CustomPaint(
+                      painter: DottedBackgroundPainter(),
+                    )),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(
-                          speaker.desc,
-                          style: h5.copyWith(color: white),
-                        ),
                         SizedBox(
-                          height: 15,
+                          height: 70,
                         ),
-                        ElevatedButton(
-                            style: elevatedButtonStyle,
-                            onPressed: () {
-                              launchUrlString(speaker.link);
-                            },
-                            child: Text("See More")),
+                        Text(speaker.name, style: h1s),
                         SizedBox(
-                          height: 15,
+                          height: 10,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Row(
+                              children: [
+                                Icon(Icons.calendar_today_outlined,
+                                    color: white),
+                                SizedBox(width: 8.0),
+                                Text(speaker.date,
+                                    style: TextStyle(
+                                      fontSize: 20.0,
+                                      color: white,
+                                      fontWeight: FontWeight.bold,
+                                      //color: Colors.white,
+                                    )),
+                              ],
+                            ),
+                            Row(children: [
+                              Icon(Icons.alarm_on, color: white),
+                              SizedBox(width: 8.0),
+                              Text(speaker.time,
+                                  style: TextStyle(
+                                    fontSize: 20.0,
+                                    color: white,
+                                    fontWeight: FontWeight.bold,
+                                    //color: Colors.white,
+                                  )),
+                            ])
+                          ],
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: ExpansionTile(
+                            collapsedTextColor: white,
+                            // backgroundColor: Colors.black,
+                            controlAffinity: ListTileControlAffinity.platform,
+                            collapsedIconColor: white,
+                            iconColor: Colors.white,
+                            title: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: <Widget>[
+                                IconButton(
+                                  icon: FaIcon(
+                                    FontAwesomeIcons.facebook,
+                                    color: white,
+                                  ),
+                                  onPressed: () async {
+                                    await launchUrlString(speaker.facebook);
+                                  },
+                                ),
+                                IconButton(
+                                  icon: FaIcon(
+                                    FontAwesomeIcons.linkedin,
+                                    color: white,
+                                  ),
+                                  onPressed: () async {
+                                    await launchUrlString(speaker.linkedin);
+                                  },
+                                ),
+                                IconButton(
+                                  icon: FaIcon(
+                                    FontAwesomeIcons.instagram,
+                                    color: white,
+                                  ),
+                                  onPressed: () async {
+                                    await launchUrlString(speaker.insta);
+                                  },
+                                ),
+                              ],
+                            ),
+                            children: [
+                              Text(
+                                speaker.desc,
+                                style: h5.copyWith(color: white),
+                              ),
+                              SizedBox(
+                                height: 15,
+                              ),
+                              ElevatedButton(
+                                  style: elevatedButtonStyle,
+                                  onPressed: () {
+                                    launchUrlString(speaker.link);
+                                  },
+                                  child: Text("See More")),
+                              SizedBox(
+                                height: 15,
+                              ),
+                            ],
+                          ),
                         ),
                       ],
                     ),
-                  ),
-                ],
-              ),
-            ),
+                  ],
+                )),
           ),
           Container(
             alignment: Alignment.center,

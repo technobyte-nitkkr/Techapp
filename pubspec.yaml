@@ -99,4 +99,10 @@ flutter:
    - family: Starlord
      fonts:
      - asset: assets/fonts/Starlord.ttf
+   - family: RubikWetPaint
+     fonts:
+     - asset: assets/fonts/RubikWetPaint-Regular.ttf
+   - family: Satoshi
+     fonts:
+     - asset: assets/fonts/Satoshi-Variable.ttf
 
