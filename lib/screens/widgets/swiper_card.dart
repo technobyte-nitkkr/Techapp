@@ -49,8 +49,6 @@ class SwiperCard extends StatelessWidget {
                 child: PhysicalModel(
                   elevation: 5,
                   color: Colors.transparent,
-                  shadowColor:
-                      Color.fromARGB(255, 169, 176, 239).withOpacity(.6),
                   clipBehavior: Clip.antiAlias,
                   child: WidgetMask(
                     childSaveLayer: true,
@@ -79,24 +77,24 @@ class SwiperCard extends StatelessWidget {
                     boxShadow: [
                       BoxShadow(
                           color: const Color.fromARGB(73, 0, 0, 0),
-                          offset: Offset(0, 4),
+                          offset: Offset(0, 1),
                           blurRadius: 10),
                       BoxShadow(
                           color: const Color.fromARGB(66, 0, 0, 0),
-                          offset: Offset(0, 17),
+                          offset: Offset(0, 4),
                           blurRadius: 34),
                       BoxShadow(
                         color: const Color.fromARGB(38, 0, 0, 0),
-                        offset: Offset(0, 76),
+                        offset: Offset(0, 19),
                         blurRadius: 45,
                       ),
                       BoxShadow(
                           color: const Color.fromARGB(10, 0, 0, 0),
-                          offset: Offset(0, 134),
+                          offset: Offset(0, 33),
                           blurRadius: 30),
                       BoxShadow(
                         color: const Color.fromARGB(3, 0, 0, 0),
-                        offset: Offset(0, 50),
+                        offset: Offset(0, 12),
                         blurRadius: 35,
                       )
                     ]),

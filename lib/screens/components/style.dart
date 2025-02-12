@@ -45,7 +45,7 @@ final mainTitle = baseTextStyle.copyWith(
 final Pagelabel = baseTextStyle.copyWith(
   fontSize: 30,
   fontWeight: FontWeight.w900,
-  fontFamily: 'Poppins',
+  fontFamily: 'Satoshi',
   color: white,
 );
 final h1 = baseTextStyle.copyWith(

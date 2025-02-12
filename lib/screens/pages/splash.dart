@@ -4,7 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_earth_globe/flutter_earth_globe.dart';
+// import 'package:flutter_earth_globe/flutter_earth_globe.dart';
 import 'package:flutter_earth_globe/flutter_earth_globe_controller.dart';
 import 'package:flutter_earth_globe/sphere_style.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -143,16 +143,21 @@ class _SplashAnimationState extends State<SplashAnimation> {
     // }
     return Stack(
       children: [
-        SafeArea(
-            child: FlutterEarthGlobe(
-          controller: _controller,
+        // SafeArea(
+        //     child: FlutterEarthGlobe(
+        //   controller: _controller,
 
-          // alignment: Alignment.bottomCenter,
-          radius: 80,
-        )),
+        //   // alignment: Alignment.bottomCenter,
+        //   radius: 80,
+        // )),
         Container(
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height,
+          decoration: BoxDecoration(
+              color: Color.fromARGB(255, 0, 25, 38),
+              image: DecorationImage(
+                  fit: BoxFit.cover,
+                  image: AssetImage("assets/images/NewBg.png"))),
           child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -173,13 +178,18 @@ class _SplashAnimationState extends State<SplashAnimation> {
                   style: h1s.copyWith(
                     fontSize: 45,
                     fontWeight: FontWeight.w900,
-                    fontFamily: 'Poppins',
+                    fontFamily: 'RubikWetPaint',
                     color: white,
                     shadows: [
                       Shadow(
-                        blurRadius: 1.0,
-                        color: Color(0xFF367cff),
-                        offset: Offset(2, 1),
+                        blurRadius: 4.0,
+                        color: const Color.fromRGBO(59, 130, 246, 1),
+                        offset: const Offset(-2, 0),
+                      ),
+                      Shadow(
+                        blurRadius: 4.0,
+                        color: const Color.fromRGBO(59, 130, 246, 1),
+                        offset: const Offset(2, 0),
                       ),
                     ],
                   ),
@@ -188,10 +198,10 @@ class _SplashAnimationState extends State<SplashAnimation> {
                   height: 20,
                 ),
                 Text(
-                  "Frontier Reimagination",
+                  "Frontier Reimagined",
                   style: h1s.copyWith(
                     fontSize: 24,
-                    fontFamily: 'Poppins',
+                    fontFamily: 'Satoshi',
                     // add shadows
 
                     fontWeight: FontWeight.bold,

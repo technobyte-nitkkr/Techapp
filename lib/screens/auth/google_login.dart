@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_earth_globe/sphere_style.dart';
-import 'package:galaxy_animation/galaxy_animation.dart';
-import 'package:flutter_earth_globe/flutter_earth_globe.dart';
-import 'package:flutter_earth_globe/flutter_earth_globe_controller.dart';
-
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:techapp/screens/auth/firebase_services.dart';
 import 'package:techapp/screens/components/style.dart';
 
@@ -18,59 +14,33 @@ class _GoogleLoginScreenState extends State<GoogleLoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: grey,
+      backgroundColor: Color.fromARGB(255, 0, 25, 38),
       body: SplashAnimation(),
     );
   }
 }
 
 class SplashAnimation extends StatefulWidget {
-  const SplashAnimation({
-    Key? key,
-  }) : super(key: key);
+  const SplashAnimation({Key? key}) : super(key: key);
 
   @override
   State<SplashAnimation> createState() => _SplashAnimationState();
 }
 
 class _SplashAnimationState extends State<SplashAnimation> {
-  final FlutterEarthGlobeController _controller = FlutterEarthGlobeController(
-      rotationSpeed: 0.1,
-      // isRotating: true,
-      sphereStyle: (SphereStyle(
-          shadowColor: Colors.orange.withOpacity(0.8), shadowBlurSigma: 20)),
-      isBackgroundFollowingSphereRotation: true,
-      background: Image.asset('assets/images/background.jpg').image,
-      surface: Image.asset('assets/images/Planet_2.png').image);
   bool _loading = false;
-  @override
-  void initState() {
-    _controller.onLoaded = () {
-      _controller.startRotation();
-    };
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        SafeArea(
-            child: FlutterEarthGlobe(
-          controller: _controller,
-          // alignment: Alignment.bottomCenter,
-          radius: 80,
-        )),
         Container(
+          decoration: BoxDecoration(
+              image: DecorationImage(
+                  fit: BoxFit.cover,
+                  image: AssetImage("assets/images/NewBg.png"))),
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height,
-          // decoration: BoxDecoration(
-          //   color: Colors.black,
-          //   image: DecorationImage(
-          //     image: AssetImage("assets/images/back.jpg"),
-          //     fit: BoxFit.cover,
-          //   ),
-          // ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
@@ -89,14 +59,19 @@ class _SplashAnimationState extends State<SplashAnimation> {
                 "TECHSPARDHA",
                 style: h1s.copyWith(
                   fontSize: 45,
-                  fontWeight: FontWeight.w900,
-                  fontFamily: 'Starlord',
+                  fontWeight: FontWeight.w300,
+                  fontFamily: 'RubikWetPaint',
                   color: white,
                   shadows: [
                     Shadow(
-                      blurRadius: 1.0,
-                      color: Color(0xFF367cff),
-                      offset: Offset(2, 1),
+                      blurRadius: 4.0,
+                      color: const Color.fromRGBO(59, 130, 246, 1),
+                      offset: const Offset(-2, 0),
+                    ),
+                    Shadow(
+                      blurRadius: 4.0,
+                      color: const Color.fromRGBO(59, 130, 246, 1),
+                      offset: const Offset(2, 0),
                     ),
                   ],
                 ),
@@ -105,22 +80,19 @@ class _SplashAnimationState extends State<SplashAnimation> {
                 height: 20,
               ),
               Text(
-                "Infinite Imagination",
+                "Frontier Reimagined",
                 style: h1s.copyWith(
                   fontSize: 24,
-                  fontFamily: 'Orbitron',
-                  // add shadows
-
+                  fontFamily: 'Satoshi',
+                  shadows: [
+                    Shadow(
+                        blurRadius: 8,
+                        color: Colors.black26,
+                        offset: Offset(6, 6))
+                  ],
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(
-                height: 10,
-              ),
-              // FlutterEarthGlobe(
-              //   controller: _controller,
-              //   radius: 1,
-              // ),
               SizedBox(
                 height: 100,
               ),
@@ -129,7 +101,7 @@ class _SplashAnimationState extends State<SplashAnimation> {
                   setState(() {
                     _loading = true;
                   });
-                  _controller.startRotation();
+
                   await FirebaseServices().signInWithGoogle();
 
                   Navigator.popUntil(context, (route) => false);
@@ -173,11 +145,12 @@ class _SplashAnimationState extends State<SplashAnimation> {
         ),
         _loading
             ? Container(
-                color: Colors.black.withOpacity(0.5),
+                color: Colors.black.withOpacity(0.7),
                 child: Center(
-                    child: GalaxyAnimation(
-                  lineColor: white,
-                  planetColor: glowColor,
+                    child: SpinKitSpinningLines(
+                  color: const Color.fromARGB(255, 48, 136, 208),
+                  size: 130,
+                  lineWidth: 4,
                 )),
               )
             : Container(),
