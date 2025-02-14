@@ -15,12 +15,12 @@ class EventPosterWidget extends StatelessWidget {
               child: Hero(
                   tag: item.eventName,
                   child: FadeInImage.assetNetwork(
-                      placeholder: 'assets/images/techspardha.png',
+                      placeholder: 'assets/images/techspardha.jpg',
                       image: item.poster,
                       imageCacheWidth: 10000,
                       fit: BoxFit.contain,
                       imageErrorBuilder: (context, error, stackTrace) =>
-                          Image.asset('assets/images/techspardha.png'))))
+                          Image.asset('assets/images/techspardha.jpg'))))
         ]),
       ),
       onTap: () {

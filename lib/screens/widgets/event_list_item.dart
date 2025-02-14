@@ -65,14 +65,14 @@ class ListItem extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(10),
                                 child: FadeInImage.assetNetwork(
                                     placeholder:
-                                        'assets/images/techspardha.png',
+                                        'assets/images/techspardha.jpg',
                                     image: item.poster,
                                     fit: BoxFit.cover,
                                     imageCacheWidth: 10000,
                                     imageErrorBuilder: (context, error,
                                             stackTrace) =>
                                         Image.asset(
-                                            'assets/images/techspardha.png'))),
+                                            'assets/images/techspardha.jpg'))),
                           )),
                       Expanded(
                         child: Container(

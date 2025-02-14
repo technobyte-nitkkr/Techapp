@@ -174,14 +174,14 @@ class GuestCardCustom extends StatelessWidget {
                 //   cacheWidth: 1300,
                 // ),
                 child: FadeInImage.assetNetwork(
-                  placeholder: 'assets/images/techspardha.png',
+                  placeholder: 'assets/images/techspardha.jpg',
                   image: speaker.imageurl,
                   fit: BoxFit.cover,
                   width: 180,
                   height: 180,
                   imageCacheWidth: 10000,
                   imageErrorBuilder: (context, error, stackTrace) =>
-                      Image.asset('assets/images/techspardha.png',
+                      Image.asset('assets/images/techspardha.jpg',
                           fit: BoxFit.cover),
                 ),
               ),

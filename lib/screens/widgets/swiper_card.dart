@@ -56,10 +56,10 @@ class SwiperCard extends StatelessWidget {
                       categoryName.imgUrl,
                       fit: BoxFit.cover,
                       errorBuilder: (context, error, stackTrace) =>
-                          Image.asset('assets/images/techspardha.png'),
+                          Image.asset('assets/images/techspardha.jpg'),
                     ),
                     child: Image.asset(
-                      "assets/images/Rectangle 18.png",
+                      "assets/images/techspardha.jpg",
                       fit: BoxFit.fill,
                     ),
                   ),

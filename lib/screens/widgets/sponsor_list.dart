@@ -77,14 +77,14 @@ class CardItem extends StatelessWidget {
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(3),
                       child: FadeInImage.assetNetwork(
-                        placeholder: 'assets/images/techspardha.png',
+                        placeholder: 'assets/images/techspardha.jpg',
                         width: MediaQuery.of(context).size.width * 0.28,
                         image: item.imageurl,
-                        fit: BoxFit.cover,
+                        fit: BoxFit.contain,
                         imageCacheWidth: 10000,
                         imageErrorBuilder: (context, error, stackTrace) =>
-                            Image.asset('assets/images/techspardha.png',
-                                fit: BoxFit.cover),
+                            Image.asset('assets/images/techspardha.jpg',
+                                fit: BoxFit.contain),
                       ),
                     ),
                   ),
