@@ -35,7 +35,7 @@ class SideMenu extends StatelessWidget {
                         )
                       : CircleAvatar(
                           backgroundImage: AssetImage(
-                            'assets/images/techspardha.png',
+                            'assets/images/techspardha.jpg',
                           ),
                           radius: 40,
                         ),

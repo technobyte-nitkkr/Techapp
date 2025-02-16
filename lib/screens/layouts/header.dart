@@ -48,7 +48,42 @@ class Header extends StatelessWidget {
                 ),
               ],
             ),
-            Text("  Techspardha", style: h2s.copyWith(fontFamily: 'Starlord')),
+            ShaderMask(
+              shaderCallback: (Rect bounds) {
+                return const LinearGradient(
+                  colors: [
+                    Color.fromRGBO(255, 255, 255, 1), // Fully opaque white
+                    Color.fromRGBO(255, 255, 255, 0.8), // Transparent white
+                  ],
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                ).createShader(bounds);
+              },
+              child: Text(
+                "Techspardha",
+                style: h2s.copyWith(
+                  fontFamily: 'RubikWetPaint',
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white, // Required for ShaderMask
+                  shadows: [
+                    // Left shadow (-4px)
+                    Shadow(
+                      blurRadius: 4.0,
+                      color: const Color.fromRGBO(
+                          59, 130, 246, 1), // RGB(59,130,246)
+                      offset: const Offset(-1.5, 0),
+                    ),
+                    // Right shadow (4px)
+                    Shadow(
+                      blurRadius: 4.0,
+                      color: const Color.fromRGBO(
+                          59, 130, 246, 1), // RGB(59,130,246)
+                      offset: const Offset(1.5, 0),
+                    ),
+                  ],
+                ),
+              ),
+            ),
             Container(
               child: Row(
                 children: [

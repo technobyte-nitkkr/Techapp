@@ -3,7 +3,7 @@ description: made by technobyte
 
 publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
-version: 2.0.0+10
+version: 2.0.0+11
 
 environment:
   sdk: '>=2.12.0 <4.0.0'
@@ -44,6 +44,7 @@ dependencies:
   flutter_earth_globe: ^1.0.2
   share_plus: ^7.2.2
   permission_handler: ^11.3.0
+  flutter_spinkit: ^5.2.1
 
 dependency_overrides:
   http: ^1.2.0 
@@ -99,4 +100,10 @@ flutter:
    - family: Starlord
      fonts:
      - asset: assets/fonts/Starlord.ttf
+   - family: RubikWetPaint
+     fonts:
+     - asset: assets/fonts/RubikWetPaint-Regular.ttf
+   - family: Satoshi
+     fonts:
+     - asset: assets/fonts/Satoshi-Variable.ttf
 

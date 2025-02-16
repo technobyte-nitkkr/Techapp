@@ -52,7 +52,7 @@ class PageLayout extends StatelessWidget {
                                     ),
                                     Text("  Techspardha",
                                         style: h1s.copyWith(
-                                            fontFamily: 'Starlord')),
+                                            fontFamily: 'RubikWetPaint')),
                                     SizedBox(
                                       width: 50,
                                     ),

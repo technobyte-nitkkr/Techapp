@@ -26,66 +26,92 @@ class SwiperCard extends StatelessWidget {
         );
       },
       child: Center(
-        child: Stack(
-          children: [
-            Center(
-              child: Container(
-                width: MediaQuery.of(context).size.height * 0.44,
-                height: MediaQuery.of(context).size.height * 0.33,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    // opacity: 0.,
-                    image: AssetImage('assets/images/PANEL1.png'),
-                    fit: BoxFit.fill,
-                  ),
-                ),
-              ),
-            ),
-            Positioned(
-              left: 2,
-              top: 320,
-              child: Container(
-                padding: EdgeInsets.all(8),
-                child: Text(
-                  categoryName.categoryName.substring(0, 1).toUpperCase() +
-                      categoryName.categoryName.substring(1),
-                  style: h3.copyWith(
-                    fontWeight: FontWeight.bold,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-              ),
-            ),
-            Center(
-              child: Container(
+        child: Container(
+          width: MediaQuery.of(context).size.height * 0.44,
+          height: MediaQuery.of(context).size.height * 0.38,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20),
+            color: Colors.transparent,
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
                 width: MediaQuery.of(context).size.height * 0.354,
                 height: MediaQuery.of(context).size.height * 0.228,
-                margin: EdgeInsets.only(left: 18, top: 0, right: 10, bottom: 8),
-                child: PhysicalModel(
-                  elevation: 50, // Adjust the elevation as needed
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(10),
+                      topRight: Radius.circular(10)),
                   color: Colors.transparent,
-                  shadowColor:
-                      Color.fromARGB(255, 169, 176, 239).withOpacity(.6),
-                  //borderRadius: BorderRadius.circular(10),
+                  // clipBehavior: Clip.antiAlias,
+                ),
+                child: PhysicalModel(
+                  elevation: 5,
+                  color: Colors.transparent,
                   clipBehavior: Clip.antiAlias,
                   child: WidgetMask(
-                    blendMode: BlendMode.srcATop,
                     childSaveLayer: true,
                     mask: Image.network(
                       categoryName.imgUrl,
                       fit: BoxFit.cover,
                       errorBuilder: (context, error, stackTrace) =>
-                          Image.asset('assets/images/techspardha.png'),
+                          Image.asset('assets/images/techspardha.jpg'),
                     ),
                     child: Image.asset(
-                      "assets/images/Rectangle 17.png",
+                      "assets/images/techspardha.jpg",
                       fit: BoxFit.fill,
                     ),
                   ),
                 ),
               ),
-            ),
-          ],
+              Container(
+                width: MediaQuery.of(context).size.height * 0.354,
+                padding: EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                    color: Color.fromARGB(255, 3, 35, 57),
+                    borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(10),
+                      bottomRight: Radius.circular(10),
+                    ),
+                    boxShadow: [
+                      BoxShadow(
+                          color: const Color.fromARGB(73, 0, 0, 0),
+                          offset: Offset(0, 1),
+                          blurRadius: 10),
+                      BoxShadow(
+                          color: const Color.fromARGB(66, 0, 0, 0),
+                          offset: Offset(0, 4),
+                          blurRadius: 34),
+                      BoxShadow(
+                        color: const Color.fromARGB(38, 0, 0, 0),
+                        offset: Offset(0, 19),
+                        blurRadius: 45,
+                      ),
+                      BoxShadow(
+                          color: const Color.fromARGB(10, 0, 0, 0),
+                          offset: Offset(0, 33),
+                          blurRadius: 30),
+                      BoxShadow(
+                        color: const Color.fromARGB(3, 0, 0, 0),
+                        offset: Offset(0, 12),
+                        blurRadius: 35,
+                      )
+                    ]),
+                child: Center(
+                  child: Text(
+                    categoryName.categoryName.substring(0, 1).toUpperCase() +
+                        categoryName.categoryName.substring(1),
+                    style: h3.copyWith(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

@@ -145,14 +145,14 @@ class ContactCard extends StatelessWidget {
                   ClipRRect(
                     borderRadius: BorderRadius.circular(50),
                     child: FadeInImage.assetNetwork(
-                      placeholder: 'assets/images/techspardha.png',
+                      placeholder: 'assets/images/techspardha.jpg',
                       height: 60,
                       width: 60,
                       imageCacheWidth: 10000,
                       fit: BoxFit.cover,
                       image: contact.logo,
                       imageErrorBuilder: (context, error, stackTrace) {
-                        return Image.asset('assets/images/techspardha.png',
+                        return Image.asset('assets/images/techspardha.jpg',
                             height: 60, width: 60, fit: BoxFit.cover);
                       },
                     ),

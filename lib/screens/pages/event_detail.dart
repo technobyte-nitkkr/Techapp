@@ -199,12 +199,12 @@ Container getContent(Event item, BuildContext context, bool isflagship) {
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(6),
                           child: FadeInImage.assetNetwork(
-                            placeholder: 'assets/images/techspardha.png',
+                            placeholder: 'assets/images/techspardha.jpg',
                             image: item.poster,
                             fit: BoxFit.cover,
                             imageCacheWidth: 10000,
                             imageErrorBuilder: (context, error, stackTrace) =>
-                                Image.asset('assets/images/techspardha.png',
+                                Image.asset('assets/images/techspardha.jpg',
                                     fit: BoxFit.cover),
                           ),
                         ),

@@ -17,7 +17,7 @@ class SpeakersWidget extends StatelessWidget {
         scrollDirection: Axis.vertical,
         //padding: EdgeInsets.all(10),
         itemBuilder: (context, index) {
-          return GuestCardCustom(speaker: speakers[index]);
+          return GuestCardCustom(speaker: speakers[index],index: index);
         },
       );
     } else {

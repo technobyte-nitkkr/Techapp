@@ -7,9 +7,11 @@ import 'package:url_launcher/url_launcher_string.dart';
 
 class GuestCardCustom extends StatelessWidget {
   final Speaker speaker;
+  final int index;
   const GuestCardCustom({
     Key? key,
     required this.speaker,
+    required this.index,
   }) : super(key: key);
 
   @override
@@ -29,8 +31,22 @@ class GuestCardCustom extends StatelessWidget {
             elevation: 5,
             borderOnForeground: true,
             child: Container(
-              decoration: boxDecoration.copyWith(
-                borderRadius: BorderRadius.circular(20),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                image: index % 2 == 0
+                    ? DecorationImage(
+                        image: AssetImage("assets/images/blueDotted.png"),
+                        fit: BoxFit.cover)
+                    : DecorationImage(
+                        image: AssetImage("assets/images/yellowDotted.png"),
+                        fit: BoxFit.cover),
+                gradient: LinearGradient(
+                    begin: Alignment.centerLeft,
+                    end: Alignment.centerRight,
+                    colors: [
+                      Color.fromARGB(255, 0, 25, 38),
+                      Color.fromARGB(0, 0, 25, 38)
+                    ]),
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -76,7 +92,7 @@ class GuestCardCustom extends StatelessWidget {
                     padding: const EdgeInsets.all(10.0),
                     child: ExpansionTile(
                       collapsedTextColor: white,
-                      backgroundColor: Colors.transparent,
+                      // backgroundColor: Colors.black,
                       controlAffinity: ListTileControlAffinity.platform,
                       collapsedIconColor: white,
                       iconColor: Colors.white,
@@ -158,14 +174,14 @@ class GuestCardCustom extends StatelessWidget {
                 //   cacheWidth: 1300,
                 // ),
                 child: FadeInImage.assetNetwork(
-                  placeholder: 'assets/images/techspardha.png',
+                  placeholder: 'assets/images/techspardha.jpg',
                   image: speaker.imageurl,
                   fit: BoxFit.cover,
                   width: 180,
                   height: 180,
                   imageCacheWidth: 10000,
                   imageErrorBuilder: (context, error, stackTrace) =>
-                      Image.asset('assets/images/techspardha.png',
+                      Image.asset('assets/images/techspardha.jpg',
                           fit: BoxFit.cover),
                 ),
               ),
